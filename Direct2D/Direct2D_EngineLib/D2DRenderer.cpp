@@ -1,5 +1,6 @@
 #include "D2DRenderer.h"
 
+/// Init
 void D2DRenderer::Init(HWND hwnd, int width, int height) 
 {
 	this->hwnd = hwnd;

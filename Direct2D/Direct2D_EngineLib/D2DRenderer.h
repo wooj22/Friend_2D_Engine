@@ -33,6 +33,7 @@ public :
 	ComPtr<IWICImagingFactory> wicImagingFactory;   // WIC Imaging Factory, 이미지 로딩용
 	ComPtr<ID2D1Bitmap1> d2dBitmapFromFile;	        // 로드된 이미지 비트맵 저장용
 
+	// functions
 	void Init(HWND hwnd, int width, int height);
 	void UnInit();							      
 	HRESULT CreateBitmapFromFile(const wchar_t* path, ID2D1Bitmap1** outBitmap);	// 이미지 로드

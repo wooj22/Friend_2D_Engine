@@ -1,6 +1,7 @@
 #include "GameApp.h"
 #include "Singleton.h"
 
+/// 윈도우 프로시저
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	GameApp* pThis = nullptr;
@@ -37,7 +38,6 @@ void GameApp::MessageProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 	// 게임 콘텐츠에서 override
 }
-
 
 /// Init
 void GameApp::Init()
@@ -103,63 +103,19 @@ void GameApp::Update()
 /// Render
 void GameApp::Render()
 {
-	d2dRenderer.d2dDeviceContext->BeginDraw();
-	d2dRenderer.d2dDeviceContext->Clear(D2D1::ColorF(D2D1::ColorF::YellowGreen));
-	d2dRenderer.d2dDeviceContext->SetTransform(D2D1::Matrix3x2F::Identity());
-
-	// 이미지 크기 얻기
-	D2D1_SIZE_F bitmapSize = d2dRenderer.d2dBitmapFromFile->GetSize();
-
-	// 현재 렌더 타겟(창)의 크기 얻기
-	D2D1_SIZE_F renderTargetSize = d2dRenderer.d2dDeviceContext->GetSize();
-
-	// 중앙 위치 계산
-	float destX = (renderTargetSize.width - bitmapSize.width) / 2.0f;
-	float destY = (renderTargetSize.height - bitmapSize.height) / 2.0f;
-
-	// 중앙에 출력할 DestRect 설정
-	D2D1_RECT_F destRect = {
-		destX,
-		destY,
-		destX + bitmapSize.width,
-		destY + bitmapSize.height
-	};
-
-	// 이미지 출력 (정중앙에)
-	d2dRenderer.d2dDeviceContext->DrawBitmap(d2dRenderer.d2dBitmapFromFile.Get(), destRect);
-
-	d2dRenderer.d2dDeviceContext->EndDraw();
-	d2dRenderer.dxgiSwapChain->Present(1, 0);
+	
 
 }
 
 /// GameLoop
 void GameApp::Loop()
 {
-	MSG msg = {};
-	while (isLoop)
-	{
-		// message
-		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-		{
-			if (msg.message == WM_QUIT) {
-				isLoop = false;
-				break;
-			}
-				
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-			
-		}
-
-		Update();
-		Render();
-	}
+	
 }
 
 /// Release
 void GameApp::UnInit()
 {
-	d2dRenderer.UnInit();
+	d2dRenderer.UnInit();   // direct 2D unInit
 	CoUninitialize();		// com 객체 해제
 }

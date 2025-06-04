@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="헤더 파일\Module">
+      <UniqueIdentifier>{3806363d-7cad-4fa4-b180-f0659e81a4c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Module">
+      <UniqueIdentifier>{b87aba46-edb5-47ac-88e9-ed939581cf0c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -22,18 +28,18 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="D2DRenderer.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Module</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Module</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="D2DRenderer.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="GameApp.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="D2DRenderer.cpp">
+      <Filter>소스 파일\Module</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

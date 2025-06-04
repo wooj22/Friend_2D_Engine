@@ -21,9 +21,6 @@ protected:
 	// Direct2D Renderer
 	D2DRenderer d2dRenderer;
 
-	void Update();
-	void Render();
-
 public:
 	bool isLoop = true;
 
@@ -32,7 +29,9 @@ public:
 	virtual ~GameApp() = default;
 
 	virtual void Init();
-	void Loop();
+	virtual void Update();
+	virtual void Render();
+	virtual void Loop();
 	virtual void UnInit();
 	virtual void MessageProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 };
