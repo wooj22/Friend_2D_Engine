@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "GameApp.h"
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
