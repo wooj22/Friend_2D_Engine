@@ -1,6 +1,5 @@
 #include "ManualFactoryExample.h"
 
-
 #include <windows.h>
 #include "../MyCOMLib/IMyCOM.h"
 
