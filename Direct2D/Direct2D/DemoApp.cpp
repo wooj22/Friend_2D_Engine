@@ -6,8 +6,8 @@ void DemoApp::Init() {
 }
 
 /// Game Release
-void DemoApp::UnInitialize() {
-	__super::UnInitialize();
+void DemoApp::UnInit() {
+	__super::UnInit();
 }
 
 /// 윈도우 프로시저 메시지 처리

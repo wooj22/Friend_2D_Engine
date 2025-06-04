@@ -93,6 +93,11 @@ void GameApp::Init()
 
 }
 
+/// Render
+void GameApp::Render()
+{
+	
+}
 
 /// GameLoop
 void GameApp::Loop()
@@ -103,17 +108,20 @@ void GameApp::Loop()
 		// message
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
-			if (msg.message == WM_QUIT)
+			if (msg.message == WM_QUIT) {
+				isLoop = false;
 				break;
-
+			}
+				
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
+			Render();
 		}
 	}
 }
 
 /// Release
-void GameApp::UnInitialize()
+void GameApp::UnInit()
 {
 	
 }

@@ -1,41 +1,40 @@
-#include <windows.h>
 #include <assert.h>
-#include <wrl.h>  // ComPtr 사용을 위한 헤더
+#include <windows.h>     // Win32 API
+#include <wrl.h>         // ComPtr 스마트 포인터
+#include <d3d11.h>       // Direct3D
+#include <d2d1_3.h>      // Direct2D
+#include <dxgi1_6.h>     // DXGI
+#include <wincodec.h>    // WIC 
 
-#include <d3d11.h>
 #pragma comment(lib, "d3d11.lib")
-
-#include <d2d1_3.h> //ID2D1Factory8,ID2D1DeviceContext7
 #pragma comment(lib, "d2d1.lib")
-
-#include <dxgi1_6.h> // IDXGIFactory7
 #pragma comment(lib, "dxgi.lib")
-
-#include <wincodec.h>
 #pragma comment(lib,"windowscodecs.lib")
+using namespace Microsoft::WRL;    // Microsoft::WRL::ComPtr<T>
 
-using namespace Microsoft::WRL;
 
-// 전역 변수
-HWND g_hwnd = nullptr;
-ComPtr<ID3D11Device> g_d3dDevice;
-ComPtr<IDXGISwapChain1> g_dxgiSwapChain;
-ComPtr<ID2D1DeviceContext7> g_d2dDeviceContext;
-ComPtr<ID2D1Bitmap1> g_d2dBitmapTarget;
+// 전역 변수 
+HWND g_hwnd = nullptr;     		                  // 윈도우 핸들
+ComPtr<ID3D11Device> g_d3dDevice;				  // D3D Device
+ComPtr<IDXGISwapChain1> g_dxgiSwapChain;	      // SwapChain
+ComPtr<ID2D1DeviceContext7> g_d2dDeviceContext;   // D2D Device Context
+ComPtr<ID2D1Bitmap1> g_d2dBitmapTarget;	  	      // 화면 출력용 D2D Bitmap Target
 
 // For ImageDraw
-ComPtr<IWICImagingFactory> g_wicImagingFactory;
-ComPtr<ID2D1Bitmap1> g_d2dBitmapFromFile;
+ComPtr<IWICImagingFactory> g_wicImagingFactory;   // WIC Imaging Factory, 이미지 로딩용
+ComPtr<ID2D1Bitmap1> g_d2dBitmapFromFile;	      // 로드된 이미지 비트맵 저장용
 
-
+// 화면 크기
 UINT g_width = 1024;
 UINT g_height = 768;
 bool g_resized = false;
 
+// 함수 원형
 void Initialize(HWND hwnd);
 void Uninitialize();
 
-// WIC를 통해 PNG 등을 로드하여 ID2D1Bitmap1**으로 반환
+// 이미지 로드 함수
+// WIC를 통해 파일 경로에 있는 이미지를 로드하여 ID2D1Bitmap1*로 반환
 HRESULT CreateBitmapFromFile(const wchar_t* path, ID2D1Bitmap1** outBitmap)
 {
 	ComPtr<IWICBitmapDecoder>     decoder;
@@ -174,23 +173,23 @@ void Initialize(HWND hwnd)
 
 void Uninitialize()
 {
-	g_wicImagingFactory = nullptr;
+	// 스마트 포인터를 사용하기 때문에 자동으로 해제됨
+	/*g_wicImagingFactory = nullptr;
 	g_d2dBitmapFromFile = nullptr;
 
 	g_d3dDevice = nullptr;
 	g_dxgiSwapChain = nullptr;
 	g_d2dDeviceContext = nullptr;
-	g_d2dBitmapTarget = nullptr;
+	g_d2dBitmapTarget = nullptr;*/
 }
 
 void Render()
 {
-	g_d2dDeviceContext->BeginDraw();
-	g_d2dDeviceContext->Clear(D2D1::ColorF(D2D1::ColorF::DarkSlateBlue));
+	g_d2dDeviceContext->BeginDraw();		// 그리기 시작
+	g_d2dDeviceContext->Clear(D2D1::ColorF(D2D1::ColorF::DarkSlateBlue));		// 배경색
 
 	D2D1_SIZE_F size;
-
-	g_d2dDeviceContext->SetTransform(D2D1::Matrix3x2F::Identity()); // 변환 초기화
+	g_d2dDeviceContext->SetTransform(D2D1::Matrix3x2F::Identity()); // Render 위치 기본 sest
 
 	//1. 0,0 위치에 비트맵 전체영역 그린다. (변환은 초기화)
 	g_d2dDeviceContext->DrawBitmap(g_d2dBitmapFromFile.Get());
@@ -201,28 +200,27 @@ void Render()
 	D2D1_RECT_F DestRect{ 0,0,0,0 }, SrcRect{ 0,0,0,0 }; // 화면 영역, 비트맵 영역
 	D2D1_MATRIX_3X2_F transform;	// 변환 행렬
 
-	size = g_d2dBitmapFromFile->GetSize();
+	// 화면 위치를 지정하고, 비트맵 크기 만큼 DestRect을 설정하여 비트맵 그리기
 	DestPos = { 100,0 };
+	size = g_d2dBitmapFromFile->GetSize();
 	DestRect = { DestPos.x , DestPos.y, DestPos.x + size.width - 1 ,DestPos.y + size.height - 1 };
 	g_d2dDeviceContext->DrawBitmap(g_d2dBitmapFromFile.Get(), DestRect);
-
 
 	//3. DestRect(그릴 영역) 설정과 SrcRect(비트맵 일부 영역)로 그리기
 	size = { 200,200 };
 	DestPos = { 100,100 };
 	DestRect = { DestPos.x , DestPos.y, DestPos.x + size.width - 1 ,DestPos.y + size.height - 1 };
 
-	SrcPos = { 0,0 };
+	SrcPos = { 0,0 }; // 비트맵의 일부 영역을 그리기 위해 SrcPos 설정
 	SrcRect = { SrcPos.x,SrcPos.y, SrcPos.x + size.width - 1 ,SrcPos.y + size.height - 1 };
 	g_d2dDeviceContext->DrawBitmap(g_d2dBitmapFromFile.Get(), DestRect, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, &SrcRect);
-
 
 	//4. 변환을 사용한 반전으로 DestRect(그릴 영역) 설정과 SrcRect(비트맵 일부 영역)로 그리기
 	DestPos = { 700,100 };
 	DestRect = { DestPos.x , DestPos.y, DestPos.x + size.width - 1 ,DestPos.y + size.height - 1 };
 
 	transform = D2D1::Matrix3x2F::Scale(-1.0f, 1.0f,  // x축 반전
-		D2D1::Point2F(DestPos.x, DestPos.y));        // 기준점
+		D2D1::Point2F(DestPos.x, DestPos.y));         // 기준점
 	g_d2dDeviceContext->SetTransform(transform);
 	g_d2dDeviceContext->DrawBitmap(g_d2dBitmapFromFile.Get(), DestRect, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, &SrcRect);
 

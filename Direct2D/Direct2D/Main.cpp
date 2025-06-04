@@ -7,7 +7,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 
     gameApp.Init();
     gameApp.Loop();
-    gameApp.UnInitialize();
+    gameApp.UnInit();
 
     return (int)1;
 }
