@@ -173,14 +173,13 @@ void Initialize(HWND hwnd)
 
 void Uninitialize()
 {
-	// 스마트 포인터를 사용하기 때문에 자동으로 해제됨
-	/*g_wicImagingFactory = nullptr;
+	g_wicImagingFactory = nullptr;
 	g_d2dBitmapFromFile = nullptr;
 
 	g_d3dDevice = nullptr;
 	g_dxgiSwapChain = nullptr;
 	g_d2dDeviceContext = nullptr;
-	g_d2dBitmapTarget = nullptr;*/
+	g_d2dBitmapTarget = nullptr;
 }
 
 void Render()
