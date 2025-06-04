@@ -91,7 +91,7 @@ void GameApp::Init()
 	UpdateWindow(hWnd);
 
 	CoInitialize(nullptr);					// com ∞¥√º √ ±‚»≠	
-	d2dRenderer.Init(hWnd, width, height); // direct 2D init
+	d2dRenderer.Init(hWnd, width, height);  // direct 2D init
 }
 
 /// Update
@@ -160,5 +160,6 @@ void GameApp::Loop()
 /// Release
 void GameApp::UnInit()
 {
+	d2dRenderer.UnInit();
 	CoUninitialize();		// com ∞¥√º «ÿ¡¶
 }
