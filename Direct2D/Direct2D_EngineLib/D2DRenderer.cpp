@@ -2,7 +2,12 @@
 
 void D2DRenderer::Init(HWND hwnd, int width, int height) 
 {
+	this->hwnd = hwnd;
+	this->width = width;
+	this->height = height;
+
 	HRESULT hr;
+
 	// D3D11 叼官捞胶 积己
 	D3D_FEATURE_LEVEL featureLevel;
 	D3D_FEATURE_LEVEL levels[] = { D3D_FEATURE_LEVEL_11_0 };
@@ -23,7 +28,6 @@ void D2DRenderer::Init(HWND hwnd, int width, int height)
 
 	ComPtr<IDXGIFactory7> dxgiFactory;
 	CreateDXGIFactory(IID_PPV_ARGS(&dxgiFactory));
-
 
 	// SwapChain 积己
 	DXGI_SWAP_CHAIN_DESC1 scDesc = {};

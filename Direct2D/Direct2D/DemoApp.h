@@ -4,7 +4,7 @@
 class DemoApp : public GameApp
 {
 public:
-	DemoApp(int inputWidth = 1920, int inputHeight = 1080) :
+	DemoApp(int inputWidth = 1024, int inputHeight = 768) :
 		GameApp(inputWidth, inputHeight) { };
 	~DemoApp() override = default;
 

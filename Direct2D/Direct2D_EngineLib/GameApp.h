@@ -11,19 +11,23 @@ protected:
 	// window
 	HINSTANCE		hInstance;		// 실행중인 프로그램 인스턴스 핸들
 	HWND			hWnd;			// 윈도우 핸들
-	int				width = 1920;
-	int				height = 1080;
+	int				width;
+	int				height;
 	wstring			winClassName = L"woo";
 	wstring			titleName = L"Direct 2D Project";
 	string			modulePath;
 	string			workingPath;
 
+	// Direct2D Renderer
+	D2DRenderer d2dRenderer;
+
+	void Update();
 	void Render();
 
 public:
 	bool isLoop = true;
 
-	GameApp(int inputWidth = 1920, int inputHeight = 1080) :
+	GameApp(int inputWidth = 1024, int inputHeight = 768) :
 		width(inputWidth), height(inputHeight), hInstance(nullptr), hWnd(nullptr) { };
 	virtual ~GameApp() = default;
 

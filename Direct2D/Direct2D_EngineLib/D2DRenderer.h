@@ -17,7 +17,12 @@ using namespace Microsoft::WRL;    // Microsoft::WRL::ComPtr<T>
 
 class D2DRenderer : public Singleton<D2DRenderer>
 {
-private :
+public :
+	// window
+	HWND hwnd;
+	int width;
+	int height;
+
 	// Direct2D Engine
 	ComPtr<ID3D11Device> g_d3dDevice;				  // D3D Device
 	ComPtr<IDXGISwapChain1> g_dxgiSwapChain;	      // SwapChain
@@ -28,9 +33,7 @@ private :
 	ComPtr<IWICImagingFactory> g_wicImagingFactory;   // WIC Imaging Factory, 이미지 로딩용
 	ComPtr<ID2D1Bitmap1> g_d2dBitmapFromFile;	      // 로드된 이미지 비트맵 저장용
 
-public:
 	void Init(HWND hwnd, int width, int height);
-	void UnInit() {};
-
+	void UnInit() {};							      // 스마트 포인터를 사용하므로 따로 해제 x
 	HRESULT CreateBitmapFromFile(const wchar_t* path, ID2D1Bitmap1** outBitmap);
 };
