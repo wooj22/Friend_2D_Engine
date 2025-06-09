@@ -31,7 +31,7 @@ public:
 	virtual void Init();
 	virtual void Update();
 	virtual void Render();
-	virtual void Loop();
+	void Loop();
 	virtual void UnInit();
 	virtual void MessageProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 };

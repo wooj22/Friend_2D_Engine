@@ -110,7 +110,25 @@ void GameApp::Render()
 /// GameLoop
 void GameApp::Loop()
 {
-	
+	MSG msg = {};
+	while (isLoop)
+	{
+		// message
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+		{
+			if (msg.message == WM_QUIT) {
+				isLoop = false;
+				break;
+			}
+
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+
+		}
+
+		Update();
+		Render();
+	}
 }
 
 /// Release

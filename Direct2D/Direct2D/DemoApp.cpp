@@ -9,7 +9,7 @@ void DemoApp::Init()
 /// Game Update
 void DemoApp::Update()
 {
-	
+	__super::Update();
 }
 
 /// Game Render
@@ -42,30 +42,6 @@ void DemoApp::Render()
 
 	d2dRenderer.d2dDeviceContext->EndDraw();
 	d2dRenderer.dxgiSwapChain->Present(1, 0);
-}
-
-/// Game Loop
-void DemoApp::Loop() 
-{
-	MSG msg = {};
-	while (isLoop)
-	{
-		// message
-		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-		{
-			if (msg.message == WM_QUIT) {
-				isLoop = false;
-				break;
-			}
-
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-
-		}
-
-		Update();
-		Render();
-	}
 }
 
 /// Game Release
