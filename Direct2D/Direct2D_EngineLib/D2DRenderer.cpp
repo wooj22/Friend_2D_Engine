@@ -7,8 +7,6 @@ void D2DRenderer::Init(HWND hwnd, int width, int height)
 	this->width = width;
 	this->height = height;
 
-	HRESULT hr;
-
 	// D3D11 디바이스 생성
 	D3D_FEATURE_LEVEL featureLevel;
 	D3D_FEATURE_LEVEL levels[] = { D3D_FEATURE_LEVEL_11_0 };
@@ -53,12 +51,11 @@ void D2DRenderer::Init(HWND hwnd, int width, int height)
 
 
 	// Create WIC factory
-	hr = CoCreateInstance(CLSID_WICImagingFactory,
+	HRESULT hr = CoCreateInstance(CLSID_WICImagingFactory,
 		NULL, CLSCTX_INPROC_SERVER,
 		__uuidof(wicImagingFactory),
 		(void**)wicImagingFactory.GetAddressOf());
 
-	hr = CreateBitmapFromFile(L"../Resource/Cat.png", d2dBitmapFromFile.GetAddressOf());
 	assert(SUCCEEDED(hr));
 }
 

@@ -4,6 +4,7 @@
 void DemoApp::Init() 
 {
 	__super::Init();
+	HRESULT hr = d2dRenderer.CreateBitmapFromFile(L"../Resource/Cat.png", d2dRenderer.d2dBitmapFromFile.GetAddressOf());
 }
 
 /// Game Update
