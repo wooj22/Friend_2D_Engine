@@ -1,7 +1,7 @@
-#include "D2DRenderer.h"
+#include "D2DRenderManager.h"
 
 /// Init
-void D2DRenderer::Init(HWND hwnd, int width, int height) 
+void D2DRenderManager::Init(HWND hwnd, int width, int height) 
 {
 	this->hwnd = hwnd;
 	this->width = width;
@@ -63,7 +63,7 @@ void D2DRenderer::Init(HWND hwnd, int width, int height)
 }
 
 /// UnInit
-void D2DRenderer::UnInit()
+void D2DRenderManager::UnInit()
 {
 	// 스마트 포인터를 사용하므로 따로 해제할 필요 없음
 	d3dDevice = nullptr;
@@ -74,7 +74,7 @@ void D2DRenderer::UnInit()
 }
 
 /// Image Loading Function
-HRESULT D2DRenderer::CreateBitmapFromFile(const wchar_t* path, ID2D1Bitmap1** outBitmap)
+HRESULT D2DRenderManager::CreateBitmapFromFile(const wchar_t* path, ID2D1Bitmap1** outBitmap)
 {
 	ComPtr<IWICBitmapDecoder>     decoder;
 	ComPtr<IWICBitmapFrameDecode> frame;

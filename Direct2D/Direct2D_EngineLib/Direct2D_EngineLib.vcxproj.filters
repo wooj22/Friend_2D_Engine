@@ -30,13 +30,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="GameApp.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="D2DRenderer.h">
+    <ClInclude Include="D2DRenderManager.h">
       <Filter>헤더 파일\Manager</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h">
@@ -45,15 +42,27 @@
     <ClInclude Include="InputManager.h">
       <Filter>헤더 파일\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="IRenderer.h">
+      <Filter>헤더 파일\Component</Filter>
+    </ClInclude>
     <ClInclude Include="TimeManager.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>헤더 파일\Else</Filter>
+    </ClInclude>
+    <ClInclude Include="BitmapRenderer.h">
+      <Filter>헤더 파일\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>헤더 파일\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="D2DRenderer.cpp">
+    <ClCompile Include="D2DRenderManager.cpp">
       <Filter>소스 파일\Manager</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
@@ -61,6 +70,15 @@
     </ClCompile>
     <ClCompile Include="TimeManager.cpp">
       <Filter>소스 파일\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="IRenderer.cpp">
+      <Filter>소스 파일\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="BitmapRenderer.cpp">
+      <Filter>소스 파일\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>소스 파일\Component</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

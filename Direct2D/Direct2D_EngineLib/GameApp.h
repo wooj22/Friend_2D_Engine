@@ -1,8 +1,10 @@
 #pragma once
-#include "D2DRenderer.h"
-#include "Singleton.h"
 #include "Windows.h"
 #include "string"
+#include "Singleton.h"
+#include "D2DRenderManager.h"
+#include "TimeManager.h"
+#include "InputManager.h"
 using namespace std;
 
 class GameApp
@@ -18,8 +20,10 @@ protected:
 	string			modulePath;
 	string			workingPath;
 
-	// Direct2D Renderer
-	D2DRenderer d2dRenderer;
+	// manager
+	InputManager inputManager;
+	TimeManager timeManager;
+	D2DRenderManager d2dRenderManager;
 
 public:
 	bool isLoop = true;

@@ -7,21 +7,28 @@
 #include <dxgi1_6.h>     // DXGI
 #include <wincodec.h>    // WIC 
 #include "Singleton.h"
+#include "IRenderer.h"
+#include <vector>
 
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "d2d1.lib")
 #pragma comment(lib, "dxgi.lib")
 #pragma comment(lib,"windowscodecs.lib")
 using namespace Microsoft::WRL;    // Microsoft::WRL::ComPtr<T>
+using namespace std;
 
-class D2DRenderer : public Singleton<D2DRenderer>
+class D2DRenderManager : public Singleton<D2DRenderManager>
 {
-public :
+private:
+	// renderList
+	vector<IRenderer*> renderList;
+
 	// window
 	HWND hwnd;
 	int width;
 	int height;
 
+public :
 	// Direct2D Engine
 	ComPtr<ID3D11Device> d3dDevice;				 // D3D Device (gpu 연결)
 	ComPtr<IDXGISwapChain1> swapChain;	         // SwapChain (더블버퍼링)

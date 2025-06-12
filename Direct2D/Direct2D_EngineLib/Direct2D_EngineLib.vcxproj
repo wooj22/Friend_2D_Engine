@@ -140,18 +140,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BitmapRenderer.h" />
     <ClInclude Include="GameApp.h" />
-    <ClInclude Include="D2DRenderer.h" />
+    <ClInclude Include="D2DRenderManager.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="IRenderer.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="TimeManager.h" />
+    <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BitmapRenderer.cpp" />
     <ClCompile Include="GameApp.cpp" />
-    <ClCompile Include="D2DRenderer.cpp" />
+    <ClCompile Include="D2DRenderManager.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="IRenderer.cpp" />
     <ClCompile Include="TimeManager.cpp" />
+    <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
