@@ -14,7 +14,6 @@
 #pragma comment(lib,"windowscodecs.lib")
 using namespace Microsoft::WRL;    // Microsoft::WRL::ComPtr<T>
 
-
 class D2DRenderer : public Singleton<D2DRenderer>
 {
 public :
@@ -24,14 +23,11 @@ public :
 	int height;
 
 	// Direct2D Engine
-	ComPtr<ID3D11Device> d3dDevice;				   // D3D Device
-	ComPtr<IDXGISwapChain1> dxgiSwapChain;	       // SwapChain
-	ComPtr<ID2D1DeviceContext7> d2dDeviceContext;  // D2D Device Context
-	ComPtr<ID2D1Bitmap1> d2dBitmapTarget;	  	   // 화면 출력용 D2D Bitmap Target
-
-	// ImageDraw
-	ComPtr<IWICImagingFactory> wicImagingFactory;   // WIC Imaging Factory, 이미지 로딩용
-	ComPtr<ID2D1Bitmap1> d2dBitmapFromFile;	        // 로드된 이미지 비트맵 저장용
+	ComPtr<ID3D11Device> d3dDevice;				 // D3D Device (gpu 연결)
+	ComPtr<IDXGISwapChain1> swapChain;	         // SwapChain (더블버퍼링)
+	ComPtr<ID2D1DeviceContext7> deviceContext;   // D2D Device Context (그리기)
+	ComPtr<ID2D1Bitmap1> renderTarget;	  	     // 화면 출력용 D2D Bitmap render Target (그릴 대상)
+	ComPtr<IWICImagingFactory> wicImagingFactory;   // WIC Imaging Factory (이미지 로딩)
 
 	// functions
 	void Init(HWND hwnd, int width, int height);

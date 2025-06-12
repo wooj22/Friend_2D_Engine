@@ -7,28 +7,31 @@ void D2DRenderer::Init(HWND hwnd, int width, int height)
 	this->width = width;
 	this->height = height;
 
-	// D3D11 디바이스 생성
+	// D3D11 Device
 	D3D_FEATURE_LEVEL featureLevel;
 	D3D_FEATURE_LEVEL levels[] = { D3D_FEATURE_LEVEL_11_0 };
 	D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr,
 		D3D11_CREATE_DEVICE_BGRA_SUPPORT, levels, 1,
 		D3D11_SDK_VERSION, d3dDevice.GetAddressOf(), &featureLevel, nullptr);
 
-	// D2D 팩토리 및 디바이스
-	ComPtr<ID2D1Factory8> d2dFactory;
+	// D2D Factory, Device
+	ComPtr<ID2D1Factory8> d2dFactory;		// D2D Factory : Direct2D 객체를 생성하는 팩토리
 	D2D1_FACTORY_OPTIONS options = {};
 	D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, options, d2dFactory.GetAddressOf());
 
-	ComPtr<IDXGIDevice> dxgiDevice;
+	ComPtr<IDXGIDevice> dxgiDevice;			// DXGI Device
 	d3dDevice.As(&dxgiDevice);
-	ComPtr<ID2D1Device7> d2dDevice;
+	ComPtr<ID2D1Device7> d2dDevice;			// D2D Device
 	d2dFactory->CreateDevice((dxgiDevice.Get()), d2dDevice.GetAddressOf());
-	d2dDevice->CreateDeviceContext(D2D1_DEVICE_CONTEXT_OPTIONS_NONE, d2dDeviceContext.GetAddressOf());
 
+	// D2D Device context
+	d2dDevice->CreateDeviceContext(D2D1_DEVICE_CONTEXT_OPTIONS_NONE, deviceContext.GetAddressOf());
+
+	// DXGI Factory
 	ComPtr<IDXGIFactory7> dxgiFactory;
 	CreateDXGIFactory(IID_PPV_ARGS(&dxgiFactory));
 
-	// SwapChain 생성
+	// SwapChain
 	DXGI_SWAP_CHAIN_DESC1 scDesc = {};
 	scDesc.Width = width;
 	scDesc.Height = height;
@@ -37,20 +40,20 @@ void D2DRenderer::Init(HWND hwnd, int width, int height)
 	scDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 	scDesc.BufferCount = 2;
 	scDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
-	dxgiFactory->CreateSwapChainForHwnd(d3dDevice.Get(), hwnd, &scDesc, nullptr, nullptr, dxgiSwapChain.GetAddressOf());
+	dxgiFactory->CreateSwapChainForHwnd(d3dDevice.Get(), hwnd, &scDesc, nullptr, nullptr, swapChain.GetAddressOf());
 
-	// 백버퍼를 타겟으로 설정
+	// 백버퍼를 타겟으로 설정 -> DeginDraw(), EndDraw() 가능
 	ComPtr<IDXGISurface> backBuffer;
-	dxgiSwapChain->GetBuffer(0, IID_PPV_ARGS(&backBuffer));
-	D2D1_BITMAP_PROPERTIES1 bmpProps = D2D1::BitmapProperties1(
+	swapChain->GetBuffer(0, IID_PPV_ARGS(&backBuffer));
+
+	D2D1_BITMAP_PROPERTIES1 bmpProps = D2D1::BitmapProperties1(		// 버퍼를 D2D용 Bitmap으로 감쌈
 		D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW,
 		D2D1::PixelFormat(scDesc.Format, D2D1_ALPHA_MODE_PREMULTIPLIED)
 	);
-	d2dDeviceContext->CreateBitmapFromDxgiSurface(backBuffer.Get(), &bmpProps, d2dBitmapTarget.GetAddressOf());
-	d2dDeviceContext->SetTarget(d2dBitmapTarget.Get());
+	deviceContext->CreateBitmapFromDxgiSurface(backBuffer.Get(), &bmpProps, renderTarget.GetAddressOf());
+	deviceContext->SetTarget(renderTarget.Get());
 
-
-	// Create WIC factory
+	// Create WIC Factory
 	HRESULT hr = CoCreateInstance(CLSID_WICImagingFactory,
 		NULL, CLSCTX_INPROC_SERVER,
 		__uuidof(wicImagingFactory),
@@ -63,13 +66,11 @@ void D2DRenderer::Init(HWND hwnd, int width, int height)
 void D2DRenderer::UnInit()
 {
 	// 스마트 포인터를 사용하므로 따로 해제할 필요 없음
-	wicImagingFactory = nullptr;
-	d2dBitmapFromFile = nullptr;
-
 	d3dDevice = nullptr;
-	dxgiSwapChain = nullptr;
-	d2dDeviceContext = nullptr;
-	d2dBitmapTarget = nullptr;
+	swapChain = nullptr;
+	deviceContext = nullptr;
+	renderTarget = nullptr;
+	wicImagingFactory = nullptr;
 }
 
 /// Image Loading Function
@@ -110,6 +111,6 @@ HRESULT D2DRenderer::CreateBitmapFromFile(const wchar_t* path, ID2D1Bitmap1** ou
 	);
 
 	// ⑥ DeviceContext에서 WIC 비트맵으로부터 D2D1Bitmap1 생성
-	hr = d2dDeviceContext->CreateBitmapFromWicBitmap(converter.Get(), &bmpProps, outBitmap);
+	hr = deviceContext->CreateBitmapFromWicBitmap(converter.Get(), &bmpProps, outBitmap);
 	return hr;
 }

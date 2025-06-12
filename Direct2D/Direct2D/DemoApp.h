@@ -3,6 +3,9 @@
 
 class DemoApp : public GameApp
 {
+private:
+	ComPtr<ID2D1Bitmap1> catImage;
+
 public:
 	DemoApp(int inputWidth = 1024, int inputHeight = 768) :
 		GameApp(inputWidth, inputHeight) { };
