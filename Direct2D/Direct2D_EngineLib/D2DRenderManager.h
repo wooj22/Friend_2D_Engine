@@ -36,8 +36,11 @@ public :
 	ComPtr<ID2D1Bitmap1> renderTarget;	  	     // 화면 출력용 D2D Bitmap render Target (그릴 대상)
 	ComPtr<IWICImagingFactory> wicImagingFactory;   // WIC Imaging Factory (이미지 로딩)
 
-	// functions
+	// game flow
 	void Init(HWND hwnd, int width, int height);
-	void UnInit();							      
+	void Render();
+	void UnInit();			
+
+	// functions
 	HRESULT CreateBitmapFromFile(const wchar_t* path, ID2D1Bitmap1** outBitmap);	// 이미지 로드
 };

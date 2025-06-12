@@ -3,6 +3,7 @@
 #include "string"
 #include "Singleton.h"
 #include "D2DRenderManager.h"
+#include "BitmapRenderer.h"
 #include "TimeManager.h"
 #include "InputManager.h"
 using namespace std;

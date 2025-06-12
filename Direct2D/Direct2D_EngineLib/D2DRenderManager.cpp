@@ -62,6 +62,24 @@ void D2DRenderManager::Init(HWND hwnd, int width, int height)
 	assert(SUCCEEDED(hr));
 }
 
+/// Render
+void D2DRenderManager::Render() 
+{
+	deviceContext->BeginDraw();
+	deviceContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
+	deviceContext->SetTransform(D2D1::Matrix3x2F::Identity());
+
+	// renderList에 있는 객체들의 Render() 호출
+	for (IRenderer* renderer : renderList)
+	{
+		if (renderer)
+			renderer->Render();
+	}
+
+	deviceContext->EndDraw();
+	swapChain->Present(1, 0);
+}
+
 /// UnInit
 void D2DRenderManager::UnInit()
 {
