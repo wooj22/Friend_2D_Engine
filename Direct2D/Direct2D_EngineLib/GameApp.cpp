@@ -101,7 +101,8 @@ void GameApp::Init()
 /// Update
 void GameApp::Update()
 {
-	
+	inputManager.Update();
+	timeManager.Update();
 }
 
 /// Render
