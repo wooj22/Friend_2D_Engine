@@ -51,7 +51,6 @@ void DemoApp::Update()
 /// Game Release
 void DemoApp::UnInit()
 {
-
 	__super::UnInit();
 }
 
