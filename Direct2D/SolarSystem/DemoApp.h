@@ -4,9 +4,9 @@
 class DemoApp : public GameApp
 {
 private:
-	BitmapRenderer sunImage;
-	BitmapRenderer earthImage;
-	BitmapRenderer moonImage;
+	BitmapRenderer sun;
+	BitmapRenderer earth;
+	BitmapRenderer moon;
 
 public:
 	DemoApp(int inputWidth, int inputHeight) : GameApp(inputWidth, inputHeight) { };

@@ -46,6 +46,11 @@ public:
     void SetPosition(float x, float y) { isDirty = true; position = { x, y }; }
     void SetRotation(float angle) { isDirty = true; rotation = angle; }
     void SetScale(float scaleX, float scaleY) { isDirty = true; scale = { scaleX, scaleY }; }
+    
+    void AddPosition(float x, float y) { isDirty = true; position.x += x; position.y += y; }
+    void AddRotation(float angle) { isDirty = true; rotation += angle; }
+    void AddScale(float scaleX, float scaleY) { isDirty = true; scale.x += scaleX; scale.y += scaleY; }
+    
     D2D1_POINT_2F GetPosition() const { return position; }
     float GetRotation() const { return rotation; }
     D2D1_POINT_2F GetScale() const { return scale; }

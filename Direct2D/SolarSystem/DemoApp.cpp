@@ -6,22 +6,22 @@ void DemoApp::Init()
 	__super::Init();
 
 	// image load
-	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Sun.png", sunImage.image.GetAddressOf());
-	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Earth.png", earthImage.image.GetAddressOf());
-	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Moon.png", moonImage.image.GetAddressOf());
+	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Sun.png", sun.image.GetAddressOf());
+	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Earth.png", earth.image.GetAddressOf());
+	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Moon.png", moon.image.GetAddressOf());
 
 	// 축 보정
-	sunImage.AxisCoreection();
-	earthImage.AxisCoreection();
-	moonImage.AxisCoreection();
+	sun.AxisCoreection();
+	earth.AxisCoreection();
+	moon.AxisCoreection();
 
 	// 부모 지정
-	earthImage.transform.SetParent(&sunImage.transform);
-	moonImage.transform.SetParent(&earthImage.transform);
+	earth.transform.SetParent(&sun.transform);
+	moon.transform.SetParent(&earth.transform);
 
-	// 위치 초기화
-	earthImage.transform.SetPosition(200, 0);
-	moonImage.transform.SetPosition(50, 0);
+	// 초기화
+	earth.transform.SetPosition(200, 0);
+	moon.transform.SetPosition(50, 0);
 }
 
 /// Game Update
@@ -30,7 +30,9 @@ void DemoApp::Update()
 	__super::Update();
 
 	// image transform update
-	
+	sun.transform.AddRotation(1);
+	earth.transform.AddRotation(1);
+	moon.transform.AddRotation(1);
 }
 
 /// Game Release
