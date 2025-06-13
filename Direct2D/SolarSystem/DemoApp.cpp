@@ -23,6 +23,7 @@ void DemoApp::Init()
 	moon.transform.SetParent(&earth.transform);
 
 	// 초기화
+	mainCamera.transform.SetPosition(100, 0);
 	sun.transform.SetPosition(50, 0);
 	earth.transform.SetPosition(200, 0);
 	moon.transform.SetPosition(50, 0);
@@ -32,6 +33,9 @@ void DemoApp::Init()
 void DemoApp::Update()
 {
 	__super::Update();
+
+	// 카메라 역행렬 set
+	Transform::SetCameraMatrix(mainCamera.transform.GetWorldMatrix());
 
 	// image transform update
 	sun.transform.AddRotation(-0.5f);

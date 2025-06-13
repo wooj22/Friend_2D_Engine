@@ -42,7 +42,9 @@ public:
     // camera 开青纺 set
     static void SetCameraMatrix(const D2D1::Matrix3x2F& cameraMatrix)
     {
-        // cameraInversMatrix = cameraMatrix狼 开青纺
+        D2D1::Matrix3x2F invert = cameraMatrix;
+        invert.Invert();
+        cameraInversMatrix = invert;
     }
 
 public:

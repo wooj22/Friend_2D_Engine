@@ -5,8 +5,10 @@
 class DemoApp : public GameApp
 {
 private:
+	// camera
 	Camera mainCamera;
 
+	// image object
 	BitmapRenderer sun;
 	BitmapRenderer earth;
 	BitmapRenderer moon;
