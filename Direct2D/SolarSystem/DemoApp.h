@@ -9,9 +9,7 @@ private:
 	BitmapRenderer moonImage;
 
 public:
-	DemoApp(int inputWidth = 1024, int inputHeight = 768) :
-		GameApp(inputWidth, inputHeight) {
-	};
+	DemoApp(int inputWidth, int inputHeight) : GameApp(inputWidth, inputHeight) { };
 	~DemoApp() override = default;
 
 	void Init() override;

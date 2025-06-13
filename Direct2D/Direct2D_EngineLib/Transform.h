@@ -27,7 +27,7 @@ private:
 
     // parent, child
     Transform* parent = nullptr;
-    std::vector<Transform*> children;
+    //std::vector<Transform*> children;
 
     // dirty patten
     bool isDirty = true;
