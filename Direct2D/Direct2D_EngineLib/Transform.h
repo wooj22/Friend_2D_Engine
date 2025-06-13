@@ -25,9 +25,8 @@ private:
     float rotation;
     D2D1_POINT_2F scale;
 
-    // parent, child
+    // parent
     Transform* parent = nullptr;
-    //std::vector<Transform*> children;
 
     // dirty patten
     bool isDirty = true;

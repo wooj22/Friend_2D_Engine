@@ -1,14 +1,9 @@
 #include "Transform.h"
 
-// Game App에서 초기화 필요
-// 일단 카메라 움직임 없고, (1280, 960) 기준으로 수동 초기화
-D2D1::Matrix3x2F Transform::cameraInversMatrix = 
-    D2D1::Matrix3x2F::Identity();
-D2D1::Matrix3x2F Transform::unityMatrix = 
-    D2D1::Matrix3x2F::Scale(1.0f, -1.0f) *
-    D2D1::Matrix3x2F::Translation(1280.0f / 2.0f, 960.0f / 2.0f);
-D2D1::Matrix3x2F Transform::renderMatrix =
-    D2D1::Matrix3x2F::Scale(1.0f, -1.0f);
+// static mamber init
+D2D1::Matrix3x2F Transform::cameraInversMatrix = D2D1::Matrix3x2F::Identity();
+D2D1::Matrix3x2F Transform::unityMatrix = D2D1::Matrix3x2F::Identity();
+D2D1::Matrix3x2F Transform::renderMatrix = D2D1::Matrix3x2F::Scale(1.0f, -1.0f);
 
 // SetParent
 void Transform::SetParent(Transform* newParent)

@@ -8,6 +8,11 @@ void DemoApp::Init()
 	// camera
 	mainCamera.SetSize(width, height);
 
+	// matrix init
+	Transform::SetCameraMatrix(mainCamera.transform.GetWorldMatrix());
+	Transform::unityMatrix = D2D1::Matrix3x2F::Scale(1.0f, -1.0f) * Transform::unityMatrix *
+		D2D1::Matrix3x2F::Translation(width/2.0f, height/2.0f);
+
 	// image load
 	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Sun.png", sun.image.GetAddressOf());
 	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Earth.png", earth.image.GetAddressOf());
@@ -23,8 +28,7 @@ void DemoApp::Init()
 	moon.transform.SetParent(&earth.transform);
 
 	// √ ±‚»≠
-	sun.transform.SetPosition(50, 0);
-	earth.transform.SetPosition(200, 0);
+	earth.transform.SetPosition(300, 0);
 	moon.transform.SetPosition(50, 0);
 }
 
