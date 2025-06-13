@@ -2,7 +2,7 @@
 
 void BitmapRenderer::Render() 
 {
-	D2DRenderManager::Get().renderTarget->SetTransform(transform.GetWorldMatrix());
+	D2DRenderManager::Get().renderTarget->SetTransform(transform.GetScreenMatrix());
 	D2DRenderManager::Get().renderTarget->DrawBitmap(image.Get());
 }
 

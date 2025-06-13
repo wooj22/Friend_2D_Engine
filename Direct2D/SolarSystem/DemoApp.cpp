@@ -13,6 +13,8 @@ void DemoApp::Init()
 
 	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Moon.png",
 		moonImage.image.GetAddressOf());
+
+	sunImage.transform.SetPosition(0, 300);
 }
 
 /// Game Update
@@ -21,6 +23,7 @@ void DemoApp::Update()
 	__super::Update();
 
 	// image transform update
+	
 }
 
 /// Game Release

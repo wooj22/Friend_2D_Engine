@@ -5,9 +5,10 @@
 D2D1::Matrix3x2F Transform::cameraInversMatrix = 
     D2D1::Matrix3x2F::Identity();
 D2D1::Matrix3x2F Transform::unityMatrix = 
+    D2D1::Matrix3x2F::Scale(1.0f, -1.0f) *
     D2D1::Matrix3x2F::Translation(1024.0f / 2.0f, 768.0f / 2.0f);
 D2D1::Matrix3x2F Transform::renderMatrix =
-D2D1::Matrix3x2F::Scale(1.0f, -1.0f);
+    D2D1::Matrix3x2F::Scale(1.0f, -1.0f);
 
 // SetParent
 void Transform::SetParent(Transform* newParent)
@@ -52,5 +53,6 @@ D2D1::Matrix3x2F Transform::GetWorldMatrix()
 // Screen Tansform get
 D2D1::Matrix3x2F Transform::GetScreenMatrix()
 {
+    //return GetWorldMatrix() * cameraInversMatrix;
     return renderMatrix * GetWorldMatrix() * cameraInversMatrix * unityMatrix;
 }
