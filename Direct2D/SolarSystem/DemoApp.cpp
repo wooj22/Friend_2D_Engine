@@ -5,16 +5,23 @@ void DemoApp::Init()
 {
 	__super::Init();
 
-	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Sun.png", 
-		sunImage.image.GetAddressOf());
+	// image load
+	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Sun.png", sunImage.image.GetAddressOf());
+	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Earth.png", earthImage.image.GetAddressOf());
+	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Moon.png", moonImage.image.GetAddressOf());
 
-	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Earth.png",
-		earthImage.image.GetAddressOf());
+	// 축 보정
+	sunImage.AxisCoreection();
+	earthImage.AxisCoreection();
+	moonImage.AxisCoreection();
 
-	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Moon.png",
-		moonImage.image.GetAddressOf());
+	// 부모 지정
+	earthImage.transform.SetParent(&sunImage.transform);
+	moonImage.transform.SetParent(&earthImage.transform);
 
-	sunImage.transform.SetPosition(0, 300);
+	// 위치 초기화
+	earthImage.transform.SetPosition(200, 0);
+	moonImage.transform.SetPosition(50, 0);
 }
 
 /// Game Update
