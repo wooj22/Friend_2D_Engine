@@ -48,6 +48,9 @@ D2D1::Matrix3x2F Transform::GetWorldMatrix()
 // Screen Tansform get
 D2D1::Matrix3x2F Transform::GetScreenMatrix()
 {
+    // d2d 
     //return GetWorldMatrix() * cameraInversMatrix;
+
+    // unity
     return renderMatrix * GetWorldMatrix() * cameraInversMatrix * unityMatrix;
 }
