@@ -21,7 +21,7 @@ class D2DRenderManager : public Singleton<D2DRenderManager>
 {
 private:
 	// renderList
-	vector<IRenderer*> renderList;
+	vector<IRenderer*> renderList;	// 积己等 bitmap甸狼 render客 秦力甫 包且窃
 
 	// window
 	HWND hwnd;

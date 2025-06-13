@@ -21,10 +21,17 @@ D2D1_MATRIX_3X2_F Transform::GetLocalMatrix() const
 }
 
 // World Tansform get
+// World = Local * ParentWorld;
 D2D1_MATRIX_3X2_F Transform::GetWorldMatrix() const
 {
     if (parent)
         return parent->GetWorldMatrix() * GetLocalMatrix();
     else
         return GetLocalMatrix();
+}
+
+// Screen Tansform get
+D2D1_MATRIX_3X2_F Transform::GetScreenMatrix() const
+{
+    
 }

@@ -5,6 +5,8 @@
 #include "Transform.h"
 #include "D2DRenderManager.h"
 
+/* Bitmap Render Conponent */
+// Render, UnInit은 Manager에서 호출하며 Manager와의 결합도를 낮추기 위해 인터페이스를 활용한다.
 class BitmapRenderer : public IRenderer
 {
 public:

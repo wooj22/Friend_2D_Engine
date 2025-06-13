@@ -2,7 +2,7 @@
 
 void BitmapRenderer::Render() 
 {
-	// device context draw bitmap
+	D2DRenderManager::Get().renderTarget->SetTransform(transform.GetWorldMatrix());
 	D2DRenderManager::Get().renderTarget->DrawBitmap(image.Get());
 }
 

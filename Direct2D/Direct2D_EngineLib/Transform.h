@@ -1,6 +1,17 @@
 #include <d2d1.h>
 #include <vector>
 
+/* Transform Component*/
+// World = this->local * parent->world
+// Screen = this->world * camera 역행렬
+
+// Uniny Style Screen position
+// 좌표계 - 중앙 (0,0), 왼쪽위(-, +), 오른쪽 아래(+, -)
+// D2D에서 유니티 좌표계처럼 사용하려면 꼼수가 필요함
+// Screen position = renderMatrix * this->world * camera 역행렬 * unity matrix
+//  renderMatrix는 unity matrix에 대응하기 위해 y scale에 -1을 준 행렬
+//  transform멤버에 저장하면 자식까지 누적 영향을 미치기 때문에 World 계산 직전에 연산만 해야한다.
+
 class Transform
 {
 private:
@@ -33,4 +44,5 @@ public:
     void SetParent(Transform* newParent);
     D2D1_MATRIX_3X2_F GetLocalMatrix() const;
     D2D1_MATRIX_3X2_F GetWorldMatrix() const;
+    D2D1_MATRIX_3X2_F GetScreenMatrix() const;
 };
