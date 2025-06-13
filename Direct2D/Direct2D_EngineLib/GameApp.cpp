@@ -137,6 +137,9 @@ void GameApp::Loop()
 /// Release
 void GameApp::UnInit()
 {
-	d2dRenderManager.UnInit();   // direct 2D unInit
-	CoUninitialize();		// com 按眉 秦力
+	// manager
+	d2dRenderManager.UnInit();   
+	inputManager.UnInit();
+	timeManager.UnInit();
+	CoUninitialize();			 // com 按眉 秦力
 }

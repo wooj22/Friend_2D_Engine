@@ -26,10 +26,6 @@ void DemoApp::Update()
 /// Game Release
 void DemoApp::UnInit()
 {
-	sunImage.UnInit();
-	earthImage.UnInit();
-	moonImage.UnInit();
-
 	__super::UnInit();
 }
 

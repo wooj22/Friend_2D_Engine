@@ -69,7 +69,7 @@ void D2DRenderManager::Render()
 	renderTarget->Clear(D2D1::ColorF(D2D1::ColorF::Black));
 	renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
 
-	// renderList에 있는 객체들의 Render() 호출
+	// renderList Render()
 	for (IRenderer* renderer : renderList)
 	{
 		if (renderer)
@@ -83,7 +83,14 @@ void D2DRenderManager::Render()
 /// UnInit
 void D2DRenderManager::UnInit()
 {
-	// 스마트 포인터를 사용하므로 따로 해제할 필요 없음
+	// renderList
+	for (IRenderer* renderer : renderList)
+	{
+		if (renderer)
+			renderer->UnInit();
+	}
+
+	// d2d
 	d3dDevice = nullptr;
 	swapChain = nullptr;
 	renderTarget = nullptr;

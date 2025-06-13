@@ -16,7 +16,7 @@ public:
 
 	void Init(HWND hWnd);
 	void Update();
-	void Release() {};
+	void UnInit() {};
 
 	bool GetKey(int vKey);
 	bool GetKeyDown(int vKey);

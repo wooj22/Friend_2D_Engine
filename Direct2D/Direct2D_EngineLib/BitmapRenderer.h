@@ -15,6 +15,6 @@ public:
 	Microsoft::WRL::ComPtr<ID2D1Bitmap1> image;
 
 	void Render() override;
-	void UnInit();
+	void UnInit() override;
 };
 

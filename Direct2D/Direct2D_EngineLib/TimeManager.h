@@ -17,7 +17,7 @@ public:
 
 	void Init();
 	void Update();
-	void Release() {};
+	void UnInit() {};
 
 	float GetDeltaTime();
 	float GetTotalTime();
