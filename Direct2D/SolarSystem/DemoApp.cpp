@@ -20,6 +20,7 @@ void DemoApp::Init()
 	moon.transform.SetParent(&earth.transform);
 
 	// √ ±‚»≠
+	sun.transform.SetPosition(50, 0);
 	earth.transform.SetPosition(200, 0);
 	moon.transform.SetPosition(50, 0);
 }
@@ -30,9 +31,9 @@ void DemoApp::Update()
 	__super::Update();
 
 	// image transform update
-	sun.transform.AddRotation(1);
-	earth.transform.AddRotation(1);
-	moon.transform.AddRotation(1);
+	sun.transform.AddRotation(-0.5f);
+	earth.transform.AddRotation(-0.2f);
+	moon.transform.AddRotation(-1);
 }
 
 /// Game Release
