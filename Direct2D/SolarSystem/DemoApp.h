@@ -1,9 +1,12 @@
 #pragma once
 #include "../Direct2D_EngineLib/GameApp.h"
+#include "../Direct2D_EngineLib/Camera.h"
 
 class DemoApp : public GameApp
 {
 private:
+	Camera mainCamera;
+
 	BitmapRenderer sun;
 	BitmapRenderer earth;
 	BitmapRenderer moon;

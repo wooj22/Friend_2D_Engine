@@ -12,7 +12,7 @@
 // Dirty 패턴
 // transform이 변경에 대한 flag를 활용하여 
 // 매 프레임마다 불필요하게 행렬을 다시 계산하지 않도록 하는 방식
-
+#pragma once
 #include <d2d1_1.h>
 #include <vector>
 
@@ -24,7 +24,6 @@ private:
     D2D1_POINT_2F position;
     float rotation;
     D2D1_POINT_2F scale;
-
 
     // parent, child
     Transform* parent = nullptr;
@@ -39,6 +38,12 @@ public:
     static D2D1::Matrix3x2F cameraInversMatrix;   // screen size 필요
     static D2D1::Matrix3x2F unityMatrix;          // screen size 필요
     static D2D1::Matrix3x2F renderMatrix;
+
+    // camera 역행렬 set
+    static void SetCameraMatrix(const D2D1::Matrix3x2F& cameraMatrix)
+    {
+        // cameraInversMatrix = cameraMatrix의 역행렬
+    }
 
 public:
     Transform() : position{ 0.0f, 0.0f }, rotation(0.0f), 

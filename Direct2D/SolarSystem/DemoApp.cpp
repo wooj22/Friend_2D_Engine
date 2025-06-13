@@ -5,6 +5,9 @@ void DemoApp::Init()
 {
 	__super::Init();
 
+	// camera
+	mainCamera.SetSize(width, height);
+
 	// image load
 	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Sun.png", sun.image.GetAddressOf());
 	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Earth.png", earth.image.GetAddressOf());
@@ -39,6 +42,7 @@ void DemoApp::Update()
 /// Game Release
 void DemoApp::UnInit()
 {
+
 	__super::UnInit();
 }
 
