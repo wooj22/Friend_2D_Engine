@@ -25,7 +25,7 @@ void D2DRenderManager::Init(HWND hwnd, int width, int height)
 	d2dFactory->CreateDevice((dxgiDevice.Get()), d2dDevice.GetAddressOf());
 
 	// D2D Device context
-	d2dDevice->CreateDeviceContext(D2D1_DEVICE_CONTEXT_OPTIONS_NONE, deviceContext.GetAddressOf());
+	d2dDevice->CreateDeviceContext(D2D1_DEVICE_CONTEXT_OPTIONS_NONE, renderTarget.GetAddressOf());
 
 	// DXGI Factory
 	ComPtr<IDXGIFactory7> dxgiFactory;
@@ -50,8 +50,8 @@ void D2DRenderManager::Init(HWND hwnd, int width, int height)
 		D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW,
 		D2D1::PixelFormat(scDesc.Format, D2D1_ALPHA_MODE_PREMULTIPLIED)
 	);
-	deviceContext->CreateBitmapFromDxgiSurface(backBuffer.Get(), &bmpProps, renderTarget.GetAddressOf());
-	deviceContext->SetTarget(renderTarget.Get());
+	renderTarget->CreateBitmapFromDxgiSurface(backBuffer.Get(), &bmpProps, backBufferBitmap.GetAddressOf());
+	renderTarget->SetTarget(backBufferBitmap.Get());
 
 	// Create WIC Factory
 	HRESULT hr = CoCreateInstance(CLSID_WICImagingFactory,
@@ -65,9 +65,9 @@ void D2DRenderManager::Init(HWND hwnd, int width, int height)
 /// Render
 void D2DRenderManager::Render() 
 {
-	deviceContext->BeginDraw();
-	deviceContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
-	deviceContext->SetTransform(D2D1::Matrix3x2F::Identity());
+	renderTarget->BeginDraw();
+	renderTarget->Clear(D2D1::ColorF(D2D1::ColorF::Black));
+	renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
 
 	// renderList에 있는 객체들의 Render() 호출
 	for (IRenderer* renderer : renderList)
@@ -76,7 +76,7 @@ void D2DRenderManager::Render()
 			renderer->Render();
 	}
 
-	deviceContext->EndDraw();
+	renderTarget->EndDraw();
 	swapChain->Present(1, 0);
 }
 
@@ -86,8 +86,8 @@ void D2DRenderManager::UnInit()
 	// 스마트 포인터를 사용하므로 따로 해제할 필요 없음
 	d3dDevice = nullptr;
 	swapChain = nullptr;
-	deviceContext = nullptr;
 	renderTarget = nullptr;
+	backBufferBitmap = nullptr;
 	wicImagingFactory = nullptr;
 }
 
@@ -129,6 +129,6 @@ HRESULT D2DRenderManager::CreateBitmapFromFile(const wchar_t* path, ID2D1Bitmap1
 	);
 
 	// ⑥ DeviceContext에서 WIC 비트맵으로부터 D2D1Bitmap1 생성
-	hr = deviceContext->CreateBitmapFromWicBitmap(converter.Get(), &bmpProps, outBitmap);
+	hr = renderTarget->CreateBitmapFromWicBitmap(converter.Get(), &bmpProps, outBitmap);
 	return hr;
 }

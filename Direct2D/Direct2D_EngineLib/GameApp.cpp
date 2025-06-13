@@ -107,8 +107,7 @@ void GameApp::Update()
 /// Render
 void GameApp::Render()
 {
-	
-
+	d2dRenderManager.Render();
 }
 
 /// GameLoop

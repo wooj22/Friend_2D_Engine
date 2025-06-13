@@ -6,13 +6,13 @@ void DemoApp::Init()
 	__super::Init();
 
 	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Sun.png", 
-		sunImage.bitmapImage.GetAddressOf());
+		sunImage.image.GetAddressOf());
 
 	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Earth.png",
-		earthImage.bitmapImage.GetAddressOf());
+		earthImage.image.GetAddressOf());
 
 	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Moon.png",
-		moonImage.bitmapImage.GetAddressOf());
+		moonImage.image.GetAddressOf());
 }
 
 /// Game Update

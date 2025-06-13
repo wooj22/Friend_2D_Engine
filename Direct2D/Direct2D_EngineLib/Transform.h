@@ -4,12 +4,20 @@
 class Transform
 {
 private:
+    // transform
     D2D1_POINT_2F position;
-    float rotation;             // degrees
+    float rotation;
     D2D1_POINT_2F scale;
 
+    // parent, child
     Transform* parent = nullptr;
     std::vector<Transform*> children;
+
+public:
+    // matrix
+    static D2D1_MATRIX_3X2_F cameraInversMatrix;
+    static D2D1_MATRIX_3X2_F unityMatrix;
+    static D2D1_MATRIX_3X2_F renderMatrix;
 
 public:
     Transform() : position{ 0.0f, 0.0f }, rotation(0.0f), 

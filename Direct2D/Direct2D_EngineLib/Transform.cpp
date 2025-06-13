@@ -1,5 +1,9 @@
 #include "Transform.h"
 
+D2D1_MATRIX_3X2_F Transform::cameraInversMatrix = D2D1::Matrix3x2F::Identity();
+D2D1_MATRIX_3X2_F Transform::unityMatrix = D2D1::Matrix3x2F::Identity();
+D2D1_MATRIX_3X2_F Transform::renderMatrix = D2D1::Matrix3x2F::Scale(0, -1.0f);
+
 // SetParent
 void Transform::SetParent(Transform* newParent)
 {

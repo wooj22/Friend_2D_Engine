@@ -8,13 +8,12 @@
 class BitmapRenderer : public IRenderer
 {
 public:
-	BitmapRenderer() {};
+	BitmapRenderer() { D2DRenderManager::Get().RenderListAdd(this); };
 	~BitmapRenderer() {}
 
 	Transform transform;
-	Microsoft::WRL::ComPtr<ID2D1Bitmap1> bitmapImage;
+	Microsoft::WRL::ComPtr<ID2D1Bitmap1> image;
 
-	void Init();
 	void Render() override;
 	void UnInit();
 };
