@@ -14,9 +14,9 @@ void DemoApp::Init()
 		D2D1::Matrix3x2F::Translation(width / 2.0f, height / 2.0f);
 
 	// game object init
-	player = new GameObject;
-	sr = player->AddComponent<SpriteRenderer>();
-	sr->SetImage(L"../Resource/Cat.png");
+	cat = new Cat;
+	cat->sr = cat->AddComponent<SpriteRenderer>();
+	cat->sr->SetImage(L"../Resource/Cat.png");
 }
 
 /// Game Update

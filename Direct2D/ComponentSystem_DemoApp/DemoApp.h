@@ -1,6 +1,7 @@
 #pragma once
 #include "../Direct2D_EngineLib/GameApp.h"
 #include "../Direct2D_EngineLib/Camera.h"
+#include "Cat.h"
 
 class DemoApp : public GameApp
 {
@@ -9,8 +10,7 @@ private:
 	Camera mainCamera;
 
 	// game object
-	GameObject* player;
-	SpriteRenderer* sr;
+	Cat* cat;
 
 public:
 	DemoApp(int inputWidth, int inputHeight) : GameApp(inputWidth, inputHeight) {};
