@@ -8,13 +8,8 @@ private:
 	// camera
 	Camera mainCamera;
 
-	// image object
-	SpriteRenderer sun;
-	SpriteRenderer earth;
-	SpriteRenderer moon;
-
 public:
-	DemoApp(int inputWidth, int inputHeight) : GameApp(inputWidth, inputHeight) { };
+	DemoApp(int inputWidth, int inputHeight) : GameApp(inputWidth, inputHeight) {};
 	~DemoApp() override = default;
 
 	void Init() override;

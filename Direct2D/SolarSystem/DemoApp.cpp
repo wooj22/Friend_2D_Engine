@@ -14,14 +14,9 @@ void DemoApp::Init()
 		D2D1::Matrix3x2F::Translation(width/2.0f, height/2.0f);
 
 	// image load
-	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Sun.png", sun.image.GetAddressOf());
-	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Earth.png", earth.image.GetAddressOf());
-	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Moon.png", moon.image.GetAddressOf());
-
-	// 축 보정
-	sun.AxisCoreection();
-	earth.AxisCoreection();
-	moon.AxisCoreection();
+	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Sun.png", sun.sprite.GetAddressOf());
+	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Earth.png", earth.sprite.GetAddressOf());
+	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Moon.png", moon.sprite.GetAddressOf());
 
 	// 부모 지정
 	earth.transform.SetParent(&sun.transform);

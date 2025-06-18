@@ -25,25 +25,22 @@
     <Filter Include="소스 파일\Manager">
       <UniqueIdentifier>{b87aba46-edb5-47ac-88e9-ed939581cf0c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="헤더 파일\Else">
-      <UniqueIdentifier>{141ee80a-7269-4a1d-8fba-a8b38a4e29e4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="헤더 파일\Camera">
       <UniqueIdentifier>{2e6b9283-b87c-4bda-ae74-206c3c0a5ae8}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Camera">
       <UniqueIdentifier>{456bb3fe-d3cc-4047-8558-625cb43db472}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\System">
+      <UniqueIdentifier>{fb9e8c7d-609a-42db-9298-e0a96ffc2250}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System">
+      <UniqueIdentifier>{55b90ed8-d538-46ce-b064-d9e5db49e7f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h">
       <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="D2DRenderManager.h">
-      <Filter>헤더 파일\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>헤더 파일\Else</Filter>
     </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>헤더 파일\Manager</Filter>
@@ -54,10 +51,7 @@
     <ClInclude Include="TimeManager.h">
       <Filter>헤더 파일\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
-      <Filter>헤더 파일\Else</Filter>
-    </ClInclude>
-    <ClInclude Include="BitmapRenderer.h">
+    <ClInclude Include="SpriteRenderer.h">
       <Filter>헤더 파일\Component</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
@@ -66,13 +60,16 @@
     <ClInclude Include="Camera.h">
       <Filter>헤더 파일\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="RenderSystem.h">
+      <Filter>헤더 파일\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="D2DRenderManager.cpp">
-      <Filter>소스 파일\Manager</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>소스 파일\Manager</Filter>
@@ -83,7 +80,7 @@
     <ClCompile Include="IRenderer.cpp">
       <Filter>소스 파일\Component</Filter>
     </ClCompile>
-    <ClCompile Include="BitmapRenderer.cpp">
+    <ClCompile Include="SpriteRenderer.cpp">
       <Filter>소스 파일\Component</Filter>
     </ClCompile>
     <ClCompile Include="Transform.cpp">
@@ -91,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>소스 파일\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderSystem.cpp">
+      <Filter>소스 파일\System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

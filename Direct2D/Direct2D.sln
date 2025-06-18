@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "D2D_EngineLib", "Direct2D_E
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SolarSystem", "SolarSystem\SolarSystem.vcxproj", "{026CD600-38FA-45B9-AC0E-231D9D0F0525}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ComponentSystem_DemoApp", "ComponentSystem_DemoApp\ComponentSystem_DemoApp.vcxproj", "{CBB6CCB5-95E7-476A-A157-5B2F6829CD59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{026CD600-38FA-45B9-AC0E-231D9D0F0525}.Release|x64.Build.0 = Release|x64
 		{026CD600-38FA-45B9-AC0E-231D9D0F0525}.Release|x86.ActiveCfg = Release|Win32
 		{026CD600-38FA-45B9-AC0E-231D9D0F0525}.Release|x86.Build.0 = Release|Win32
+		{CBB6CCB5-95E7-476A-A157-5B2F6829CD59}.Debug|x64.ActiveCfg = Debug|x64
+		{CBB6CCB5-95E7-476A-A157-5B2F6829CD59}.Debug|x64.Build.0 = Debug|x64
+		{CBB6CCB5-95E7-476A-A157-5B2F6829CD59}.Debug|x86.ActiveCfg = Debug|Win32
+		{CBB6CCB5-95E7-476A-A157-5B2F6829CD59}.Debug|x86.Build.0 = Debug|Win32
+		{CBB6CCB5-95E7-476A-A157-5B2F6829CD59}.Release|x64.ActiveCfg = Release|x64
+		{CBB6CCB5-95E7-476A-A157-5B2F6829CD59}.Release|x64.Build.0 = Release|x64
+		{CBB6CCB5-95E7-476A-A157-5B2F6829CD59}.Release|x86.ActiveCfg = Release|Win32
+		{CBB6CCB5-95E7-476A-A157-5B2F6829CD59}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

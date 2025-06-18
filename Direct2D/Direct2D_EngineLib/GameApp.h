@@ -2,8 +2,8 @@
 #include "Windows.h"
 #include "string"
 #include "Singleton.h"
-#include "D2DRenderManager.h"
-#include "BitmapRenderer.h"
+#include "RenderSystem.h"
+#include "SpriteRenderer.h"
 #include "TimeManager.h"
 #include "InputManager.h"
 using namespace std;
@@ -24,7 +24,7 @@ protected:
 	// manager
 	InputManager inputManager;
 	TimeManager timeManager;
-	D2DRenderManager d2dRenderManager;
+	RenderSystem d2dRenderManager;
 
 public:
 	bool isLoop = true;

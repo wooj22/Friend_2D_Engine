@@ -1,7 +1,7 @@
-#include "D2DRenderManager.h"
+#include "RenderSystem.h"
 
 /// Init
-void D2DRenderManager::Init(HWND hwnd, int width, int height) 
+void RenderSystem::Init(HWND hwnd, int width, int height) 
 {
 	this->hwnd = hwnd;
 	this->width = width;
@@ -63,7 +63,7 @@ void D2DRenderManager::Init(HWND hwnd, int width, int height)
 }
 
 /// Render
-void D2DRenderManager::Render() 
+void RenderSystem::Render() 
 {
 	renderTarget->BeginDraw();
 	renderTarget->Clear(D2D1::ColorF(D2D1::ColorF::Black));
@@ -81,7 +81,7 @@ void D2DRenderManager::Render()
 }
 
 /// UnInit
-void D2DRenderManager::UnInit()
+void RenderSystem::UnInit()
 {
 	// renderList
 	for (IRenderer* renderer : renderList)
@@ -99,7 +99,7 @@ void D2DRenderManager::UnInit()
 }
 
 /// Image Loading Function
-HRESULT D2DRenderManager::CreateBitmapFromFile(const wchar_t* path, ID2D1Bitmap1** outBitmap)
+HRESULT RenderSystem::CreateBitmapFromFile(const wchar_t* path, ID2D1Bitmap1** outBitmap)
 {
 	ComPtr<IWICBitmapDecoder>     decoder;
 	ComPtr<IWICBitmapFrameDecode> frame;

@@ -17,11 +17,11 @@
 using namespace Microsoft::WRL;    // Microsoft::WRL::ComPtr<T>
 using namespace std;
 
-class D2DRenderManager : public Singleton<D2DRenderManager>
+class RenderSystem : public Singleton<RenderSystem>
 {
 private:
 	// renderList
-	vector<IRenderer*> renderList;	// 생성된 bitmap들의 render와 해제를 관할함
+	vector<IRenderer*> renderList;		// render 객체들
 
 	// window
 	HWND hwnd;
