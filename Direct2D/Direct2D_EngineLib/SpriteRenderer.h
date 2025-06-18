@@ -1,25 +1,28 @@
 #pragma once
 #include <wrl/client.h> 
 #include <d2d1_1.h>
-#include "IRenderer.h"
+#include "Component.h"
 #include "Transform.h"
 #include "RenderSystem.h"
 
-/* Sprite Render Conponent */
-class SpriteRenderer : public IRenderer
+/* Sprite Renderer Conponent */
+class SpriteRenderer : public Component
 {
 private:
 	D2D1_RECT_F destRect;
 
 public:
-	SpriteRenderer() { RenderSystem::Get().RenderListAdd(this); };
-	~SpriteRenderer() {}
-
 	Transform transform;
 	Microsoft::WRL::ComPtr<ID2D1Bitmap1> sprite;
 
-	//void AxisCoreection();
-	void Render() override;
-	void UnInit() override;
+	SpriteRenderer() { RenderSystem::Get().Regist(this); };
+	~SpriteRenderer() override { RenderSystem::Get().Unregist(this); }
+
+	void OnEnable() override;
+	void Update();
+	void Render();
+	void OnDestroy() override;
+
+	void SetImage(const wchar_t* path);
 };
 

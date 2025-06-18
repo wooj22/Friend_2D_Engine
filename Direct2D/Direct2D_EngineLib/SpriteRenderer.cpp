@@ -1,19 +1,15 @@
 #include "SpriteRenderer.h"
 
-// Ãà º¸Á¤ data
-//void BitmapRenderer::AxisCoreection() {
-//	if (!image) return;
-//
-//	D2D1_SIZE_F size = image->GetSize();
-//	destRect = {
-//		-size.width / 2.0f,  // left
-//		-size.height / 2.0f, // up
-//		size.width / 2.0f,   // right
-//		size.height / 2.0f   // down
-//	};
-//}
+void SpriteRenderer::OnEnable() 
+{
 
-// render
+}
+
+void SpriteRenderer::Update() 
+{
+
+}
+
 void SpriteRenderer::Render() 
 {
 	if (!sprite) return;
@@ -32,8 +28,12 @@ void SpriteRenderer::Render()
 	RenderSystem::Get().renderTarget->DrawBitmap(sprite.Get(), destRect);
 }
 
-// uninit
-void SpriteRenderer::UnInit()
+void SpriteRenderer::OnDestroy()
 {
 	sprite = nullptr;
+}
+
+void SpriteRenderer::SetImage(const wchar_t* path) 
+{
+	RenderSystem::Get().CreateBitmapFromFile(path, this->sprite.GetAddressOf());
 }

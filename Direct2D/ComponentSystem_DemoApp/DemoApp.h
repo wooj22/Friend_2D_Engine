@@ -8,6 +8,10 @@ private:
 	// camera
 	Camera mainCamera;
 
+	// game object
+	GameObject* player;
+	SpriteRenderer* sr;
+
 public:
 	DemoApp(int inputWidth, int inputHeight) : GameApp(inputWidth, inputHeight) {};
 	~DemoApp() override = default;

@@ -2,6 +2,7 @@
 #include "Windows.h"
 #include "string"
 #include "Singleton.h"
+#include "GameObject.h"
 #include "RenderSystem.h"
 #include "SpriteRenderer.h"
 #include "TimeManager.h"
@@ -24,7 +25,7 @@ protected:
 	// manager
 	InputManager inputManager;
 	TimeManager timeManager;
-	RenderSystem d2dRenderManager;
+	RenderSystem renderSystem;
 
 public:
 	bool isLoop = true;

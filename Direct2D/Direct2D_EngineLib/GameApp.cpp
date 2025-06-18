@@ -95,12 +95,13 @@ void GameApp::Init()
 	// manager init
 	inputManager.Init(hWnd);
 	timeManager.Init();
-	d2dRenderManager.Init(hWnd, width, height);
+	renderSystem.Init(hWnd, width, height);
 }
 
 /// Update
 void GameApp::Update()
 {
+	renderSystem.Update();
 	inputManager.Update();
 	timeManager.Update();
 }
@@ -108,7 +109,7 @@ void GameApp::Update()
 /// Render
 void GameApp::Render()
 {
-	d2dRenderManager.Render();
+	renderSystem.Render();
 }
 
 /// GameLoop
@@ -139,7 +140,7 @@ void GameApp::Loop()
 void GameApp::UnInit()
 {
 	// manager
-	d2dRenderManager.UnInit();   
+	renderSystem.UnInit();   
 	inputManager.UnInit();
 	timeManager.UnInit();
 	CoUninitialize();			 // com ∞¥√º «ÿ¡¶

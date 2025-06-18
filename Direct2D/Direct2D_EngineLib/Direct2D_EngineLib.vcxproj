@@ -140,6 +140,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="GameApp.h" />
@@ -151,6 +153,8 @@
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="GameApp.cpp" />

@@ -4,7 +4,7 @@
 void DemoApp::Init() 
 {
 	__super::Init();
-	d2dRenderManager.CreateBitmapFromFile(L"../Resource/Cat.png", catImage.GetAddressOf());
+	renderSystem.CreateBitmapFromFile(L"../Resource/Cat.png", catImage.GetAddressOf());
 }
 
 /// Game Update
@@ -16,15 +16,15 @@ void DemoApp::Update()
 /// Game Render
 void DemoApp::Render() 
 {
-	d2dRenderManager.renderTarget->BeginDraw();
-	d2dRenderManager.renderTarget->Clear(D2D1::ColorF(D2D1::ColorF::YellowGreen));
-	d2dRenderManager.renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
+	renderSystem.renderTarget->BeginDraw();
+	renderSystem.renderTarget->Clear(D2D1::ColorF(D2D1::ColorF::YellowGreen));
+	renderSystem.renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
 
 	// 이미지 크기 얻기
 	D2D1_SIZE_F bitmapSize = catImage->GetSize();
 
 	// 현재 렌더 타겟(창)의 크기 얻기
-	D2D1_SIZE_F renderTargetSize = d2dRenderManager.renderTarget->GetSize();
+	D2D1_SIZE_F renderTargetSize = renderSystem.renderTarget->GetSize();
 
 	// 중앙 위치 계산
 	float destX = (renderTargetSize.width - bitmapSize.width) / 2.0f;
@@ -39,11 +39,11 @@ void DemoApp::Render()
 	};
 
 	// 이미지 출력 (정중앙에)
-	d2dRenderManager.renderTarget->DrawBitmap(catImage.Get(), destRect);
-	d2dRenderManager.renderTarget->EndDraw();
+	renderSystem.renderTarget->DrawBitmap(catImage.Get(), destRect);
+	renderSystem.renderTarget->EndDraw();
 
 	// 스왑체인
-	d2dRenderManager.swapChain->Present(1, 0);
+	renderSystem.swapChain->Present(1, 0);
 }
 
 /// Game Release

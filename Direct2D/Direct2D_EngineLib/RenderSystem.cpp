@@ -1,4 +1,22 @@
 #include "RenderSystem.h"
+#include "SpriteRenderer.h"
+
+/// Component 등록
+void RenderSystem::Regist(SpriteRenderer* component)
+{
+	components.push_back(component);
+}
+
+/// Component 등록 해제
+void RenderSystem::Unregist(SpriteRenderer* component)
+{
+	for (auto it = components.begin(); it != components.end(); ++it) {
+		if (*it == component) {
+			components.erase(it);
+			return;
+		}
+	}
+}
 
 /// Init
 void RenderSystem::Init(HWND hwnd, int width, int height) 
@@ -62,6 +80,14 @@ void RenderSystem::Init(HWND hwnd, int width, int height)
 	assert(SUCCEEDED(hr));
 }
 
+void RenderSystem::Update()
+{
+	for (auto it = components.begin(); it != components.end(); ++it)
+	{
+		(*it)->Update();
+	}
+}
+
 /// Render
 void RenderSystem::Render() 
 {
@@ -70,10 +96,10 @@ void RenderSystem::Render()
 	renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
 
 	// renderList Render()
-	for (IRenderer* renderer : renderList)
+	for (SpriteRenderer* component : components)
 	{
-		if (renderer)
-			renderer->Render();
+		if (component)
+			component->Render();
 	}
 
 	renderTarget->EndDraw();
@@ -83,13 +109,6 @@ void RenderSystem::Render()
 /// UnInit
 void RenderSystem::UnInit()
 {
-	// renderList
-	for (IRenderer* renderer : renderList)
-	{
-		if (renderer)
-			renderer->UnInit();
-	}
-
 	// d2d
 	d3dDevice = nullptr;
 	swapChain = nullptr;

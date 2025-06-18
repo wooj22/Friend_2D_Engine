@@ -37,6 +37,12 @@
     <Filter Include="소스 파일\System">
       <UniqueIdentifier>{55b90ed8-d538-46ce-b064-d9e5db49e7f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\GameObject">
+      <UniqueIdentifier>{513dacbd-2dd5-476b-b8e2-b6ed5bbde255}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\GameObject">
+      <UniqueIdentifier>{35dcbbfb-f810-44e5-a71b-53c9a7ee31bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h">
@@ -66,6 +72,12 @@
     <ClInclude Include="Singleton.h">
       <Filter>헤더 파일\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>헤더 파일\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>헤더 파일\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -91,6 +103,12 @@
     </ClCompile>
     <ClCompile Include="RenderSystem.cpp">
       <Filter>소스 파일\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>소스 파일\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>소스 파일\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

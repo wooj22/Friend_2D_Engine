@@ -17,11 +17,12 @@
 using namespace Microsoft::WRL;    // Microsoft::WRL::ComPtr<T>
 using namespace std;
 
+class SpriteRenderer;
 class RenderSystem : public Singleton<RenderSystem>
 {
 private:
 	// renderList
-	vector<IRenderer*> renderList;		// render 객체들
+	vector<SpriteRenderer*> components;		// render 객체들
 
 	// window
 	HWND hwnd;
@@ -36,12 +37,16 @@ public :
 	ComPtr<ID2D1Bitmap1> backBufferBitmap;	  	    // 화면 출력용 D2D Bitmap (그릴 대상)
 	ComPtr<IWICImagingFactory> wicImagingFactory;   // WIC Imaging Factory (이미지 로딩)
 
-	// game flow
+	// componenet
+	void Regist(SpriteRenderer* component);
+	void Unregist(SpriteRenderer* component);
+
+	// component system
 	void Init(HWND hwnd, int width, int height);
+	void Update();
 	void Render();
 	void UnInit();			
 
 	// functions
 	HRESULT CreateBitmapFromFile(const wchar_t* path, ID2D1Bitmap1** outBitmap);	// 이미지 로드
-	void RenderListAdd(IRenderer* render) { renderList.push_back(render); }
 };

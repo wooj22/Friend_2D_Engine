@@ -13,7 +13,10 @@ void DemoApp::Init()
 	Transform::unityMatrix = D2D1::Matrix3x2F::Scale(1.0f, -1.0f) * Transform::unityMatrix *
 		D2D1::Matrix3x2F::Translation(width / 2.0f, height / 2.0f);
 
-	
+	// game object init
+	player = new GameObject;
+	sr = player->AddComponent<SpriteRenderer>();
+	sr->SetImage(L"../Resource/Cat.png");
 }
 
 /// Game Update
@@ -21,7 +24,14 @@ void DemoApp::Update()
 {
 	__super::Update();
 
-	
+	// camera move
+	if (InputManager::Get().GetKey(VK_LEFT)) mainCamera.transform.AddPosition(-3, 0);
+	if (InputManager::Get().GetKey(VK_RIGHT)) mainCamera.transform.AddPosition(3, 0);
+	if (InputManager::Get().GetKey(VK_UP)) mainCamera.transform.AddPosition(0, 3);
+	if (InputManager::Get().GetKey(VK_DOWN)) mainCamera.transform.AddPosition(0, -3);
+
+	// camera ¿ªÇà·Ä update
+	Transform::SetCameraMatrix(mainCamera.transform.GetWorldMatrix());
 }
 
 /// Game Release
