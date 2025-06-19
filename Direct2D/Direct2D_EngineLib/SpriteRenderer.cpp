@@ -1,8 +1,10 @@
 #include "SpriteRenderer.h"
+#include "Transform.h"
+#include "GameObject.h"
 
 void SpriteRenderer::OnEnable() 
 {
-
+	transform = this->owner->GetComponent<Transform>();
 }
 
 void SpriteRenderer::Update() 
@@ -24,7 +26,7 @@ void SpriteRenderer::Render()
 	};
 
 	// render
-	RenderSystem::Get().renderTarget->SetTransform(transform.GetScreenMatrix());
+	RenderSystem::Get().renderTarget->SetTransform(transform->GetScreenMatrix());
 	RenderSystem::Get().renderTarget->DrawBitmap(sprite.Get(), destRect);
 }
 

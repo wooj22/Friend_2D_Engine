@@ -15,9 +15,10 @@
 #pragma once
 #include <d2d1_1.h>
 #include <vector>
+#include "Component.h"
 
 /* Transform Component*/
-class Transform
+class Transform : public Component
 {
 private:
     // transform
@@ -49,6 +50,10 @@ public:
 public:
     Transform() : position{ 0.0f, 0.0f }, rotation(0.0f), 
         scale{ 1.0f, 1.0f }, parent(nullptr) { localMatrix = D2D1::Matrix3x2F::Identity(); }
+
+    // component
+    void OnEnable() override;
+    void OnDestroy() override;
 
     void SetParent(Transform* newParent);
     void ResetTransform();

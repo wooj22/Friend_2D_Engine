@@ -7,7 +7,7 @@ class DemoApp : public GameApp
 {
 private:
 	// camera
-	Camera mainCamera;
+	Camera* mainCamera;
 
 	// game object
 	Cat* cat;

@@ -5,6 +5,17 @@ D2D1::Matrix3x2F Transform::cameraInversMatrix = D2D1::Matrix3x2F::Identity();
 D2D1::Matrix3x2F Transform::unityMatrix = D2D1::Matrix3x2F::Identity();
 D2D1::Matrix3x2F Transform::renderMatrix = D2D1::Matrix3x2F::Scale(1.0f, -1.0f);
 
+void Transform::OnEnable()
+{
+    
+}
+
+void Transform::OnDestroy()
+{
+
+}
+
+
 // SetParent
 void Transform::SetParent(Transform* newParent)
 {

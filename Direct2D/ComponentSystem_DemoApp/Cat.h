@@ -5,6 +5,7 @@
 class Cat : public GameObject
 {
 public:
+	Transform* transform;
 	SpriteRenderer* sr;
 };
 
