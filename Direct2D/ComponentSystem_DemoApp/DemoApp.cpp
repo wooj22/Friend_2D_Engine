@@ -14,7 +14,7 @@ void DemoApp::Init()
 	Transform::unityMatrix = D2D1::Matrix3x2F::Scale(1.0f, -1.0f) * Transform::unityMatrix *
 		D2D1::Matrix3x2F::Translation(width / 2.0f, height / 2.0f);
 
-	// game object
+	// game object - cat
 	cat = new Cat;
 	cat->transform = cat->AddComponent<Transform>();
 	cat->sr = cat->AddComponent<SpriteRenderer>();
@@ -26,6 +26,7 @@ void DemoApp::Init()
 	cat->tr->SetColor(D2D1::ColorF(D2D1::ColorF::Yellow));
 	cat->tr->SetLayout(300, 100);
 	
+	// game object - fish
 	fish = new Fish;
 	fish->transform = fish->AddComponent<Transform>();
 	fish->sr = fish->AddComponent<SpriteRenderer>();
