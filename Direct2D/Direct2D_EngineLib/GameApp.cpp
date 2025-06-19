@@ -101,9 +101,10 @@ void GameApp::Init()
 /// Update
 void GameApp::Update()
 {
-	renderSystem.Update();
 	inputManager.Update();
 	timeManager.Update();
+	transformSystem.Update();
+	renderSystem.Update();
 }
 
 /// Render

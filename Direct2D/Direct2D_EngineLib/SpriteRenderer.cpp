@@ -24,7 +24,7 @@ void SpriteRenderer::Render()
 		size.width / 2.0f,   // right
 		size.height / 2.0f   // down
 	};
-
+	
 	// render
 	RenderSystem::Get().renderTarget->SetTransform(transform->GetScreenMatrix());
 	RenderSystem::Get().renderTarget->DrawBitmap(sprite.Get(), destRect);

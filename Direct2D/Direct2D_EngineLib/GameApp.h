@@ -7,6 +7,7 @@
 #include "SpriteRenderer.h"
 #include "TimeManager.h"
 #include "InputManager.h"
+#include "TransformSystem.h"
 using namespace std;
 
 class GameApp
@@ -25,6 +26,7 @@ protected:
 	// manager
 	InputManager inputManager;
 	TimeManager timeManager;
+	TransformSystem transformSystem;
 	RenderSystem renderSystem;
 
 public:

@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <typeinfo>
 #include "Component.h"
 
 class Component;
@@ -49,7 +50,7 @@ public:
     template<typename T>
     T* GetComponent() {
         for (Component* comp : components) {
-            if (typeid(*comp) == typeid(T)) //완전히 동일한 타입만
+            if (typeid(*comp) == typeid(T))   //완전히 동일한 타입만
                 return static_cast<T*>(comp); //안전하게 static_cast
         }
         return nullptr;

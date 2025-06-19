@@ -1,15 +1,16 @@
 #pragma once
+#include "GameObject.h"
 #include "Transform.h"
 
-class Camera
+class Camera : public GameObject
 {
 public:
 	float width, height;
 	Transform* transform;
 
-	//Camera(int w, int h) : width(w), height(h) {};
-	Camera() { transform = new Transform; }
-	~Camera() { if (transform) delete transform; }
+	Camera() { }
+	Camera(int w, int h) : width(w), height(h) {};
+	~Camera() { }
 	void SetSize(int w, int h) { width = w;	height = h; }
 };
 
