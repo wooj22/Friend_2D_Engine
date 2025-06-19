@@ -9,7 +9,7 @@ class Transform;
 class SpriteRenderer : public IRenderer
 {
 private:
-	D2D1_RECT_F destRect;
+	D2D1_RECT_F centerRect;
 	Transform* transform;
 
 public:

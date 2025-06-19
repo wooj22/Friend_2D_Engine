@@ -8,29 +8,33 @@ void DemoApp::Init()
 	// camera
 	mainCamera = new Camera(width, height);
 	mainCamera->transform = mainCamera->AddComponent<Transform>();
-	//mainCamera->SetSize(width, height);
 
 	// matrix init
 	Transform::SetCameraMatrix(mainCamera->transform->GetWorldMatrix());
 	Transform::unityMatrix = D2D1::Matrix3x2F::Scale(1.0f, -1.0f) * Transform::unityMatrix *
 		D2D1::Matrix3x2F::Translation(width / 2.0f, height / 2.0f);
 
-	// game object init
+	// game object
 	cat = new Cat;
 	cat->transform = cat->AddComponent<Transform>();
 	cat->sr = cat->AddComponent<SpriteRenderer>();
-	cat->sr->SetImage(L"../Resource/Cat.png");
-	cat->transform->SetPosition(0, 0);
+	cat->tr = cat->AddComponent<TextRenderer>();
 
+	cat->transform->SetPosition(0, 0);
+	cat->sr->SetImage(L"../Resource/Cat.png");
+	cat->tr->SetText(L"I'm Cat!");
+	cat->tr->SetColor(D2D1::ColorF(D2D1::ColorF::Yellow));
+	cat->tr->SetLayout(300, 100);
+	
 	fish = new Fish;
 	fish->transform = fish->AddComponent<Transform>();
 	fish->sr = fish->AddComponent<SpriteRenderer>();
-	fish->sr->SetImage(L"../Resource/Fish.png");
+
 	fish->transform->SetParent(cat->transform);
 	fish->transform->SetScale(0.3, 0.3);
 	fish->transform->SetRotation(-60);
 	fish->transform->SetPosition(300, 300);
-
+	fish->sr->SetImage(L"../Resource/Fish.png");
 }
 
 /// Game Update

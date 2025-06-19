@@ -1,5 +1,6 @@
 #include "RenderSystem.h"
 #include "SpriteRenderer.h"
+#include "TextRenderer.h"
 
 /// Component µÓ∑œ
 void RenderSystem::Regist(IRenderer* component)
@@ -76,6 +77,12 @@ void RenderSystem::Init(HWND hwnd, int width, int height)
 		NULL, CLSCTX_INPROC_SERVER,
 		__uuidof(wicImagingFactory),
 		(void**)wicImagingFactory.GetAddressOf());
+
+	// DirectWrite ∆—≈Õ∏Æ∏¶ ∏∏µÏ¥œ¥Ÿ.
+	DWriteCreateFactory(
+		DWRITE_FACTORY_TYPE_SHARED,
+		__uuidof(dWriteFactory),
+		reinterpret_cast<IUnknown**>(dWriteFactory.GetAddressOf()));
 
 	assert(SUCCEEDED(hr));
 }

@@ -14,11 +14,11 @@ void SpriteRenderer::Update()
 
 void SpriteRenderer::Render() 
 {
-	if (!sprite) return;
+	if (!transform || !sprite) return;
 
 	// center
 	D2D1_SIZE_F size = sprite->GetSize();
-	destRect = {
+	centerRect = {
 		-size.width / 2.0f,  // left
 		-size.height / 2.0f, // up
 		size.width / 2.0f,   // right
@@ -27,7 +27,7 @@ void SpriteRenderer::Render()
 	
 	// render
 	RenderSystem::Get().renderTarget->SetTransform(transform->GetScreenMatrix());
-	RenderSystem::Get().renderTarget->DrawBitmap(sprite.Get(), destRect);
+	RenderSystem::Get().renderTarget->DrawBitmap(sprite.Get(), centerRect);
 }
 
 void SpriteRenderer::OnDestroy()

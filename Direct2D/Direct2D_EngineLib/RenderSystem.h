@@ -6,6 +6,7 @@
 #include <d2d1_3.h>      // Direct2D
 #include <dxgi1_6.h>     // DXGI
 #include <wincodec.h>    // WIC 
+#include <dwrite.h>	     // Write
 #include "Singleton.h"
 #include "IRenderer.h"
 #include <vector>
@@ -14,6 +15,7 @@
 #pragma comment(lib, "d2d1.lib")
 #pragma comment(lib, "dxgi.lib")
 #pragma comment(lib,"windowscodecs.lib")
+#pragma comment(lib,"dwrite.lib")
 using namespace Microsoft::WRL;    // Microsoft::WRL::ComPtr<T>
 using namespace std;
 
@@ -36,6 +38,7 @@ public :
 	ComPtr<ID2D1DeviceContext7> renderTarget;       // D2D Device Context (그리기)
 	ComPtr<ID2D1Bitmap1> backBufferBitmap;	  	    // 화면 출력용 D2D Bitmap (그릴 대상)
 	ComPtr<IWICImagingFactory> wicImagingFactory;   // WIC Imaging Factory (이미지 로딩)
+	ComPtr<IDWriteFactory> dWriteFactory;			// Text Write Factory (텍스그 그리기)
 
 	// componenet
 	void Regist(IRenderer* component);

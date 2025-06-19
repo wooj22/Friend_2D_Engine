@@ -81,6 +81,9 @@
     <ClInclude Include="TransformSystem.h">
       <Filter>헤더 파일\System</Filter>
     </ClInclude>
+    <ClInclude Include="TextRenderer.h">
+      <Filter>헤더 파일\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -115,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="TransformSystem.cpp">
       <Filter>소스 파일\System</Filter>
+    </ClCompile>
+    <ClCompile Include="TextRenderer.cpp">
+      <Filter>소스 파일\Component</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
