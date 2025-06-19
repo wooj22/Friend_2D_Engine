@@ -1,13 +1,13 @@
 #include "TransformSystem.h"
 #include "Transform.h"
 
-/// Component 등록
+// component 등록
 void TransformSystem::Regist(Transform* component) 
 {
 	components.push_back(component);
 }
 
-/// Component 등록 해제
+// component 등록 해제
 void TransformSystem::Unregist(Transform* component) 
 {
 	for (auto it = components.begin(); it != components.end(); ++it) {
