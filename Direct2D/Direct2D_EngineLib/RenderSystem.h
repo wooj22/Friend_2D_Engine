@@ -22,7 +22,7 @@ class RenderSystem : public Singleton<RenderSystem>
 {
 private:
 	// renderList
-	vector<SpriteRenderer*> components;		// render 객체들
+	vector<IRenderer*> components;		// render 객체들
 
 	// window
 	HWND hwnd;
@@ -38,8 +38,8 @@ public :
 	ComPtr<IWICImagingFactory> wicImagingFactory;   // WIC Imaging Factory (이미지 로딩)
 
 	// componenet
-	void Regist(SpriteRenderer* component);
-	void Unregist(SpriteRenderer* component);
+	void Regist(IRenderer* component);
+	void Unregist(IRenderer* component);
 
 	// component system
 	void Init(HWND hwnd, int width, int height);

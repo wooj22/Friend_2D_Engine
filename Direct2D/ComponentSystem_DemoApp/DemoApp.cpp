@@ -38,7 +38,7 @@ void DemoApp::Update()
 	Transform::SetCameraMatrix(mainCamera->transform->GetWorldMatrix());
 
 	// debug
-	OutputDebugStringA("고양이 포지션 : ");
+	/*OutputDebugStringA("고양이 포지션 : ");
 	string str1 = to_string(cat->transform->GetPosition().x) +
 		", " + to_string(cat->transform->GetPosition().y);
 	OutputDebugStringA(str1.c_str());
@@ -48,7 +48,7 @@ void DemoApp::Update()
 	string str2 = to_string(mainCamera->transform->GetPosition().x) +
 		", " + to_string(mainCamera->transform->GetPosition().y);
 	OutputDebugStringA(str2.c_str());
-	OutputDebugStringA("\n");
+	OutputDebugStringA("\n");*/
 }
 
 /// Game Release

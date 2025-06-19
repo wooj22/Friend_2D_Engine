@@ -2,13 +2,13 @@
 #include "SpriteRenderer.h"
 
 /// Component 등록
-void RenderSystem::Regist(SpriteRenderer* component)
+void RenderSystem::Regist(IRenderer* component)
 {
 	components.push_back(component);
 }
 
 /// Component 등록 해제
-void RenderSystem::Unregist(SpriteRenderer* component)
+void RenderSystem::Unregist(IRenderer* component)
 {
 	for (auto it = components.begin(); it != components.end(); ++it) {
 		if (*it == component) {
@@ -96,7 +96,7 @@ void RenderSystem::Render()
 	renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
 
 	// renderList Render()
-	for (SpriteRenderer* component : components)
+	for (IRenderer* component : components)
 	{
 		if (component)
 			component->Render();
