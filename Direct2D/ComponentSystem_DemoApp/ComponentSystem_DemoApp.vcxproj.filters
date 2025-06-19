@@ -27,12 +27,18 @@
     <ClCompile Include="Cat.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="Fish.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DemoApp.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Cat.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Fish.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

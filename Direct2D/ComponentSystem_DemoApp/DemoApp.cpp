@@ -20,7 +20,17 @@ void DemoApp::Init()
 	cat->transform = cat->AddComponent<Transform>();
 	cat->sr = cat->AddComponent<SpriteRenderer>();
 	cat->sr->SetImage(L"../Resource/Cat.png");
-	cat->transform->SetPosition(10, 10);
+	cat->transform->SetPosition(0, 0);
+
+	fish = new Fish;
+	fish->transform = fish->AddComponent<Transform>();
+	fish->sr = fish->AddComponent<SpriteRenderer>();
+	fish->sr->SetImage(L"../Resource/Fish.png");
+	fish->transform->SetParent(cat->transform);
+	fish->transform->SetScale(0.3, 0.3);
+	fish->transform->SetRotation(-60);
+	fish->transform->SetPosition(300, 300);
+
 }
 
 /// Game Update
@@ -36,6 +46,10 @@ void DemoApp::Update()
 
 	// camera 역행렬 update
 	Transform::SetCameraMatrix(mainCamera->transform->GetWorldMatrix());
+
+	// game udpate
+	cat->transform->AddPosition(0, -1);
+	fish->transform->AddRotation(1);
 
 	// debug
 	/*OutputDebugStringA("고양이 포지션 : ");

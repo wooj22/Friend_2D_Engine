@@ -129,11 +129,13 @@
   <ItemGroup>
     <ClCompile Include="Cat.cpp" />
     <ClCompile Include="DemoApp.cpp" />
+    <ClCompile Include="Fish.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cat.h" />
     <ClInclude Include="DemoApp.h" />
+    <ClInclude Include="Fish.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Direct2D_EngineLib\Direct2D_EngineLib.vcxproj">

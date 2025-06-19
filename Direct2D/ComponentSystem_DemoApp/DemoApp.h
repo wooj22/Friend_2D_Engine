@@ -2,6 +2,7 @@
 #include "../Direct2D_EngineLib/GameApp.h"
 #include "../Direct2D_EngineLib/Camera.h"
 #include "Cat.h"
+#include "Fish.h"
 
 class DemoApp : public GameApp
 {
@@ -11,6 +12,7 @@ private:
 
 	// game object
 	Cat* cat;
+	Fish* fish;
 
 public:
 	DemoApp(int inputWidth, int inputHeight) : GameApp(inputWidth, inputHeight) {};
