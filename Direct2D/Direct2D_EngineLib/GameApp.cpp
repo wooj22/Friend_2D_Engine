@@ -95,9 +95,9 @@ void GameApp::Init()
 	
 	// static system
 	Input::Init(hWnd);
+	Time::Init();
 
 	// component system update
-	timeManager.Init();
 	renderSystem.Init(hWnd, width, height);
 }
 
@@ -116,9 +116,9 @@ void GameApp::Update()
 
 	// static system update
 	Input::Update();
+	Time::Update();
 
 	// component system update
-	timeManager.Update();
 	transformSystem.Update();
 	renderSystem.Update();
 }
@@ -168,6 +168,6 @@ void GameApp::UnInit()
 	renderSystem.UnInit();   
 	sceneManager.UnInit();
 	//inputManager.UnInit();
-	timeManager.UnInit();
+	//timeManager.UnInit();
 	CoUninitialize();			 // com ∞¥√º «ÿ¡¶
 }

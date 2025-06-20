@@ -5,7 +5,7 @@
 #include "GameObject.h"
 #include "RenderSystem.h"
 #include "SpriteRenderer.h"
-#include "TimeManager.h"
+#include "Time.h"
 #include "Input.h"
 #include "TransformSystem.h"
 #include "SceneManager.h"
@@ -24,9 +24,7 @@ protected:
 	string			modulePath;
 	string			workingPath;
 
-	// manager
-	//Input inputManager;
-	TimeManager timeManager;
+	// component system
 	TransformSystem transformSystem;
 	RenderSystem renderSystem;
 	SceneManager sceneManager;
