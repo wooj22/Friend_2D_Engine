@@ -18,6 +18,7 @@ public:
 	MenuScene() = default;
 	~MenuScene() = default;
 
+	void Awake() override;
 	void Start() override;
 	void Update() override;
 	void Exit() override;

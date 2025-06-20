@@ -19,6 +19,7 @@ public:
         components.clear();
     }
 
+    virtual void Awake() {};
     virtual void Start() {};
     virtual void Update() {};
     virtual void Destroy() {};

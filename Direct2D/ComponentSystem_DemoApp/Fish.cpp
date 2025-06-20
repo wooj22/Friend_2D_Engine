@@ -1,10 +1,13 @@
 #include "Fish.h"
 
-void Fish::Start() 
+void Fish::Awake()
 {
 	transform = AddComponent<Transform>();
 	sr = AddComponent<SpriteRenderer>();
+}
 
+void Fish::Start() 
+{
 	transform->SetScale(0.3, 0.3);
 	transform->SetRotation(-60);
 	transform->SetPosition(300, 300);

@@ -1,6 +1,6 @@
 #include "MenuScene.h"
 
-void MenuScene::Start() 
+void MenuScene::Awake()
 {
 	// camera init
 	camera = DemoApp::mainCamera;
@@ -10,11 +10,17 @@ void MenuScene::Start()
 	cat = CreateObject<Cat>();
 	fish = CreateObject<Fish>();
 
-	// game object -> start
-	__super::Start();
+	// game object -> awake (component add)
+	__super::Awake();
+}
 
-	// component가 생성되고 난 뒤 부모 설정
+void MenuScene::Start() 
+{
+	// 부모관계 지정
 	fish->transform->SetParent(cat->transform);
+
+	// game object -> start (init lojic)
+	__super::Start();
 }
 
 void MenuScene::Update() 

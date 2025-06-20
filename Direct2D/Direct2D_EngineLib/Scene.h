@@ -27,6 +27,7 @@ public:
 		objectList.erase(it);
 	}
 
+	virtual void Awake();
 	virtual void Start();
 	virtual void Update();
 	virtual void Exit();

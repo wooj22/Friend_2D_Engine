@@ -15,6 +15,7 @@ public:
 
 	// 사용 안함 (GameObject의 Component templete을 사용하기 위한 구조)
 	// 게임 콘텐츠의 다른 스크립트에서 componenet만 get해서 제어 코드 작성
+	void Awake() override {}
 	void Start() override {}
 	void Update() override {}
 	void Destroy() override {}

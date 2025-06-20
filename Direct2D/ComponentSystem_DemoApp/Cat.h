@@ -11,6 +11,7 @@ public:
 	SpriteRenderer* sr;
 	TextRenderer* tr;
 
+	void Awake() override;
 	void Start() override;
 	void Update() override;
 	void Destroy() override;

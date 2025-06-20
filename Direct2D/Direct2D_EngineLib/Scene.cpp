@@ -1,8 +1,18 @@
 #include "Scene.h"
 #include "GameObject.h"
 
+/// Scene Awake
+void Scene::Awake() 
+{
+	for (auto& object : objectList)
+	{
+		object->Awake();
+	}
+}
+
 /// Scene Start
-void Scene::Start() {
+void Scene::Start() 
+{
 	for (auto& object : objectList)
 	{
 		object->Start();

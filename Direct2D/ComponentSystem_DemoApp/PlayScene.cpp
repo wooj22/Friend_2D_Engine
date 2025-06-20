@@ -1,19 +1,28 @@
 #include "PlayScene.h"
 
-void PlayScene::Start()
+void PlayScene::Awake()
 {
 	// camera init
 	camera = DemoApp::mainCamera;
 	camera->transform->SetPosition(0, 0);
 
 	// menu scene game object
-	
+	sun = CreateObject<Sun>();
+	earth = CreateObject<Earth>();
+	moon = CreateObject<Moon>();
 
-	// game object -> start
+	// game object -> awake (component add)
+	__super::Awake();
+}
+
+void PlayScene::Start()
+{
+	// 부모관계 지정
+	earth->transform->SetParent(sun->transform);
+	moon->transform->SetParent(earth->transform);
+
+	// game object -> start (init lojic)
 	__super::Start();
-
-	// component가 생성되고 난 뒤 부모 설정
-	
 }
 
 void PlayScene::Update()
@@ -29,6 +38,11 @@ void PlayScene::Update()
 
 	// game object -> update
 	__super::Update();
+
+	// scene change
+	if (InputManager::Get().GetKeyDown(VK_SPACE)) {
+		SceneManager::Get().ChangeScene(DemoApp::SceneName::MENU);
+	}
 }
 
 void PlayScene::Exit()

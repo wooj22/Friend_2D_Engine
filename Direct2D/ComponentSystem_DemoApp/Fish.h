@@ -9,6 +9,7 @@ public:
 	Transform* transform;
 	SpriteRenderer* sr;
 
+	void Awake() override;
 	void Start() override;
 	void Update() override;
 	void Destroy() override;

@@ -20,6 +20,7 @@ public:
 	PlayScene() = default;
 	~PlayScene() = default;
 
+	void Awake() override;
 	void Start() override;
 	void Update() override;
 	void Exit() override;

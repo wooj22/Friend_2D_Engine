@@ -4,8 +4,10 @@
 /// first Scene Init
 void SceneManager::Init()
 {
-	if (currentScene)
+	if (currentScene) {
+		currentScene->Awake();
 		currentScene->Start();
+	}	
 }
 
 /// current Scene Update (scene start, update, exit)
@@ -19,6 +21,7 @@ void SceneManager::Update()
 		currentScene = nextScene;
 		nextScene = nullptr;
 
+		currentScene->Awake();
 		currentScene->Start();
 	}
 
