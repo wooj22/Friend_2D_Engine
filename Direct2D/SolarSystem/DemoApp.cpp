@@ -33,10 +33,10 @@ void DemoApp::Update()
 	__super::Update();
 
 	// camera move
-	if (InputManager::Get().GetKey(VK_LEFT)) mainCamera.transform.AddPosition(-3,0);
-	if (InputManager::Get().GetKey(VK_RIGHT)) mainCamera.transform.AddPosition(3, 0);
-	if (InputManager::Get().GetKey(VK_UP)) mainCamera.transform.AddPosition(0, 3);
-	if (InputManager::Get().GetKey(VK_DOWN)) mainCamera.transform.AddPosition(0, -3);
+	if (Input::Get().GetKey(VK_LEFT)) mainCamera.transform.AddPosition(-3,0);
+	if (Input::Get().GetKey(VK_RIGHT)) mainCamera.transform.AddPosition(3, 0);
+	if (Input::Get().GetKey(VK_UP)) mainCamera.transform.AddPosition(0, 3);
+	if (Input::Get().GetKey(VK_DOWN)) mainCamera.transform.AddPosition(0, -3);
 
 	// camera ¿ªÇà·Ä update
 	Transform::SetCameraMatrix(mainCamera.transform.GetWorldMatrix());

@@ -148,7 +148,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="RenderSystem.h" />
-    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="TextRenderer.h" />
@@ -165,7 +165,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="GameApp.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
-    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="IRenderer.cpp" />
     <ClCompile Include="TextRenderer.cpp" />
     <ClCompile Include="TimeManager.cpp" />

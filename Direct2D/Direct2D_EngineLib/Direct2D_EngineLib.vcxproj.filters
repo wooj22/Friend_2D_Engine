@@ -19,12 +19,6 @@
     <Filter Include="헤더 파일\Component">
       <UniqueIdentifier>{3d2c990e-7876-460f-bff3-c46956d12128}</UniqueIdentifier>
     </Filter>
-    <Filter Include="헤더 파일\Manager">
-      <UniqueIdentifier>{3806363d-7cad-4fa4-b180-f0659e81a4c9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Manager">
-      <UniqueIdentifier>{b87aba46-edb5-47ac-88e9-ed939581cf0c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="헤더 파일\Camera">
       <UniqueIdentifier>{2e6b9283-b87c-4bda-ae74-206c3c0a5ae8}</UniqueIdentifier>
     </Filter>
@@ -49,19 +43,19 @@
     <Filter Include="헤더 파일\ComponentSystem">
       <UniqueIdentifier>{fb9e8c7d-609a-42db-9298-e0a96ffc2250}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\StaticSystem">
+      <UniqueIdentifier>{b3ca52cb-692b-4fc1-81e7-47a6f5ef9577}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\StaticSystem">
+      <UniqueIdentifier>{5f869c07-4bf5-4858-9010-4cee6d424cfe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>헤더 파일\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="IRenderer.h">
       <Filter>헤더 파일\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="TimeManager.h">
-      <Filter>헤더 파일\Manager</Filter>
     </ClInclude>
     <ClInclude Include="SpriteRenderer.h">
       <Filter>헤더 파일\Component</Filter>
@@ -74,9 +68,6 @@
     </ClInclude>
     <ClInclude Include="RenderSystem.h">
       <Filter>헤더 파일\ComponentSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>헤더 파일\Manager</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>헤더 파일\GameObject</Filter>
@@ -96,16 +87,19 @@
     <ClInclude Include="SceneManager.h">
       <Filter>헤더 파일\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>헤더 파일\StaticSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.h">
+      <Filter>헤더 파일\StaticSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>소스 파일\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="TimeManager.cpp">
-      <Filter>소스 파일\Manager</Filter>
     </ClCompile>
     <ClCompile Include="IRenderer.cpp">
       <Filter>소스 파일\Component</Filter>
@@ -139,6 +133,12 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>소스 파일\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>소스 파일\StaticSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeManager.cpp">
+      <Filter>소스 파일\StaticSystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

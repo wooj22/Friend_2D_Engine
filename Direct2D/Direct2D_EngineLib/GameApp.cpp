@@ -92,8 +92,11 @@ void GameApp::Init()
 
 	CoInitialize(nullptr);					// com 객체 초기화	
 
-	// manager init
-	inputManager.Init(hWnd);
+	
+	// static system
+	Input::Init(hWnd);
+
+	// component system update
 	timeManager.Init();
 	renderSystem.Init(hWnd, width, height);
 }
@@ -111,8 +114,10 @@ void GameApp::Update()
 	// -> GameObject update() 실행
 	sceneManager.Update();
 
+	// static system update
+	Input::Update();
+
 	// component system update
-	inputManager.Update();
 	timeManager.Update();
 	transformSystem.Update();
 	renderSystem.Update();
@@ -162,7 +167,7 @@ void GameApp::UnInit()
 	// manager
 	renderSystem.UnInit();   
 	sceneManager.UnInit();
-	inputManager.UnInit();
+	//inputManager.UnInit();
 	timeManager.UnInit();
 	CoUninitialize();			 // com 객체 해제
 }

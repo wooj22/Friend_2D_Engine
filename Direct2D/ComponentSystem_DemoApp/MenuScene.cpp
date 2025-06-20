@@ -26,10 +26,10 @@ void MenuScene::Start()
 void MenuScene::Update() 
 {
 	// camera move
-	if (InputManager::Get().GetKey(VK_LEFT)) camera->transform->AddPosition(-3, 0);
-	if (InputManager::Get().GetKey(VK_RIGHT)) camera->transform->AddPosition(3, 0);
-	if (InputManager::Get().GetKey(VK_UP)) camera->transform->AddPosition(0, 3);
-	if (InputManager::Get().GetKey(VK_DOWN)) camera->transform->AddPosition(0, -3);
+	if (Input::GetKey(VK_LEFT)) camera->transform->AddPosition(-3, 0);
+	if (Input::GetKey(VK_RIGHT)) camera->transform->AddPosition(3, 0);
+	if (Input::GetKey(VK_UP)) camera->transform->AddPosition(0, 3);
+	if (Input::GetKey(VK_DOWN)) camera->transform->AddPosition(0, -3);
 
 	// camera ¿ªÇà·Ä update
 	Transform::SetCameraMatrix(camera->transform->GetWorldMatrix());
@@ -38,7 +38,7 @@ void MenuScene::Update()
 	__super::Update();
 
 	// scene change
-	if (InputManager::Get().GetKeyDown(VK_SPACE)) {
+	if (Input::GetKeyDown(VK_SPACE)) {
 		SceneManager::Get().ChangeScene(DemoApp::SceneName::PLAY);
 	}
 }

@@ -1,6 +1,6 @@
 #pragma once
 #include "../Direct2D_EngineLib/Scene.h"
-#include "../Direct2D_EngineLib/InputManager.h"
+#include "../Direct2D_EngineLib/Input.h"
 #include "../Direct2D_EngineLib/Camera.h"
 #include "DemoApp.h"
 #include "Cat.h"

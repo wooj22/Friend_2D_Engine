@@ -6,7 +6,7 @@
 #include "RenderSystem.h"
 #include "SpriteRenderer.h"
 #include "TimeManager.h"
-#include "InputManager.h"
+#include "Input.h"
 #include "TransformSystem.h"
 #include "SceneManager.h"
 using namespace std;
@@ -25,7 +25,7 @@ protected:
 	string			workingPath;
 
 	// manager
-	InputManager inputManager;
+	//Input inputManager;
 	TimeManager timeManager;
 	TransformSystem transformSystem;
 	RenderSystem renderSystem;
