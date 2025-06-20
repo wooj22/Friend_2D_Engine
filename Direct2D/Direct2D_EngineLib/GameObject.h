@@ -9,6 +9,7 @@ private:
     std::vector<Component*> components;
 
 public:
+    GameObject() {};
     ~GameObject()
     {
         for (Component* comp : components) {
@@ -18,6 +19,11 @@ public:
         components.clear();
     }
 
+    virtual void Start() {};
+    virtual void Update() {};
+    virtual void Destroy() {};
+
+    /* Component */
     // Class T를 생성하는 함수 , 인자까지 전달한다.
     template<typename T, typename... Args>
     T* AddComponent(Args&&... args)

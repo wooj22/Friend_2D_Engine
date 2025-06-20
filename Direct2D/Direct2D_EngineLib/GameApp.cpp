@@ -98,13 +98,29 @@ void GameApp::Init()
 	renderSystem.Init(hWnd, width, height);
 }
 
+/// PreUpdate
+void GameApp::PreUpdate()
+{
+
+}
+
 /// Update
 void GameApp::Update()
 {
+	// scenemanager update()
+	// -> GameObject update() ½ÇÇà
+
+	// component system update
 	inputManager.Update();
 	timeManager.Update();
 	transformSystem.Update();
 	renderSystem.Update();
+}
+
+/// LateUpdate
+void GameApp::LateUpdate()
+{
+	
 }
 
 /// Render
@@ -132,7 +148,9 @@ void GameApp::Loop()
 
 		}
 
+		PreUpdate();
 		Update();
+		LateUpdate();
 		Render();
 	}
 }

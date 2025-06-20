@@ -12,5 +12,9 @@ public:
 	Camera(int w, int h) : width(w), height(h) {};
 	~Camera() { }
 	void SetSize(int w, int h) { width = w;	height = h; }
+
+	void Start() override {}
+	void Update() override {}
+	void Destroy() override {}
 };
 

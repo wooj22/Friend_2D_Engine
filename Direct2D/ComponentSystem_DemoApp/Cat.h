@@ -9,5 +9,9 @@ public:
 	Transform* transform;
 	SpriteRenderer* sr;
 	TextRenderer* tr;
+
+	void Start() override;
+	void Update() override;
+	void Destroy() override;
 };
 

@@ -19,7 +19,9 @@ public:
 	~DemoApp() override = default;
 
 	void Init() override;
+	void PreUpdate() override {};
 	void Update() override;
+	void LateUpdate() override {};
 	void UnInit() override;
 	void MessageProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) override;
 };

@@ -7,5 +7,9 @@ class Fish : public GameObject
 public:
 	Transform* transform;
 	SpriteRenderer* sr;
+
+	void Start() override;
+	void Update() override;
+	void Destroy() override;
 };
 
