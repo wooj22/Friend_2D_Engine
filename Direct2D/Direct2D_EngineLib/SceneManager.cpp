@@ -1,24 +1,14 @@
 #include "SceneManager.h"
 #include "Scene.h"
 
-/// SceneManager 초기화
+/// first Scene Init
 void SceneManager::Init()
 {
 	if (currentScene)
 		currentScene->Start();
 }
 
-/// SceneManager 종료
-void SceneManager::UnInit()
-{
-	for (auto& scene : sceneList)
-	{
-		delete scene;
-	}
-	sceneList.clear();
-}
-
-/// currentScene의 Update 호출
+/// current Scene Update (scene start, update, exit)
 void SceneManager::Update()
 {
 	if (nextScene)
@@ -36,7 +26,17 @@ void SceneManager::Update()
 		currentScene->Update();
 }
 
-/// Current Scene Set
+/// manager Release
+void SceneManager::UnInit()
+{
+	for (auto& scene : sceneList)
+	{
+		delete scene;
+	}
+	sceneList.clear();
+}
+
+/// current Scene Set
 void SceneManager::SetCurrentScene(size_t index) {
 	if (index >= sceneList.size())
 		return;
@@ -44,12 +44,12 @@ void SceneManager::SetCurrentScene(size_t index) {
 	currentScene = sceneList[index];
 }
 
-/// Current Scene get
+/// current Scene get
 Scene* SceneManager::GetCurrentScene() {
 	return currentScene;
 }
 
-/// Scene Change
+/// scene Change
 void SceneManager::ChangeScene(size_t index)
 {
 	if (index >= sceneList.size())

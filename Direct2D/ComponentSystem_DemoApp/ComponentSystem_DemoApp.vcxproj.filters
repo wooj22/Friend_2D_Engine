@@ -16,6 +16,9 @@
     <Filter Include="GameObject">
       <UniqueIdentifier>{ca948a88-e269-4a86-b747-e8acec452f34}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{66da6b0a-f68f-4675-9299-44747936c742}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -30,6 +33,12 @@
     <ClCompile Include="Fish.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DemoApp.h">
@@ -40,6 +49,12 @@
     </ClInclude>
     <ClInclude Include="Fish.h">
       <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayScene.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

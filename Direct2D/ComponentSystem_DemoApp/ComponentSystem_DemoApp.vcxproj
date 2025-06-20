@@ -131,11 +131,15 @@
     <ClCompile Include="DemoApp.cpp" />
     <ClCompile Include="Fish.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MenuScene.cpp" />
+    <ClCompile Include="PlayScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cat.h" />
     <ClInclude Include="DemoApp.h" />
     <ClInclude Include="Fish.h" />
+    <ClInclude Include="MenuScene.h" />
+    <ClInclude Include="PlayScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Direct2D_EngineLib\Direct2D_EngineLib.vcxproj">

@@ -109,6 +109,7 @@ void GameApp::Update()
 {
 	// scenemanager update()
 	// -> GameObject update() 실행
+	sceneManager.Update();
 
 	// component system update
 	inputManager.Update();
@@ -160,6 +161,7 @@ void GameApp::UnInit()
 {
 	// manager
 	renderSystem.UnInit();   
+	sceneManager.UnInit();
 	inputManager.UnInit();
 	timeManager.UnInit();
 	CoUninitialize();			 // com 객체 해제

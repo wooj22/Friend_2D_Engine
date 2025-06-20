@@ -1,0 +1,25 @@
+#pragma once
+#include "../Direct2D_EngineLib/Scene.h"
+#include "../Direct2D_EngineLib/InputManager.h"
+#include "../Direct2D_EngineLib/Camera.h"
+#include "DemoApp.h"
+#include "Cat.h"
+#include "Fish.h"
+
+class MenuScene : public Scene
+{
+private:
+	// menu scene objects
+	Camera* camera;
+	Cat* cat;
+	Fish* fish;
+
+public:
+	MenuScene() = default;
+	~MenuScene() = default;
+
+	void Start() override;
+	void Update() override;
+	void Exit() override;
+};
+

@@ -8,6 +8,7 @@
 #include "TimeManager.h"
 #include "InputManager.h"
 #include "TransformSystem.h"
+#include "SceneManager.h"
 using namespace std;
 
 class GameApp
@@ -28,6 +29,7 @@ protected:
 	TimeManager timeManager;
 	TransformSystem transformSystem;
 	RenderSystem renderSystem;
+	SceneManager sceneManager;
 
 public:
 	bool isLoop = true;
@@ -36,15 +38,15 @@ public:
 		width(inputWidth), height(inputHeight), hInstance(nullptr), hWnd(nullptr) { };
 	virtual ~GameApp() = default;
 
-	void Loop();
-	virtual void MessageProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-
 	// Life Cycle
 	virtual void Init();
-	virtual void PreUpdate();
-	virtual void Update();
-	virtual void LateUpdate();
-	virtual void Render();
+	void PreUpdate();
+	void Update();
+	void LateUpdate();
+	void Render();
 	virtual void UnInit();
+
+	void Loop();
+	virtual void MessageProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 };
 

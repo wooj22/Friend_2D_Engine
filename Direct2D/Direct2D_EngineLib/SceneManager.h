@@ -13,9 +13,9 @@ class Scene;
 class SceneManager : public Singleton<SceneManager>
 {
 private:
-	vector<Scene*> sceneList;		   // ¾À ¸®½ºÆ®
-	Scene* currentScene = nullptr;     // ÇöÀç ¾À
-	Scene* nextScene = nullptr;        // ´ÙÀ½ ¾À
+	vector<Scene*> sceneList;
+	Scene* currentScene = nullptr;
+	Scene* nextScene = nullptr;
 
 public:
 	SceneManager() = default;

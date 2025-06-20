@@ -6,23 +6,14 @@
 
 class DemoApp : public GameApp
 {
-private:
-	// camera
-	Camera* mainCamera;
-
-	// game object
-	Cat* cat;
-	Fish* fish;
-
 public:
+	enum sceneName { MENU, PLAY };	// scene enum
+	static Camera* mainCamera;		// 전체 scene이 같이 쓸 카메라
+	
 	DemoApp(int inputWidth, int inputHeight) : GameApp(inputWidth, inputHeight) {};
 	~DemoApp() override = default;
 
 	void Init() override;
-	void PreUpdate() override {};
-	void Update() override;
-	void LateUpdate() override {};
 	void UnInit() override;
 	void MessageProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) override;
 };
-
