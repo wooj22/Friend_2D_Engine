@@ -31,12 +31,6 @@
     <Filter Include="소스 파일\Camera">
       <UniqueIdentifier>{456bb3fe-d3cc-4047-8558-625cb43db472}</UniqueIdentifier>
     </Filter>
-    <Filter Include="헤더 파일\System">
-      <UniqueIdentifier>{fb9e8c7d-609a-42db-9298-e0a96ffc2250}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\System">
-      <UniqueIdentifier>{55b90ed8-d538-46ce-b064-d9e5db49e7f0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\GameObject">
       <UniqueIdentifier>{513dacbd-2dd5-476b-b8e2-b6ed5bbde255}</UniqueIdentifier>
     </Filter>
@@ -48,6 +42,12 @@
     </Filter>
     <Filter Include="헤더 파일\Scene">
       <UniqueIdentifier>{d192ac17-954d-49a3-bf78-4dab9bccc1f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\ComponentSystem">
+      <UniqueIdentifier>{55b90ed8-d538-46ce-b064-d9e5db49e7f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\ComponentSystem">
+      <UniqueIdentifier>{fb9e8c7d-609a-42db-9298-e0a96ffc2250}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -73,7 +73,7 @@
       <Filter>헤더 파일\Camera</Filter>
     </ClInclude>
     <ClInclude Include="RenderSystem.h">
-      <Filter>헤더 파일\System</Filter>
+      <Filter>헤더 파일\ComponentSystem</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h">
       <Filter>헤더 파일\Manager</Filter>
@@ -85,7 +85,7 @@
       <Filter>헤더 파일\Component</Filter>
     </ClInclude>
     <ClInclude Include="TransformSystem.h">
-      <Filter>헤더 파일\System</Filter>
+      <Filter>헤더 파일\ComponentSystem</Filter>
     </ClInclude>
     <ClInclude Include="TextRenderer.h">
       <Filter>헤더 파일\Component</Filter>
@@ -120,7 +120,7 @@
       <Filter>소스 파일\Camera</Filter>
     </ClCompile>
     <ClCompile Include="RenderSystem.cpp">
-      <Filter>소스 파일\System</Filter>
+      <Filter>소스 파일\ComponentSystem</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>소스 파일\Component</Filter>
@@ -129,7 +129,7 @@
       <Filter>소스 파일\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="TransformSystem.cpp">
-      <Filter>소스 파일\System</Filter>
+      <Filter>소스 파일\ComponentSystem</Filter>
     </ClCompile>
     <ClCompile Include="TextRenderer.cpp">
       <Filter>소스 파일\Component</Filter>

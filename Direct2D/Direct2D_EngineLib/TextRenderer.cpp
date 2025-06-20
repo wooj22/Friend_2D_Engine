@@ -6,7 +6,7 @@ void TextRenderer::OnEnable()
 {
 	transform = this->owner->GetComponent<Transform>();
 
-	// 기본 브러시 및 텍스트 포맷
+	// 기본 브러시
 	RenderSystem::Get().renderTarget->CreateSolidColorBrush(textColor, brush.GetAddressOf());
 	isTextDirty = true;
 }
@@ -16,24 +16,26 @@ void TextRenderer::Update()
 	if (isTextDirty) {
 		// 텍스트 포맷 재생성
 		RenderSystem::Get().dWriteFactory->CreateTextFormat(
-			fontName.c_str(),
-			nullptr,
-			DWRITE_FONT_WEIGHT_NORMAL,
-			DWRITE_FONT_STYLE_NORMAL,
-			DWRITE_FONT_STRETCH_NORMAL,
-			fontSize,
-			L"",  // locale
+			fontName.c_str(),              // 폰트
+			nullptr,                       // 커스텀 폰트 컬렉션 (null이면 시스템 기본)
+			DWRITE_FONT_WEIGHT_NORMAL,     // 굵기
+			DWRITE_FONT_STYLE_NORMAL,      // 스타일(기울임 여부)
+			DWRITE_FONT_STRETCH_NORMAL,    // 스트레칭
+			fontSize,                      // 크기
+			L"",                           // 로케일 (""이면 시스템 기본 언어)
 			textFormat.GetAddressOf()
 		);
+		
+		// 정렬
 		textFormat->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
 		textFormat->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
 
 		// 텍스트 레이아웃 재생성
 		RenderSystem::Get().dWriteFactory->CreateTextLayout(
-			text.c_str(),
-			static_cast<UINT32>(text.length()),
-			textFormat.Get(),
-			width, height,
+			text.c_str(),                       // 출력할 문자열
+			static_cast<UINT32>(text.length()), // 문자열 길이
+			textFormat.Get(),                   
+			width, height,                      // 레이아웃 크기
 			textLayout.GetAddressOf()
 		);
 
