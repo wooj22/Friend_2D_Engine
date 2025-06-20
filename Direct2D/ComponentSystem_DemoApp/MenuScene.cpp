@@ -7,27 +7,18 @@ void MenuScene::Start()
 	camera->transform->SetPosition(0, 0);
 
 	// menu scene game object
-	// cat
 	cat = CreateObject<Cat>();
-
-	// fish
 	fish = CreateObject<Fish>();
-	fish->transform = fish->AddComponent<Transform>();
-	fish->sr = fish->AddComponent<SpriteRenderer>();
 
-	fish->transform->SetParent(cat->transform);
-	fish->transform->SetScale(0.3, 0.3);
-	fish->transform->SetRotation(-60);
-	fish->transform->SetPosition(300, 300);
-	fish->sr->SetImage(L"../Resource/Fish.png");
-
+	// game object -> start
 	__super::Start();
+
+	// component가 생성되고 난 뒤 부모 설정
+	fish->transform->SetParent(cat->transform);
 }
 
 void MenuScene::Update() 
 {
-	__super::Update();
-
 	// camera move
 	if (InputManager::Get().GetKey(VK_LEFT)) camera->transform->AddPosition(-3, 0);
 	if (InputManager::Get().GetKey(VK_RIGHT)) camera->transform->AddPosition(3, 0);
@@ -37,12 +28,12 @@ void MenuScene::Update()
 	// camera 역행렬 update
 	Transform::SetCameraMatrix(camera->transform->GetWorldMatrix());
 
-	// game object update
-	fish->transform->AddRotation(1);
+	// game object -> update
+	__super::Update();
 }
 
 void MenuScene::Exit()
 {
-
+	// game object -> destroy
 	__super::Exit();
 }

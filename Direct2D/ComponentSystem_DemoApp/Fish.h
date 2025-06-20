@@ -2,7 +2,6 @@
 #include "../Direct2D_EngineLib/GameObject.h"
 #include "../Direct2D_EngineLib/Transform.h";
 #include "../Direct2D_EngineLib/SpriteRenderer.h"
-#include "../Direct2D_EngineLib/TextRenderer.h"
 
 class Fish : public GameObject
 {
