@@ -26,10 +26,10 @@ void MenuScene::Start()
 void MenuScene::Update() 
 {
 	// camera move
-	if (Input::GetKey(VK_LEFT)) camera->transform->AddPosition(-3, 0);
-	if (Input::GetKey(VK_RIGHT)) camera->transform->AddPosition(3, 0);
-	if (Input::GetKey(VK_UP)) camera->transform->AddPosition(0, 3);
-	if (Input::GetKey(VK_DOWN)) camera->transform->AddPosition(0, -3);
+	if (Input::GetKey(VK_LEFT)) camera->transform->AddPosition(-200 * Time::GetDeltaTime(), 0);
+	if (Input::GetKey(VK_RIGHT)) camera->transform->AddPosition(200 * Time::GetDeltaTime(), 0);
+	if (Input::GetKey(VK_UP)) camera->transform->AddPosition(0, 200 * Time::GetDeltaTime());
+	if (Input::GetKey(VK_DOWN)) camera->transform->AddPosition(0, -200 * Time::GetDeltaTime());
 
 	// camera ¿ªÇà·Ä update
 	Transform::SetCameraMatrix(camera->transform->GetWorldMatrix());

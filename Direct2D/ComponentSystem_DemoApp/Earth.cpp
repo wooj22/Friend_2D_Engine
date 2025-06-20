@@ -15,7 +15,7 @@ void Earth::Start()
 
 void Earth::Update()
 {
-	transform->AddRotation(-0.5);
+	transform->AddRotation(-rotationSpeed * Time::GetDeltaTime());
 }
 
 void Earth::Destroy()

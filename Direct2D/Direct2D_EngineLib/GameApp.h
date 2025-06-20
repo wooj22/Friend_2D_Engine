@@ -36,7 +36,7 @@ public:
 		width(inputWidth), height(inputHeight), hInstance(nullptr), hWnd(nullptr) { };
 	virtual ~GameApp() = default;
 
-	// Game Life Cycle
+	/* Game Life Cycle */
 	virtual void Init();
 	void PreUpdate();		// input, time
 	void Update();			// transformSystem, scene(gameObject) //TODO :: ScriptSystem Ãß°¡

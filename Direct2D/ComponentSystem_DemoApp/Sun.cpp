@@ -15,7 +15,7 @@ void Sun::Start()
 
 void Sun::Update()
 {
-	transform->AddRotation(-0.3);
+	transform->AddRotation(-rotationSpeed * Time::GetDeltaTime());
 }
 
 void Sun::Destroy()

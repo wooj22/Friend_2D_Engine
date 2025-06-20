@@ -11,7 +11,7 @@ void PlayScene::Awake()
 	earth = CreateObject<Earth>();
 	moon = CreateObject<Moon>();
 
-	// game object -> awake (component add)
+	// game object -> awake()
 	__super::Awake();
 }
 
@@ -21,17 +21,17 @@ void PlayScene::Start()
 	earth->transform->SetParent(sun->transform);
 	moon->transform->SetParent(earth->transform);
 
-	// game object -> start (init lojic)
+	// game object -> start()
 	__super::Start();
 }
 
 void PlayScene::Update()
 {
 	// camera move
-	if (Input::GetKey(VK_LEFT)) camera->transform->AddPosition(-3, 0);
-	if (Input::GetKey(VK_RIGHT)) camera->transform->AddPosition(3, 0);
-	if (Input::GetKey(VK_UP)) camera->transform->AddPosition(0, 3);
-	if (Input::GetKey(VK_DOWN)) camera->transform->AddPosition(0, -3);
+	if (Input::GetKey(VK_LEFT)) camera->transform->AddPosition(-200 * Time::GetDeltaTime(), 0);
+	if (Input::GetKey(VK_RIGHT)) camera->transform->AddPosition(200 * Time::GetDeltaTime(), 0);
+	if (Input::GetKey(VK_UP)) camera->transform->AddPosition(0, 200 * Time::GetDeltaTime());
+	if (Input::GetKey(VK_DOWN)) camera->transform->AddPosition(0, -200 * Time::GetDeltaTime());
 
 	// camera ¿ªÇà·Ä update
 	Transform::SetCameraMatrix(camera->transform->GetWorldMatrix());

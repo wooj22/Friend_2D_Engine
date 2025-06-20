@@ -3,14 +3,18 @@
 #include "../Direct2D_EngineLib/Transform.h";
 #include "../Direct2D_EngineLib/SpriteRenderer.h"
 #include "../Direct2D_EngineLib/TextRenderer.h"
+#include "../Direct2D_EngineLib/Time.h"
 
 class Cat : public GameObject
 {
+private:
+	float moveSpeed = 100.0f;
 public:
 	Transform* transform;
 	SpriteRenderer* sr;
 	TextRenderer* tr;
 
+	// TODO :: ScriptComponent, ScriptSystem
 	// 현재는 Scene->SceneManager->GameObject 구조로 호출되는
 	// Cycle에 의존하여 이 안에 conponent 제어 로직을 작성하고 있지만
 	// 추후 ScriptComponent, ScriptSystem을 생성하여 유니티처럼

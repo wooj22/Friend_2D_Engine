@@ -1,8 +1,6 @@
 #pragma once
 #include "../Direct2D_EngineLib/GameApp.h"
 #include "../Direct2D_EngineLib/Camera.h"
-#include "Cat.h"
-#include "Fish.h"
 
 class DemoApp : public GameApp
 {

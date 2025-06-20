@@ -14,7 +14,7 @@ void Moon::Start()
 
 void Moon::Update()
 {
-	transform->AddRotation(-0.7);
+	transform->AddRotation(-rotationSpeed * Time::GetDeltaTime());
 }
 
 void Moon::Destroy()

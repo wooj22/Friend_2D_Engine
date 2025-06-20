@@ -18,7 +18,7 @@ void Cat::Start()
 
 void Cat::Update()
 {
-	transform->AddPosition(0, -1);
+	transform->AddPosition(0, -moveSpeed * Time::GetDeltaTime());
 }
 
 void Cat::Destroy() 

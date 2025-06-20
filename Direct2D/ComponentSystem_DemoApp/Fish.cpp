@@ -16,7 +16,7 @@ void Fish::Start()
 
 void Fish::Update() 
 {
-	transform->AddRotation(1);
+	transform->AddRotation(rotationSpeed * Time::GetDeltaTime());
 }
 
 void Fish::Destroy() 
