@@ -8,7 +8,7 @@ void Scene::Start() {
 		object->Start();
 	}
 }
-
+ 
 /// Scene Update
 void Scene::Update()
 {
