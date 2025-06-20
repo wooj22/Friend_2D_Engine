@@ -30,10 +30,16 @@ void MenuScene::Update()
 
 	// game object -> update
 	__super::Update();
+
+	// scene change
+	if (InputManager::Get().GetKeyDown(VK_SPACE)) {
+		SceneManager::Get().ChangeScene(DemoApp::SceneName::PLAY);
+	}
 }
 
 void MenuScene::Exit()
 {
 	// game object -> destroy
+	camera = nullptr;
 	__super::Exit();
 }

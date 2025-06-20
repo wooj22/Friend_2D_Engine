@@ -19,6 +19,12 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{66da6b0a-f68f-4675-9299-44747936c742}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\PlayScene">
+      <UniqueIdentifier>{538247af-a5f6-442f-aad9-c806ceeed9aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\MenuScene">
+      <UniqueIdentifier>{1624fab7-8853-4b50-bf2f-b8b11dcb9d9c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -27,34 +33,52 @@
     <ClCompile Include="DemoApp.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Cat.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Fish.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="MenuScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="PlayScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Cat.cpp">
+      <Filter>GameObject\MenuScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Fish.cpp">
+      <Filter>GameObject\MenuScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Earth.cpp">
+      <Filter>GameObject\PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Moon.cpp">
+      <Filter>GameObject\PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Sun.cpp">
+      <Filter>GameObject\PlayScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DemoApp.h">
       <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Cat.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Fish.h">
-      <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="MenuScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="PlayScene.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Cat.h">
+      <Filter>GameObject\MenuScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Fish.h">
+      <Filter>GameObject\MenuScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Earth.h">
+      <Filter>GameObject\PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Moon.h">
+      <Filter>GameObject\PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Sun.h">
+      <Filter>GameObject\PlayScene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,7 +7,7 @@
 class DemoApp : public GameApp
 {
 public:
-	enum sceneName { MENU, PLAY };	// scene enum
+	enum SceneName { MENU, PLAY };	// scene enum
 	static Camera* mainCamera;		// 전체 scene이 같이 쓸 카메라
 	
 	DemoApp(int inputWidth, int inputHeight) : GameApp(inputWidth, inputHeight) {};

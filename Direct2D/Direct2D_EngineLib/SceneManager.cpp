@@ -36,7 +36,7 @@ void SceneManager::UnInit()
 	sceneList.clear();
 }
 
-/// current Scene Set
+/// current Scene Set (게임 시작 전 set)
 void SceneManager::SetCurrentScene(size_t index) {
 	if (index >= sceneList.size())
 		return;
