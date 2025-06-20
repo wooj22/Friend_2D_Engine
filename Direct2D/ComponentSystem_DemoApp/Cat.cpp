@@ -16,7 +16,7 @@ void Cat::Start()
 	tr->SetLayout(300, 100);
 }
 
-void Cat::Update() 
+void Cat::Update()
 {
 	transform->AddPosition(0, -1);
 }

@@ -1,24 +1,30 @@
-// World = local * parent->world
-// Screen = world * camera 역행렬
-
-// Uniny Style Screen position
-// 좌표계 - 중앙 (0,0), 왼쪽위(-, +), 오른쪽 아래(+, -)
-// D2D에서 유니티 좌표계처럼 사용하려면 꼼수가 필요함
-// Screen = renderMatrix * world * camera 역행렬 * unity matrix
-//  unity matrix는 중심 이동과 y 반전에 대항 행렬값을 가지고 있다.
-//  renderMatrix는 unity matrix에 대응하기 위해 y scale에 -1을 준 행렬
-//  transform 멤버에 저장하면 자식까지 누적 영향을 미치기 때문에 연산에만 사용해야한다.
-
-// Dirty 패턴
-// transform이 변경에 대한 flag를 활용하여 
-// 매 프레임마다 불필요하게 행렬을 다시 계산하지 않도록 하는 방식
 #pragma once
 #include <d2d1_1.h>
 #include <vector>
 #include "Component.h"
 #include "TransformSystem.h"
 
-/* Transform Component*/
+/* [Transform Component]
+* D2D1::MATRIX_3X2_F : 2D 변환(이동, 회전, 스케일, 기울기)을 표현하는 3*2 행렬
+* 위 행렬을 이용하여 오브젝트의 변환을 담당하는 컴포넌트이다.
+* 컴포넌트 생성시 Transform System에 등록되어 dirty패턴에 따라 matrix를 계속 계산한다.
+
+// position 계산 방법
+* World = local * parent->world
+* Screen = world * camera 역행렬
+
+// Uniny Style Screen position
+* 좌표계 - 중앙 (0,0), 왼쪽위(-, +), 오른쪽 아래(+, -)
+* D2D에서 유니티 좌표계처럼 사용하려면 꼼수가 필요함
+* Screen = renderMatrix * world * camera 역행렬 * unity matrix
+* unity matrix는 중심 이동과 y 반전에 대항 행렬값을 가지고 있다.
+* renderMatrix는 unity matrix에 대응하기 위해 y scale에 -1을 준 행렬
+* transform 멤버에 저장하면 자식까지 누적 영향을 미치기 때문에 연산에만 사용해야한다.
+
+// Dirty 패턴
+* transform이 변경에 대한 flag를 활용하여
+* 매 프레임마다 불필요하게 행렬을 다시 계산하지 않도록 하는 방식
+*/
 
 class Transform : public Component
 {

@@ -2,6 +2,11 @@
 #include <vector>
 using namespace std;
 
+/* [Scene 클래스]
+* 게임 콘텐츠에서의 Scene의 Base로 각 씬에 GameObect를 등록시켜 GameObject의 Cycle을 호출한다.
+* SceneManager -> Scene(this) -> GameObject
+*/
+
 class GameObject;
 class Scene
 {
@@ -12,6 +17,14 @@ public:
 	Scene() = default;
 	virtual ~Scene() { Clear(); }
 
+	// Scene Life Cycle
+	virtual void Awake();		// GameObjects->Awake()
+	virtual void Start();		// GameObjects->Start()
+	virtual void Update();		// GameObjects->Update()
+	virtual void Exit();		// GameObjects->Destroy()
+	void Clear();
+
+	// Game Object
 	template<typename T>
 	T* CreateObject()
 	{
@@ -26,11 +39,5 @@ public:
 		auto it = find(objectList.begin(), objectList.end(), object);
 		objectList.erase(it);
 	}
-
-	virtual void Awake();
-	virtual void Start();
-	virtual void Update();
-	virtual void Exit();
-	void Clear();
 };
 

@@ -3,6 +3,13 @@
 #include <typeinfo>
 #include "Component.h"
 
+/* [GameObject 클래스]
+* Component를 등록시킬 수 있는 오브젝트로,
+* 게임 콘텐츠에 활용할 오브젝트는 이 클래스를 상속받아 컴포넌트를 조합하여 구현한다.
+* 게임 오브젝트는 Scene에 등록되어 Scene Life Cycle대로 Cycle이 호출된다.
+* SceneManager -> Scene -> GameObject(this)
+*/
+
 class Component;
 class GameObject {
 private:
@@ -19,20 +26,18 @@ public:
         components.clear();
     }
 
+    // Cycle
     virtual void Awake() {};
     virtual void Start() {};
     virtual void Update() {};
     virtual void Destroy() {};
 
-    /* Component */
-    // Class T를 생성하는 함수 , 인자까지 전달한다.
+    // Component
     template<typename T, typename... Args>
     T* AddComponent(Args&&... args)
     {
-        // 컴파일 시점에 T가 Component를 상속받은 클래스 인지 확인
         static_assert(std::is_base_of<Component, T>::value, "T must derive from Component");
 
-        // 인자까지 전달하면서 생성
         T* comp = new T(std::forward<Args>(args)...);
         comp->owner = this;
         components.push_back(comp);
@@ -44,10 +49,6 @@ public:
     std::vector<T*> GetComponents() {
         std::vector<T*> result;
         for (Component* comp : components) {
-            // 실행도중(Runtime)에 comp가 가르키는 인스턴스가 RTTI정보 이용하여 
-            // T이거나 T의 자식 클래스 이면 주소를 리턴한다. 클래스가 가상 함수를 하나라도 가지면,
-            // 컴파일러는 해당 클래스에 대해 vtable + RTTI(Run-Time Type Information, 런타임 타입 정보)
-            // 정보 블록을 생성합니다.
             if (auto casted = dynamic_cast<T*>(comp))
                 result.push_back(casted);
         }
@@ -57,8 +58,8 @@ public:
     template<typename T>
     T* GetComponent() {
         for (Component* comp : components) {
-            if (typeid(*comp) == typeid(T))   //완전히 동일한 타입만
-                return static_cast<T*>(comp); //안전하게 static_cast
+            if (typeid(*comp) == typeid(T))
+                return static_cast<T*>(comp);
         }
         return nullptr;
     }

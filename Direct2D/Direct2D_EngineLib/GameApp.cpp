@@ -93,40 +93,32 @@ void GameApp::Init()
 	CoInitialize(nullptr);					// com 객체 초기화	
 
 	
-	// static system
+	// static system init
 	Input::Init(hWnd);
 	Time::Init();
 
-	// component system update
+	// component system init
 	renderSystem.Init(hWnd, width, height);
 }
 
 /// PreUpdate
 void GameApp::PreUpdate()
 {
-
+	Input::Update();
+	Time::Update();
 }
 
 /// Update
 void GameApp::Update()
 {
-	// scenemanager update()
-	// -> GameObject update() 실행
-	sceneManager.Update();
-
-	// static system update
-	Input::Update();
-	Time::Update();
-
-	// component system update
 	transformSystem.Update();
-	renderSystem.Update();
+	sceneManager.Update();
 }
 
 /// LateUpdate
 void GameApp::LateUpdate()
 {
-	
+	renderSystem.Update();
 }
 
 /// Render

@@ -4,7 +4,12 @@
 #include "RenderSystem.h"
 #include "IRenderer.h"
 
-/* Sprite Renderer Conponent */
+/* [Sprite Renderer Conponent]
+* 이미지 한 장(sprite)의 render를 담당하는 component로
+* 컴포넌트 생성시 RenderSystem에 등록되어 sprite를 게속 render한다.
+* render시 필요한 transform은 이 컴포넌트가 등록된 오브젝트의 transform을 포인터에 담아 활용한다
+*/
+
 class Transform;
 class SpriteRenderer : public IRenderer
 {

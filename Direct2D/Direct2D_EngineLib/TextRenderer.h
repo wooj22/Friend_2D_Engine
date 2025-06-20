@@ -5,7 +5,13 @@
 #include "RenderSystem.h"
 #include "IRenderer.h"
 
-/* Sprite Renderer Conponent */
+/* [Text Renderer Conponent]
+* Text 출력을 담당하는 Component로
+* 컴포넌트 생성시 RenderSystem에 등록되어 text를 계속 render한다.
+* 게임 콘텐츠에서 text, font, size, color, layout을 지정할 수 있다. (dirty 패턴 활용)
+* render시 필요한 transform은 이 컴포넌트가 등록된 오브젝트의 transform을 포인터에 담아 활용한다
+*/
+
 class Transform;
 class TextRenderer : public IRenderer
 {

@@ -36,15 +36,15 @@ public:
 		width(inputWidth), height(inputHeight), hInstance(nullptr), hWnd(nullptr) { };
 	virtual ~GameApp() = default;
 
-	// Life Cycle
+	// Game Life Cycle
 	virtual void Init();
-	void PreUpdate();
-	void Update();
-	void LateUpdate();
-	void Render();
+	void PreUpdate();		// input, time
+	void Update();			// transformSystem, scene(gameObject) //TODO :: ScriptSystem Ãß°¡
+	void LateUpdate();		// renderSystem.update
+	void Render();			// renderSystem.render
+	void Loop();
 	virtual void UnInit();
 
-	void Loop();
 	virtual void MessageProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 };
 

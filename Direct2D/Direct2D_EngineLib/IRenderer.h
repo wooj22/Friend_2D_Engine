@@ -2,6 +2,7 @@
 #include "Component.h"
 
 /* Renderer Componenets Interface */
+
 class IRenderer : public Component
 {
 public : 
@@ -11,3 +12,6 @@ public :
 	virtual void Render() = 0;
 };
 
+// 현재 사용중인 클래스 목록
+// SpriteRenderer
+// TextRenderer
