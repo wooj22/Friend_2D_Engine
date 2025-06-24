@@ -1,6 +1,7 @@
 #include "RenderSystem.h"
 #include "SpriteRenderer.h"
 #include "TextRenderer.h"
+#include "ImageRenderer.h"
 
 /// Component µî·Ï
 void RenderSystem::Regist(IRenderer* component)

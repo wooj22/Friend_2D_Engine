@@ -5,7 +5,7 @@
 #include "RenderSystem.h"
 
 /* [Sprite Renderer Conponent]
-* GameObject의 이미지 한 장(sprite)의 render를 담당하는 component로
+* <GameObject>의 이미지 한 장(sprite)의 render를 담당하는 component로
 * 컴포넌트 생성시 RenderSystem에 등록되어 sprite를 게속 render한다.
 * render시 필요한 transform은 이 컴포넌트가 등록된 오브젝트의 transform을 포인터에 담아 활용한다
 */
@@ -14,8 +14,8 @@ class Transform;
 class SpriteRenderer : public IRenderer
 {
 private:
-	D2D1_RECT_F centerRect;
 	Transform* transform;
+	D2D1_RECT_F centerRect;
 	Microsoft::WRL::ComPtr<ID2D1Bitmap1> sprite;
 
 public:

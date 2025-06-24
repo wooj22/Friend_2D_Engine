@@ -6,7 +6,7 @@ void TextRenderer::OnEnable()
 {
 	transform = this->owner->GetComponent<Transform>();
 
-	// 기본 브러시
+	// brush 생성
 	RenderSystem::Get().renderTarget->CreateSolidColorBrush(textColor, brush.GetAddressOf());
 	isTextDirty = true;
 }

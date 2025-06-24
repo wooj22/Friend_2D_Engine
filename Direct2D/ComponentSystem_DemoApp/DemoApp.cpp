@@ -18,6 +18,9 @@ void DemoApp::Init()
 	Transform::SetCameraMatrix(mainCamera->transform->GetWorldMatrix());
 	Transform::unityMatrix = D2D1::Matrix3x2F::Scale(1.0f, -1.0f) * Transform::unityMatrix *
 		D2D1::Matrix3x2F::Translation(width / 2.0f, height / 2.0f);
+	/*RectTransform::unityMatrix = D2D1::Matrix3x2F::Scale(1.0f, -1.0f) * Transform::unityMatrix *
+		D2D1::Matrix3x2F::Translation(width / 2.0f, height / 2.0f);*/
+	
 
 	// scene init
 	sceneManager.CreateScene<MenuScene>();

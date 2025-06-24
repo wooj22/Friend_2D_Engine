@@ -1,5 +1,9 @@
 #include "RectTransform.h"
 
+// static mamber init
+D2D1::Matrix3x2F RectTransform::unityMatrix = D2D1::Matrix3x2F::Identity();
+D2D1::Matrix3x2F RectTransform::renderMatrix = D2D1::Matrix3x2F::Scale(1.0f, -1.0f);
+
 // component cycle
 void RectTransform::OnEnable()
 {
@@ -43,9 +47,8 @@ inline void RectTransform::MakeScreenMatrix()
     float offsetX = -size.width * pivot.x;
     float offsetY = -size.height * pivot.y;
 
-    // 화면 고정 좌표 행렬 계산
     screenMatrix =
-        D2D1::Matrix3x2F::Translation(offsetX, offsetY) *
+        D2D1::Matrix3x2F::Translation(offsetX, offsetY) *     // pivot 보정
         D2D1::Matrix3x2F::Translation(position.x, position.y);
 
     isDirty = false;

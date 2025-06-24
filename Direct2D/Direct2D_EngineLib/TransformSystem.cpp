@@ -1,5 +1,6 @@
 #include "TransformSystem.h"
 #include "Transform.h"
+#include "RectTransform.h"
 
 // component µî·Ï
 void TransformSystem::Regist(ITransform* component)

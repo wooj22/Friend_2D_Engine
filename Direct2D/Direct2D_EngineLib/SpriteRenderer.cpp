@@ -16,7 +16,7 @@ void SpriteRenderer::Render()
 {
 	if (!transform || !sprite) return;
 
-	// center
+	// center 보정, 그릴 영역 지정
 	D2D1_SIZE_F size = sprite->GetSize();
 	centerRect = {
 		-size.width / 2.0f,  // left

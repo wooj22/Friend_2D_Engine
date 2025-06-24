@@ -19,7 +19,6 @@
 using namespace Microsoft::WRL;    // Microsoft::WRL::ComPtr<T>
 using namespace std;
 
-class SpriteRenderer;
 class RenderSystem : public Singleton<RenderSystem>
 {
 private:

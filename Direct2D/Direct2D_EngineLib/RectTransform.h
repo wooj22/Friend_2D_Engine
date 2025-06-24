@@ -14,13 +14,18 @@ class RectTransform : public ITransform
 {
 private:
     // rect transform
-    D2D1_POINT_2F position = { 0, 0 };
-    D2D1_SIZE_F size = { 100, 100 };
-    D2D1_POINT_2F pivot = { 0.5f, 0.5f };  // 중심점
+    D2D1_POINT_2F position = { 0, 0 };     // center
+    D2D1_SIZE_F size = { 100, 100 };       // width, height
+    D2D1_POINT_2F pivot = { 0.5f, 0.5f };  // rect의 중심점 (left top = 0,0) -> offset 처리
 
     // this matrix
-    D2D1::Matrix3x2F screenMatrix = D2D1::Matrix3x2F::Identity();
+    D2D1::Matrix3x2F screenMatrix;
     bool isDirty = true;
+
+public:
+    // matrix
+    static D2D1::Matrix3x2F unityMatrix;          // 고정, screen size 필요
+    static D2D1::Matrix3x2F renderMatrix;         // 고정
 
 public:
     // component cycle
@@ -49,5 +54,12 @@ private:
 
 public:
     //  matrix get
-    const D2D1::Matrix3x2F& GetScreenMatrix() const { return screenMatrix; }
+    const D2D1::Matrix3x2F& GetScreenMatrix() const 
+    { 
+        // d2d
+        //return screenMatrix; 
+
+        // unity
+        return renderMatrix * screenMatrix * unityMatrix;
+    }
 };
