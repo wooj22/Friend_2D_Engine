@@ -49,6 +49,12 @@
     <Filter Include="헤더 파일\StaticSystem">
       <UniqueIdentifier>{5f869c07-4bf5-4858-9010-4cee6d424cfe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Module">
+      <UniqueIdentifier>{a27eab71-2f35-4ca0-b512-3049cb1c5448}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Module">
+      <UniqueIdentifier>{06fd47b0-4a6c-4d08-a0d1-25bdded1526d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h">
@@ -93,9 +99,6 @@
     <ClInclude Include="Time.h">
       <Filter>헤더 파일\StaticSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="ITransform.h">
       <Filter>헤더 파일\Component</Filter>
     </ClInclude>
@@ -104,6 +107,12 @@
     </ClInclude>
     <ClInclude Include="ImageRenderer.h">
       <Filter>헤더 파일\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>헤더 파일\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiDelegate.h">
+      <Filter>헤더 파일\Module</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="ImageRenderer.cpp">
       <Filter>소스 파일\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiDelegate.cpp">
+      <Filter>소스 파일\Module</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

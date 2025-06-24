@@ -144,6 +144,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="ImageRenderer.h" />
     <ClInclude Include="ITransform.h" />
+    <ClInclude Include="MultiDelegate.h" />
     <ClInclude Include="RectTransform.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
@@ -164,6 +165,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="ImageRenderer.cpp" />
     <ClCompile Include="ITransform.cpp" />
+    <ClCompile Include="MultiDelegate.cpp" />
     <ClCompile Include="RectTransform.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
