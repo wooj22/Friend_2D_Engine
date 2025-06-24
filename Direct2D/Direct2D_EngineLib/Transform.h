@@ -95,11 +95,13 @@ public:
     float GetRotation() const { return rotation; }
     D2D1_POINT_2F GetScale() const { return scale; }
 
+private:
     //  matrix
     void MakeLocalMatrix();
     void MakeWorldMatrix();
     void MakeScreenMatrix();
 
+public:
     //  matrix get
     const D2D1::Matrix3x2F& GetLocalMatrix() { return localMatrix; }
     const D2D1::Matrix3x2F& GetWorldMatrix(){ return worldMatrix; }
