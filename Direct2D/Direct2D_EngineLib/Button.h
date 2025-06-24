@@ -1,6 +1,5 @@
 #pragma once
 #include "Component.h"
-#include "RectTransform.h"
 #include "MultiDelegate.h"
 #include "ButtonSystem.h"
 
@@ -9,6 +8,7 @@
 * RectTransform을 포함한 GameObject에 등록되어야 정상적인 Button의 기능을 활용할 수 있다.
 */
 
+class RectTransform;
 class Button : public Component
 {
 private:

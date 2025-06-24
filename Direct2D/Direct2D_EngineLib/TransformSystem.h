@@ -5,6 +5,8 @@
 using namespace std;
 
 class Transform;
+class RectTransform;
+
 class TransformSystem : public Singleton<TransformSystem>
 {
 private :

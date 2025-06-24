@@ -32,6 +32,7 @@ public:
     virtual void Update() {};
     virtual void Destroy() {};
 
+public:
     // Component
     template<typename T, typename... Args>
     T* AddComponent(Args&&... args)

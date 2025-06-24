@@ -1,8 +1,13 @@
 #include "RectTransform.h"
 
 // static mamber init
-D2D1::Matrix3x2F RectTransform::unityMatrix = D2D1::Matrix3x2F::Identity();
+//D2D1::Matrix3x2F RectTransform::unityMatrix = D2D1::Matrix3x2F::Identity();
 D2D1::Matrix3x2F RectTransform::renderMatrix = D2D1::Matrix3x2F::Scale(1.0f, -1.0f);
+
+// unityMatrix가 불완전한 형식이라고 초기화가 안되어서 일단 수동으로 size 지정
+D2D1::Matrix3x2F RectTransform::unityMatrix =
+        D2D1::Matrix3x2F::Scale(1.0f, -1.0f) * RectTransform::unityMatrix *
+        D2D1::Matrix3x2F::Translation(1280 / 2.0f, 960 / 2.0f);
 
 // component cycle
 void RectTransform::OnEnable()

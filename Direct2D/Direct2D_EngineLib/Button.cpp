@@ -1,4 +1,6 @@
 #include "Button.h"
+#include "RectTransform.h"
+#include "ImageRenderer.h"
 #include "GameObject.h"
 #include "Input.h"
 

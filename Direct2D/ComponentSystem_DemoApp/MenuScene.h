@@ -5,6 +5,7 @@
 #include "DemoApp.h"
 #include "Cat.h"
 #include "Fish.h"
+#include "../Direct2D_EngineLib/UI_Button.h"
 
 class MenuScene : public Scene
 {
@@ -13,6 +14,7 @@ private:
 	Camera* camera;
 	Cat* cat;
 	Fish* fish;
+	UI_Button* startButton;
 
 public:
 	MenuScene() = default;

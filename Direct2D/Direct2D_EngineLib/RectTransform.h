@@ -57,9 +57,9 @@ public:
     const D2D1::Matrix3x2F& GetScreenMatrix() const 
     { 
         // d2d
-        //return screenMatrix; 
+        return screenMatrix; 
 
         // unity
-        return renderMatrix * screenMatrix * unityMatrix;
+        //return renderMatrix * screenMatrix * unityMatrix;
     }
 };
