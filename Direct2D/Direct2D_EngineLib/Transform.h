@@ -61,6 +61,7 @@ public:
     }
 
 public:
+    // component cycle
     Transform() : position{ 0.0f, 0.0f }, rotation(0.0f), scale{ 1.0f, 1.0f }, parent(nullptr) 
     {
         localMatrix = D2D1::Matrix3x2F::Identity();
@@ -68,10 +69,9 @@ public:
     }
     ~Transform() override { TransformSystem::Get().Unregist(this); }
 
-    // component
     void OnEnable() override;
-    void OnDestroy() override;
     void Update() override;
+    void OnDestroy() override;
 
 public:
     // parent, children

@@ -11,18 +11,17 @@ void Transform::OnEnable()
     
 }
 
-void Transform::OnDestroy()
-{
-
-}
-
-void Transform::Update() 
+void Transform::Update()
 {
     MakeLocalMatrix();
     MakeWorldMatrix();
     MakeScreenMatrix();
 }
 
+void Transform::OnDestroy()
+{
+
+}
 
 // Set Parent
 void Transform::SetParent(Transform* newParent)

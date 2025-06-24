@@ -35,6 +35,7 @@ private:
 	bool isTextDirty;
 
 public:
+	// component cycle
 	TextRenderer() { RenderSystem::Get().Regist(this); };
 	~TextRenderer() override { RenderSystem::Get().Unregist(this); }
 

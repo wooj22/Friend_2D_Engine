@@ -6,14 +6,14 @@ void RectTransform::OnEnable()
 
 }
 
-void RectTransform::OnDestroy()
-{
-
-}
-
 void RectTransform::Update()
 {
     MakeScreenMatrix();
+}
+
+void RectTransform::OnDestroy()
+{
+
 }
 
 // set

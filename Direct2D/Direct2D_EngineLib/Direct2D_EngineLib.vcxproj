@@ -142,6 +142,7 @@
   <ItemGroup>
     <ClInclude Include="Component.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="ImageRenderer.h" />
     <ClInclude Include="ITransform.h" />
     <ClInclude Include="RectTransform.h" />
     <ClInclude Include="Scene.h" />
@@ -161,6 +162,7 @@
   <ItemGroup>
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="ImageRenderer.cpp" />
     <ClCompile Include="ITransform.cpp" />
     <ClCompile Include="RectTransform.cpp" />
     <ClCompile Include="Scene.cpp" />
