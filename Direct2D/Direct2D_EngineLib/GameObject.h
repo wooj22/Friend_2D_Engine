@@ -17,7 +17,7 @@ private:
 
 public:
     GameObject() {};
-    ~GameObject()
+    virtual ~GameObject()
     {
         for (Component* comp : components) {
             comp->OnDestroy();

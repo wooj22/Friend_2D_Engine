@@ -161,6 +161,7 @@
     <ClInclude Include="Time.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TransformSystem.h" />
+    <ClInclude Include="UI_Button.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
@@ -183,6 +184,7 @@
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="TransformSystem.cpp" />
+    <ClCompile Include="UI_Button.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="D2D_EngineLib.rc" />

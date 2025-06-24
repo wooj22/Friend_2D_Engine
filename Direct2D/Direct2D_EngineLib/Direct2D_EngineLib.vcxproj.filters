@@ -55,6 +55,12 @@
     <Filter Include="헤더 파일\Module">
       <UniqueIdentifier>{06fd47b0-4a6c-4d08-a0d1-25bdded1526d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\GameObject\Content">
+      <UniqueIdentifier>{5e7ec924-3b81-495d-a729-edb94dd4b475}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\GameObject\Content">
+      <UniqueIdentifier>{73a6812e-c1c0-4a9e-a3b7-e785a85fa5cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h">
@@ -120,6 +126,9 @@
     <ClInclude Include="ButtonSystem.h">
       <Filter>헤더 파일\ComponentSystem</Filter>
     </ClInclude>
+    <ClInclude Include="UI_Button.h">
+      <Filter>헤더 파일\GameObject\Content</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -181,6 +190,9 @@
     </ClCompile>
     <ClCompile Include="ButtonSystem.cpp">
       <Filter>소스 파일\ComponentSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Button.cpp">
+      <Filter>소스 파일\GameObject\Content</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

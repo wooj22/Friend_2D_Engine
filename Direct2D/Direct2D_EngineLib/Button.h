@@ -4,14 +4,18 @@
 #include "MultiDelegate.h"
 #include "ButtonSystem.h"
 
+/* [Button Conponent]
+* onClick() 이벤트를 감시하고 발생하는 컴포넌트
+* RectTransform을 포함한 GameObject에 등록되어야 정상적인 Button의 기능을 활용할 수 있다.
+*/
+
 class Button : public Component
 {
 private:
-    RectTransform* rectTransform;       // Button 영역 get용
+    RectTransform* rectTransform;     // button 영역 get
 
 public:
-    // event
-    MultiDelegate<> onClickListeners;
+    MultiDelegate<> onClickListeners; // callback functions
 
 public:
     // component cycle
@@ -23,6 +27,6 @@ public:
     void OnDestroy() override;
 
 private:
-    void OnClick();
+    void OnClick(); // event
 };
 
