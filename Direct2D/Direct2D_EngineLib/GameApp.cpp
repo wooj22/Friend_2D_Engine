@@ -111,6 +111,7 @@ void GameApp::PreUpdate()
 /// Update
 void GameApp::Update()
 {
+	buttonSystem.Update();
 	transformSystem.Update();
 	sceneManager.Update();
 }

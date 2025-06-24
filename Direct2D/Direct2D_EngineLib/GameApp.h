@@ -4,11 +4,12 @@
 #include "Singleton.h"
 #include "GameObject.h"
 #include "RenderSystem.h"
-#include "SpriteRenderer.h"
+#include "TransformSystem.h"
+#include "ButtonSystem.h"
+#include "SceneManager.h"
 #include "Time.h"
 #include "Input.h"
-#include "TransformSystem.h"
-#include "SceneManager.h"
+
 using namespace std;
 
 class GameApp
@@ -27,6 +28,9 @@ protected:
 	// component system
 	TransformSystem transformSystem;
 	RenderSystem renderSystem;
+	ButtonSystem buttonSystem;
+
+	// scene manager
 	SceneManager sceneManager;
 
 public:

@@ -6,8 +6,8 @@ template<typename... Args>
 class MultiDelegate {
 	struct Slot
 	{
-		void* instance;		// 콜백 구분용 포인터(주로 this)
-		std::function<void(Args...)> func;	// 
+		void* instance;						// 콜백 구분용 포인터
+		std::function<void(Args...)> func;	// 콜백 함수 리스트
 	};
 	std::vector<Slot> slots;
 

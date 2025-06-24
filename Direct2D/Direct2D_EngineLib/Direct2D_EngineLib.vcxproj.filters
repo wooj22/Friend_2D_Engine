@@ -114,6 +114,12 @@
     <ClInclude Include="MultiDelegate.h">
       <Filter>헤더 파일\Module</Filter>
     </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>헤더 파일\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonSystem.h">
+      <Filter>헤더 파일\ComponentSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -169,6 +175,12 @@
     </ClCompile>
     <ClCompile Include="MultiDelegate.cpp">
       <Filter>소스 파일\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>소스 파일\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonSystem.cpp">
+      <Filter>소스 파일\ComponentSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
