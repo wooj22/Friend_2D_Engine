@@ -38,26 +38,19 @@ private:
     Transform* parent = nullptr;
     std::vector<Transform*> children;
 
-    // dirty patten
+    // this matrix
     D2D1::Matrix3x2F localMatrix;
     D2D1::Matrix3x2F worldMatrix;
+    D2D1::Matrix3x2F screenMatrix;
+
     bool isLocalDirty = true;
     bool isWorldDirty = true;
 
 public:
-    Transform() : position{ 0.0f, 0.0f }, rotation(0.0f), scale{ 1.0f, 1.0f }, parent(nullptr) 
-    {
-        localMatrix = D2D1::Matrix3x2F::Identity();
-        TransformSystem::Get().Regist(this);
-    }
-    ~Transform() override { TransformSystem::Get().Unregist(this); }
-
-    void Update() override;
-
     // matrix
-    static D2D1::Matrix3x2F cameraInversMatrix;   // screen size 필요
-    static D2D1::Matrix3x2F unityMatrix;          // screen size 필요
-    static D2D1::Matrix3x2F renderMatrix;
+    static D2D1::Matrix3x2F cameraInversMatrix;   // 유동, screen size 필요
+    static D2D1::Matrix3x2F unityMatrix;          // 고정, screen size 필요
+    static D2D1::Matrix3x2F renderMatrix;         // 고정
 
     // camera 역행렬 set
     static void SetCameraMatrix(const D2D1::Matrix3x2F& cameraMatrix)
@@ -68,10 +61,19 @@ public:
     }
 
 public:
+    Transform() : position{ 0.0f, 0.0f }, rotation(0.0f), scale{ 1.0f, 1.0f }, parent(nullptr) 
+    {
+        localMatrix = D2D1::Matrix3x2F::Identity();
+        TransformSystem::Get().Regist(this);
+    }
+    ~Transform() override { TransformSystem::Get().Unregist(this); }
+
     // component
     void OnEnable() override;
     void OnDestroy() override;
+    void Update() override;
 
+public:
     // parent, children
     void SetParent(Transform* newParent);
     void RemoveChild(Transform* child);
@@ -96,16 +98,10 @@ public:
     //  matrix
     void MakeLocalMatrix();
     void MakeWorldMatrix();
+    void MakeScreenMatrix();
 
+    //  matrix get
     const D2D1::Matrix3x2F& GetLocalMatrix() { return localMatrix; }
     const D2D1::Matrix3x2F& GetWorldMatrix(){ return worldMatrix; }
-    const D2D1::Matrix3x2F& GetScreenMatrix()
-    {
-        // d2d 
-        //return GetWorldMatrix() * cameraInversMatrix;
-        
-        // unity
-        return renderMatrix * worldMatrix * cameraInversMatrix * unityMatrix;
-        
-    }
+    const D2D1::Matrix3x2F& GetScreenMatrix() { return screenMatrix; }
 };

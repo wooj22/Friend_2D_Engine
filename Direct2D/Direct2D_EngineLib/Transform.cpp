@@ -19,6 +19,7 @@ void Transform::Update()
 {
     MakeLocalMatrix();
     MakeWorldMatrix();
+    MakeScreenMatrix();
 }
 
 
@@ -134,4 +135,13 @@ void Transform::MakeWorldMatrix() {
 
         isWorldDirty = false;
     }
+}
+
+// Screen Matrix (TODO :: static 변경 dirty패턴 적용 방식 찾아보기)
+void Transform::MakeScreenMatrix() {
+    // d2d 
+    //screenMatrix = GetWorldMatrix() * cameraInversMatrix;
+
+    // unity
+    screenMatrix = renderMatrix * worldMatrix * cameraInversMatrix * unityMatrix;
 }
