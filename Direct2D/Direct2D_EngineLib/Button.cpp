@@ -1,13 +1,40 @@
 #include "Button.h"
+#include "GameObject.h"
+#include "Input.h"
 
 void Button::OnEnable() 
 {
-
+    rectTransform = this->owner->GetComponent<RectTransform>();
 }
 
 void Button::Update() 
 {
-	OnClick();
+    if (!rectTransform) return;
+
+    // 1. 마우스 클릭 감지
+    if (!Input::GetKeyDown(VK_LBUTTON)) return;
+
+    // 2. 마우스 위치 가져오기 (클라이언트 좌표계)
+    POINT mouse = Input::GetMousePosition();
+    float mouseX = static_cast<float>(mouse.x);
+    float mouseY = static_cast<float>(mouse.y);
+
+    // 3. 버튼 영역 계산 (pivot 보정된 screen 영역)
+    D2D1_POINT_2F pos = rectTransform->GetPosition();
+    D2D1_SIZE_F size = rectTransform->GetSize();
+    D2D1_POINT_2F pivot = rectTransform->GetPivot();
+
+    float left = pos.x - (size.width * pivot.x);
+    float top = pos.y - (size.height * pivot.y);
+    float right = left + size.width;
+    float bottom = top + size.height;
+
+    // 4. 마우스가 버튼 영역 안에 있는지 확인
+    if (mouseX >= left && mouseX <= right &&
+        mouseY >= top && mouseY <= bottom)
+    {
+        OnClick();  // 클릭 이벤트 호출
+    }
 }
 
 void Button::OnDestroy() 
@@ -17,6 +44,6 @@ void Button::OnDestroy()
 
 inline void Button::OnClick()
 {
-	// 만약 이 버튼이 클릭됐다면
+    OutputDebugStringA("Button OnClick() 이벤트 발생! 콜백함수 호출.\n");
 	onClickListeners.Invoke();
 }
