@@ -2,13 +2,13 @@
 #include "Transform.h"
 
 // component 등록
-void TransformSystem::Regist(Transform* component) 
+void TransformSystem::Regist(ITransform* component)
 {
 	components.push_back(component);
 }
 
 // component 등록 해제
-void TransformSystem::Unregist(Transform* component) 
+void TransformSystem::Unregist(ITransform* component)
 {
 	for (auto it = components.begin(); it != components.end(); ++it) {
 		if (*it == component) {
@@ -23,7 +23,6 @@ void TransformSystem::Update()
 {
 	for (auto it = components.begin(); it != components.end(); ++it)
 	{
-		(*it)->MakeLocalMatrix();
-		(*it)->MakeWorldMatrix();
+		(*it)->Update();
 	}
 }

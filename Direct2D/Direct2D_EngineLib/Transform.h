@@ -1,7 +1,7 @@
 #pragma once
 #include <d2d1_1.h>
 #include <vector>
-#include "Component.h"
+#include "ITransform.h"
 #include "TransformSystem.h"
 
 /* [Transform Component]
@@ -26,7 +26,7 @@
 * 매 프레임마다 불필요하게 행렬을 다시 계산하지 않도록 하는 방식
 */
 
-class Transform : public Component
+class Transform : public ITransform
 {
 private:
     // transform
@@ -50,7 +50,9 @@ public:
         localMatrix = D2D1::Matrix3x2F::Identity();
         TransformSystem::Get().Regist(this);
     }
-    ~Transform() { TransformSystem::Get().Unregist(this); }
+    ~Transform() override { TransformSystem::Get().Unregist(this); }
+
+    void Update() override;
 
     // matrix
     static D2D1::Matrix3x2F cameraInversMatrix;   // screen size 필요

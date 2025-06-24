@@ -15,6 +15,12 @@ void Transform::OnDestroy()
 
 }
 
+void Transform::Update() 
+{
+    MakeLocalMatrix();
+    MakeWorldMatrix();
+}
+
 
 // Set Parent
 void Transform::SetParent(Transform* newParent)

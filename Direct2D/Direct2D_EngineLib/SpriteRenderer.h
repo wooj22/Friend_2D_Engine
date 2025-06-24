@@ -1,8 +1,8 @@
 #pragma once
 #include <wrl/client.h> 
 #include <d2d1_1.h>
-#include "RenderSystem.h"
 #include "IRenderer.h"
+#include "RenderSystem.h"
 
 /* [Sprite Renderer Conponent]
 * 이미지 한 장(sprite)의 render를 담당하는 component로

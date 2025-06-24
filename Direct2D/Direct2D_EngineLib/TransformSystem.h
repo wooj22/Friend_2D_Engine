@@ -1,18 +1,19 @@
 #pragma once
 #include <vector>
 #include "Singleton.h"
+#include "ITransform.h"
 using namespace std;
 
 class Transform;
 class TransformSystem : public Singleton<TransformSystem>
 {
 private :
-	vector<Transform*> components;
+	vector<ITransform*> components;
 
 public:
 	// componenet
-	void Regist(Transform* component);
-	void Unregist(Transform* component);
+	void Regist(ITransform* component);
+	void Unregist(ITransform* component);
 
 	// component system
 	void Update();

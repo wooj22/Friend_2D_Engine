@@ -96,6 +96,9 @@
     <ClInclude Include="Singleton.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="ITransform.h">
+      <Filter>헤더 파일\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -140,5 +143,13 @@
     <ClCompile Include="Time.cpp">
       <Filter>소스 파일\StaticSystem</Filter>
     </ClCompile>
+    <ClCompile Include="ITransform.cpp">
+      <Filter>소스 파일\Component</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="D2D_EngineLib.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
