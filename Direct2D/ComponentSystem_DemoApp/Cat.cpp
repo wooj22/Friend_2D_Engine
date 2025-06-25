@@ -4,7 +4,7 @@ void Cat::Awake()
 {
 	transform = AddComponent<Transform>();
 	sr = AddComponent<SpriteRenderer>();
-	tr = AddComponent<TextRenderer>();
+	tr = AddComponent<WorldTextRenderer>();
 }
 
 void Cat::Start() 

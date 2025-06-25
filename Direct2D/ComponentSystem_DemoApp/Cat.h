@@ -2,7 +2,7 @@
 #include "../Direct2D_EngineLib/GameObject.h"
 #include "../Direct2D_EngineLib/Transform.h";
 #include "../Direct2D_EngineLib/SpriteRenderer.h"
-#include "../Direct2D_EngineLib/TextRenderer.h"
+#include "../Direct2D_EngineLib/WorldTextRenderer.h"
 #include "../Direct2D_EngineLib/Time.h"
 
 class Cat : public GameObject
@@ -14,7 +14,7 @@ private:
 public:
 	Transform* transform;
 	SpriteRenderer* sr;
-	TextRenderer* tr;
+	WorldTextRenderer* tr;
 
 	// TODO :: ScriptComponent, ScriptSystem
 	// 현재는 Scene->SceneManager->GameObject 구조로 호출되는

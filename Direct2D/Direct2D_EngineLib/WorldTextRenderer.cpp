@@ -1,8 +1,8 @@
-#include "TextRenderer.h"
+#include "WorldTextRenderer.h"
 #include "Transform.h"
 #include "GameObject.h"
 
-void TextRenderer::OnEnable() 
+void WorldTextRenderer::OnEnable() 
 {
 	transform = this->owner->GetComponent<Transform>();
 
@@ -11,7 +11,7 @@ void TextRenderer::OnEnable()
 	isTextDirty = true;
 }
 
-void TextRenderer::Update() 
+void WorldTextRenderer::Update() 
 {
 	if (isTextDirty) {
 		// 텍스트 포맷 재생성
@@ -46,7 +46,7 @@ void TextRenderer::Update()
 	}
 }
 
-void TextRenderer::Render() 
+void WorldTextRenderer::Render() 
 {
 	if (!transform || !textLayout) return;
 	
@@ -59,32 +59,32 @@ void TextRenderer::Render()
 	);
 }
 
-void TextRenderer::OnDestroy() 
+void WorldTextRenderer::OnDestroy() 
 {
 	brush = nullptr;
 	textFormat = nullptr;
 	textLayout = nullptr;
 }
 
-void TextRenderer::SetText(const std::wstring& newText)
+void WorldTextRenderer::SetText(const std::wstring& newText)
 {
 	text = newText;
 	isTextDirty = true;
 }
 
-void TextRenderer::SetFontSize(float newSize)
+void WorldTextRenderer::SetFontSize(float newSize)
 {
 	fontSize = newSize;
 	isTextDirty = true;
 }
 
-void TextRenderer::SetFontName(const std::wstring& newName)
+void WorldTextRenderer::SetFontName(const std::wstring& newName)
 {
 	fontName = newName;
 	isTextDirty = true;
 }
 
-void TextRenderer::SetColor(const D2D1_COLOR_F& newColor)
+void WorldTextRenderer::SetColor(const D2D1_COLOR_F& newColor)
 {
 	textColor = newColor;
 	if (brush) {
@@ -95,7 +95,7 @@ void TextRenderer::SetColor(const D2D1_COLOR_F& newColor)
 	}
 }
 
-void TextRenderer::SetLayout(int width, int height) 
+void WorldTextRenderer::SetLayout(int width, int height) 
 {
 	this->width = width; this->height = height;
 	isTextDirty = true;

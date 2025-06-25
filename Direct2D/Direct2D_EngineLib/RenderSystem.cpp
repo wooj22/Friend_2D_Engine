@@ -1,6 +1,6 @@
 #include "RenderSystem.h"
 #include "SpriteRenderer.h"
-#include "TextRenderer.h"
+#include "WorldTextRenderer.h"
 #include "ImageRenderer.h"
 
 /// Component µî·Ï

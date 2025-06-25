@@ -157,7 +157,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="Singleton.h" />
-    <ClInclude Include="TextRenderer.h" />
+    <ClInclude Include="WorldTextRenderer.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TransformSystem.h" />
@@ -180,7 +180,7 @@
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="IRenderer.cpp" />
-    <ClCompile Include="TextRenderer.cpp" />
+    <ClCompile Include="WorldTextRenderer.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="TransformSystem.cpp" />

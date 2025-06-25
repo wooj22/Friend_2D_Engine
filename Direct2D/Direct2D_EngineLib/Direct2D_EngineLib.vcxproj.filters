@@ -141,7 +141,7 @@
     <ClInclude Include="SpriteRenderer.h">
       <Filter>헤더 파일\Component\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="TextRenderer.h">
+    <ClInclude Include="WorldTextRenderer.h">
       <Filter>헤더 파일\Component\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="RectTransform.h">
@@ -203,7 +203,7 @@
     <ClCompile Include="ImageRenderer.cpp">
       <Filter>소스 파일\Component\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="TextRenderer.cpp">
+    <ClCompile Include="WorldTextRenderer.cpp">
       <Filter>소스 파일\Component\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="SpriteRenderer.cpp">

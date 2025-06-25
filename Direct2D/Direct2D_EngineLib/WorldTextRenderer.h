@@ -5,7 +5,7 @@
 #include "RenderSystem.h"
 #include "IRenderer.h"
 
-/* [Text Renderer Conponent]
+/* [World Text Renderer Conponent]
 * <World>의 Text 출력을 담당하는 Component로
 * 컴포넌트 생성시 RenderSystem에 등록되어 text를 계속 render한다.
 * 게임 콘텐츠에서 text, font, size, color, layout을 지정할 수 있다. (dirty 패턴 활용)
@@ -13,7 +13,7 @@
 */
 
 class Transform;
-class TextRenderer : public IRenderer
+class WorldTextRenderer : public IRenderer
 {
 private:
 	D2D1_POINT_2F centerPoint;
@@ -36,8 +36,8 @@ private:
 
 public:
 	// component cycle
-	TextRenderer() { RenderSystem::Get().Regist(this); };
-	~TextRenderer() override { RenderSystem::Get().Unregist(this); }
+	WorldTextRenderer() { RenderSystem::Get().Regist(this); };
+	~WorldTextRenderer() override { RenderSystem::Get().Unregist(this); }
 
 	void OnEnable() override;
 	void Update() override;
