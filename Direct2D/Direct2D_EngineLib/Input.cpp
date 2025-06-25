@@ -1,4 +1,5 @@
 ﻿#include "Input.h"
+#include "RectTransform.h"
 
 HWND Input::hWnd = nullptr;
 POINT Input::mouseClient = { 0, 0 };
@@ -45,4 +46,29 @@ bool Input::GetKeyUp(int vKey)
 POINT Input::GetMousePosition()
 {
     return mouseClient;
+}
+
+POINT Input::ConvertMouseToUnityPosition()
+{
+    POINT mouse = GetMousePosition();
+    D2D1_POINT_2F pt = { static_cast<float>(mouse.x), static_cast<float>(mouse.y) };
+
+    // Unity 스타일 좌표계 변환 행렬 (renderMatrix 제외)
+    D2D1::Matrix3x2F unityMatrix = RectTransform::unityMatrix;
+
+    // 역행렬 계산
+    D2D1::Matrix3x2F inverse = unityMatrix;
+    if (inverse.Invert())
+    {
+        D2D1_POINT_2F converted = inverse.TransformPoint(pt);
+
+        POINT result = {
+            static_cast<LONG>(converted.x),
+            static_cast<LONG>(converted.y)
+        };
+        return result;
+    }
+
+    // 역행 실패 시 원래 좌표 반환
+    return mouse;
 }

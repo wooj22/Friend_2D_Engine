@@ -19,4 +19,5 @@ public:
     static bool GetKeyUp(int vKey);
 
     static POINT GetMousePosition();
+    static POINT ConvertMouseToUnityPosition();
 };
