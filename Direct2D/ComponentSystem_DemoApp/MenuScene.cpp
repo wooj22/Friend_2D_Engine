@@ -20,19 +20,17 @@ void MenuScene::Start()
 	// 부모관계 지정
 	fish->transform->SetParent(cat->transform);
 
-	// event 등록
+	// Button 초기화
 	//testButton->imageRenderer->SetImage(L"../Resource/Cat.png");
-	testButton->rectTransform->SetPosition(0,0);
-	testButton->rectTransform->SetSize(200, 50);
-	std::string str = std::to_string(testButton->rectTransform->GetScreenMatrix().dx);
-	OutputDebugStringA(str.c_str());
+	testButton->rectTransform->SetPivot(0, 1);
+	testButton->rectTransform->SetPosition(-600, 450);
+	testButton->rectTransform->SetSize(300, 50);
 
+	// Button event 등록
 	testButton->button->onClickListeners.AddListener(
 		&cat, std::bind(&Cat::ChangeDirection, cat));
-
 	testButton->button->onClickListeners.AddListener(
 		&fish, std::bind(&Fish::ChangeDirection, fish));
-
 
 	// game object -> start (init lojic)
 	__super::Start();
