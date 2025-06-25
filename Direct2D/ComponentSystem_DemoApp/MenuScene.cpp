@@ -9,8 +9,10 @@ void MenuScene::Awake()
 	// menu scene game object
 	cat = CreateObject<Cat>();
 	fish = CreateObject<Fish>();
-	button1 = CreateObject<UI_Button>();
-	button2 = CreateObject<UI_Button>();
+
+	menuUIManager = CreateObject<MenuUIManager>();
+	menuUIManager->button1 = CreateObject<UI_Button>();
+	menuUIManager->button2 = CreateObject<UI_Button>();
 	
 	// game object -> awake (component add)
 	__super::Awake();
@@ -21,30 +23,15 @@ void MenuScene::Start()
 	// 부모관계 지정
 	fish->transform->SetParent(cat->transform);
 
-	// Button 초기화
-	button1->imageRenderer->SetImage(L"../Resource/UI_Button.png");
-	button1->rectTransform->SetPivot(0, 1);
-	button1->rectTransform->SetPosition(-600, 450);
-	button1->rectTransform->SetSize(200, 50);
-	button1->screenTextRenderer->SetText(L"Button 1");
-	button1->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::Red));
-
-	button2->imageRenderer->SetImage(L"../Resource/UI_Button.png");
-	button2->rectTransform->SetPivot(0, 1);
-	button2->rectTransform->SetPosition(-600, 380);
-	button2->rectTransform->SetSize(200, 50);
-	button2->screenTextRenderer->SetText(L"Button 2");
-	button2->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::Yellow));
-
 	// Button event 등록
-	button1->button->onClickListeners.AddListener(
+	menuUIManager->button1->button->onClickListeners.AddListener(
 		&cat, std::bind(&Cat::Button1Click, cat));
-	button1->button->onClickListeners.AddListener(
+	menuUIManager->button1->button->onClickListeners.AddListener(
 		&fish, std::bind(&Fish::Button1Click, fish));
 
-	button2->button->onClickListeners.AddListener(
+	menuUIManager->button2->button->onClickListeners.AddListener(
 		&cat, std::bind(&Cat::Button2Click, cat));
-	button2->button->onClickListeners.AddListener(
+	menuUIManager->button2->button->onClickListeners.AddListener(
 		&fish, std::bind(&Fish::Button2Click, fish));
 
 	// game object -> start (init lojic)

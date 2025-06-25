@@ -6,6 +6,7 @@
 #include "Cat.h"
 #include "Fish.h"
 #include "../Direct2D_EngineLib/UI_Button.h"
+#include "MenuUIManager.h"
 
 class MenuScene : public Scene
 {
@@ -15,8 +16,7 @@ private:
 	Cat* cat;
 	Fish* fish;
 
-	UI_Button* button1;
-	UI_Button* button2;
+	MenuUIManager* menuUIManager;
 
 public:
 	MenuScene() = default;

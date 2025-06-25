@@ -54,6 +54,9 @@
     <ClCompile Include="Sun.cpp">
       <Filter>GameObject\PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="MenuUIManager.cpp">
+      <Filter>GameObject\MenuScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DemoApp.h">
@@ -79,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="Sun.h">
       <Filter>GameObject\PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuUIManager.h">
+      <Filter>GameObject\MenuScene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
