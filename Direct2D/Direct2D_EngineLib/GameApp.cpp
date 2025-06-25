@@ -113,6 +113,7 @@ void GameApp::Update()
 {
 	buttonSystem.Update();
 	transformSystem.Update();
+	scriptSystem.Update();
 	sceneManager.Update();
 }
 

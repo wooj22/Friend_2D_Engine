@@ -6,6 +6,7 @@
 #include "RenderSystem.h"
 #include "TransformSystem.h"
 #include "ButtonSystem.h"
+#include "ScriptSystem.h"
 #include "SceneManager.h"
 #include "Time.h"
 #include "Input.h"
@@ -29,6 +30,7 @@ protected:
 	TransformSystem transformSystem;
 	RenderSystem renderSystem;
 	ButtonSystem buttonSystem;
+	ScriptSystem scriptSystem;
 
 	// scene manager
 	SceneManager sceneManager;
@@ -43,7 +45,7 @@ public:
 	/* Game Life Cycle */
 	virtual void Init();
 	void PreUpdate();		// input, time
-	void Update();			// transformSystem, scene(gameObject) //TODO :: ScriptSystem Ãß°¡
+	void Update();			// buttonsystem, transformSystem, scene(gameObject), scriptsystem
 	void LateUpdate();		// renderSystem.update
 	void Render();			// renderSystem.render
 	void Loop();
