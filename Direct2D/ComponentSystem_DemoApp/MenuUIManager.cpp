@@ -7,7 +7,20 @@ void MenuUIManager::Awake()
 
 void MenuUIManager::Start()
 {
-	// Button ÃÊ±âÈ­
+	// BackGround Image setting
+	backGroundImage->imageRenderer->SetImage(L"../Resource/Ground.jpg");
+	backGroundImage->rectTransform->SetPivot(0.5, 0.5);
+	backGroundImage->rectTransform->SetPosition(0,0);
+	backGroundImage->rectTransform->SetSize(1980, 960);
+
+	// Title Text setting
+	titleText->rectTransform->SetPivot(0.5, 0.5);
+	titleText->rectTransform->SetPosition(0, 400);
+	titleText->rectTransform->SetSize(500, 100);
+	titleText->screenTextRenderer->SetText(L"Title");
+	titleText->screenTextRenderer->SetFontSize(50);
+
+	// Button setting
 	button1->imageRenderer->SetImage(L"../Resource/UI_Button.png");
 	button1->rectTransform->SetPivot(0, 1);
 	button1->rectTransform->SetPosition(-600, 450);

@@ -5,7 +5,6 @@
 #include "DemoApp.h"
 #include "Cat.h"
 #include "Fish.h"
-#include "../Direct2D_EngineLib/UI_Button.h"
 #include "MenuUIManager.h"
 
 class MenuScene : public Scene

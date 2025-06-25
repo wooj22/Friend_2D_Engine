@@ -7,10 +7,16 @@ void MenuScene::Awake()
 	camera->transform->SetPosition(0, 0);
 
 	// menu scene game object
+	// 현재 renderer는 추가한 순서대로 그려짐
+	// 추후 UI가 마지막에 그려지도록 rendersystem을 수정하고,
+	// bacground는 게임오브젝트로 구현해야함
+	menuUIManager = CreateObject<MenuUIManager>();
+	menuUIManager->backGroundImage = CreateObject<UI_Image>();
+
 	cat = CreateObject<Cat>();
 	fish = CreateObject<Fish>();
 
-	menuUIManager = CreateObject<MenuUIManager>();
+	menuUIManager->titleText = CreateObject<UI_Text>();
 	menuUIManager->button1 = CreateObject<UI_Button>();
 	menuUIManager->button2 = CreateObject<UI_Button>();
 	
