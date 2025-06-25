@@ -9,7 +9,8 @@ void MenuScene::Awake()
 	// menu scene game object
 	cat = CreateObject<Cat>();
 	fish = CreateObject<Fish>();
-	testButton = CreateObject<UI_Button>();
+	button1 = CreateObject<UI_Button>();
+	button2 = CreateObject<UI_Button>();
 	
 	// game object -> awake (component add)
 	__super::Awake();
@@ -22,15 +23,24 @@ void MenuScene::Start()
 
 	// Button 초기화
 	//testButton->imageRenderer->SetImage(L"../Resource/Cat.png");
-	testButton->rectTransform->SetPivot(0, 1);
-	testButton->rectTransform->SetPosition(-600, 450);
-	testButton->rectTransform->SetSize(300, 50);
+	button1->rectTransform->SetPivot(0, 1);
+	button1->rectTransform->SetPosition(-600, 450);
+	button1->rectTransform->SetSize(200, 50);
+
+	button2->rectTransform->SetPivot(0, 1);
+	button2->rectTransform->SetPosition(-600, 380);
+	button2->rectTransform->SetSize(200, 50);
 
 	// Button event 등록
-	testButton->button->onClickListeners.AddListener(
-		&cat, std::bind(&Cat::ChangeDirection, cat));
-	testButton->button->onClickListeners.AddListener(
-		&fish, std::bind(&Fish::ChangeDirection, fish));
+	button1->button->onClickListeners.AddListener(
+		&cat, std::bind(&Cat::Button1Click, cat));
+	button1->button->onClickListeners.AddListener(
+		&fish, std::bind(&Fish::Button1Click, fish));
+
+	button2->button->onClickListeners.AddListener(
+		&cat, std::bind(&Cat::Button2Click, cat));
+	button2->button->onClickListeners.AddListener(
+		&fish, std::bind(&Fish::Button2Click, fish));
 
 	// game object -> start (init lojic)
 	__super::Start();

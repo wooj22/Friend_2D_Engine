@@ -26,7 +26,14 @@ void Cat::Destroy()
 	
 }
 
-void Cat::ChangeDirection() 
+void Cat::Button1Click() 
 {
 	moveDirection *= -1;
+	tr->SetColor(D2D1::ColorF(D2D1::ColorF::Red));
+}
+
+void Cat::Button2Click()
+{
+	moveDirection *= -1;
+	tr->SetColor(D2D1::ColorF(D2D1::ColorF::Yellow));
 }

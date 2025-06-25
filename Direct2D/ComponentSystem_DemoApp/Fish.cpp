@@ -24,7 +24,14 @@ void Fish::Destroy()
 
 }
 
-void Fish::ChangeDirection() 
+void Fish::Button1Click() 
 {
 	rotationDirection *= -1;
+	transform->AddPosition(50, 0);
+}
+
+void Fish::Button2Click()
+{
+	rotationDirection *= -1;
+	transform->AddPosition(-50, 0);
 }

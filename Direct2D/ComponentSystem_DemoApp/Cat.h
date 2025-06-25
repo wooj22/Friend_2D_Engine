@@ -29,6 +29,7 @@ public:
 	void Destroy() override;
 
 public:
-	void ChangeDirection();
+	void Button1Click();
+	void Button2Click();
 };
 

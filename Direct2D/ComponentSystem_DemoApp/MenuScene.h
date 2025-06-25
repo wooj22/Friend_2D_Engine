@@ -14,7 +14,9 @@ private:
 	Camera* camera;
 	Cat* cat;
 	Fish* fish;
-	UI_Button* testButton;
+
+	UI_Button* button1;
+	UI_Button* button2;
 
 public:
 	MenuScene() = default;
