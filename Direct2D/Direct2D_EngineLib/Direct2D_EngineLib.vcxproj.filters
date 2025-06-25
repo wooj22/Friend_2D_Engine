@@ -156,6 +156,12 @@
     <ClInclude Include="ScreenTextRenderer.h">
       <Filter>헤더 파일\Component\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="UI_Image.h">
+      <Filter>헤더 파일\GameObject\Content</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Text.h">
+      <Filter>헤더 파일\GameObject\Content</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -223,6 +229,12 @@
     </ClCompile>
     <ClCompile Include="ScreenTextRenderer.cpp">
       <Filter>소스 파일\Component\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Text.cpp">
+      <Filter>소스 파일\GameObject\Content</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Image.cpp">
+      <Filter>소스 파일\GameObject\Content</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
