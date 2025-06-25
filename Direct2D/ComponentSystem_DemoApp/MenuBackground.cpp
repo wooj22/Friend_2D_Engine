@@ -17,7 +17,7 @@ void MenuBackground::Update()
 	
 }
 
-void MenuBackground::Destroy()
+void MenuBackground::Destroyed()
 {
 
 }

@@ -39,7 +39,7 @@ void Scene::Clear()
 {
 	for (auto& object : objectList)
 	{
-		object->Destroy();
+		object->Destroyed();
 		delete object;
 	}
 	objectList.clear();

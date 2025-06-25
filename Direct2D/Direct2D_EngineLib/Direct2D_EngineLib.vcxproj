@@ -151,6 +151,8 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ScreenTextRenderer.h" />
+    <ClInclude Include="Script.h" />
+    <ClInclude Include="ScriptSystem.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="GameApp.h" />
@@ -178,6 +180,8 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScreenTextRenderer.cpp" />
+    <ClCompile Include="Script.cpp" />
+    <ClCompile Include="ScriptSystem.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="GameApp.cpp" />

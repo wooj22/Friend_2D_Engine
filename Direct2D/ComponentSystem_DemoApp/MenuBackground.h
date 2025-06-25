@@ -12,6 +12,6 @@ public:
 	void Awake() override;
 	void Start() override;
 	void Update() override;
-	void Destroy() override;
+	void Destroyed() override;
 };
 

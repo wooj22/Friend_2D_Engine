@@ -19,7 +19,7 @@ void Fish::Update()
 	transform->AddRotation(rotationSpeed * rotationDirection * Time::GetDeltaTime());
 }
 
-void Fish::Destroy() 
+void Fish::Destroyed() 
 {
 
 }

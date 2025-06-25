@@ -41,7 +41,7 @@ void MenuUIManager::Update()
 
 }
 
-void MenuUIManager::Destroy()
+void MenuUIManager::Destroyed()
 {
 
 }

@@ -162,6 +162,12 @@
     <ClInclude Include="UI_Text.h">
       <Filter>헤더 파일\GameObject\Content</Filter>
     </ClInclude>
+    <ClInclude Include="Script.h">
+      <Filter>헤더 파일\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptSystem.h">
+      <Filter>헤더 파일\ComponentSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -235,6 +241,12 @@
     </ClCompile>
     <ClCompile Include="UI_Image.cpp">
       <Filter>소스 파일\GameObject\Content</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptSystem.cpp">
+      <Filter>소스 파일\ComponentSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Script.cpp">
+      <Filter>소스 파일\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
