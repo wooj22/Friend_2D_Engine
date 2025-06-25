@@ -26,7 +26,13 @@ void MenuScene::Start()
 	testButton->rectTransform->SetSize(200, 50);
 	std::string str = std::to_string(testButton->rectTransform->GetScreenMatrix().dx);
 	OutputDebugStringA(str.c_str());
-	//testButton->button->onClickListeners.AddListener();
+
+	testButton->button->onClickListeners.AddListener(
+		&cat, std::bind(&Cat::ChangeDirection, cat));
+
+	testButton->button->onClickListeners.AddListener(
+		&fish, std::bind(&Fish::ChangeDirection, fish));
+
 
 	// game object -> start (init lojic)
 	__super::Start();

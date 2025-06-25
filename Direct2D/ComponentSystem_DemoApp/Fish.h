@@ -8,6 +8,8 @@ class Fish : public GameObject
 {
 private:
 	float rotationSpeed = 120.0f;
+	float rotationDirection = -1.0f;
+
 public:
 	Transform* transform;
 	SpriteRenderer* sr;
@@ -16,5 +18,8 @@ public:
 	void Start() override;
 	void Update() override;
 	void Destroy() override;
+
+public:
+	void ChangeDirection();
 };
 

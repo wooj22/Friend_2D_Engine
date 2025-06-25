@@ -16,10 +16,15 @@ void Fish::Start()
 
 void Fish::Update() 
 {
-	transform->AddRotation(rotationSpeed * Time::GetDeltaTime());
+	transform->AddRotation(rotationSpeed * rotationDirection * Time::GetDeltaTime());
 }
 
 void Fish::Destroy() 
 {
 
+}
+
+void Fish::ChangeDirection() 
+{
+	rotationDirection *= -1;
 }

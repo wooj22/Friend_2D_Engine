@@ -9,6 +9,8 @@ class Cat : public GameObject
 {
 private:
 	float moveSpeed = 100.0f;
+	float moveDirection = -1.0f;
+
 public:
 	Transform* transform;
 	SpriteRenderer* sr;
@@ -25,5 +27,8 @@ public:
 	void Start() override;
 	void Update() override;
 	void Destroy() override;
+
+public:
+	void ChangeDirection();
 };
 

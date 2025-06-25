@@ -18,10 +18,15 @@ void Cat::Start()
 
 void Cat::Update()
 {
-	transform->AddPosition(0, -moveSpeed * Time::GetDeltaTime());
+	transform->AddPosition(0, moveSpeed * moveDirection * Time::GetDeltaTime());
 }
 
 void Cat::Destroy() 
 {
 	
+}
+
+void Cat::ChangeDirection() 
+{
+	moveDirection *= -1;
 }
