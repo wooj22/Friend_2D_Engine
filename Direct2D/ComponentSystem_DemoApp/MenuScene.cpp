@@ -9,7 +9,7 @@ void MenuScene::Awake()
 	// menu scene game object
 	cat = CreateObject<Cat>();
 	fish = CreateObject<Fish>();
-	startButton = CreateObject<UI_Button>();
+	testButton = CreateObject<UI_Button>();
 	
 	// game object -> awake (component add)
 	__super::Awake();
@@ -21,12 +21,12 @@ void MenuScene::Start()
 	fish->transform->SetParent(cat->transform);
 
 	// event µî·Ï
-	startButton->imageRenderer->SetImage(L"../Resource/Cat.png");
-	startButton->rectTransform->SetPosition(10, 0);
-	startButton->rectTransform->SetSize(300, 100);
-	std::string str = std::to_string(startButton->rectTransform->GetPosition().x);
+	//testButton->imageRenderer->SetImage(L"../Resource/Cat.png");
+	testButton->rectTransform->SetPosition(0,0);
+	testButton->rectTransform->SetSize(200, 50);
+	std::string str = std::to_string(testButton->rectTransform->GetScreenMatrix().dx);
 	OutputDebugStringA(str.c_str());
-	//startButton->button->onClickListeners.AddListener();
+	//testButton->button->onClickListeners.AddListener();
 
 	// game object -> start (init lojic)
 	__super::Start();

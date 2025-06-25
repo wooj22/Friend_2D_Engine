@@ -14,8 +14,8 @@ class RectTransform : public ITransform
 {
 private:
     // rect transform
-    D2D1_POINT_2F position = { 0, 0 };     // center
-    D2D1_SIZE_F size = { 100, 100 };       // width, height
+    D2D1_POINT_2F position = { 0, 0 };     
+    D2D1_SIZE_F size = { 100, 100 };
     D2D1_POINT_2F pivot = { 0.5f, 0.5f };  // rect의 중심점 (left top = 0,0) -> offset 처리
 
     // this matrix
@@ -57,9 +57,9 @@ public:
     const D2D1::Matrix3x2F& GetScreenMatrix() const 
     { 
         // d2d
-        return screenMatrix; 
+        //return screenMatrix;
 
         // unity
-        //return renderMatrix * screenMatrix * unityMatrix;
+        return renderMatrix * screenMatrix * unityMatrix;
     }
 };
