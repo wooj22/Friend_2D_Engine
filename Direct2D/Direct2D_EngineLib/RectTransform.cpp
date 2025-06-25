@@ -49,8 +49,13 @@ inline void RectTransform::MakeScreenMatrix()
 {
     if (!isDirty) return;
 
+    // d2d
+    /*float offsetX = -size.width * pivot.x;
+    float offsetY = -size.height * pivot.y;*/
+
+    // unity
     float offsetX = -size.width * pivot.x;
-    float offsetY = -size.height * pivot.y;
+    float offsetY = size.height * (1.0f - pivot.y);  // Y 축 반전 고려
 
     screenMatrix =
         D2D1::Matrix3x2F::Translation(offsetX, offsetY) *     // pivot 보정

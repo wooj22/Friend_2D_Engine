@@ -16,7 +16,7 @@ private:
     // rect transform
     D2D1_POINT_2F position = { 0, 0 };     
     D2D1_SIZE_F size = { 100, 100 };
-    D2D1_POINT_2F pivot = { 0.5f, 0.5f };  // rect의 중심점 (left top = 0,0) -> offset 처리
+    D2D1_POINT_2F pivot = { 0.5f, 0.5f };  // rect의 중심점 (unity 좌표계 사용시 left down = 0,0) -> offset 처리
 
     // this matrix
     D2D1::Matrix3x2F screenMatrix;
