@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "RectTransform.h"
 #include "ImageRenderer.h"
+#include "ScreenTextRenderer.h"
 #include "Button.h"
 
 /* [Button GameObject]
@@ -13,7 +14,7 @@ class UI_Button : public GameObject
 public:
 	RectTransform* rectTransform;
 	ImageRenderer* imageRenderer;
-	// UI용 TextRenerer 만들면 추가하기
+	ScreenTextRenderer* screenTextRenderer;
 	Button* button;
 
 	UI_Button() {}

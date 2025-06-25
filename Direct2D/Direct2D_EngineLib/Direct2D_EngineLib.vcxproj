@@ -150,6 +150,7 @@
     <ClInclude Include="RectTransform.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="ScreenTextRenderer.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="GameApp.h" />
@@ -174,6 +175,7 @@
     <ClCompile Include="RectTransform.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="ScreenTextRenderer.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="GameApp.cpp" />

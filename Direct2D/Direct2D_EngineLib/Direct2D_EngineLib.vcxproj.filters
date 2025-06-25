@@ -153,6 +153,9 @@
     <ClInclude Include="Button.h">
       <Filter>헤더 파일\Component\UI</Filter>
     </ClInclude>
+    <ClInclude Include="ScreenTextRenderer.h">
+      <Filter>헤더 파일\Component\Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -217,6 +220,9 @@
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>소스 파일\Component\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenTextRenderer.cpp">
+      <Filter>소스 파일\Component\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

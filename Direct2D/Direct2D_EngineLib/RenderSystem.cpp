@@ -2,6 +2,7 @@
 #include "SpriteRenderer.h"
 #include "WorldTextRenderer.h"
 #include "ImageRenderer.h"
+#include "ScreenTextRenderer.h"
 
 /// Component µî·Ï
 void RenderSystem::Regist(IRenderer* component)
