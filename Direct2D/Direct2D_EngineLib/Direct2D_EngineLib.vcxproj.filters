@@ -61,19 +61,34 @@
     <Filter Include="소스 파일\GameObject\Content">
       <UniqueIdentifier>{73a6812e-c1c0-4a9e-a3b7-e785a85fa5cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Component\Base">
+      <UniqueIdentifier>{8ab9f053-9c02-4bd1-a4f1-4407fbcaffa2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Component\Base">
+      <UniqueIdentifier>{6d35e9ce-ca52-4160-92b8-f55907eb0883}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Component\Renderer">
+      <UniqueIdentifier>{65077f85-ed87-4eec-84ae-599748ac9d48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Component\Renderer">
+      <UniqueIdentifier>{14fe28f6-7ec7-466e-9644-118fbe5e05f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Component\Transform">
+      <UniqueIdentifier>{1aca0409-52ac-4bae-95f1-48cda25dbf91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Component\Transform">
+      <UniqueIdentifier>{c2a45653-dff4-46c3-a193-b50a5748baf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Component\UI">
+      <UniqueIdentifier>{69ae2b3f-39a1-46fc-b080-45077d320519}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Component\UI">
+      <UniqueIdentifier>{e4a95ae1-ad08-4134-8e32-cab35d20ecf5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h">
       <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="IRenderer.h">
-      <Filter>헤더 파일\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteRenderer.h">
-      <Filter>헤더 파일\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>헤더 파일\Component</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>헤더 파일\Camera</Filter>
@@ -84,14 +99,8 @@
     <ClInclude Include="GameObject.h">
       <Filter>헤더 파일\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>헤더 파일\Component</Filter>
-    </ClInclude>
     <ClInclude Include="TransformSystem.h">
       <Filter>헤더 파일\ComponentSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="TextRenderer.h">
-      <Filter>헤더 파일\Component</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>헤더 파일\Scene</Filter>
@@ -105,23 +114,11 @@
     <ClInclude Include="Time.h">
       <Filter>헤더 파일\StaticSystem</Filter>
     </ClInclude>
-    <ClInclude Include="ITransform.h">
-      <Filter>헤더 파일\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="RectTransform.h">
-      <Filter>헤더 파일\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="ImageRenderer.h">
-      <Filter>헤더 파일\Component</Filter>
-    </ClInclude>
     <ClInclude Include="Singleton.h">
       <Filter>헤더 파일\Module</Filter>
     </ClInclude>
     <ClInclude Include="MultiDelegate.h">
       <Filter>헤더 파일\Module</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>헤더 파일\Component</Filter>
     </ClInclude>
     <ClInclude Include="ButtonSystem.h">
       <Filter>헤더 파일\ComponentSystem</Filter>
@@ -129,19 +126,37 @@
     <ClInclude Include="UI_Button.h">
       <Filter>헤더 파일\GameObject\Content</Filter>
     </ClInclude>
+    <ClInclude Include="IRenderer.h">
+      <Filter>헤더 파일\Component\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>헤더 파일\Component\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ITransform.h">
+      <Filter>헤더 파일\Component\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageRenderer.h">
+      <Filter>헤더 파일\Component\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>헤더 파일\Component\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="TextRenderer.h">
+      <Filter>헤더 파일\Component\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="RectTransform.h">
+      <Filter>헤더 파일\Component\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>헤더 파일\Component\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>헤더 파일\Component\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="IRenderer.cpp">
-      <Filter>소스 파일\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteRenderer.cpp">
-      <Filter>소스 파일\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>소스 파일\Component</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>소스 파일\Camera</Filter>
@@ -149,17 +164,11 @@
     <ClCompile Include="RenderSystem.cpp">
       <Filter>소스 파일\ComponentSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Component.cpp">
-      <Filter>소스 파일\Component</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>소스 파일\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="TransformSystem.cpp">
       <Filter>소스 파일\ComponentSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="TextRenderer.cpp">
-      <Filter>소스 파일\Component</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>소스 파일\Scene</Filter>
@@ -173,26 +182,41 @@
     <ClCompile Include="Time.cpp">
       <Filter>소스 파일\StaticSystem</Filter>
     </ClCompile>
-    <ClCompile Include="ITransform.cpp">
-      <Filter>소스 파일\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="RectTransform.cpp">
-      <Filter>소스 파일\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="ImageRenderer.cpp">
-      <Filter>소스 파일\Component</Filter>
-    </ClCompile>
     <ClCompile Include="MultiDelegate.cpp">
       <Filter>소스 파일\Module</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>소스 파일\Component</Filter>
     </ClCompile>
     <ClCompile Include="ButtonSystem.cpp">
       <Filter>소스 파일\ComponentSystem</Filter>
     </ClCompile>
     <ClCompile Include="UI_Button.cpp">
       <Filter>소스 파일\GameObject\Content</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>소스 파일\Component\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="IRenderer.cpp">
+      <Filter>소스 파일\Component\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="ITransform.cpp">
+      <Filter>소스 파일\Component\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageRenderer.cpp">
+      <Filter>소스 파일\Component\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="TextRenderer.cpp">
+      <Filter>소스 파일\Component\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>소스 파일\Component\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="RectTransform.cpp">
+      <Filter>소스 파일\Component\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>소스 파일\Component\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>소스 파일\Component\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
