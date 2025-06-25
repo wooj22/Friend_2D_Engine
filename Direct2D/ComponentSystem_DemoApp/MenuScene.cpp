@@ -28,12 +28,12 @@ void MenuScene::Start()
 
 	// Button event µî·Ï
 	menuUIManager->button1->button->onClickListeners.AddListener(
-		&cat, std::bind(&Cat::Button1Click, cat));
+		&cat->catController, std::bind(&CatController::Button1Click, cat->catController));
 	menuUIManager->button1->button->onClickListeners.AddListener(
 		&fish, std::bind(&Fish::Button1Click, fish));
 
 	menuUIManager->button2->button->onClickListeners.AddListener(
-		&cat, std::bind(&Cat::Button2Click, cat));
+		&cat->catController, std::bind(&CatController::Button2Click, cat->catController));
 	menuUIManager->button2->button->onClickListeners.AddListener(
 		&fish, std::bind(&Fish::Button2Click, fish));
 

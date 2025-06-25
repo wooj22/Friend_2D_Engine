@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "ScriptSystem.h"
+#include "GameObject.h"
 
 /* [Button Conponent]
 * GameObject의 여러 Component들을 controll하는 script 컴포넌트이다.
