@@ -57,6 +57,9 @@
     <ClCompile Include="MenuUIManager.cpp">
       <Filter>GameObject\MenuScene</Filter>
     </ClCompile>
+    <ClCompile Include="MenuBackground.cpp">
+      <Filter>GameObject\MenuScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DemoApp.h">
@@ -84,6 +87,9 @@
       <Filter>GameObject\PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="MenuUIManager.h">
+      <Filter>GameObject\MenuScene</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuBackground.h">
       <Filter>GameObject\MenuScene</Filter>
     </ClInclude>
   </ItemGroup>

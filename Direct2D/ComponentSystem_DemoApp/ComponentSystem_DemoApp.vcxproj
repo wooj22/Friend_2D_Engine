@@ -132,6 +132,7 @@
     <ClCompile Include="Earth.cpp" />
     <ClCompile Include="Fish.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MenuBackground.cpp" />
     <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="MenuUIManager.cpp" />
     <ClCompile Include="Moon.cpp" />
@@ -143,6 +144,7 @@
     <ClInclude Include="DemoApp.h" />
     <ClInclude Include="Earth.h" />
     <ClInclude Include="Fish.h" />
+    <ClInclude Include="MenuBackground.h" />
     <ClInclude Include="MenuScene.h" />
     <ClInclude Include="MenuUIManager.h" />
     <ClInclude Include="Moon.h" />

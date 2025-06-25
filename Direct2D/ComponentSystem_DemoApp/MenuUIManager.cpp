@@ -8,16 +8,16 @@ void MenuUIManager::Awake()
 void MenuUIManager::Start()
 {
 	// BackGround Image setting
-	backGroundImage->imageRenderer->SetImage(L"../Resource/Ground.jpg");
-	backGroundImage->rectTransform->SetPivot(0.5, 0.5);
-	backGroundImage->rectTransform->SetPosition(0,0);
-	backGroundImage->rectTransform->SetSize(1980, 960);
+	titleImage->imageRenderer->SetImage(L"../Resource/Camera.png");
+	titleImage->rectTransform->SetPivot(0.5, 0.5);
+	titleImage->rectTransform->SetPosition(-270, 400);
+	titleImage->rectTransform->SetSize(180, 100);
 
 	// Title Text setting
 	titleText->rectTransform->SetPivot(0.5, 0.5);
-	titleText->rectTransform->SetPosition(0, 400);
+	titleText->rectTransform->SetPosition(50, 400);
 	titleText->rectTransform->SetSize(500, 100);
-	titleText->screenTextRenderer->SetText(L"Title");
+	titleText->screenTextRenderer->SetText(L"화살표로 카메라 이동");
 	titleText->screenTextRenderer->SetFontSize(50);
 
 	// Button setting

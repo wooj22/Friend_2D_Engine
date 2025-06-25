@@ -6,6 +6,7 @@
 #include "Cat.h"
 #include "Fish.h"
 #include "MenuUIManager.h"
+#include "MenuBackground.h"
 
 class MenuScene : public Scene
 {
@@ -14,7 +15,7 @@ private:
 	Camera* camera;
 	Cat* cat;
 	Fish* fish;
-
+	MenuBackground* background;
 	MenuUIManager* menuUIManager;
 
 public:

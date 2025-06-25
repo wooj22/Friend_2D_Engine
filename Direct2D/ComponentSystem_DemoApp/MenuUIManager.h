@@ -7,7 +7,7 @@
 class MenuUIManager : public GameObject
 {
 public:
-	UI_Image* backGroundImage;
+	UI_Image* titleImage;
 	UI_Text* titleText;
 	UI_Button* button1;
 	UI_Button* button2;
