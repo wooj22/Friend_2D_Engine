@@ -3,6 +3,7 @@
 #include "../Direct2D_EngineLib/Transform.h";
 #include "../Direct2D_EngineLib/SpriteRenderer.h"
 
+// script component system Àû¿ë Àü
 class MenuBackground : public GameObject
 {
 public:

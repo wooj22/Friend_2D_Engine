@@ -4,6 +4,7 @@
 #include "../Direct2D_EngineLib/SpriteRenderer.h"
 #include "../Direct2D_EngineLib/Time.h"
 
+// script component system Àû¿ë Àü
 class Sun : public GameObject
 {
 private:
