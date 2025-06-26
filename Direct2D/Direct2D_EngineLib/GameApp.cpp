@@ -148,6 +148,7 @@ void GameApp::Loop()
 
 		}
 
+		// game loop cycle
 		PreUpdate();
 		Update();
 		LateUpdate();

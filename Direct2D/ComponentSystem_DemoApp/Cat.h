@@ -13,7 +13,6 @@ public:
 	WorldTextRenderer* tr;
 	CatController* catController;
 
-	// TODO ::
 	// 이제 ScriptConponent 만들어서 GameObject cycle 삭제하고
 	// 생성자에서 AddComponent 해도 됨
 	void Awake() override;

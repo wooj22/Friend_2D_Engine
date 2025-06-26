@@ -18,7 +18,7 @@ private:
 public:
 	// component cycle
 	CatController() { }
-	~CatController() override { Script::~Script(); }  // 소멸자 호출 필수
+	~CatController() override { }
 
 	void OnEnable() override;
 	void Update() override;
