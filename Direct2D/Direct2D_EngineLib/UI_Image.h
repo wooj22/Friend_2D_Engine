@@ -13,8 +13,8 @@ public:
 	RectTransform* rectTransform;
 	ImageRenderer* imageRenderer;
 
-	UI_Image() {}
-	~UI_Image() override {}
+	UI_Image() { OutputDebugStringA("UI_Image()\n"); }
+	~UI_Image() override { OutputDebugStringA("~UI_Image()\n"); }
 
 	void Awake() override;
 	void Start() override {}

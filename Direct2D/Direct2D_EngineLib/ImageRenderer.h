@@ -25,8 +25,15 @@ private:
 
 public:
 	// component cycle
-	ImageRenderer() { RenderSystem::Get().Regist(this); };
-	~ImageRenderer() override { RenderSystem::Get().Unregist(this); }
+	ImageRenderer() { 
+		RenderSystem::Get().Regist(this);
+		OutputDebugStringA("ImageRenderer()\n");
+	};
+	~ImageRenderer() override 
+	{
+		RenderSystem::Get().Unregist(this); 
+		OutputDebugStringA("~ImageRenderer()\n");
+	}
 
 	void OnEnable() override;
 	void Update() override;

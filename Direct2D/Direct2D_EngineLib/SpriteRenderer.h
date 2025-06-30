@@ -20,8 +20,16 @@ private:
 
 public:
 	// component cycle
-	SpriteRenderer() { RenderSystem::Get().Regist(this); };
-	~SpriteRenderer() override { RenderSystem::Get().Unregist(this); }
+	SpriteRenderer() 
+	{ 
+		RenderSystem::Get().Regist(this); 
+		OutputDebugStringA("SpriteRenderer()\n");
+	};
+	~SpriteRenderer() override
+	{ 
+		RenderSystem::Get().Unregist(this);
+		OutputDebugStringA("~SpriteRenderer()\n");
+	}
 
 	void OnEnable() override;
 	void Update() override;

@@ -13,8 +13,8 @@ public:
 	WorldTextRenderer* tr;
 	CatController* catController;
 
-	Cat() : GameObject("Cat") {}
-	~Cat() override {}
+	Cat() : GameObject("Cat") { OutputDebugStringA("Cat()\n"); }
+	~Cat() override { OutputDebugStringA("~Cat()\n"); }
 
 	void Awake() override;
 	void Start() override;

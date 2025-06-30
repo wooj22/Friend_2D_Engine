@@ -2,6 +2,7 @@
 #include <vector>
 #include <typeinfo>
 #include <iostream>
+#include <windows.h> 
 #include "Component.h"
 
 /* [GameObject Å¬·¡½º]
@@ -24,6 +25,7 @@ public:
         : name(objName)
     {
         allGameObjects.push_back(this);
+        OutputDebugStringA("GameObject()\n");
     }
 
     virtual ~GameObject()
@@ -39,6 +41,8 @@ public:
         auto it = std::find(allGameObjects.begin(), allGameObjects.end(), this);
         if (it != allGameObjects.end())
             allGameObjects.erase(it);
+
+        OutputDebugStringA("~GameObject()\n");
     }
 
 public:

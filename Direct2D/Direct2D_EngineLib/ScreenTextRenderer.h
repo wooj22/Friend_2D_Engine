@@ -35,8 +35,16 @@ private:
 
 public:
 	// component cycle
-	ScreenTextRenderer() { RenderSystem::Get().Regist(this); };
-	~ScreenTextRenderer() override { RenderSystem::Get().Unregist(this); }
+	ScreenTextRenderer()
+	{ 
+		RenderSystem::Get().Regist(this); 
+		OutputDebugStringA("ScreenTextRenderer()\n");
+	};
+	~ScreenTextRenderer() override 
+	{
+		RenderSystem::Get().Unregist(this);
+		OutputDebugStringA("~ScreenTextRenderer()\n");
+	}
 
 	void OnEnable() override;
 	void Update() override;

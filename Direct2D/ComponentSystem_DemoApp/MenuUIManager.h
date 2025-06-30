@@ -12,6 +12,9 @@ public:
 	UI_Button* button1;
 	UI_Button* button2;
 
+	MenuUIManager() { OutputDebugStringA("MenuUIManager()\n"); }
+	~MenuUIManager() override { OutputDebugStringA("~MenuUIManager()\n"); }
+
 	void Awake() override;
 	void Start() override;
 	void Update() override;

@@ -10,7 +10,8 @@ void Cat::Awake()
 
 void Cat::Start() 
 {
-	
+	// find other component
+	catController->fishTransform = GameObject::Find("Fish")->GetComponent<Transform>();
 }
 
 void Cat::Update()

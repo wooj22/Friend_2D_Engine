@@ -66,8 +66,13 @@ public:
     {
         localMatrix = D2D1::Matrix3x2F::Identity();
         TransformSystem::Get().Regist(this);
+        OutputDebugStringA("Transform()\n");
     }
-    ~Transform() override { TransformSystem::Get().Unregist(this); }
+    ~Transform() override 
+    { 
+        TransformSystem::Get().Unregist(this); 
+        OutputDebugStringA("~Transform()\n");
+    }
 
     void OnEnable() override;
     void Update() override;

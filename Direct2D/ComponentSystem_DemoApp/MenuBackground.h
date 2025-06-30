@@ -10,6 +10,9 @@ public:
 	Transform* transform;
 	SpriteRenderer* spriteRenderer;
 
+	MenuBackground() { OutputDebugStringA("MenuBackground()\n"); }
+	~MenuBackground() override { OutputDebugStringA("~MenuBackground()\n"); }
+
 	void Awake() override;
 	void Start() override;
 	void Update() override;

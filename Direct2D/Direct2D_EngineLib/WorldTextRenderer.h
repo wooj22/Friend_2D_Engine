@@ -38,8 +38,16 @@ private:
 
 public:
 	// component cycle
-	WorldTextRenderer() { RenderSystem::Get().Regist(this); };
-	~WorldTextRenderer() override { RenderSystem::Get().Unregist(this); }
+	WorldTextRenderer() 
+	{ 
+		RenderSystem::Get().Regist(this);
+		OutputDebugStringA("WorldTextRenderer()\n");
+	};
+	~WorldTextRenderer() override 
+	{
+		RenderSystem::Get().Unregist(this); 
+		OutputDebugStringA("~WorldTextRenderer()\n");
+	}
 
 	void OnEnable() override;
 	void Update() override;

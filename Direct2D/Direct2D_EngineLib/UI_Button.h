@@ -17,8 +17,8 @@ public:
 	ScreenTextRenderer* screenTextRenderer;
 	Button* button;
 
-	UI_Button() {}
-	~UI_Button() override {}
+	UI_Button() { OutputDebugStringA("UI_Button()\n"); }
+	~UI_Button() override { OutputDebugStringA("~UI_Button()\n"); }
 
 	void Awake() override;
 	void Start() override {}

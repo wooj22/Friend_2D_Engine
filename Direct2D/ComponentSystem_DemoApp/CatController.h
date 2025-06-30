@@ -12,20 +12,22 @@ private:
 	SpriteRenderer* sr;
 	WorldTextRenderer* tr;
 
-	// find other component
-	Transform* fishTransform;
-
 	float moveSpeed = 100.0f;
 	float moveDirection = -1.0f;
 
 public:
+	// find other component
+	Transform* fishTransform;
+
+public:
 	// component cycle
-	CatController() { }
-	~CatController() override { }
+	CatController() { OutputDebugStringA("CatController()\n"); }
+	~CatController() override { OutputDebugStringA("~CatController()\n"); }
 
 	void OnEnable() override;
 	void Update() override;
 	void OnDestroy() override;
+
 
 public:
 	// function

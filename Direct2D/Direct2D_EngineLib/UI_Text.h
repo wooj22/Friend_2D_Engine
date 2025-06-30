@@ -13,8 +13,8 @@ public:
 	RectTransform* rectTransform;
 	ScreenTextRenderer* screenTextRenderer;
 
-	UI_Text() {}
-	~UI_Text() override {}
+	UI_Text() { OutputDebugStringA("UI_Text()\n"); }
+	~UI_Text() override { OutputDebugStringA("~UI_Text()\n"); }
 
 	void Awake() override;
 	void Start() override {}

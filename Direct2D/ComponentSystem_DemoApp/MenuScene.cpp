@@ -9,8 +9,9 @@ void MenuScene::Awake()
 
 	// scene object create
 	background = CreateObject<MenuBackground>();
-	cat = CreateObject<Cat>();
 	fish = CreateObject<Fish>();
+	cat = CreateObject<Cat>();
+	
 	menuUIManager = CreateObject<MenuUIManager>();
 	menuUIManager->titleImage = CreateObject<UI_Image>();
 	menuUIManager->titleText = CreateObject<UI_Text>();
