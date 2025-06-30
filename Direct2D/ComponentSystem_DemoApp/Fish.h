@@ -15,6 +15,9 @@ public:
 	Transform* transform;
 	SpriteRenderer* sr;
 
+	Fish() : GameObject("Fish") {}
+	~Fish() override {}
+
 	void Awake() override;
 	void Start() override;
 	void Update() override;

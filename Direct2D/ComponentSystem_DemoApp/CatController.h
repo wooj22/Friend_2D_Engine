@@ -12,6 +12,9 @@ private:
 	SpriteRenderer* sr;
 	WorldTextRenderer* tr;
 
+	// find other component
+	Transform* fishTransform;
+
 	float moveSpeed = 100.0f;
 	float moveDirection = -1.0f;
 

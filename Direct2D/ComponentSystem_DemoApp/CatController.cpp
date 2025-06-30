@@ -13,16 +13,20 @@ void CatController::OnEnable()
 	tr->SetText(L"³ª Àâ¾ÆºÁ¶ó\n [Spacebar] ¾À º¯°æ");
 	tr->SetColor(D2D1::ColorF(D2D1::ColorF::Yellow));
 	tr->SetLayout(300, 100);
+
+	// other game object find, component ÂüÁ¶
+	fishTransform = GameObject::Find("Fish")->GetComponent<Transform>();
 }
 
 void CatController::Update()
 {
 	transform->AddPosition(0, moveSpeed * moveDirection * Time::GetDeltaTime());
+	fishTransform->AddRotation(120 * -1 * Time::GetDeltaTime());
 }
 
 void CatController::OnDestroy() 
 {
-
+	
 }
 
 void CatController::Button1Click()

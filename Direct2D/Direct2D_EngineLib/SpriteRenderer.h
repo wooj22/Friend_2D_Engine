@@ -16,7 +16,7 @@ class SpriteRenderer : public IRenderer
 private:
 	Transform* transform;
 	D2D1_RECT_F centerRect;
-	Microsoft::WRL::ComPtr<ID2D1Bitmap1> sprite;
+	Microsoft::WRL::ComPtr<ID2D1Bitmap1> sprite;	// TODO :: Sptie Class ¸¸µé±â
 
 public:
 	// component cycle

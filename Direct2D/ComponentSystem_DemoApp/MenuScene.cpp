@@ -1,4 +1,5 @@
 #include "MenuScene.h"
+#include <string>
 
 void MenuScene::Awake()
 {
@@ -6,18 +7,17 @@ void MenuScene::Awake()
 	camera = DemoApp::mainCamera;
 	camera->transform->SetPosition(0, 0);
 
-	// menu scene game object
+	// scene object create
 	background = CreateObject<MenuBackground>();
 	cat = CreateObject<Cat>();
 	fish = CreateObject<Fish>();
-	
 	menuUIManager = CreateObject<MenuUIManager>();
 	menuUIManager->titleImage = CreateObject<UI_Image>();
 	menuUIManager->titleText = CreateObject<UI_Text>();
 	menuUIManager->button1 = CreateObject<UI_Button>();
 	menuUIManager->button2 = CreateObject<UI_Button>();
 	
-	// game object -> awake (component add)
+	// game object -> awake
 	__super::Awake();
 }
 
@@ -37,7 +37,7 @@ void MenuScene::Start()
 	menuUIManager->button2->button->onClickListeners.AddListener(
 		&fish, std::bind(&Fish::Button2Click, fish));
 
-	// game object -> start (init logic)
+	// game object -> start
 	__super::Start();
 }
 

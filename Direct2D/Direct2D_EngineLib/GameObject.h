@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <typeinfo>
+#include <iostream>
 #include "Component.h"
 
 /* [GameObject Å¬·¡½º]
@@ -14,23 +15,50 @@ class Component;
 class GameObject {
 private:
     std::vector<Component*> components;
+    static std::vector<GameObject*> allGameObjects;
+public:
+    std::string name = "GameObject";
 
 public:
-    GameObject() {};
+    GameObject(const std::string& objName = "GameObject")
+        : name(objName)
+    {
+        allGameObjects.push_back(this);
+    }
+
     virtual ~GameObject()
     {
+        // component delete
         for (Component* comp : components) {
             comp->OnDestroy();
             delete comp;
         }
         components.clear();
+
+		// gameobject delete
+        auto it = std::find(allGameObjects.begin(), allGameObjects.end(), this);
+        if (it != allGameObjects.end())
+            allGameObjects.erase(it);
     }
 
-    // Cycle
+public:
+    // scene -> gameObject cycle
     virtual void Awake() {};
     virtual void Start() {};
     virtual void Update() {};
     virtual void Destroyed() {};
+
+public:
+    // game object find
+    static GameObject* Find(const std::string& targetName)
+    {
+        for (GameObject* obj : allGameObjects)
+        {
+            if (obj && obj->name == targetName)
+                return obj;
+        }
+        return nullptr;
+    }
 
 public:
     // Component

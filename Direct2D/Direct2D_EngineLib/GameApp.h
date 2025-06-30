@@ -27,10 +27,10 @@ protected:
 	string			workingPath;
 
 	// component system
-	TransformSystem transformSystem;
-	RenderSystem renderSystem;
-	ButtonSystem buttonSystem;
-	ScriptSystem scriptSystem;
+	TransformSystem transformSystem;	// transform, rectTransfrom
+	RenderSystem renderSystem;	// sprite, image, worldText, screenText
+	ButtonSystem buttonSystem;	// button
+	ScriptSystem scriptSystem;	// script
 
 	// scene manager
 	SceneManager sceneManager;

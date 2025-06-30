@@ -14,6 +14,6 @@ public :
 
 // 현재 사용중인 클래스 목록
 // SpriteRenderer
-// TextRenderer
-// RenderSystem
+// ImageRenderer
 // ScreenTextRenderer
+// WorldTextRenderer
