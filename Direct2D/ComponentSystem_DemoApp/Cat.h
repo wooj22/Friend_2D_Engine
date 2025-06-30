@@ -11,11 +11,12 @@ public:
 	Transform* transform;
 	SpriteRenderer* sr;
 	WorldTextRenderer* tr;
-	CatController* catController;
+	CatController* catController;	// script component
 
 	Cat() : GameObject("Cat") { OutputDebugStringA("Cat()\n"); }
 	~Cat() override { OutputDebugStringA("~Cat()\n"); }
 
+	// scene->gameobject cycle
 	void Awake() override;
 	void Start() override;
 	void Update() override;

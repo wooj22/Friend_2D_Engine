@@ -16,7 +16,7 @@ private:
 	float moveDirection = -1.0f;
 
 public:
-	// find other component
+	// find other gameobject component
 	Transform* fishTransform;
 
 public:

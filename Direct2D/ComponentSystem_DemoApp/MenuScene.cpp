@@ -7,11 +7,10 @@ void MenuScene::Awake()
 	camera = DemoApp::mainCamera;
 	camera->transform->SetPosition(0, 0);
 
-	// scene object create
+	// scene object create (layer x, »ý¼º¼ø¼­´ë·Î ·»´õ¸µµÊ)
 	background = CreateObject<MenuBackground>();
 	fish = CreateObject<Fish>();
 	cat = CreateObject<Cat>();
-	
 	menuUIManager = CreateObject<MenuUIManager>();
 	menuUIManager->titleImage = CreateObject<UI_Image>();
 	menuUIManager->titleText = CreateObject<UI_Text>();

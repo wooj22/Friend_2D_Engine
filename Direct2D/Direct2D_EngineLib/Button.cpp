@@ -50,7 +50,6 @@ inline void Button::OnClick()
 {
     OutputDebugStringA("Button OnClick() 이벤트 발생! 콜백함수 호출.\n");
 	
-    
     // debug
     std::string str1 = std::to_string(Input::ConvertMouseToUnityPosition().x);
     std::string str2 = std::to_string(Input::ConvertMouseToUnityPosition().y);

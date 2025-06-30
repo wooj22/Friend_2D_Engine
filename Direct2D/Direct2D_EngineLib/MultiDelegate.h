@@ -32,6 +32,8 @@ public:
 	// 등록된 Functions Call
 	void Invoke(Args... args) const
 	{
+		// instance 살아있는지 검사 적용 x
+		// 스마트 포인터 구조로 바꿀지, Handle ID를 사용할지 고민중입니다
 		for (const auto& s : slots)
 			if (s.func) s.func(args...);
 	}
