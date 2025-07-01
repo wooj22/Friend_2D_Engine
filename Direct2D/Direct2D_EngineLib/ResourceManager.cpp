@@ -47,6 +47,12 @@ HRESULT ResourceManager::Init()
     return S_OK;
 }
 
+void ResourceManager::UnInit() {
+    wicImagingFactory.Reset();
+    dxgiDevice.Reset();
+    dxgiAdapter.Reset();
+}
+
 /// Format bytes to human-readable string
 wstring ResourceManager::FormatBytes(UINT64 bytes) {
     constexpr double KB = 1024.0;

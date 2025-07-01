@@ -6,12 +6,12 @@ void Scene1::Awake()
 	camera = DemoApp::mainCamera;
 	camera->transform->SetPosition(0, 0);
 
-	ObjectCreateTest();
+	Scene1ObjectCreate();
 
 	// game object -> awake
 	__super::Awake();
 
-	ObjectSetting();
+	Scene1ObjectSetting();
 }
 
 void Scene1::Start()
@@ -31,16 +31,10 @@ void Scene1::Update()
 	// camera 역행렬 update
 	Transform::SetCameraMatrix(camera->transform->GetWorldMatrix());
 
-	// create
+	// 과제
 	if (Input::GetKeyDown('N')) CreateObject<Cat>();
-	
-	// delete
 	if (Input::GetKeyDown('D')) TestCatPop();
-
-	// trim
 	if (Input::GetKeyDown('T')) ResourceManager::Get().Trim();
-
-	// memory cheak
 	if (Input::GetKeyDown(VK_SHIFT)) 
 		memoryUsageText->screenTextRenderer->SetText(ResourceManager::Get().GetMemoryUsageString());
 
@@ -57,7 +51,7 @@ void Scene1::Exit()
 	__super::Exit();
 }
 
-void Scene1::ObjectCreateTest() 
+void Scene1::Scene1ObjectCreate() 
 {
 	titleBackground = CreateObject<UI_Image>();
 	titleText = CreateObject<UI_Text>();
@@ -65,7 +59,7 @@ void Scene1::ObjectCreateTest()
 	memoryUsageText = CreateObject<UI_Text>();
 }
 
-void Scene1::ObjectSetting() 
+void Scene1::Scene1ObjectSetting() 
 {
 	titleBackground->rectTransform->SetPosition(0, 400);
 	titleBackground->rectTransform->SetSize(600, 100);

@@ -39,13 +39,14 @@ private:
 	unordered_map<string, weak_ptr<Texture2D>> map_texture2D;
 
 private:
-	// com °´Ã¼
+	// d2d
 	ComPtr<IWICImagingFactory> wicImagingFactory;
 	ComPtr<IDXGIDevice3> dxgiDevice; 
 	ComPtr<IDXGIAdapter3> dxgiAdapter;
 	
 public:
 	HRESULT Init();
+	void UnInit();
 	wstring FormatBytes(UINT64 bytes);
 	wstring GetMemoryUsageString();
 	void PrintMemoryUsage();

@@ -126,11 +126,12 @@ void RenderSystem::Render()
 void RenderSystem::UnInit()
 {
 	// d2d
-	d3dDevice = nullptr;
-	swapChain = nullptr;
-	renderTarget = nullptr;
-	backBufferBitmap = nullptr;
-	wicImagingFactory = nullptr;
+	d3dDevice.Reset();
+	swapChain.Reset();
+	renderTarget.Reset();
+	backBufferBitmap.Reset();
+	wicImagingFactory.Reset();
+	dWriteFactory.Reset();
 }
 
 /// Image Loading Function

@@ -7,10 +7,10 @@
 #include"../Direct2D_EngineLib/UI_Image.h"
 #include"../Direct2D_EngineLib/UI_Text.h"
 
+/* 리소스 공유자원 메모리 테스트 씬 */ 
 class Scene1 : public Scene
 {
 private:
-	// scene1 objects
 	Camera* camera;
 	UI_Image* titleBackground;
 	UI_Text* titleText;
@@ -28,7 +28,7 @@ public:
 
 private:
 	// 리소스 과제용으로 만든	test 함수
-	void ObjectCreateTest();
-	void ObjectSetting();
+	void Scene1ObjectCreate();
+	void Scene1ObjectSetting();
 };
 
