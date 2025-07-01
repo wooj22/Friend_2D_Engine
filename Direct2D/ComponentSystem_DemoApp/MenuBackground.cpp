@@ -8,7 +8,7 @@ void MenuBackground::Awake()
 	
 void MenuBackground::Start()
 {
-	spriteRenderer->SetImage(L"../Resource/Ground.jpg");
+	spriteRenderer->CreateTexture2D("../Resource/Ground.jpg");
 	transform->SetScale(5, 5);
 }
 

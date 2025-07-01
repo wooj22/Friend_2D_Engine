@@ -28,7 +28,7 @@ void ImageRenderer::Render()
 
     // render
     if (sprite)
-        RenderSystem::Get().renderTarget->DrawBitmap(sprite.Get(), rect);
+        RenderSystem::Get().renderTarget->DrawBitmap(sprite->texture2D.Get(), rect);
     else
         RenderSystem::Get().renderTarget->FillRectangle(rect, brush.Get());
 }
@@ -36,9 +36,4 @@ void ImageRenderer::Render()
 void ImageRenderer::OnDestroy() 
 {
 	sprite = nullptr;
-}
-
-void ImageRenderer::SetImage(const wchar_t* path)
-{
-	RenderSystem::Get().CreateBitmapFromFile(path, this->sprite.GetAddressOf());
 }

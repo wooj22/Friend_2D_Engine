@@ -10,7 +10,7 @@ void Sun::Start()
 {
 	transform->SetPosition(0, 0);
 	transform->SetScale(2.5, 2.5);
-	sr->SetImage(L"../Resource/Sun.png");
+	sr->CreateTexture2D("../Resource/Sun.png");
 }
 
 void Sun::Update()

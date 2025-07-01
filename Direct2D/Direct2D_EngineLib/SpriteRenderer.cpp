@@ -17,7 +17,7 @@ void SpriteRenderer::Render()
 	if (!transform || !sprite) return;
 
 	// center 보정, 그릴 영역 지정
-	D2D1_SIZE_F size = sprite->GetSize();
+	D2D1_SIZE_F size = sprite->texture2D->GetSize();
 	centerRect = {
 		-size.width / 2.0f,  // left
 		-size.height / 2.0f, // up
@@ -27,15 +27,10 @@ void SpriteRenderer::Render()
 	
 	// render
 	RenderSystem::Get().renderTarget->SetTransform(transform->GetScreenMatrix());
-	RenderSystem::Get().renderTarget->DrawBitmap(sprite.Get(), centerRect);
+	RenderSystem::Get().renderTarget->DrawBitmap(sprite->texture2D.Get(), centerRect);
 }
 
 void SpriteRenderer::OnDestroy()
 {
 	sprite = nullptr;
-}
-
-void SpriteRenderer::SetImage(const wchar_t* path) 
-{
-	RenderSystem::Get().CreateBitmapFromFile(path, this->sprite.GetAddressOf());
 }

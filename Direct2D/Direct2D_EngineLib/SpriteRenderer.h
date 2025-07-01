@@ -4,6 +4,10 @@
 #include "IRenderer.h"
 #include "RenderSystem.h"
 
+#include "Texture2D.h"
+#include "ResourceManager.h"
+#include "iostream"
+
 /* [Sprite Renderer Conponent]
 * <World>의 이미지 한 장(sprite)의 render를 담당하는 component로
 * 컴포넌트 생성시 RenderSystem에 등록되어 sprite를 게속 render한다.
@@ -16,7 +20,7 @@ class SpriteRenderer : public IRenderer
 private:
 	Transform* transform;
 	D2D1_RECT_F centerRect;
-	Microsoft::WRL::ComPtr<ID2D1Bitmap1> sprite;	// TODO :: Sptie Class 만들기
+	shared_ptr<Texture2D> sprite;	// 공유 자원 // TODO :: Sptie Class 만들기
 
 public:
 	// component cycle
@@ -36,7 +40,11 @@ public:
 	void Render() override;
 	void OnDestroy() override;
 
-	// set
-	void SetImage(const wchar_t* path);
+public:
+	// function
+	void CreateTexture2D(const std::string& path)
+	{
+		sprite = ResourceManager::Get().CreateTexture2D(path);
+	}
 };
 
