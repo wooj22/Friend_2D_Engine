@@ -37,7 +37,10 @@ void Scene1::Update()
 	// delete
 	if (Input::GetKeyDown('D')) TestCatPop();
 
-	// memory
+	// trim
+	if (Input::GetKeyDown('T')) ResourceManager::Get().Trim();
+
+	// memory cheak
 	if (Input::GetKeyDown(VK_SHIFT)) 
 		memoryUsageText->screenTextRenderer->SetText(ResourceManager::Get().GetMemoryUsageString());
 
@@ -75,7 +78,7 @@ void Scene1::ObjectSetting()
 
 	adviceText->rectTransform->SetPosition(0, 300);
 	adviceText->rectTransform->SetSize(600, 100);
-	adviceText->screenTextRenderer->SetText(L"[N] 생성, [D] 삭제, [Shift] 메모리 확인");
+	adviceText->screenTextRenderer->SetText(L"[N] 생성, [D] 삭제, [T] Trim, [Shift] 메모리 확인");
 
 	memoryUsageText->rectTransform->SetPivot(0, 1);
 	memoryUsageText->rectTransform->SetPosition(-640, 200);
