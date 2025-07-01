@@ -85,6 +85,18 @@
     <Filter Include="소스 파일\Component\UI">
       <UniqueIdentifier>{e4a95ae1-ad08-4134-8e32-cab35d20ecf5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Manager">
+      <UniqueIdentifier>{6fc29779-f922-4737-883e-2359d27b9600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Manager">
+      <UniqueIdentifier>{2ea9d40c-19d7-45f1-8b54-466e3bb652e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Graphics">
+      <UniqueIdentifier>{a37cca4b-2cee-4c2f-a40c-e7e8bbbb49c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Graphics">
+      <UniqueIdentifier>{e7a54647-da74-45b8-a0ad-eae862e571bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h">
@@ -168,6 +180,12 @@
     <ClInclude Include="ScriptSystem.h">
       <Filter>헤더 파일\ComponentSystem</Filter>
     </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>헤더 파일\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -247,6 +265,12 @@
     </ClCompile>
     <ClCompile Include="Script.cpp">
       <Filter>소스 파일\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>소스 파일\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
+      <Filter>소스 파일\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

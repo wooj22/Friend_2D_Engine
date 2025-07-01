@@ -148,6 +148,7 @@
     <ClInclude Include="ITransform.h" />
     <ClInclude Include="MultiDelegate.h" />
     <ClInclude Include="RectTransform.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ScreenTextRenderer.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Texture2D.h" />
     <ClInclude Include="UI_Image.h" />
     <ClInclude Include="UI_Text.h" />
     <ClInclude Include="WorldTextRenderer.h" />
@@ -177,6 +179,7 @@
     <ClCompile Include="ITransform.cpp" />
     <ClCompile Include="MultiDelegate.cpp" />
     <ClCompile Include="RectTransform.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScreenTextRenderer.cpp" />
@@ -188,6 +191,7 @@
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="IRenderer.cpp" />
+    <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="UI_Image.cpp" />
     <ClCompile Include="UI_Text.cpp" />
     <ClCompile Include="WorldTextRenderer.cpp" />
