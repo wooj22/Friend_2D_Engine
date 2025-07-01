@@ -127,11 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Cat.h" />
+    <ClInclude Include="CatController.h" />
     <ClInclude Include="DemoApp.h" />
     <ClInclude Include="Scene1.h" />
     <ClInclude Include="Scene2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Cat.cpp" />
+    <ClCompile Include="CatController.cpp" />
     <ClCompile Include="DemoApp.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Scene1.cpp" />

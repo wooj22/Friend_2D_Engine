@@ -16,6 +16,9 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{4371d39f-0c71-4675-afaf-458dbbb4b43a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject_Cat">
+      <UniqueIdentifier>{a29d15d6-65ce-473a-b237-54e0f41c705c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DemoApp.h">
@@ -26,6 +29,12 @@
     </ClInclude>
     <ClInclude Include="Scene2.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Cat.h">
+      <Filter>GameObject_Cat</Filter>
+    </ClInclude>
+    <ClInclude Include="CatController.h">
+      <Filter>GameObject_Cat</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -40,6 +49,12 @@
     </ClCompile>
     <ClCompile Include="Scene2.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Cat.cpp">
+      <Filter>GameObject_Cat</Filter>
+    </ClCompile>
+    <ClCompile Include="CatController.cpp">
+      <Filter>GameObject_Cat</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

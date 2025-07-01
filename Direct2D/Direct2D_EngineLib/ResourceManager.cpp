@@ -48,47 +48,55 @@ HRESULT ResourceManager::Init()
 }
 
 /// Format bytes to human-readable string
-string ResourceManager::FormatBytes(UINT64 bytes) {
+wstring ResourceManager::FormatBytes(UINT64 bytes) {
     constexpr double KB = 1024.0;
     constexpr double MB = KB * 1024.0;
     constexpr double GB = MB * 1024.0;
 
-    ostringstream oss;
-    oss << fixed << setprecision(2);
+    std::wostringstream oss;
+    oss << std::fixed << std::setprecision(2);
 
     if (bytes >= static_cast<UINT64>(GB))
-        oss << (bytes / GB) << " GB";
+        oss << (bytes / GB) << L" GB";
     else if (bytes >= static_cast<UINT64>(MB))
-        oss << (bytes / MB) << " MB";
+        oss << (bytes / MB) << L" MB";
     else if (bytes >= static_cast<UINT64>(KB))
-        oss << (bytes / KB) << " KB";
+        oss << (bytes / KB) << L" KB";
     else
-        oss << bytes << " B";
+        oss << bytes << L" B";
 
     return oss.str();
 }
 
 /// Print memory usage
 void ResourceManager::PrintMemoryUsage() {
+    std::wstring usage = GetMemoryUsageString();
+    OutputDebugStringW(usage.c_str());
+}
+
+/// Return memory usage info as string
+wstring ResourceManager::GetMemoryUsageString()
+{
     DXGI_QUERY_VIDEO_MEMORY_INFO memInfo = {};
     HANDLE hProcess = GetCurrentProcess();
     PROCESS_MEMORY_COUNTERS_EX pmc;
     pmc.cb = sizeof(PROCESS_MEMORY_COUNTERS_EX);
     HRESULT hr = dxgiAdapter->QueryVideoMemoryInfo(0, DXGI_MEMORY_SEGMENT_GROUP_LOCAL, &memInfo);
-    if (GetProcessMemoryInfo(hProcess, (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc))) {
-        string vramStr = "VRAM: " + FormatBytes(memInfo.CurrentUsage) + "\n";
-        string dramStr = "DRAM: " + FormatBytes(pmc.WorkingSetSize) + "\n";
-        string pageFileStr = "PageFile: " + FormatBytes(pmc.PagefileUsage - pmc.WorkingSetSize) + "\n";
 
-		OutputDebugStringA("--------- 메모리 조회 ---------\n");
-        OutputDebugStringA(vramStr.c_str());
-        OutputDebugStringA(dramStr.c_str());
-        OutputDebugStringA(pageFileStr.c_str());
-        OutputDebugStringA("-----------------------------\n");
+    std::wostringstream oss;
+    oss << L"--------- 메모리 조회 ---------\n";
+
+    if (GetProcessMemoryInfo(hProcess, (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc))) {
+        oss << L"VRAM: " << FormatBytes(memInfo.CurrentUsage).c_str() << L"\n";
+        oss << L"DRAM: " << FormatBytes(pmc.WorkingSetSize).c_str() << L"\n";
+        oss << L"PageFile: " << FormatBytes(pmc.PagefileUsage - pmc.WorkingSetSize).c_str() << L"\n";
     }
     else {
-        OutputDebugStringA("메모리 정보 조회 실패\n");
+        oss << L"메모리 정보 조회 실패\n";
     }
+
+    oss << L"-----------------------------\n";
+    return oss.str();
 }
 
 /// Trim unused resources
@@ -106,7 +114,6 @@ void ResourceManager::Trim() {
     dxgiDevice->Trim();
 
     OutputDebugStringA("********* Trim() 리소스 정리 *********\n");
-    PrintMemoryUsage();
 }
 
 /// Texture2D Resource Create

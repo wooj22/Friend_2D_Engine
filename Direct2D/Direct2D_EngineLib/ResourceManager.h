@@ -46,8 +46,9 @@ private:
 	
 public:
 	HRESULT Init();
+	wstring FormatBytes(UINT64 bytes);
+	wstring GetMemoryUsageString();
 	void PrintMemoryUsage();
-	string FormatBytes(UINT64 bytes);
 	void Trim();
 
 public:

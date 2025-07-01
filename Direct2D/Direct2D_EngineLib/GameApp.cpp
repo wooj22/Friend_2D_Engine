@@ -119,7 +119,6 @@ void GameApp::Update()
 void GameApp::LateUpdate()
 {
 	renderSystem.Update();
-	if (Input::GetKeyDown(VK_SHIFT)) resourceManager.PrintMemoryUsage();
 }
 
 /// Render

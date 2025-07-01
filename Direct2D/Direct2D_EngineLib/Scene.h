@@ -1,5 +1,8 @@
 #pragma once
 #include <vector>
+#include <windows.h> 
+#include "GameObject.h"
+
 using namespace std;
 
 /* [Scene 클래스]
@@ -33,11 +36,31 @@ public:
 		return pObject;
 	}
 
+	// Create시 포인터로만 delete 가능함
+	// TODO :: GameObject Find로 삭제하는 방법 찾아보기
 	template<typename T>
 	void DeleteObject(T object)
 	{
 		auto it = find(objectList.begin(), objectList.end(), object);
-		objectList.erase(it);
+		if (it != objectList.end()) {
+			objectList.erase(it);
+			return;
+		}
+		else {
+			OutputDebugStringA("삭제할 GameObject가 없습니다.\n");
+			return;
+		}
+	}
+
+	// 리소스 제거용 test 함수
+	void TestCatPop() {
+		if (objectList.back()->name == "Cat") {
+			objectList.back()->Destroyed();
+			delete objectList.back();
+			objectList.pop_back();
+		}
+
+		OutputDebugStringA("삭제할 Cat이 없습니다.\n");
 	}
 };
 

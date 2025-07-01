@@ -1,5 +1,7 @@
 #include "DemoApp.h"
 #include "../Direct2D_EngineLib/RectTransform.h"
+#include "Scene1.h"
+#include "Scene2.h"
 
 // static member init
 Camera* DemoApp::mainCamera = nullptr;
@@ -23,10 +25,10 @@ void DemoApp::Init()
 		D2D1::Matrix3x2F::Scale(1.0f, -1.0f) * D2D1::Matrix3x2F::Translation(width / 2.0f, height / 2.0f);
 
 	// scene init
-	//sceneManager.CreateScene<MenuScene>();
-	//sceneManager.CreateScene<PlayScene>();
+	sceneManager.CreateScene<Scene1>();
+	sceneManager.CreateScene<Scene2>();
 
-	//sceneManager.SetCurrentScene(MENU);
+	sceneManager.SetCurrentScene(SCENE1);
 	sceneManager.Init();
 }
 
