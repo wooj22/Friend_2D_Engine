@@ -159,10 +159,7 @@ void GameApp::Loop()
 /// Release
 void GameApp::UnInit()
 {
-	// manager
 	renderSystem.UnInit();   
 	sceneManager.UnInit();
-	//inputManager.UnInit();
-	//timeManager.UnInit();
 	CoUninitialize();			 // com ∞¥√º «ÿ¡¶
 }

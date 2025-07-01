@@ -12,7 +12,6 @@ private:
 public:
     static void Init(HWND hwnd);
     static void Update();
-    static void UnInit() {}
 
     static bool GetKey(int vKey);
     static bool GetKeyDown(int vKey);
