@@ -8,6 +8,7 @@
 #include "ButtonSystem.h"
 #include "ScriptSystem.h"
 #include "SceneManager.h"
+#include "ResourceManager.h"
 #include "Time.h"
 #include "Input.h"
 
@@ -32,8 +33,9 @@ protected:
 	ButtonSystem buttonSystem;	// button
 	ScriptSystem scriptSystem;	// script
 
-	// scene manager
+	// manager
 	SceneManager sceneManager;
+	ResourceManager resourceManager;
 
 public:
 	bool isLoop = true;

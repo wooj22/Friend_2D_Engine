@@ -1,13 +1,26 @@
 #pragma once
+#include <iostream>
+#include <string>
+#include <unordered_map>
+#include <sstream>
+#include <memory>
+#include <filesystem>
+#include <iomanip>
+#include <conio.h> 
+#include <queue>
+
 #include <d3d11.h>
 #include <d2d1_3.h>
 #include <wrl.h>
 #include <wincodec.h>
-#include <unordered_map>
-#include <string>
-#include <memory>
-#include <filesystem>
-#include <iostream>
+#include <dxgi1_6.h>
+#include <psapi.h>
+#pragma comment(lib, "d3d11.lib")
+#pragma comment(lib, "d2d1.lib")
+#pragma comment(lib, "dxgi.lib")
+#pragma comment(lib, "psapi.lib")
+#pragma comment(lib,"windowscodecs.lib")
+
 #include "Singleton.h"
 
 using namespace std;
@@ -24,7 +37,18 @@ class ResourceManager : public Singleton<ResourceManager>
 {
 private:
 	unordered_map<string, weak_ptr<Texture2D>> map_texture2D;
-    ComPtr<IWICImagingFactory> wicImagingFactory;
+
+private:
+	// com °´Ã¼
+	ComPtr<IWICImagingFactory> wicImagingFactory;
+	ComPtr<IDXGIDevice3> dxgiDevice; 
+	ComPtr<IDXGIAdapter3> dxgiAdapter;
+	
+public:
+	HRESULT Init();
+	void PrintMemoryUsage();
+	string FormatBytes(UINT64 bytes);
+	void Trim();
 
 public:
 	shared_ptr<Texture2D> CreateTexture2D(string filePath);

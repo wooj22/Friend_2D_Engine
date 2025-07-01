@@ -90,15 +90,13 @@ void GameApp::Init()
 	ShowWindow(hWnd, SW_SHOW);
 	UpdateWindow(hWnd);
 
-	CoInitialize(nullptr);					// com 객체 초기화	
-
+	CoInitialize(nullptr);			// com 객체 초기화	
 	
-	// static system init
+	// init
 	Input::Init(hWnd);
 	Time::Init();
-
-	// component system init
 	renderSystem.Init(hWnd, width, height);
+	resourceManager.Init();	 // rendersystem init 후에 호출해야 함
 }
 
 /// PreUpdate
@@ -121,6 +119,7 @@ void GameApp::Update()
 void GameApp::LateUpdate()
 {
 	renderSystem.Update();
+	if (Input::GetKeyDown(VK_SHIFT)) resourceManager.PrintMemoryUsage();
 }
 
 /// Render
