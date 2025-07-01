@@ -1,8 +1,9 @@
 #pragma once
 #include <Windows.h>
+#include "Object.h"
 
 class GameObject;
-class Component
+class Component : public Object
 {
 public:
     GameObject* owner = nullptr;

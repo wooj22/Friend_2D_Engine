@@ -147,6 +147,8 @@
     <ClInclude Include="ImageRenderer.h" />
     <ClInclude Include="ITransform.h" />
     <ClInclude Include="MultiDelegate.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectTable.h" />
     <ClInclude Include="RectTransform.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
@@ -178,6 +180,8 @@
     <ClCompile Include="ImageRenderer.cpp" />
     <ClCompile Include="ITransform.cpp" />
     <ClCompile Include="MultiDelegate.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectTable.cpp" />
     <ClCompile Include="RectTransform.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />

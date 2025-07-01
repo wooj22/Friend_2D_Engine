@@ -28,14 +28,14 @@ void MenuScene::Start()
 
 	// Button event µî·Ï
 	menuUIManager->button1->button->onClickListeners.AddListener(
-		&cat->catController, std::bind(&CatController::Button1Click, cat->catController));
+		cat->catController, std::bind(&CatController::Button1Click, cat->catController));
 	menuUIManager->button1->button->onClickListeners.AddListener(
-		&fish, std::bind(&Fish::Button1Click, fish));
+		fish, std::bind(&Fish::Button1Click, fish));
 
 	menuUIManager->button2->button->onClickListeners.AddListener(
-		&cat->catController, std::bind(&CatController::Button2Click, cat->catController));
+		cat->catController, std::bind(&CatController::Button2Click, cat->catController));
 	menuUIManager->button2->button->onClickListeners.AddListener(
-		&fish, std::bind(&Fish::Button2Click, fish));
+		fish, std::bind(&Fish::Button2Click, fish));
 
 	// game object -> start
 	__super::Start();

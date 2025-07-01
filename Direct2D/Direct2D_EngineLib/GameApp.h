@@ -11,6 +11,7 @@
 #include "ResourceManager.h"
 #include "Time.h"
 #include "Input.h"
+#include "ObjectTable.h"
 
 using namespace std;
 
@@ -26,6 +27,9 @@ protected:
 	wstring			titleName = L"Direct 2D Project";
 	string			modulePath;
 	string			workingPath;
+
+	// object table
+	ObjectTable objectTable;
 
 	// component system
 	TransformSystem transformSystem;	// transform, rectTransfrom

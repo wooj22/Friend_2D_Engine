@@ -4,6 +4,7 @@
 #include <iostream>
 #include <windows.h> 
 #include "Component.h"
+#include "Object.h"
 
 /* [GameObject 클래스]
 * Component를 등록시킬 수 있는 오브젝트로,
@@ -13,7 +14,8 @@
 */
 
 class Component;
-class GameObject {
+class GameObject : public Object
+{
 private:
     std::vector<Component*> components;
     static std::vector<GameObject*> allGameObjects;
