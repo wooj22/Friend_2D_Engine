@@ -80,7 +80,7 @@ void ResourceManager::PrintMemoryUsage() {
         string dramStr = "DRAM: " + FormatBytes(pmc.WorkingSetSize) + "\n";
         string pageFileStr = "PageFile: " + FormatBytes(pmc.PagefileUsage - pmc.WorkingSetSize) + "\n";
 
-		OutputDebugStringA("---------메모리 조회---------\n");
+		OutputDebugStringA("--------- 메모리 조회 ---------\n");
         OutputDebugStringA(vramStr.c_str());
         OutputDebugStringA(dramStr.c_str());
         OutputDebugStringA(pageFileStr.c_str());
@@ -93,7 +93,20 @@ void ResourceManager::PrintMemoryUsage() {
 
 /// Trim unused resources
 void ResourceManager::Trim() {
+    // 안쓰는 리소스 맵에서 제거 (ControlBlock 소멸)
+    for (auto it = map_texture2D.begin(); it != map_texture2D.end(); )
+    {
+        if (it->second.expired())
+            it = map_texture2D.erase(it);
+        else
+            ++it;
+    }
+
+    // 안 쓰는 리소스 정리 (VRAM/DRAM/pagefile.sys( 리소스 제거)
     dxgiDevice->Trim();
+
+    OutputDebugStringA("********* Trim() 리소스 정리 *********\n");
+    PrintMemoryUsage();
 }
 
 /// Texture2D Resource Create

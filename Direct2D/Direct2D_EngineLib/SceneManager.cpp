@@ -1,5 +1,6 @@
 #include "SceneManager.h"
 #include "Scene.h"
+#include "ResourceManager.h"
 
 /// first Scene Init
 void SceneManager::Init()
@@ -21,6 +22,7 @@ void SceneManager::Update()
 		currentScene = nextScene;
 		nextScene = nullptr;
 
+		ResourceManager::Get().Trim(); // 씬 전환시 gpu 리소스 정리
 		currentScene->Awake();
 		currentScene->Start();
 	}
