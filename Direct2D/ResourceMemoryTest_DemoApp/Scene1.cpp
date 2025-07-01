@@ -66,13 +66,13 @@ void Scene1::Scene1ObjectSetting()
 	
 	titleText->rectTransform->SetPosition(0, 400);
 	titleText->rectTransform->SetSize(600, 100);
-	titleText->screenTextRenderer->SetText(L"Resource Memory Test");
-	titleText->screenTextRenderer->SetFontSize(50);
-	titleText->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::Black));
+	titleText->screenTextRenderer->SetText(L"Resource Memory Test \n<Scene 1>");
+	titleText->screenTextRenderer->SetFontSize(40);
+	titleText->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::DarkGreen));
 
 	adviceText->rectTransform->SetPosition(0, 300);
 	adviceText->rectTransform->SetSize(600, 100);
-	adviceText->screenTextRenderer->SetText(L"[N] 생성, [D] 삭제, [T] Trim, [Shift] 메모리 확인");
+	adviceText->screenTextRenderer->SetText(L"[N] 생성, [D] 삭제, [T] Trim, [Shift] 메모리 확인\n [Spacebar] 씬 전환");
 
 	memoryUsageText->rectTransform->SetPivot(0, 1);
 	memoryUsageText->rectTransform->SetPosition(-640, 200);

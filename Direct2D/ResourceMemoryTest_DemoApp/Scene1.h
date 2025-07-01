@@ -7,7 +7,7 @@
 #include"../Direct2D_EngineLib/UI_Image.h"
 #include"../Direct2D_EngineLib/UI_Text.h"
 
-/* 리소스 공유자원 메모리 테스트 씬 */ 
+/* 리소스 공유자원 메모리 테스트 씬 - 키 입력*/
 class Scene1 : public Scene
 {
 private:

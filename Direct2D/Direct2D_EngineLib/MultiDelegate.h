@@ -8,8 +8,7 @@ template<typename... Args>
 class MultiDelegate {
 	struct Slot
 	{
-		//void* instance;					// 콜백 구분용 포인터
-		Object* instance;					// 콜백 구분용 포인터	
+		Object* instance;				    // 콜백 구분용 포인터	(GameObject, Component, Scene)
 		std::function<void(Args...)> func;	// 콜백 함수 리스트
 	};
 	std::vector<Slot> slots;

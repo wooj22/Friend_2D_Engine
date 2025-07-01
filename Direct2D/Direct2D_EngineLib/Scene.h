@@ -2,6 +2,7 @@
 #include <vector>
 #include <windows.h> 
 #include "GameObject.h"
+#include "Object.h"
 
 using namespace std;
 
@@ -11,7 +12,7 @@ using namespace std;
 */
 
 class GameObject;
-class Scene
+class Scene : public Object
 {
 private:
 	vector<GameObject*> objectList;
