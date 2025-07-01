@@ -37,6 +37,7 @@ public:
 	// component cycle
 	ScreenTextRenderer()
 	{ 
+		rendertype = RenderType::UI;		// 렌더 타입 지정 (UI)
 		RenderSystem::Get().Regist(this); 
 		OutputDebugStringA("ScreenTextRenderer()\n");
 	};

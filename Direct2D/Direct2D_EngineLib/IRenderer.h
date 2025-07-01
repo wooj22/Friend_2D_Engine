@@ -3,6 +3,11 @@
 
 /* Renderer Componenets Interface */
 
+enum class RenderType
+{
+	UI, GameObject
+};
+
 class IRenderer : public Component
 {
 public : 
@@ -10,10 +15,7 @@ public :
 
 	virtual void Update() = 0;
 	virtual void Render() = 0;
-};
 
-// 현재 사용중인 클래스 목록
-// SpriteRenderer
-// ImageRenderer
-// ScreenTextRenderer
-// WorldTextRenderer
+	// gameobject 위에 ui 그리기 (일단 이렇게 함)
+	RenderType rendertype = RenderType::GameObject;
+};

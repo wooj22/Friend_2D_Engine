@@ -30,6 +30,7 @@ private:
 public:
 	// component cycle
 	ImageRenderer() { 
+		rendertype = RenderType::UI;		// 렌더 타입 지정 (UI)
 		RenderSystem::Get().Regist(this);
 		OutputDebugStringA("ImageRenderer()\n");
 	};

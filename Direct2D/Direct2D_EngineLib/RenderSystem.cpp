@@ -104,10 +104,17 @@ void RenderSystem::Render()
 	renderTarget->Clear(D2D1::ColorF(D2D1::ColorF::Black));
 	renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
 
-	// renderList Render()
+	// GameObject Render()
 	for (IRenderer* component : components)
 	{
-		if (component)
+		if (component && component->rendertype == RenderType::GameObject)
+			component->Render();
+	}
+
+	// UI Render()
+	for (IRenderer* component : components)
+	{
+		if (component && component->rendertype == RenderType::UI)
 			component->Render();
 	}
 
