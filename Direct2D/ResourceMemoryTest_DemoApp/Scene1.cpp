@@ -6,13 +6,13 @@ void Scene1::Awake()
 	camera = DemoApp::mainCamera;
 	camera->transform->SetPosition(0, 0);
 
-	Scene1ObjectCreate();
+	Scene1ObjectCreate(); // 持失切 -> ComponentInit() -> Awake()
 }
 
 void Scene1::Start()
 {
 	// game object -> SceneStartInit
-	__super::Start();
+	__super::Start();	 // 持失切 -> ComponentInit() -> Start()
 
 	Scene1ObjectSetting();
 }

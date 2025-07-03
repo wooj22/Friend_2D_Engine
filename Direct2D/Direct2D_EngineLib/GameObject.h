@@ -11,13 +11,21 @@
 * 게임 콘텐츠에 활용할 오브젝트는 이 클래스를 상속받아 컴포넌트를 조합하여 구현한다.
 * 게임 오브젝트는 Scene에 등록되어 Scene의 Update에 따라 Update가 실행된다.
 * 
-* <게임 오브젝트 사이클에 따른 콘텐츠 작성 유의사항>
-* 1) '생성자()'에서 컴포넌트 생성하기 -> 컴포넌트의 OnEnable()이 실행됨 (순차 생성 유의)
-* 2) 오브젝트가 생성될 때 가장 먼저  'ComponentInit()'이 호출되어 컴포넌트의 OnEnable()이 실행된다.
-*    AddComponent()시에 OnEnable()을 했을 경우 아직 생성되지 않은 컴포넌트를 GetComponent하는 문제가 해결됨
-*    즉, AddComponent 순서 상관 없이 OnEnable()에서 GetCompoent를 자유롭게 사용해도 됨
-* 3) 오브젝트가 생성될 때 ComponentInit()에 이어 'Awake()'가 호출된다.(순차 생성 유의) 이때 본인 컴포넌트의 초기화를 마치길 권장한다. 
-* 4) Scene이 Start될 때 'SceneStartInit()'가 호출된다. 
+* < GameObject Cycle >
+* １．　게임오브젝트　생성자에서　컴포넌트　생성
+* ２．　게임오브젝트　ComponentInit()－＞ 컴포넌트 OnEnable()
+* ３．　게임오브젝트　Awake()
+* ４．　게임오브젝트　SceneStartInit()　// 초기 오브젝트만　해당 (Scene Start() 시점에 생성되어있는 오브젝트)
+* ５．　게임오브젝트　Update()
+* ６．　게임오브젝트　Destroyed()
+* 
+* < 콘텐츠 제작시 유의사항 >
+* 1) '생성자()'에서 컴포넌트 생성하기
+* 2) 오브젝트가 생성되고 가장 먼저  'ComponentInit()'이 호출되어 컴포넌트의 OnEnable()이 실행된다.
+*    AddComponent()시에 OnEnable()을 했을 경우 아직 생성되지 않은 컴포넌트를 GetComponent하지 못하는 문제가 해결됨
+*    이로써, AddComponent 순서 상관 없이 OnEnable()에서 GetCompoent를 자유롭게 사용해도 됨
+* 3) 오브젝트가 생성될 때 ComponentInit()에 이어 'Awake()'가 호출된다. 이때 본인 컴포넌트끼리의 초기화를 마치길 권장한다. 
+* 4) Scene이 Start()될 때 'SceneStartInit()'가 호출된다. 
      이때는 씬의 모든 게임오브젝트들이 생성되어있는 시점이므로 Find, 부모관계 지정 등의 작업이 가능하다
      ⭐ 만약 Scene의 Update중간에 생성되는 게임오브젝트라면 SceneStartInit()가 호출되지 않으므로
         SceneStartInit()안에 코드를 작성하지 않아야 한다.

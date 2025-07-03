@@ -34,7 +34,7 @@ private:
     float rotation;
     D2D1_POINT_2F scale;
 
-    // parent, 
+    // parent, children
     Transform* parent = nullptr;
     std::vector<Transform*> children;
 
