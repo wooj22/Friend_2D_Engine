@@ -6,7 +6,7 @@ void Sun::Awake()
 	sr = AddComponent<SpriteRenderer>();
 }
 
-void Sun::Start()
+void Sun::SceneStartInit()
 {
 	transform->SetPosition(0, 0);
 	transform->SetScale(2.5, 2.5);

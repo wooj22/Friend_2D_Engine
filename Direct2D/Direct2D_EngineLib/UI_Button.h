@@ -17,11 +17,18 @@ public:
 	ScreenTextRenderer* screenTextRenderer;
 	Button* button;
 
-	UI_Button() { OutputDebugStringA("UI_Button()\n"); }
+	UI_Button() 
+	{ 
+		rectTransform = AddComponent<RectTransform>();
+		imageRenderer = AddComponent <ImageRenderer>();
+		screenTextRenderer = AddComponent<ScreenTextRenderer>();
+		button = AddComponent<Button>();
+		OutputDebugStringA("UI_Button()\n"); 
+	}
 	~UI_Button() override { OutputDebugStringA("~UI_Button()\n"); }
 
-	void Awake() override;
-	void Start() override {}
+	void Awake() override {}
+	void SceneStartInit() override {}
 	void Update() override {}
 	void Destroyed() override {}
 };

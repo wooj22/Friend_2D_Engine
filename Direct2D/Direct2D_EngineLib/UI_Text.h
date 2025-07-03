@@ -13,11 +13,16 @@ public:
 	RectTransform* rectTransform;
 	ScreenTextRenderer* screenTextRenderer;
 
-	UI_Text() { OutputDebugStringA("UI_Text()\n"); }
+	UI_Text() 
+	{ 
+		rectTransform = AddComponent<RectTransform>();
+		screenTextRenderer = AddComponent <ScreenTextRenderer>();
+		OutputDebugStringA("UI_Text()\n"); 
+	}
 	~UI_Text() override { OutputDebugStringA("~UI_Text()\n"); }
 
-	void Awake() override;
-	void Start() override {}
+	void Awake() override {}
+	void SceneStartInit() override {}
 	void Update() override {}
 	void Destroyed() override {}
 };

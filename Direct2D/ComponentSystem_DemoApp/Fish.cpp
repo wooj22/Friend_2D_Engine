@@ -6,7 +6,7 @@ void Fish::Awake()
 	sr = AddComponent<SpriteRenderer>();
 }
 
-void Fish::Start() 
+void Fish::SceneStartInit() 
 {
 	transform->SetScale(0.3, 0.3);
 	transform->SetRotation(-60);

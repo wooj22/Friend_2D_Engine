@@ -1,24 +1,15 @@
 #include "Scene.h"
 #include "GameObject.h"
 
-/// Scene Awake
-void Scene::Awake() 
+/// Scene Start
+void Scene::Start()
 {
 	for (auto& object : objectList)
 	{
-		object->Awake();
+		object->SceneStartInit();
 	}
 }
 
-/// Scene Start
-void Scene::Start() 
-{
-	for (auto& object : objectList)
-	{
-		object->Start();
-	}
-}
- 
 /// Scene Update
 void Scene::Update()
 {

@@ -19,7 +19,7 @@ public:
 	~Fish() override { OutputDebugStringA("~Fish()\n"); }
 
 	void Awake() override;
-	void Start() override;
+	void SceneStartInit() override;
 	void Update() override;
 	void Destroyed() override;
 

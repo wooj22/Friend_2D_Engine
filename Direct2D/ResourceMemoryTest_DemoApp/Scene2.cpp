@@ -7,27 +7,28 @@ void Scene2::Awake()
 	camera->transform->SetPosition(0, 0);
 
 	Scene2ObjectCreate();
-
-	// game object -> awake
-	__super::Awake();
-
-	Scene2ObjectSetting();
+	
 }
 
 void Scene2::Start()
 {
+	// game object -> SceneStartInit
+	__super::Start();
+
+	Scene2ObjectSetting();
+
 	// Button event µî·Ï
 	createButton->button->onClickListeners.AddListener(
 		this, std::bind(&Scene2::CreateButtonClick, this));
 	deleteButton->button->onClickListeners.AddListener(
 		this, std::bind(&Scene2::DeleteButtonClick, this));
-
-	// game object -> start
-	__super::Start();
 }
 
 void Scene2::Update()
 {
+	// game object -> Update
+	__super::Update();
+
 	// camera move
 	if (Input::GetKey(VK_LEFT)) camera->transform->AddPosition(-300 * Time::GetDeltaTime(), 0);
 	if (Input::GetKey(VK_RIGHT)) camera->transform->AddPosition(300 * Time::GetDeltaTime(), 0);

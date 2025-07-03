@@ -6,7 +6,7 @@ void Moon::Awake()
 	sr = AddComponent<SpriteRenderer>();
 }
 
-void Moon::Start()
+void Moon::SceneStartInit()
 {
 	transform->SetPosition(50, 0);
 	sr->CreateTexture2D("../Resource/Moon.png");

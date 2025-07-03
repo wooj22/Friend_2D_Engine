@@ -20,9 +20,10 @@ public:
 	}
 	~Cat() override {}
 
-	void Awake() override {}
-	void Start() override {}
-	void Update() override {}
-	void Destroyed() override {}
+	/* GameObject Cycle */
+	void Awake() override {}			 // 오브젝트가 생성될 때
+	void SceneStartInit() override {}	 // Scene의 Start
+	void Update() override {}			 // Scene의 Update
+	void Destroyed() override {}		 // Scene의 Exit, GameObject Delete
 };
 

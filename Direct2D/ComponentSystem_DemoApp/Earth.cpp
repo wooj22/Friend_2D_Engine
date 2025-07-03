@@ -6,7 +6,7 @@ void Earth::Awake()
 	sr = AddComponent<SpriteRenderer>();
 }
 
-void Earth::Start()
+void Earth::SceneStartInit()
 {
 	transform->SetPosition(150, 0);
 	transform->SetScale(0.5, 0.5);

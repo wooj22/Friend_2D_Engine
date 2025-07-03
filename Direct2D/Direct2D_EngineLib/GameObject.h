@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <vector>
 #include <typeinfo>
 #include <iostream>
@@ -6,11 +6,22 @@
 #include "Component.h"
 #include "Object.h"
 
-/* [GameObject Ŭ����]
-* Component�� ��Ͻ�ų �� �ִ� ������Ʈ��,
-* ���� �������� Ȱ���� ������Ʈ�� �� Ŭ������ ��ӹ޾� ������Ʈ�� �����Ͽ� �����Ѵ�.
-* ���� ������Ʈ�� Scene�� ��ϵǾ� Scene Life Cycle��� Cycle�� ȣ��ȴ�.
-* SceneManager -> Scene -> GameObject(this)
+/* [GameObject 클래스]
+* Component를 등록시킬 수 있는 오브젝트로,
+* 게임 콘텐츠에 활용할 오브젝트는 이 클래스를 상속받아 컴포넌트를 조합하여 구현한다.
+* 게임 오브젝트는 Scene에 등록되어 Scene의 Update에 따라 Update가 실행된다.
+* 
+* <게임 오브젝트 사이클에 따른 콘텐츠 작성 유의사항>
+* 1) 생성자()에서 컴포넌트 생성하기 -> 컴포넌트의 OnEnable()이 실행됨 (순차 생성 유의)
+* 2) 오브젝트가 생성될 때 Awake()가 호출된다.(순차 생성 유의) 이때 본인 컴포넌트의 초기화를 마치길 권장한다. 
+* 3) Scene이 Start될 때 SceneStartInit()가 호출된다. 
+     이때는 씬의 모든 게임오브젝트들이 생성되어있는 시점이므로 Find, 부모관계 지정 등의 작업이 가능하다
+     ⭐ 만약 Scene의 Update중간에 생성되는 게임오브젝트라면 SceneStartInit()가 호출되지 않으므로
+        SceneStartInit()안에 코드를 작성하지 않아야 한다.
+        중간에 생성되는 오브젝트는 다른 게임오브젝트들이 이미 생성된 시점이기 때문에
+        생성자나 Awake()에 초기화 코드를 모두 작성하면 된다.
+  4) Scene이 Update될 때 Update()가 매 프레임 호출된다.
+  5) 게임오브젝트가 파괴되거나 씬이 종료될 때 Destroyed()가 호출된다.
 */
 
 class Component;
@@ -48,11 +59,11 @@ public:
     }
 
 public:
-    // scene -> gameObject cycle
-    virtual void Awake() {};
-    virtual void Start() {};
-    virtual void Update() {};
-    virtual void Destroyed() {};
+    /* GameObject Cycle */
+    virtual void Awake() {};           // 오브젝트가 생성될 때
+    virtual void SceneStartInit() {};  // Scene의 Start
+    virtual void Update() {};          // Scene의 Update
+    virtual void Destroyed() {};       // Scene의 Exit, GameObject Delete
 
 public:
     // game object find

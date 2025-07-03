@@ -7,21 +7,21 @@ void Scene1::Awake()
 	camera->transform->SetPosition(0, 0);
 
 	Scene1ObjectCreate();
-
-	// game object -> awake
-	__super::Awake();
-
-	Scene1ObjectSetting();
 }
 
 void Scene1::Start()
 {
-	// game object -> start
+	// game object -> SceneStartInit
 	__super::Start();
+
+	Scene1ObjectSetting();
 }
 
 void Scene1::Update()
 {
+	// game object -> Update
+	__super::Update();
+
 	// camera move
 	if (Input::GetKey(VK_LEFT)) camera->transform->AddPosition(-300 * Time::GetDeltaTime(), 0);
 	if (Input::GetKey(VK_RIGHT)) camera->transform->AddPosition(300 * Time::GetDeltaTime(), 0);

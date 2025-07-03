@@ -14,7 +14,7 @@ public:
 	~MenuBackground() override { OutputDebugStringA("~MenuBackground()\n"); }
 
 	void Awake() override;
-	void Start() override;
+	void SceneStartInit() override;
 	void Update() override;
 	void Destroyed() override;
 };

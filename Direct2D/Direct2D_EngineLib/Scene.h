@@ -7,8 +7,11 @@
 using namespace std;
 
 /* [Scene 클래스]
-* 게임 콘텐츠에서의 Scene의 Base로 각 씬에 GameObect를 등록시켜 GameObject의 Cycle을 호출한다.
-* SceneManager -> Scene(this) -> GameObject
+* 게임 콘텐츠에서의 Scene의 Base로 각 씬에 GameObect를 등록시켜 GameObject의 Cycle를 호출한다.
+* 씬에 GameObject가 생성될 때 : GameObject->Awake()
+* 씬이 Start될 때 : GameObject->SceneStartInit()
+* 씬이 Update될 때 : GameObject->Update()
+* 씬의 GameObject를 삭제시킬 때 : GameObject->Destroyed()
 */
 
 class GameObject;
@@ -21,9 +24,9 @@ public:
 	Scene() = default;
 	virtual ~Scene() { Clear(); }
 
-	// Scene Life Cycle
-	virtual void Awake();		// GameObjects->Awake()
-	virtual void Start();		// GameObjects->Start()
+	/* Scene Life Cycle */
+	virtual void Awake() = 0;
+	virtual void Start();		// GameObjects->SceneStartInit()
 	virtual void Update();		// GameObjects->Update()
 	virtual void Exit();		// GameObjects->Destroyed()
 	void Clear();
@@ -34,6 +37,7 @@ public:
 	{
 		T* pObject = new T(std::forward<Args>(args)...);
 		objectList.push_back(pObject);
+		pObject->Awake();		// GameObject->Awake()
 		return pObject;
 	}
 
@@ -44,12 +48,12 @@ public:
 	{
 		auto it = find(objectList.begin(), objectList.end(), object);
 		if (it != objectList.end()) {
+			(*it)->Destroyed();;
+			delete *it;
 			objectList.erase(it);
-			return;
 		}
 		else {
 			OutputDebugStringA("삭제할 GameObject가 없습니다.\n");
-			return;
 		}
 	}
 

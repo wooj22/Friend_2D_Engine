@@ -37,6 +37,8 @@ class ResourceManager : public Singleton<ResourceManager>
 {
 private:
 	unordered_map<string, weak_ptr<Texture2D>> map_texture2D;
+	//unordered_map<string, weak_ptr<Sprite>> map_sprite;
+	//unordered_map<string, weak_ptr<AnimationClip>> map_animationClip;
 
 private:
 	// d2d

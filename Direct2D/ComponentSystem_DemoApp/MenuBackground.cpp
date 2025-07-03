@@ -6,7 +6,7 @@ void MenuBackground::Awake()
 	spriteRenderer = AddComponent<SpriteRenderer>();
 }
 	
-void MenuBackground::Start()
+void MenuBackground::SceneStartInit()
 {
 	spriteRenderer->CreateTexture2D("../Resource/Ground.jpg");
 	transform->SetScale(5, 5);

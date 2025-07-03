@@ -13,11 +13,16 @@ public:
 	RectTransform* rectTransform;
 	ImageRenderer* imageRenderer;
 
-	UI_Image() { OutputDebugStringA("UI_Image()\n"); }
+	UI_Image() 
+	{ 
+		rectTransform = AddComponent<RectTransform>();
+		imageRenderer = AddComponent <ImageRenderer>(); 
+		OutputDebugStringA("UI_Image()\n"); 
+	}
 	~UI_Image() override { OutputDebugStringA("~UI_Image()\n"); }
 
-	void Awake() override;
-	void Start() override {}
+	void Awake() override {}
+	void SceneStartInit() override {}
 	void Update() override {}
 	void Destroyed() override {}
 };
