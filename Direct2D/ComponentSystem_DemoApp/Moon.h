@@ -10,6 +10,11 @@ class Moon : public GameObject
 private:
 	float rotationSpeed = 100.0f;
 public:
+	Moon() {
+		transform = AddComponent<Transform>();
+		sr = AddComponent<SpriteRenderer>();
+	}
+	~Moon() override {}
 	Transform* transform;
 	SpriteRenderer* sr;
 

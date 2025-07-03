@@ -64,6 +64,7 @@ public:
 			objectList.back()->Destroyed();
 			delete objectList.back();
 			objectList.pop_back();
+			return;
 		}
 
 		OutputDebugStringA("삭제할 Cat이 없습니다.\n");

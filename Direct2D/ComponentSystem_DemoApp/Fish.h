@@ -15,7 +15,12 @@ public:
 	Transform* transform;
 	SpriteRenderer* sr;
 
-	Fish() : GameObject("Fish") { OutputDebugStringA("Fish()\n"); }
+	Fish() : GameObject("Fish") 
+	{ 
+		transform = AddComponent<Transform>();
+		sr = AddComponent<SpriteRenderer>(); 
+		OutputDebugStringA("Fish()\n"); 
+	}
 	~Fish() override { OutputDebugStringA("~Fish()\n"); }
 
 	void Awake() override;

@@ -10,6 +10,12 @@ class Earth : public GameObject
 private:
 	float rotationSpeed = 70.0f;
 public:
+	Earth() {
+		transform = AddComponent<Transform>();
+		sr = AddComponent<SpriteRenderer>();
+	}
+	~Earth() override {}
+
 	Transform* transform;
 	SpriteRenderer* sr;
 

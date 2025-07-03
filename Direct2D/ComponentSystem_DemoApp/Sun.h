@@ -10,6 +10,12 @@ class Sun : public GameObject
 private:
 	float rotationSpeed = 50.0f;
 public:
+	Sun(){
+		transform = AddComponent<Transform>();
+		sr = AddComponent<SpriteRenderer>();
+	}
+	~Sun() override{}
+
 	Transform* transform;
 	SpriteRenderer* sr;
 

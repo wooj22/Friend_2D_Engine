@@ -2,8 +2,7 @@
 
 void Earth::Awake()
 {
-	transform = AddComponent<Transform>();
-	sr = AddComponent<SpriteRenderer>();
+	
 }
 
 void Earth::SceneStartInit()

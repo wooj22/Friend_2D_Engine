@@ -2,8 +2,7 @@
 
 void Sun::Awake() 
 {
-	transform = AddComponent<Transform>();
-	sr = AddComponent<SpriteRenderer>();
+	
 }
 
 void Sun::SceneStartInit()

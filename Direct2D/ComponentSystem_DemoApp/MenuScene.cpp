@@ -16,9 +16,6 @@ void MenuScene::Awake()
 	menuUIManager->titleText = CreateObject<UI_Text>();
 	menuUIManager->button1 = CreateObject<UI_Button>();
 	menuUIManager->button2 = CreateObject<UI_Button>();
-	
-	// game object -> awake
-	__super::Awake();
 }
 
 void MenuScene::Start() 

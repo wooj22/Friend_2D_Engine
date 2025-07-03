@@ -2,8 +2,7 @@
 
 void Moon::Awake()
 {
-	transform = AddComponent<Transform>();
-	sr = AddComponent<SpriteRenderer>();
+	
 }
 
 void Moon::SceneStartInit()

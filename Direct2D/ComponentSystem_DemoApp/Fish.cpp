@@ -2,8 +2,7 @@
 
 void Fish::Awake()
 {
-	transform = AddComponent<Transform>();
-	sr = AddComponent<SpriteRenderer>();
+	
 }
 
 void Fish::SceneStartInit() 

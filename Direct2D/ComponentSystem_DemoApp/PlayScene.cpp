@@ -10,9 +10,6 @@ void PlayScene::Awake()
 	sun = CreateObject<Sun>();
 	earth = CreateObject<Earth>();
 	moon = CreateObject<Moon>();
-
-	// game object -> awake()
-	__super::Awake();
 }
 
 void PlayScene::Start()

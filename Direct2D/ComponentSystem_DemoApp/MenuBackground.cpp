@@ -2,8 +2,7 @@
 
 void MenuBackground::Awake()
 {
-	transform = AddComponent<Transform>();
-	spriteRenderer = AddComponent<SpriteRenderer>();
+	
 }
 	
 void MenuBackground::SceneStartInit()

@@ -13,7 +13,14 @@ public:
 	WorldTextRenderer* tr;
 	CatController* catController;	// script component
 
-	Cat() : GameObject("Cat") { OutputDebugStringA("Cat()\n"); }
+	Cat() : GameObject("Cat") 
+	{ 
+		transform = AddComponent<Transform>();
+		sr = AddComponent<SpriteRenderer>();
+		tr = AddComponent<WorldTextRenderer>();
+		catController = AddComponent<CatController>();
+		OutputDebugStringA("Cat()\n"); 
+	}
 	~Cat() override { OutputDebugStringA("~Cat()\n"); }
 
 	// scene->gameobject cycle
