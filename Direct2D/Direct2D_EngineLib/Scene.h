@@ -37,7 +37,8 @@ public:
 	{
 		T* pObject = new T(std::forward<Args>(args)...);
 		objectList.push_back(pObject);
-		pObject->Awake();		// GameObject->Awake()
+		pObject->ComponentInit();	// GameObject->ComponentInit()->Components OnEnable()
+		pObject->Awake();			// GameObject->Awake()
 		return pObject;
 	}
 

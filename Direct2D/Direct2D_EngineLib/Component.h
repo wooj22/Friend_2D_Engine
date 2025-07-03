@@ -10,8 +10,9 @@ public:
 
 public:
     virtual ~Component() = default;
-    
-    virtual void OnEnable() = 0;
-    virtual void OnDestroy() = 0;
+
+    /* Component Cycle */
+    virtual void OnEnable() = 0;    // GameObject의 모든 Compoent가 생성된 뒤 초기화로 호출
+    virtual void OnDestroy() = 0;   // GameObject가 파괴되거나, 컴포넌트가 파괴될 때 호출
 };
 

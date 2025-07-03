@@ -12,16 +12,19 @@
 * 게임 오브젝트는 Scene에 등록되어 Scene의 Update에 따라 Update가 실행된다.
 * 
 * <게임 오브젝트 사이클에 따른 콘텐츠 작성 유의사항>
-* 1) 생성자()에서 컴포넌트 생성하기 -> 컴포넌트의 OnEnable()이 실행됨 (순차 생성 유의)
-* 2) 오브젝트가 생성될 때 Awake()가 호출된다.(순차 생성 유의) 이때 본인 컴포넌트의 초기화를 마치길 권장한다. 
-* 3) Scene이 Start될 때 SceneStartInit()가 호출된다. 
+* 1) '생성자()'에서 컴포넌트 생성하기 -> 컴포넌트의 OnEnable()이 실행됨 (순차 생성 유의)
+* 2) 오브젝트가 생성될 때 가장 먼저  'ComponentInit()'이 호출되어 컴포넌트의 OnEnable()이 실행된다.
+*    AddComponent()시에 OnEnable()을 했을 경우 아직 생성되지 않은 컴포넌트를 GetComponent하는 문제가 해결됨
+*    즉, AddComponent 순서 상관 없이 OnEnable()에서 GetCompoent를 자유롭게 사용해도 됨
+* 3) 오브젝트가 생성될 때 ComponentInit()에 이어 'Awake()'가 호출된다.(순차 생성 유의) 이때 본인 컴포넌트의 초기화를 마치길 권장한다. 
+* 4) Scene이 Start될 때 'SceneStartInit()'가 호출된다. 
      이때는 씬의 모든 게임오브젝트들이 생성되어있는 시점이므로 Find, 부모관계 지정 등의 작업이 가능하다
      ⭐ 만약 Scene의 Update중간에 생성되는 게임오브젝트라면 SceneStartInit()가 호출되지 않으므로
         SceneStartInit()안에 코드를 작성하지 않아야 한다.
         중간에 생성되는 오브젝트는 다른 게임오브젝트들이 이미 생성된 시점이기 때문에
         생성자나 Awake()에 초기화 코드를 모두 작성하면 된다.
-  4) Scene이 Update될 때 Update()가 매 프레임 호출된다.
-  5) 게임오브젝트가 파괴되거나 씬이 종료될 때 Destroyed()가 호출된다.
+  5) Scene이 Update될 때 'Update()'가 매 프레임 호출된다.
+  6) 게임오브젝트가 파괴되거나 씬이 종료될 때 Destroyed()가 호출된다.
 */
 
 class Component;
@@ -60,10 +63,17 @@ public:
 
 public:
     /* GameObject Cycle */
-    virtual void Awake() {};           // 오브젝트가 생성될 때
-    virtual void SceneStartInit() {};  // Scene의 Start
-    virtual void Update() {};          // Scene의 Update
-    virtual void Destroyed() {};       // Scene의 Exit, GameObject Delete
+    void ComponentInit()             
+    {
+        // 오브젝트가 생성될 때 Awake()보다 먼저 실행됨
+        // 생성자에서 모든 컴포넌트가 생성된 이후 호출되기 때문에 순차 생성에 의한 참조 위험이 없음
+        for (Component* comp : components)
+            comp->OnEnable();           
+    }
+    virtual void Awake() = 0;           // 오브젝트가 생성될 때
+    virtual void SceneStartInit() = 0;  // Scene의 Start
+    virtual void Update() = 0;          // Scene의 Update
+    virtual void Destroyed() = 0;       // Scene의 Exit, GameObject Delete
 
 public:
     // game object find
@@ -87,7 +97,7 @@ public:
         T* comp = new T(std::forward<Args>(args)...);
         comp->owner = this;
         components.push_back(comp);
-        comp->OnEnable();
+        //comp->OnEnable();
         return comp;
     }
 
