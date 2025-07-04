@@ -38,6 +38,8 @@ void SpriteRenderer::Render()
 		D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
 		srcRect             // source rect
 	);
+
+	OutputDebugStringA((std::to_string(srcRect.left) + ", " + std::to_string(srcRect.top) + ", " + std::to_string(srcRect.right) + ", " + std::to_string(srcRect.bottom) + "\n").c_str());
 }
 
 void SpriteRenderer::OnDestroy()

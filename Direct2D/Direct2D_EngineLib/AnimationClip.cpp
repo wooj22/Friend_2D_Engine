@@ -22,7 +22,8 @@ void AnimationClip::LoadSpritesFromJson(shared_ptr<Texture2D> texture, const str
         D2D1_POINT_2F pivot = { pivotX, pivotY };
 
         // Texture2D 일부 영역을 가지는 Sprite 생성
-        ResourceManager::Get().CreateSprite(texture, name, rect, pivot);
+        auto sprite = ResourceManager::Get().CreateSprite(texture, name, rect, pivot);
+        spritesList.push_back(sprite);
     }
 }
 
@@ -42,6 +43,7 @@ void AnimationClip::LoadAnimationClipFromJson(shared_ptr<Texture2D> texture, con
         string spriteName = frameJson["sprite"].get<string>();
         float time = frameJson["time"].get<float>();
 
+        // 함수 자체는 Texture 전체 영역을 Sprite로 생성하는 생성자를 호출하지만,
         // 위에서 이미 sprite들을 만들었으므로 shared_prt만 받게 됨
         auto sprite = ResourceManager::Get().CreateSprite(texture, spriteName);
 

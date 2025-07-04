@@ -37,11 +37,14 @@ public:
     {
         texture = tex;
         name = spriteName;
-        size = tex->size;
         sourceRect = rect;
         pivot = pivotPoint;
 
         size.width = rect.right - rect.left;
         size.height = rect.bottom - rect.top;
+
+        // debug
+        //OutputDebugStringA(("Sprite sourceRect: " + std::to_string(sourceRect.left) + ", " + std::to_string(sourceRect.top) + ", " + std::to_string(sourceRect.right) + ", " + std::to_string(sourceRect.bottom) + "\n").c_str());
+        //OutputDebugStringA(("Sprite size: " + std::to_string(size.width) + "x" + std::to_string(size.height) + "\n").c_str());
     }
 };

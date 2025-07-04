@@ -9,7 +9,7 @@
 #include "ResourceManager.h"
 using namespace std;
 
-/* [AnimationClip]
+/* [AnimationClip Asset]
 * json파일을 읽어와 Texture2D에서 여러 Sprite를 생성하고 프레임 정보를 저장하는 클래스
 * 게임 콘텐츠에서는 이 클래스를 상속받은 자식 클래스에서 
 * textrue정보와 json data(sprite sheet, animation clip)로 frames를 생성하도록 미리 Asset을 정의한다.
@@ -29,7 +29,10 @@ public:
     string name;                     // animation clip name
     float duration = 1.0f;           // 재생 시간
     bool loop = true;                // 반복 여부
-    vector<AnimationFrame> frames;   // sprite, time data   
+    vector<AnimationFrame> frames;   // sprite, time data
+
+protected:
+    std::vector<shared_ptr<Sprite>> spritesList;    // sprite sheet 생성 보관용
 
 public:
     AnimationClip() = default;

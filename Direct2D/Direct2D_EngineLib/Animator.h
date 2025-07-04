@@ -1,5 +1,11 @@
 #pragma once
-class Animator
+#include "Component.h"
+
+/* [Animator Component]
+* 
+*/
+
+class Animator : public Component
 {
 
 };
