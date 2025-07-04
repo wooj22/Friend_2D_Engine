@@ -6,8 +6,8 @@ void Scene2::Awake()
 	camera = DemoApp::mainCamera;
 	camera->transform->SetPosition(0, 0);
 
-	Scene2ObjectCreate();
-	
+	// gameobject create
+	Scene2ObjectCreate(); // »ý¼ºÀÚ()->ComponentInit()->Awake()
 }
 
 void Scene2::Start()

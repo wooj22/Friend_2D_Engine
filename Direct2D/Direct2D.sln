@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "D2D_DemoApp(Old)", "Direct2D\Direct2D.vcxproj", "{8E388AF9-7FF9-4FAE-88AD-2015E571DC5C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "01.D2D_DemoApp(Old)", "Direct2D\Direct2D.vcxproj", "{8E388AF9-7FF9-4FAE-88AD-2015E571DC5C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "D2D_EngineLib", "Direct2D_EngineLib\Direct2D_EngineLib.vcxproj", "{D8D78356-8DD0-4271-BBE6-B0208A9359FE}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SolarSystem_DemoApp(Old)", "SolarSystem\SolarSystem.vcxproj", "{026CD600-38FA-45B9-AC0E-231D9D0F0525}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "02.SolarSystem_DemoApp(Old)", "SolarSystem\SolarSystem.vcxproj", "{026CD600-38FA-45B9-AC0E-231D9D0F0525}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ComponentSystem_DemoApp", "ComponentSystem_DemoApp\ComponentSystem_DemoApp.vcxproj", "{CBB6CCB5-95E7-476A-A157-5B2F6829CD59}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "03.ComponentSystem_DemoApp(Old_NoneSprite)", "ComponentSystem_DemoApp\ComponentSystem_DemoApp.vcxproj", "{CBB6CCB5-95E7-476A-A157-5B2F6829CD59}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ResourceMemoryTest_DemoApp", "ResourceMemoryTest_DemoApp\ResourceMemoryTest_DemoApp.vcxproj", "{D37DF80B-4E0F-4D78-8C9E-4904AFBBE0BC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "04.ResourceMemoryTest_DemoApp", "ResourceMemoryTest_DemoApp\ResourceMemoryTest_DemoApp.vcxproj", "{D37DF80B-4E0F-4D78-8C9E-4904AFBBE0BC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "05.AnimationFSM_DemoApp", "AnimationFSM_DemoApp\AnimationFSM_DemoApp.vcxproj", "{19B8DBF4-7588-4366-B2FC-F39032290471}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,14 @@ Global
 		{D37DF80B-4E0F-4D78-8C9E-4904AFBBE0BC}.Release|x64.Build.0 = Release|x64
 		{D37DF80B-4E0F-4D78-8C9E-4904AFBBE0BC}.Release|x86.ActiveCfg = Release|Win32
 		{D37DF80B-4E0F-4D78-8C9E-4904AFBBE0BC}.Release|x86.Build.0 = Release|Win32
+		{19B8DBF4-7588-4366-B2FC-F39032290471}.Debug|x64.ActiveCfg = Debug|x64
+		{19B8DBF4-7588-4366-B2FC-F39032290471}.Debug|x64.Build.0 = Debug|x64
+		{19B8DBF4-7588-4366-B2FC-F39032290471}.Debug|x86.ActiveCfg = Debug|Win32
+		{19B8DBF4-7588-4366-B2FC-F39032290471}.Debug|x86.Build.0 = Debug|Win32
+		{19B8DBF4-7588-4366-B2FC-F39032290471}.Release|x64.ActiveCfg = Release|x64
+		{19B8DBF4-7588-4366-B2FC-F39032290471}.Release|x64.Build.0 = Release|x64
+		{19B8DBF4-7588-4366-B2FC-F39032290471}.Release|x86.ActiveCfg = Release|Win32
+		{19B8DBF4-7588-4366-B2FC-F39032290471}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,12 +12,12 @@
 * 게임 오브젝트는 Scene에 등록되어 Scene의 Update에 따라 Update가 실행된다.
 * 
 * < GameObject Cycle >
-* １．　게임오브젝트　생성자에서　컴포넌트　생성
-* ２．　게임오브젝트　ComponentInit()－＞ 컴포넌트 OnEnable()
-* ３．　게임오브젝트　Awake()
-* ４．　게임오브젝트　SceneStartInit()　// 초기 오브젝트만　해당 (Scene Start() 시점에 생성되어있는 오브젝트)
-* ５．　게임오브젝트　Update()
-* ６．　게임오브젝트　Destroyed()
+* １．　게임오브젝트 생성자() : 컴포넌트 생성해줘야됨
+* ２．　게임오브젝트 ComponentInit()－＞ 컴포넌트 OnEnable()
+* ３．　게임오브젝트 Awake()
+* ４．　게임오브젝트 SceneStartInit()　// 초기 오브젝트만　해당 (Scene Start() 시점에 생성되어있는 오브젝트)
+* ５．　게임오브젝트 Update()
+* ６．　게임오브젝트 Destroyed()
 * 
 * < 콘텐츠 제작시 유의사항 >
 * 1) '생성자()'에서 컴포넌트 생성하기

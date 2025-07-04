@@ -24,6 +24,7 @@
     <ProjectGuid>{d37df80b-4e0f-4d78-8c9e-4904afbbe0bc}</ProjectGuid>
     <RootNamespace>ResourceMemoryTestDemoApp</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>04.ResourceMemoryTest_DemoApp</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
