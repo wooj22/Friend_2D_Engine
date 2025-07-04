@@ -2,6 +2,11 @@
 #include <Windows.h>
 #include "Object.h"
 
+/* [Component]
+* 게임 오브젝트에 부착될 컴포넌트들의 Base Class
+* 게임 오브젝트가 생성되고 해당 오브젝트의 컴포넌트들이 모두 생성된 뒤, OnEnable()이 호출된다.
+*/
+
 class GameObject;
 class Component : public Object
 {
