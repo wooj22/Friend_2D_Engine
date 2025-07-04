@@ -18,9 +18,9 @@ class Sprite
 public:
 	std::string name;                               // sprite name (리소스매니저의 키로 사용)
 	D2D1_SIZE_F size = { 0, 0 };                    // sprite width, height
-	D2D1_RECT_F sourceRect = { 0, 0, 0, 0 };        // texture에서 자른 영역
+	D2D1_RECT_F sourceRect = { 0, 0, 0, 0 };        // texture에서 자를 영역
 	D2D1_POINT_2F pivot = { 0.5f, 0.5f };           // {0,0} left, down
-	std::shared_ptr<Texture2D> texture = nullptr;
+	std::shared_ptr<Texture2D> texture = nullptr;   // Texture2D
 
 public:
     // texture 전체영역을 sprite로 생성

@@ -40,7 +40,6 @@ private:
 	unordered_map<string, weak_ptr<Texture2D>> map_texture2D;		// texture file path
 	unordered_map<string, weak_ptr<Sprite>> map_sprite;				// sprite name
 	//unordered_map<string, weak_ptr<AnimationClip>> map_animationClip;
-	//unordered_map<string, weak_ptr<AnimatorController> map_animatorController; 
 
 private:
 	// d2d
