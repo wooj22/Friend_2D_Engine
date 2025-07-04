@@ -24,7 +24,7 @@ public:
 	void Awake() override				 // 오브젝트가 생성되고 모든 컴포넌트의 OnEnable()이 실행된 이후
 	{
 		// resource create
-		auto catTexture = ResourceManager::Get().CreateTexture2D("../Resource/Sprite/Cat_Idle.png");
+		auto catTexture = ResourceManager::Get().CreateTexture2D("../Resource/Texture/Cat_Idle.png");
 		auto new_sprite = ResourceManager::Get().CreateSprite(catTexture, "Cat_Idle");
 		spriteRenderer->sprite = new_sprite;
 	}

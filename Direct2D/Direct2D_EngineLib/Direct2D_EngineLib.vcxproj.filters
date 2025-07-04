@@ -222,6 +222,9 @@
     <ClInclude Include="Animator.h">
       <Filter>헤더 파일\03. Component\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="json.hpp">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">

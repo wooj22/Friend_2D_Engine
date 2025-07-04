@@ -1,0 +1,97 @@
+{
+    "texture": "Cat_Idle.png",
+    "textureWidth": 500,
+    "textureHeight": 50,
+    "sprites": [
+        {
+            "name": "Cat_Idle_1",
+            "x": 0.0,
+            "y": 0.0,
+            "width": 50.0,
+            "height": 50.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "Cat_Idle_2",
+            "x": 50.0,
+            "y": 0.0,
+            "width": 50.0,
+            "height": 50.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "Cat_Idle_3",
+            "x": 100.0,
+            "y": 0.0,
+            "width": 50.0,
+            "height": 50.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "Cat_Idle_4",
+            "x": 150.0,
+            "y": 0.0,
+            "width": 50.0,
+            "height": 50.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "Cat_Idle_5",
+            "x": 200.0,
+            "y": 0.0,
+            "width": 50.0,
+            "height": 50.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "Cat_Idle_6",
+            "x": 250.0,
+            "y": 0.0,
+            "width": 50.0,
+            "height": 50.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "Cat_Idle_7",
+            "x": 300.0,
+            "y": 0.0,
+            "width": 50.0,
+            "height": 50.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "Cat_Idle_8",
+            "x": 350.0,
+            "y": 0.0,
+            "width": 50.0,
+            "height": 50.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "Cat_Idle_9",
+            "x": 400.0,
+            "y": 0.0,
+            "width": 50.0,
+            "height": 50.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "Cat_Idle_10",
+            "x": 450.0,
+            "y": 0.0,
+            "width": 50.0,
+            "height": 50.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        }
+    ]
+}
