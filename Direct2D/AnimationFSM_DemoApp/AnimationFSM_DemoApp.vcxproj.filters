@@ -57,7 +57,7 @@
       <Filter>02. GameObject</Filter>
     </ClInclude>
     <ClInclude Include="CatController.h">
-      <Filter>리소스 파일</Filter>
+      <Filter>03. Script</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -5,12 +5,14 @@
 #include"../Direct2D_EngineLib/UI_Image.h"
 #include"../Direct2D_EngineLib/UI_Text.h"
 #include "DemoApp.h"
+#include "Cat.h"
 
 /* Animation FSM Test Scene1 */
 class Scene1 : public Scene
 {
 private:
 	Camera* camera;
+	Cat* cat;
 
 public:
 	Scene1() = default;

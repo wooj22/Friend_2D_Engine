@@ -8,6 +8,7 @@ void Scene1::Awake()
 
 	// create gameobject
 	// »ý¼ºÀÚ -> ComponentInit() -> Awake()
+	cat = CreateObject<Cat>();
 }
 
 void Scene1::Start()
