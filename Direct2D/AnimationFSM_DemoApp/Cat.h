@@ -5,12 +5,16 @@
 #include "CatController.h"
 #include "../Direct2D_EngineLib/Time.h"
 
+// test
+//#include "CatIdleClip.h"
+
 class Cat : public GameObject
 {
 public:
 	Transform* transform;
 	SpriteRenderer* spriteRenderer;
 	CatController* controller;
+	//CatIdleClip idle;
 
 	Cat() : GameObject("Cat")
 	{
