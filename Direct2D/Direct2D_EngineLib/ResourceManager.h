@@ -28,7 +28,7 @@ using namespace Microsoft::WRL;
 
 /* [ResourceManager]
 * 공유 자원을 중복으로 메모리에 로드하지 않도록 해시테이블로 관리하는 클래스
-* filePath를 key값으로 하여 weak_ptr로 내부에서 관리를 하며, 외부 요청이 들어왔을 경우
+* key값으로 weak_ptr을 내부에서 관리를 하며, 외부 요청이 들어왔을 경우
 * shared_ptr로 변환하여 리턴한다. (없을 경우에만 새로 생성)
 */
 
@@ -37,8 +37,8 @@ class Sprite;
 class ResourceManager : public Singleton<ResourceManager>
 {
 private:
-	unordered_map<string, weak_ptr<Texture2D>> map_texture2D;
-	unordered_map<string, weak_ptr<Sprite>> map_sprite;
+	unordered_map<string, weak_ptr<Texture2D>> map_texture2D;		// texture file path
+	unordered_map<string, weak_ptr<Sprite>> map_sprite;				// sprite name
 	//unordered_map<string, weak_ptr<AnimationClip>> map_animationClip;
 	//unordered_map<string, weak_ptr<AnimatorController> map_animatorController; 
 
@@ -58,6 +58,6 @@ public:
 
 public:
 	shared_ptr<Texture2D> CreateTexture2D(string filePath);
-	shared_ptr<Sprite> CreateSprite(shared_ptr<Texture2D> texture, string spriteName = "NONE");
+	shared_ptr<Sprite> CreateSprite(shared_ptr<Texture2D> texture, string spriteName);
 	shared_ptr<Sprite> CreateSprite(shared_ptr<Texture2D> texture, string spriteName, D2D1_RECT_F rect, D2D1_POINT_2F pivotPoint = { 0.5f, 0.5f });
 };

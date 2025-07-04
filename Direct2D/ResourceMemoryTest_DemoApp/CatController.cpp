@@ -4,11 +4,8 @@ void CatController::OnEnable()
 {
 	// get component
 	tr = this->owner->GetComponent<Transform>();
-	sr = this->owner->GetComponent<SpriteRenderer>();
 
-	// set
-	sr->CreateTexture2D("../Resource/Cat.png");
-
+	// transform setting
 	auto RandFloat = [](float min, float max) {
 		return min + static_cast<float>(rand()) / RAND_MAX * (max - min);
 		};
@@ -17,7 +14,7 @@ void CatController::OnEnable()
 	float posY = RandFloat(-480.0f, 480.0f);
 	float scale = RandFloat(0.05f, 0.3f);
 
-	tr->SetPosition(posX, posY);
+	tr->SetPosition(-posX, posY);
 	tr->SetScale(scale, scale);
 }
 

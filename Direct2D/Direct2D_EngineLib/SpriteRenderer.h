@@ -3,8 +3,7 @@
 #include <d2d1_1.h>
 #include "IRenderer.h"
 #include "RenderSystem.h"
-
-#include "Texture2D.h"
+#include "Sprite.h"
 #include "ResourceManager.h"
 #include "iostream"
 
@@ -19,8 +18,10 @@ class SpriteRenderer : public IRenderer
 {
 private:
 	Transform* transform;
-	D2D1_RECT_F centerRect;
-	shared_ptr<Texture2D> sprite;	// 공유 자원 // TODO :: Sptie Class 만들기
+	D2D1_RECT_F destRect;
+public:
+	shared_ptr<Sprite> sprite;		// 공유 자원	
+	float alpha = 1.0f;				// 투명도
 
 public:
 	// component cycle
@@ -39,12 +40,5 @@ public:
 	void Update() override;
 	void Render() override;
 	void OnDestroy() override;
-
-public:
-	// function
-	void CreateTexture2D(const std::string& path)
-	{
-		sprite = ResourceManager::Get().CreateTexture2D(path);
-	}
 };
 

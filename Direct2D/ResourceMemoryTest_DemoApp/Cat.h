@@ -21,7 +21,13 @@ public:
 	~Cat() override {}
 
 	/* GameObject Cycle */
-	void Awake() override {}			 // 오브젝트가 생성될 때
+	void Awake() override				 // 오브젝트가 생성되고 모든 컴포넌트의 OnEnable()이 실행된 이후
+	{
+		// resource create
+		auto catTexture = ResourceManager::Get().CreateTexture2D("../Resource/Cat.png");
+		auto new_sprite = ResourceManager::Get().CreateSprite(catTexture, "Cat_Sprite");
+		spriteRenderer->sprite = new_sprite;
+	}
 	void SceneStartInit() override {}	 // Scene의 Start
 	void Update() override {}			 // Scene의 Update
 	void Destroyed() override {}		 // Scene의 Exit, GameObject Delete

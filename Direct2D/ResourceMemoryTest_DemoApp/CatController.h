@@ -9,9 +9,7 @@ class CatController : public Script
 private:
 	float rotationSpeed = 120.0f;
 	float rotationDirection = -1.0f;
-
 	Transform* tr;
-	SpriteRenderer* sr;
 
 public:
 	void OnEnable() override;

@@ -24,13 +24,13 @@ void ImageRenderer::Render()
 
     // rect
     auto size = rectTransform->GetSize();
-    rect = { 0.0f, 0.0f, size.width, size.height };
+    destRect = { 0.0f, 0.0f, size.width, size.height };
 
     // render
     if (sprite)
-        RenderSystem::Get().renderTarget->DrawBitmap(sprite->texture2D.Get(), rect);
+        RenderSystem::Get().renderTarget->DrawBitmap(sprite->texture->texture2D.Get(), destRect);
     else
-        RenderSystem::Get().renderTarget->FillRectangle(rect, brush.Get());
+        RenderSystem::Get().renderTarget->FillRectangle(destRect, brush.Get());
 }
 
 void ImageRenderer::OnDestroy() 

@@ -85,14 +85,17 @@ void Scene2::Scene2ObjectSetting()
 	memoryUsageText->rectTransform->SetPosition(-640, 200);
 	memoryUsageText->rectTransform->SetSize(600, 300);
 
+	auto buttonTexture = ResourceManager::Get().CreateTexture2D("../Resource/UI_Button.png");
+	auto new_sprite = ResourceManager::Get().CreateSprite(buttonTexture, "ButtonSprite");
+
 	createButton->rectTransform->SetPosition(-150, -300);
 	createButton->rectTransform->SetSize(130, 60);
-	createButton->imageRenderer->CreateTexture2D("../Resource/UI_Button.png");
+	createButton->imageRenderer->sprite = new_sprite;
 	createButton->screenTextRenderer->SetText(L"Create");
 
 	deleteButton->rectTransform->SetPosition(150, -300);
 	deleteButton->rectTransform->SetSize(130, 60);
-	deleteButton->imageRenderer->CreateTexture2D("../Resource/UI_Button.png");
+	deleteButton->imageRenderer->sprite = new_sprite;
 	deleteButton->screenTextRenderer->SetText(L"Delete");
 }
 
