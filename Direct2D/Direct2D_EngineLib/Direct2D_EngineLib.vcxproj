@@ -140,6 +140,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationClip.h" />
+    <ClInclude Include="Animator.h" />
+    <ClInclude Include="AnimatorController.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="ButtonSystem.h" />
     <ClInclude Include="Component.h" />
@@ -156,6 +159,7 @@
     <ClInclude Include="ScreenTextRenderer.h" />
     <ClInclude Include="Script.h" />
     <ClInclude Include="ScriptSystem.h" />
+    <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="GameApp.h" />
@@ -173,6 +177,9 @@
     <ClInclude Include="UI_Button.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationClip.cpp" />
+    <ClCompile Include="Animator.cpp" />
+    <ClCompile Include="AnimatorController.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ButtonSystem.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -189,6 +196,7 @@
     <ClCompile Include="ScreenTextRenderer.cpp" />
     <ClCompile Include="Script.cpp" />
     <ClCompile Include="ScriptSystem.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="GameApp.cpp" />

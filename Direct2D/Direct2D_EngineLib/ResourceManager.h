@@ -33,12 +33,14 @@ using namespace Microsoft::WRL;
 */
 
 class Texture2D;
+class Sprite;
 class ResourceManager : public Singleton<ResourceManager>
 {
 private:
 	unordered_map<string, weak_ptr<Texture2D>> map_texture2D;
-	//unordered_map<string, weak_ptr<Sprite>> map_sprite;
+	unordered_map<string, weak_ptr<Sprite>> map_sprite;
 	//unordered_map<string, weak_ptr<AnimationClip>> map_animationClip;
+	//unordered_map<string, weak_ptr<AnimatorController> map_animatorController; 
 
 private:
 	// d2d
@@ -56,4 +58,6 @@ public:
 
 public:
 	shared_ptr<Texture2D> CreateTexture2D(string filePath);
+	shared_ptr<Sprite> CreateSprite(shared_ptr<Texture2D> texture, string spriteName = "NONE");
+	shared_ptr<Sprite> CreateSprite(shared_ptr<Texture2D> texture, string spriteName, D2D1_RECT_F rect, D2D1_POINT_2F pivotPoint = { 0.5f, 0.5f });
 };

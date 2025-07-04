@@ -1,6 +1,7 @@
 #pragma once
 #include <wrl/client.h> 
 #include <d2d1_1.h>
+#include <string>
 
 /* [Texture2D]
 * 2D bitmap 리소스 하나를 가지는 클래스
@@ -11,6 +12,7 @@
 class Texture2D
 {
 public:
+	std::string filePath;
+	D2D1_SIZE_F size;
 	Microsoft::WRL::ComPtr<ID2D1Bitmap1> texture2D;
 };
-

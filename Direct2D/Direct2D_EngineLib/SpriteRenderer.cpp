@@ -17,7 +17,7 @@ void SpriteRenderer::Render()
 	if (!transform || !sprite) return;
 
 	// center 보정, 그릴 영역 지정
-	D2D1_SIZE_F size = sprite->texture2D->GetSize();
+	D2D1_SIZE_F size = sprite->size;
 	centerRect = {
 		-size.width / 2.0f,  // left
 		-size.height / 2.0f, // up

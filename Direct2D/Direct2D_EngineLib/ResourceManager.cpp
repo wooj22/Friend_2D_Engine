@@ -1,6 +1,7 @@
 #include "ResourceManager.h"
 #include "RenderSystem.h"
 #include "Texture2D.h"
+#include "Sprite.h"
 
 /// ResourceManager Init
 HRESULT ResourceManager::Init()
@@ -123,7 +124,7 @@ void ResourceManager::Trim() {
 }
 
 /// Texture2D Resource Create
-shared_ptr<Texture2D> ResourceManager::CreateTexture2D(string filePath) 
+shared_ptr<Texture2D> ResourceManager::CreateTexture2D(string filePath)
 {
     string key = filePath;
     auto it = map_texture2D.find(key);
@@ -139,11 +140,9 @@ shared_ptr<Texture2D> ResourceManager::CreateTexture2D(string filePath)
     }
 
     // 2) Create new resource
-    shared_ptr<Texture2D> new_texture2D = make_shared<Texture2D>();
-    wstring wpath(filePath.begin(), filePath.end());
-
     // ① 디코더 생성
     ComPtr<IWICBitmapDecoder> decoder;
+    wstring wpath(filePath.begin(), filePath.end());
     HRESULT hr = wicImagingFactory->CreateDecoderFromFilename(
         wpath.c_str(), nullptr, GENERIC_READ, WICDecodeMetadataCacheOnLoad, &decoder);
     if (FAILED(hr)) {
@@ -188,6 +187,7 @@ shared_ptr<Texture2D> ResourceManager::CreateTexture2D(string filePath)
     );
 
     // ⑥ Bitmap 생성
+    shared_ptr<Texture2D> new_texture2D = make_shared<Texture2D>();
     hr = RenderSystem::Get().renderTarget->CreateBitmapFromWicBitmap(
         converter.Get(), &bmpProps, &new_texture2D->texture2D);
     if (FAILED(hr)) {
@@ -195,7 +195,57 @@ shared_ptr<Texture2D> ResourceManager::CreateTexture2D(string filePath)
         return nullptr;
     }
 
+    // texture data save
+    new_texture2D->filePath = filePath;
+    new_texture2D->size = new_texture2D->texture2D->GetSize();
+
     // map에 저장하고 shared_ptr return
     map_texture2D[key] = new_texture2D;
     return new_texture2D;
+}
+
+/// CreateSprite - Texture2D 전체 영역
+shared_ptr<Sprite> ResourceManager::CreateSprite(shared_ptr<Texture2D> texture, string spriteName)
+{
+    if (!texture) 
+    {
+        OutputDebugStringA("Texture2D가 nullptr입니다.\n");
+        return nullptr;
+    }
+
+    auto it = map_sprite.find(spriteName);
+    if (it != map_sprite.end())
+    {
+        // 1) 인스턴스가 살아있다면 shared_ptr return
+        if (!it->second.expired()) return it->second.lock();
+        else map_sprite.erase(it);
+    }
+
+    // 2) Create new resource
+    shared_ptr<Sprite> newSprite = make_shared<Sprite>(texture, spriteName);
+    map_sprite[spriteName] = newSprite;
+    return newSprite;
+}
+
+/// CreateSprite - Texture2D 일부 영역
+shared_ptr<Sprite> ResourceManager::CreateSprite(shared_ptr<Texture2D> texture, string spriteName, D2D1_RECT_F rect, D2D1_POINT_2F pivotPoint)
+{
+    if (!texture)
+    {
+        OutputDebugStringA("Texture2D가 nullptr입니다.\n");
+        return nullptr;
+    }
+
+    auto it = map_sprite.find(spriteName);
+    if (it != map_sprite.end())
+    {
+        // 1) 인스턴스가 살아있다면 shared_ptr return
+        if (!it->second.expired()) return it->second.lock();
+        else map_sprite.erase(it);
+    }
+
+    // 2) Create new resource
+    shared_ptr<Sprite> newSprite = make_shared<Sprite>(texture, spriteName, rect, pivotPoint);
+    map_sprite[spriteName] = newSprite;
+    return newSprite;
 }

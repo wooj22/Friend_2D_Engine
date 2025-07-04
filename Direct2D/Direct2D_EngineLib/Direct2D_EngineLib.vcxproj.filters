@@ -103,6 +103,18 @@
     <Filter Include="헤더 파일\05.StaticSystem">
       <UniqueIdentifier>{5f869c07-4bf5-4858-9010-4cee6d424cfe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\08.Animation">
+      <UniqueIdentifier>{4d7d1f6f-4a53-4ac4-af98-9382f1e83c36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\08.Animation">
+      <UniqueIdentifier>{56844813-c86d-4459-a9d6-5f4005db3875}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.Component\Animation">
+      <UniqueIdentifier>{ba41f8ce-3d11-4934-a294-2252e957bea8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\03.Component\Animation">
+      <UniqueIdentifier>{d21bc791-9eac-446c-88a3-2963f3dad649}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h">
@@ -198,6 +210,18 @@
     <ClInclude Include="ObjectTable.h">
       <Filter>헤더 파일\00.Object</Filter>
     </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>헤더 파일\07.Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationClip.h">
+      <Filter>헤더 파일\08.Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatorController.h">
+      <Filter>헤더 파일\08.Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>헤더 파일\03.Component\Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -289,6 +313,18 @@
     </ClCompile>
     <ClCompile Include="ObjectTable.cpp">
       <Filter>소스 파일\00.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>소스 파일\07.Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationClip.cpp">
+      <Filter>소스 파일\08.Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimatorController.cpp">
+      <Filter>소스 파일\08.Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Animator.cpp">
+      <Filter>소스 파일\03.Component\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
