@@ -89,18 +89,24 @@ public:
 public:
     CatAnimatorController()
     {
-        // Clip 积己
+        // clip 积己
         idleClip = new CatIdleClip();
         walkClip = new CatWalkClip();
         runClip = new CatRunClip();
 
-        // State 积己
+        // state 积己
         idleState = new CatIdleState(idleClip);
         walkState = new CatWalkState(walkClip);
         runState = new CatRunState(runClip);
 
+        // state 殿废
+        AddState(idleState);
+        AddState(walkState);
+        AddState(runState);
+
         // 檬扁 惑怕
-        ChangeAnimation(idleState);
+        PlayAnimation("Cat_Idle");
+        //ChangeAnimation(idleState);
     }
 
     ~CatAnimatorController() override

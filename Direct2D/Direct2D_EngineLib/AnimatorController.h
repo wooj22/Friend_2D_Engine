@@ -20,6 +20,9 @@ public:
     int currentFrameIndex = 0;                  // current frame
     bool playing = false;                       // loop/stop
 
+private:
+    unordered_map<string, AnimationBaseState*> map_state;      // <name, state>
+
 public:
     AnimatorController() = default;
     virtual ~AnimatorController() = default;
@@ -54,6 +57,23 @@ public:
 
         currentFrameIndex = frameIndex;
         curState->Update(deltaTIme);
+    }
+
+    // add state
+    void AddState(AnimationBaseState* state)
+    {
+        string name = state->clip->name;
+        map_state[name] = state;
+    }
+
+    // play animation with clip name
+    void PlayAnimation(const string& clipName)
+    {
+        auto it = map_state.find(clipName);
+        if (it != map_state.end()) 
+            ChangeAnimation(it->second);
+        else
+            OutputDebugStringA(("AnimatorController: No state with clipName: " + clipName + "\n").c_str());
     }
 
     // Animation State(Clip) Change
