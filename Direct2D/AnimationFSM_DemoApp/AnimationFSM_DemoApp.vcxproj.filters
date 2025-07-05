@@ -45,9 +45,6 @@
     <ClCompile Include="CatController.cpp">
       <Filter>03. Script</Filter>
     </ClCompile>
-    <ClCompile Include="CatIdleClip.cpp">
-      <Filter>04. Animation</Filter>
-    </ClCompile>
     <ClCompile Include="CatAnimatorController.cpp">
       <Filter>04. Animation</Filter>
     </ClCompile>
@@ -67,9 +64,6 @@
     </ClInclude>
     <ClInclude Include="CatController.h">
       <Filter>03. Script</Filter>
-    </ClInclude>
-    <ClInclude Include="CatIdleClip.h">
-      <Filter>04. Animation</Filter>
     </ClInclude>
     <ClInclude Include="CatAnimatorController.h">
       <Filter>04. Animation</Filter>

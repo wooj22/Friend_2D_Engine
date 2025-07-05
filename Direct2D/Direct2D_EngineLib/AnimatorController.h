@@ -3,36 +3,28 @@
 #include "AnimationBaseState.h"
 
 /* [AnimatorController Asset]
-* 
+* Animation State Machine (FSM)
+* State를 관리하며, 현재 AnimationClip의 프레임을 계산한다.
+* AnimationState들을 가지고 State를 전환하여, State의 Enter(), Update(), Exit()를 호출한다.
+* 게임 콘텐츠에서 이 class를 상속받은 AnimationController를 정의하여 활용한다.
+* ex) class PlayerAnimationController : public AnimatorController{}
+*     -> 이 안에서 animation clip과 state를 생성하면 된다.
+*        그럼 GameObject쪽에서는 미리 정의한 컨트롤러만 생성시키면 깔끔하게 정리됨
 */
 
 class AnimatorController
 {
 public:
-    AnimationBaseState* curState = nullptr;
-    float currentTime = 0.0f;
-    int currentFrameIndex = 0;
-    bool playing = false;
+    AnimationBaseState* curState = nullptr;     // animation clip state
+    float currentTime = 0.0f;                   // current time (clip start time cheak)
+    int currentFrameIndex = 0;                  // current frame
+    bool playing = false;                       // loop/stop
 
 public:
     AnimatorController() = default;
-    virtual ~AnimatorController() = 0;  // AnimatorContorller에서 Clip, State를 생성하기 떄문에 소멸자에서 삭제해야함
+    virtual ~AnimatorController() = default;
 
-    // Animation State(Clip) Change
-    void ChangeAnimation(AnimationBaseState* state)
-    {
-        if (curState)
-            curState->Exit();
-
-        curState = state;
-        currentTime = 0.0f;
-        currentFrameIndex = 0;
-        playing = true;
-
-        if (curState)
-            curState->Enter();
-    }
-
+    // frame update
     void Update(float deltaTIme)
     {
         if (!curState || !curState->clip || !playing)
@@ -64,6 +56,22 @@ public:
         curState->Update(deltaTIme);
     }
 
+    // Animation State(Clip) Change
+    void ChangeAnimation(AnimationBaseState* state)
+    {
+        if (curState)
+            curState->Exit();
+
+        curState = state;
+        currentTime = 0.0f;
+        currentFrameIndex = 0;
+        playing = true;
+
+        if (curState)
+            curState->Enter();
+    }
+
+    // get sprite
     shared_ptr<Sprite> GetCurrentSprite() const
     {
         if (!curState || !curState->clip) return nullptr;
