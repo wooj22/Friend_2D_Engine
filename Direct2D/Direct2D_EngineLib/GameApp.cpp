@@ -118,6 +118,7 @@ void GameApp::Update()
 /// LateUpdate
 void GameApp::LateUpdate()
 {
+	animatorSystem.Update();
 	renderSystem.Update();
 }
 

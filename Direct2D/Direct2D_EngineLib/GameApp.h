@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "RenderSystem.h"
 #include "TransformSystem.h"
+#include "AnimatorSystem.h"
 #include "ButtonSystem.h"
 #include "ScriptSystem.h"
 #include "SceneManager.h"
@@ -33,9 +34,10 @@ protected:
 
 	// component system
 	TransformSystem transformSystem;	// transform, rectTransfrom
-	RenderSystem renderSystem;	// sprite, image, worldText, screenText
-	ButtonSystem buttonSystem;	// button
-	ScriptSystem scriptSystem;	// script
+	RenderSystem renderSystem;			// sprite, image, worldText, screenText
+	AnimatorSystem animatorSystem;		// animator
+	ButtonSystem buttonSystem;			// button
+	ScriptSystem scriptSystem;			// script
 
 	// manager
 	SceneManager sceneManager;
@@ -52,7 +54,7 @@ public:
 	virtual void Init();
 	void PreUpdate();		// input, time
 	void Update();			// buttonsystem, transformSystem, scene(gameObject), scriptsystem
-	void LateUpdate();		// renderSystem.update
+	void LateUpdate();		// animatorSystem, renderSystem.update
 	void Render();			// renderSystem.render
 	void Loop();
 	virtual void UnInit();
