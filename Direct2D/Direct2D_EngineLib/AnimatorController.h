@@ -7,6 +7,7 @@
 * State를 관리하며, 현재 AnimationClip의 프레임을 계산한다.
 * AnimationState들을 가지고 State를 전환하여, State의 Enter(), Update(), Exit()를 호출한다.
 * 게임 콘텐츠에서 이 class를 상속받은 AnimationController를 정의하여 활용한다.
+* TODO :: set int/flaot/bool/trigger
 * ex) class PlayerAnimationController : public AnimatorController{}
 *     -> 이 안에서 animation clip과 state를 생성하면 된다.
 *        그럼 GameObject쪽에서는 미리 정의한 컨트롤러만 생성시키면 깔끔하게 정리됨
@@ -21,7 +22,7 @@ public:
     bool playing = false;                       // loop/stop
 
 private:
-    unordered_map<string, AnimationBaseState*> map_state;      // <name, state>
+    unordered_map<string, AnimationBaseState*> map_state;    // clip state map <name, state>
 
 public:
     AnimatorController() = default;
@@ -73,10 +74,10 @@ public:
         if (it != map_state.end()) 
             ChangeAnimation(it->second);
         else
-            OutputDebugStringA(("AnimatorController: No state with clipName: " + clipName + "\n").c_str());
+            OutputDebugStringA(("clip name이 없습니다. " + clipName + "\n").c_str());
     }
 
-    // Animation State(Clip) Change
+    // animation state(Clip) change
     void ChangeAnimation(AnimationBaseState* state)
     {
         if (curState)

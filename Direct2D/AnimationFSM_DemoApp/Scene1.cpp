@@ -32,9 +32,9 @@ void Scene1::Update()
 	Transform::SetCameraMatrix(camera->transform->GetWorldMatrix());
 
 	// scene change
-	if (Input::GetKeyDown(VK_SPACE)) {
+	/*if (Input::GetKeyDown(VK_SPACE)) {
 		SceneManager::Get().ChangeScene(DemoApp::SceneName::SCENE2);
-	}
+	}*/
 }
 
 void Scene1::Exit()

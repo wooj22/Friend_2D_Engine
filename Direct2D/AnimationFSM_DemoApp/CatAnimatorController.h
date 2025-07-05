@@ -4,6 +4,7 @@
 #include "../Direct2D_EngineLib/AnimatorController.h"
 #include "../Direct2D_EngineLib/ResourceManager.h"
 
+// ∞‘¿” ƒ‹≈Ÿ√˜ Animation asset ¡§¿«
 /*------------ Animation Clip ------------*/
 class CatIdleClip : public AnimationClip
 {
@@ -119,8 +120,4 @@ public:
         delete walkState;
         delete runState;
     }
-
-    void ToIdle() { ChangeAnimation(idleState); }
-    void ToWalk() { ChangeAnimation(walkState); }
-    void ToRun() { ChangeAnimation(runState); }
 };
