@@ -13,7 +13,6 @@ using namespace std;
 * json파일을 읽어와 Texture2D에서 여러 Sprite를 생성하고 프레임 정보를 저장하는 클래스
 * 게임 콘텐츠에서는 이 클래스를 상속받은 자식 클래스에서 
 * textrue정보와 json data(sprite sheet, animation clip)로 frames를 생성하도록 미리 Asset을 정의한다.
-* Animator에서는 미리 정의한 Clip 클래스의 객체를 생성시킨다.
 * ex) class PlayerRunClip : public AnimationClip{}
 */
 

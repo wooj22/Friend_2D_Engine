@@ -140,6 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationBaseState.h" />
     <ClInclude Include="AnimationClip.h" />
     <ClInclude Include="Animator.h" />
     <ClInclude Include="AnimatorController.h" />
@@ -178,6 +179,7 @@
     <ClInclude Include="UI_Button.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationBaseState.cpp" />
     <ClCompile Include="AnimationClip.cpp" />
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="AnimatorController.cpp" />
