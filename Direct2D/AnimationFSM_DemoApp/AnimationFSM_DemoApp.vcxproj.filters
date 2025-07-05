@@ -22,7 +22,7 @@
     <Filter Include="02. GameObject">
       <UniqueIdentifier>{0f7cc35b-86d3-420a-9c06-097c408c67dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04. AnimationClip">
+    <Filter Include="04. Animation">
       <UniqueIdentifier>{5f6eb44e-f24a-496b-8229-56e88b1c93d3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -46,7 +46,10 @@
       <Filter>03. Script</Filter>
     </ClCompile>
     <ClCompile Include="CatIdleClip.cpp">
-      <Filter>04. AnimationClip</Filter>
+      <Filter>04. Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CatAnimatorController.cpp">
+      <Filter>04. Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -66,7 +69,10 @@
       <Filter>03. Script</Filter>
     </ClInclude>
     <ClInclude Include="CatIdleClip.h">
-      <Filter>04. AnimationClip</Filter>
+      <Filter>04. Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="CatAnimatorController.h">
+      <Filter>04. Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

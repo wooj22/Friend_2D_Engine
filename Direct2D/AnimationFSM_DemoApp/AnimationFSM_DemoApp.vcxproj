@@ -129,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cat.cpp" />
+    <ClCompile Include="CatAnimatorController.cpp" />
     <ClCompile Include="CatController.cpp" />
     <ClCompile Include="CatIdleClip.cpp" />
     <ClCompile Include="DemoApp.cpp" />
@@ -138,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cat.h" />
+    <ClInclude Include="CatAnimatorController.h" />
     <ClInclude Include="CatController.h" />
     <ClInclude Include="CatIdleClip.h" />
     <ClInclude Include="DemoApp.h" />
