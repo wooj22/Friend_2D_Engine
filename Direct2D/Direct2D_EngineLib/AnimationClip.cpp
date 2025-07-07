@@ -1,6 +1,5 @@
 #include "AnimationClip.h"
 
-
 /// LoadSpritesFromJson
 /// 넘겨받은 Texture를 바탕으로 json data에 따라 sprite들을 생성한다.
 void AnimationClip::LoadSpritesFromJson(shared_ptr<Texture2D> texture, const string& jsonPath)

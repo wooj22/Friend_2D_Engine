@@ -1,4 +1,5 @@
 #include "Scene1.h"
+#include "CatAnimatorController.h"
 
 void Scene1::Awake()
 {
@@ -9,16 +10,24 @@ void Scene1::Awake()
 	// create gameobject
 	// 생성자 -> ComponentInit() -> Awake()
 	cat = CreateObject<Cat>();
-	text = CreateObject<UI_Text>();
+	advice_text = CreateObject<UI_Text>();
+	catSpeed_text = CreateObject<UI_Text>();
 }
 
 void Scene1::Start()
 {
 	// game object -> SceneStartInit
 	__super::Start();
-	text->rectTransform->SetPosition(0, 400);
-	text->rectTransform->SetSize(500, 80);
-	text->screenTextRenderer->SetText(L"[1][2][3] key로 Animation 전환");
+
+	advice_text->rectTransform->SetPosition(0, 400);
+	advice_text->rectTransform->SetSize(800, 200);
+	advice_text->screenTextRenderer->SetFontSize(25);
+	advice_text->screenTextRenderer->SetText(L"Cat의 speed에 따라 Animation Transition (Idle, Walk, Run)\nWASD 이동/ Shift 달리기");
+
+	catSpeed_text->rectTransform->SetPosition(0, 350);
+	catSpeed_text->rectTransform->SetSize(500, 80);
+	catSpeed_text->screenTextRenderer->SetFontSize(20);
+	catSpeed_text->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::YellowGreen));
 }
 
 void Scene1::Update()
@@ -35,10 +44,9 @@ void Scene1::Update()
 	// camera 역행렬 update
 	Transform::SetCameraMatrix(camera->transform->GetWorldMatrix());
 
-	// scene change
-	/*if (Input::GetKeyDown(VK_SPACE)) {
-		SceneManager::Get().ChangeScene(DemoApp::SceneName::SCENE2);
-	}*/
+	// ui update
+	float speed = cat->GetComponent<CatController>()->GetSpeed();
+	catSpeed_text->screenTextRenderer->SetText(L"Speed : " + to_wstring(speed));
 }
 
 void Scene1::Exit()

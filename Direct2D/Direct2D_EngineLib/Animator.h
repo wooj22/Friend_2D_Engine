@@ -1,10 +1,6 @@
 #pragma once
 #include "Component.h"
 #include "AnimatorSystem.h"
-#include "AnimatorController.h"
-#include "SpriteRenderer.h"
-#include "GameObject.h"
-#include "Time.h"
 
 /* [Animator Component]
 * GameObject에 부착되어 지정된 AnimatorController를 Update시키고,
@@ -13,7 +9,9 @@
 * 'Animator'->AnimatorController->State->clip->'sprite'
 */
 
-class AnimatorSystem;
+class AnimatorController;
+class SpriteRenderer;
+
 class Animator : public Component
 {
 public:

@@ -8,8 +8,7 @@
 #include "CatController.h"
 #include "CatAnimatorController.h"
 
-/* Animation 과제 - [1][2][3] key로 Animation 전환 */
-/* FSM 적용은 되어있으나 condition은 아직 없음       */
+/* Animation FSM condition & transition 과제 */
 // Animator -> AnimatorController -> State -> AnimationClip
 class Cat : public GameObject
 {
@@ -31,6 +30,7 @@ public:
 		spriteRenderer = AddComponent<SpriteRenderer>();
 		controller = AddComponent<CatController>();
 		animator = AddComponent<Animator>();
+
 		catAnimatorController = new CatAnimatorController();  // animator controller
 		animator->SetController(catAnimatorController);
 	}

@@ -1,4 +1,8 @@
 #include "Animator.h"
+#include "AnimatorController.h"
+#include "SpriteRenderer.h"
+#include "GameObject.h"
+#include "Time.h"
 
 void Animator::OnEnable()
 {

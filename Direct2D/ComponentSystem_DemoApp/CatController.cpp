@@ -17,7 +17,7 @@ void CatController::OnEnable()
 
 void CatController::Update()
 {
-	transform->AddPosition(0, moveSpeed * moveDirection * Time::GetDeltaTime());
+	transform->AddPosition(0, walkSpeed * moveDirection * Time::GetDeltaTime());
 	
 	// GameObject::Find("Fish")->GetComponent<Transform>();
 	// OnEnable()시에 Fish나 fishTransform이 생성되어있지 않을 수도 있어 Start()시점이 필요함

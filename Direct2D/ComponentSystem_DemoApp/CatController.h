@@ -12,7 +12,7 @@ private:
 	SpriteRenderer* sr;
 	WorldTextRenderer* tr;
 
-	float moveSpeed = 100.0f;
+	float walkSpeed = 100.0f;
 	float moveDirection = -1.0f;
 
 public:

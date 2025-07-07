@@ -12,7 +12,8 @@ class Scene1 : public Scene
 private:
 	Camera* camera;
 	Cat* cat;
-	UI_Text* text;
+	UI_Text* advice_text;
+	UI_Text* catSpeed_text;
 
 public:
 	Scene1() = default;

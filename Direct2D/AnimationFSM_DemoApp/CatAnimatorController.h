@@ -4,6 +4,7 @@
 #include "../Direct2D_EngineLib/AnimatorController.h"
 #include "../Direct2D_EngineLib/ResourceManager.h"
 
+
 // 게임 콘텐츠 Animation asset 정의
 /*------------ Animation Clip ------------*/
 class CatIdleClip : public AnimationClip
@@ -46,30 +47,53 @@ public:
 class CatIdleState : public AnimationBaseState
 {
 public:
-    CatIdleState(AnimationClip* clip) : AnimationBaseState(clip) {}
-
+    CatIdleState(AnimationClip* c, AnimatorController* ac) : AnimationBaseState(c, ac) {}
+        
     void Enter() override {}
-    void Update(float dt) override {}
+    void Update(float dt) override 
+    {
+        // tansition
+        if (controller->GetFloat("Speed") >= 300.f)
+            controller->PlayAnimation("Cat_Run");
+        else if (controller->GetFloat("Speed") >= 100.f)
+            controller->PlayAnimation("Cat_Walk");
+    }
     void Exit() override {}
 };
 
 class CatWalkState : public AnimationBaseState
 {
 public:
-    CatWalkState(AnimationClip* clip) : AnimationBaseState(clip) {}
+    CatWalkState(AnimationClip* c, AnimatorController* ac) : AnimationBaseState(c, ac) {}
 
     void Enter() override {}
-    void Update(float dt) override {}
+    void Update(float dt) override 
+    {
+        // tansition
+        if (controller->GetFloat("Speed") == 0)
+            controller->PlayAnimation("Cat_Idle");
+        else if (controller->GetFloat("Speed") >= 300.f)
+            controller->PlayAnimation("Cat_Run");
+    }
     void Exit() override {}
 };
 
 class CatRunState : public AnimationBaseState
 {
 public:
-    CatRunState(AnimationClip* clip) : AnimationBaseState(clip) {}
+    CatRunState(AnimationClip* c, AnimatorController* ac) :
+        AnimationBaseState(c, ac) {}
 
     void Enter() override {}
-    void Update(float dt) override {}
+    void Update(float dt) override
+    {
+        // tansition
+        if (controller->GetFloat("Speed") == 0)
+            controller->PlayAnimation("Cat_Idle");
+        else if (controller->GetFloat("Speed") < 300.f &&
+            controller->GetFloat("Speed") >= 100.f)
+            controller->PlayAnimation("Cat_Walk");
+    }
     void Exit() override {}
 };
 
@@ -96,9 +120,9 @@ public:
         runClip = new CatRunClip();
 
         // state 생성
-        idleState = new CatIdleState(idleClip);
-        walkState = new CatWalkState(walkClip);
-        runState = new CatRunState(runClip);
+        idleState = new CatIdleState(idleClip, this);
+        walkState = new CatWalkState(walkClip, this);
+        runState = new CatRunState(runClip, this);
 
         // state 등록
         AddState(idleState);
@@ -106,8 +130,7 @@ public:
         AddState(runState);
 
         // 초기 상태
-        PlayAnimation("Cat_Idle");
-        //ChangeAnimation(idleState);
+        ChangeAnimation(idleState);
     }
 
     ~CatAnimatorController() override
