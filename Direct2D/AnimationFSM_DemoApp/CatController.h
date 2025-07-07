@@ -2,6 +2,7 @@
 #include "../Direct2D_EngineLib/Script.h"
 
 class Transform;
+class SpriteRenderer;
 class AnimatorController;
 class CatController : public Script
 {
@@ -20,6 +21,7 @@ private:
 
 	// ref component
 	Transform* tr;
+	SpriteRenderer* sr;
 	AnimatorController* ac;
 
 public:

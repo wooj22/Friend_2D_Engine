@@ -1,4 +1,4 @@
-#include "SpriteRenderer.h"
+ï»¿#include "SpriteRenderer.h"
 #include "Transform.h"
 #include "GameObject.h"
 
@@ -16,30 +16,40 @@ void SpriteRenderer::Render()
 {
 	if (!transform || !sprite) return;
 
+	// source rect, size
 	D2D1_RECT_F srcRect = sprite->sourceRect;
 	D2D1_SIZE_F spriteSize = sprite->size;
 
+	// pivox
 	float pivotX = sprite->pivot.x;
 	float pivotY = 1.0f - sprite->pivot.y;
 
+	// dest rect
 	destRect = {
 		-spriteSize.width * pivotX,
 		-spriteSize.height * pivotY,
 		spriteSize.width * (1.0f - pivotX),
 		spriteSize.height * (1.0f - pivotY)
 	};
+
+	// filp
+	float scaleX = flipX ? -1.0f : 1.0f;
+	float scaleY = flipY ? -1.0f : 1.0f;
+	D2D1::Matrix3x2F flipMat = D2D1::Matrix3x2F::Scale(scaleX, scaleY, { 0, 0 });
+	auto finalMat = flipMat * transform->GetScreenMatrix();
+
+	// transform
+	RenderSystem::Get().renderTarget->SetTransform(finalMat);
 	
 	// render
-	RenderSystem::Get().renderTarget->SetTransform(transform->GetScreenMatrix());
+	RenderSystem::Get().renderTarget->SetTransform(finalMat);
 	RenderSystem::Get().renderTarget->DrawBitmap(
 		sprite->texture->texture2D.Get(),
-		destRect,           // Ãâ·Â À§Ä¡ ¹× Å©±â
-		alpha,				// ºÒÅõ¸íµµ
+		destRect,           // ì¶œë ¥ ìœ„ì¹˜ ë° í¬ê¸°
+		alpha,				// ë¶ˆíˆ¬ëª…ë„
 		D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
 		srcRect             // source rect
 	);
-
-	OutputDebugStringA((std::to_string(srcRect.left) + ", " + std::to_string(srcRect.top) + ", " + std::to_string(srcRect.right) + ", " + std::to_string(srcRect.bottom) + "\n").c_str());
 }
 
 void SpriteRenderer::OnDestroy()

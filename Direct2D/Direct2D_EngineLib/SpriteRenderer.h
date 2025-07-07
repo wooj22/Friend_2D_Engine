@@ -22,6 +22,8 @@ private:
 public:
 	shared_ptr<Sprite> sprite;		// 공유 자원	
 	float alpha = 1.0f;				// 투명도
+	bool flipX = false;				// x축 반전
+	bool flipY = false;				// y축 반전
 
 public:
 	// component cycle

@@ -1,5 +1,6 @@
 #include "CatController.h"
 #include "../Direct2D_EngineLib/Transform.h"
+#include "../Direct2D_EngineLib/SpriteRenderer.h"
 #include "../Direct2D_EngineLib/AnimatorController.h"
 #include "../Direct2D_EngineLib/Animator.h"
 #include "../Direct2D_EngineLib/Input.h"
@@ -8,8 +9,11 @@
 void CatController::OnEnable()
 {
 	tr = owner->GetComponent<Transform>();
+	sr = owner->GetComponent<SpriteRenderer>();
 	ac = owner->GetComponent<Animator>()->controller;
+
 	tr->SetScale(3, 3);
+	//sr->flipX = true;
 }
 
 void CatController::Update()
