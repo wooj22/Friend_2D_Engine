@@ -2,7 +2,6 @@
 #include "../Direct2D_EngineLib/Scene.h"
 #include "../Direct2D_EngineLib/Input.h"
 #include "../Direct2D_EngineLib/Camera.h"
-#include"../Direct2D_EngineLib/UI_Image.h"
 #include"../Direct2D_EngineLib/UI_Text.h"
 #include "DemoApp.h"
 #include "Cat.h"
@@ -13,6 +12,7 @@ class Scene1 : public Scene
 private:
 	Camera* camera;
 	Cat* cat;
+	UI_Text* text;
 
 public:
 	Scene1() = default;

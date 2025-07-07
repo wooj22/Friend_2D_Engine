@@ -9,12 +9,16 @@ void Scene1::Awake()
 	// create gameobject
 	// 생성자 -> ComponentInit() -> Awake()
 	cat = CreateObject<Cat>();
+	text = CreateObject<UI_Text>();
 }
 
 void Scene1::Start()
 {
 	// game object -> SceneStartInit
 	__super::Start();
+	text->rectTransform->SetPosition(0, 400);
+	text->rectTransform->SetSize(500, 80);
+	text->screenTextRenderer->SetText(L"[1][2][3] key로 Animation 전환");
 }
 
 void Scene1::Update()
