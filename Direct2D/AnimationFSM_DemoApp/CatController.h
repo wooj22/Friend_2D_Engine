@@ -4,6 +4,7 @@
 class Transform;
 class SpriteRenderer;
 class AnimatorController;
+
 class CatController : public Script
 {
 private:

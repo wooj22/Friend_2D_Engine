@@ -2,7 +2,6 @@
 #include "DemoApp.h"
 #include "../Direct2D_EngineLib/RectTransform.h"
 #include "Scene1.h"
-#include "Scene2.h"
 
 // static member init
 Camera* DemoApp::mainCamera = nullptr;
@@ -27,8 +26,6 @@ void DemoApp::Init()
 
 	// scene init
 	sceneManager.CreateScene<Scene1>();
-	sceneManager.CreateScene<Scene2>();
-
 	sceneManager.SetCurrentScene(SCENE1);
 	sceneManager.Init();
 }

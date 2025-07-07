@@ -134,7 +134,6 @@
     <ClCompile Include="DemoApp.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Scene1.cpp" />
-    <ClCompile Include="Scene2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cat.h" />
@@ -142,7 +141,6 @@
     <ClInclude Include="CatController.h" />
     <ClInclude Include="DemoApp.h" />
     <ClInclude Include="Scene1.h" />
-    <ClInclude Include="Scene2.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Direct2D_EngineLib\Direct2D_EngineLib.vcxproj">

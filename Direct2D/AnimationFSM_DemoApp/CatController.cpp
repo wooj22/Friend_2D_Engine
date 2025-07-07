@@ -56,6 +56,7 @@ void CatController::InputCheak()
 
 void CatController::Walk()
 {
+	// TODO :: vector µµÀÔ
 	if (isW) tr->AddPosition(0, curSpeed * Time::GetDeltaTime());
 	if (isA) tr->AddPosition(-curSpeed * Time::GetDeltaTime(), 0);
 	if (isS) tr->AddPosition(0, -curSpeed * Time::GetDeltaTime());

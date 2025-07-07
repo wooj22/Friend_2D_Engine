@@ -36,9 +36,6 @@
     <ClCompile Include="Scene1.cpp">
       <Filter>01. Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Scene2.cpp">
-      <Filter>01. Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Cat.cpp">
       <Filter>02. GameObject</Filter>
     </ClCompile>
@@ -52,9 +49,6 @@
   <ItemGroup>
     <ClInclude Include="DemoApp.h">
       <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene2.h">
-      <Filter>01. Scene</Filter>
     </ClInclude>
     <ClInclude Include="Scene1.h">
       <Filter>01. Scene</Filter>
