@@ -1,10 +1,15 @@
 ﻿#include "Input.h"
 #include "RectTransform.h"
 
+// static member init
 HWND Input::hWnd = nullptr;
 POINT Input::mouseClient = { 0, 0 };
 SHORT Input::prevState[256] = { 0 };
 SHORT Input::currState[256] = { 0 };
+
+float Input::horizontalAxis = 0.0f;
+float Input::verticalAxis = 0.0f;
+
 
 void Input::Init(HWND hwnd)
 {
@@ -21,11 +26,23 @@ void Input::Update()
 {
     memcpy(prevState, currState, sizeof(SHORT) * 256);
 
+    // key
     for (int i = 0; i < 256; ++i)
         currState[i] = GetAsyncKeyState(i);
 
+    // mouse
     GetCursorPos(&mouseClient);
     ScreenToClient(hWnd, &mouseClient);
+
+    // horizontal
+    horizontalAxis = 0.0f;
+    if (GetKey('A') || GetKey(VK_LEFT))  horizontalAxis -= 1.0f;
+    if (GetKey('D') || GetKey(VK_RIGHT)) horizontalAxis += 1.0f;
+
+    // vertical
+    verticalAxis = 0.0f;
+    if (GetKey('W') || GetKey(VK_UP))    verticalAxis += 1.0f;
+    if (GetKey('S') || GetKey(VK_DOWN))  verticalAxis -= 1.0f;
 }
 
 bool Input::GetKey(int vKey)
@@ -71,4 +88,14 @@ POINT Input::ConvertMouseToUnityPosition()
 
     // 역행 실패 시 원래 좌표 반환
     return mouse;
+}
+
+float Input::GetAxisHorizontal()
+{
+    return horizontalAxis;
+}
+
+float Input::GetAxisVertical()
+{
+    return verticalAxis;
 }

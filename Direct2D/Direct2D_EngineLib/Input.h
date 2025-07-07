@@ -9,6 +9,9 @@ private:
     static SHORT prevState[256];
     static SHORT currState[256];
 
+    static float horizontalAxis;
+    static float verticalAxis;
+
 public:
     static void Init(HWND hwnd);
     static void Update();
@@ -19,4 +22,7 @@ public:
 
     static POINT GetMousePosition();
     static POINT ConvertMouseToUnityPosition();
+
+    static float GetAxisHorizontal();
+    static float GetAxisVertical();
 };

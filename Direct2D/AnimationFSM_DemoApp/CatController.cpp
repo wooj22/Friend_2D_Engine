@@ -20,6 +20,7 @@ void CatController::Update()
 {
 	InputCheak();
 
+	// cat state
 	if (isW || isA || isS || isD) {
 		if (!isShift) {
 			curSpeed = walkSpeed;
@@ -32,12 +33,11 @@ void CatController::Update()
 	}
 	else curSpeed = 0;
 
-	ac->SetFloat("Speed", curSpeed);
+	// filp
+	sr->flipX = Input::GetAxisHorizontal() >= 0 ? false : true;
 
-	// animation change
-	/*if (Input::GetKeyDown('1')) ac->PlayAnimation("Cat_Idle");
-	if (Input::GetKeyDown('2')) ac->PlayAnimation("Cat_Walk");
-	if (Input::GetKeyDown('3')) ac->PlayAnimation("Cat_Run");*/
+	// animation
+	ac->SetFloat("Speed", curSpeed);
 }
 
 void CatController::OnDestroy()
