@@ -20,7 +20,7 @@ void CatController::OnEnable()
 
 void CatController::Update()
 {
-	tr->AddRotation(rotationSpeed * rotationDirection * Time::GetDeltaTime());
+	tr->Rotate(rotationSpeed * rotationDirection * Time::GetDeltaTime());
 }
 
 void CatController::OnDestroy()

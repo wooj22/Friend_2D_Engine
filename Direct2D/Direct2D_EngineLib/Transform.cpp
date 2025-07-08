@@ -123,6 +123,14 @@ void Transform::Translate(const float& x, const float& y)
     MarkWorldDirty();
 }
 
+// Rotate
+void Transform::Rotate(const float& angle)
+{
+    isLocalDirty = true;
+    this->rotation += angle;
+    MarkWorldDirty();
+}
+
 // Scaleing
 void Transform::Scaleing(const Vector2& scale)
 {

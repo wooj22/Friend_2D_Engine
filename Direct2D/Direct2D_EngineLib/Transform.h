@@ -98,6 +98,9 @@ public:
     void Translate(const Vector2& translation);
     void Translate(const float& x, const float& y);
 
+    // Rotate
+    void Rotate(const float& angle);
+
     // Scaleing
     void Scaleing(const Vector2& scale);
     void Scaleing(const float& scaleX, const float& scaleY);
