@@ -14,11 +14,7 @@ private:
 	float runSpeed = 300.f;
 
 	// key
-	bool isW;
-	bool isA;
-	bool isS;
-	bool isD;
-	bool isShift;
+	bool isW, isA, isS, isD, isShift;
 
 	// ref component
 	Transform* tr;
