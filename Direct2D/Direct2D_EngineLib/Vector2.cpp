@@ -52,7 +52,7 @@ Vector2& Vector2::operator/=(float scalar)
     return *this;
 }
 
-float Vector2::Length() const
+float Vector2::Magnitude() const
 {
     return std::sqrt(x * x + y * y);
 }
