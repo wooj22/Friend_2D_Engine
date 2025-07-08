@@ -1,6 +1,7 @@
 #pragma once
 #include <d2d1_1.h>
 #include <vector>
+#include "Vector2.h"
 #include "ITransform.h"
 #include "TransformSystem.h"
 
@@ -30,10 +31,11 @@ class Transform : public ITransform
 {
 private:
     // transform
-    D2D1_POINT_2F position;
+    Vector2 position;
     float rotation;
-    D2D1_POINT_2F scale;
+    Vector2 scale;
 
+private:
     // parent, children
     Transform* parent = nullptr;
     std::vector<Transform*> children;
@@ -85,23 +87,25 @@ public:
     void MarkWorldDirty();
 
     // set
-    void SetPosition(float x, float y);
-    void SetRotation(float angle);
-    void SetScale(float scaleX, float scaleY);
+    void SetPosition(const Vector2& position);
+    void SetPosition(const float& x, const float& y);
+    void SetRotation(const float& angle);
+    void SetScale(const Vector2& scale);
+    void SetScale(const float& scaleX, const float& scaleY);
     void ResetTransform();
 
-    // add
-    void AddPosition(float x, float y);
-    void AddRotation(float angle);
-    void AddScale(float scaleX, float scaleY);
+    // Translate
+    void Translate(const Vector2& translation);
+    void Translate(const float& x, const float& y);
 
-    // TODO :: Translate
-    // transform.position += direction * speed * Time.deltaTime;
+    // Scaleing
+    void Scaleing(const Vector2& scale);
+    void Scaleing(const float& scaleX, const float& scaleY);
 
     // get
-    D2D1_POINT_2F GetPosition() const { return position; }
+    Vector2 GetPosition() const { return position; }
     float GetRotation() const { return rotation; }
-    D2D1_POINT_2F GetScale() const { return scale; }
+    Vector2 GetScale() const { return scale; }
 
 private:
     //  matrix

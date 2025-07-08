@@ -59,7 +59,7 @@ float Vector2::Magnitude() const
 
 Vector2 Vector2::Normalized() const
 {
-    float len = Length();
+    float len = Magnitude();
     if (len == 0.0f)
         return Vector2(0, 0);
     return Vector2(x / len, y / len);

@@ -64,21 +64,35 @@ void Transform::MarkWorldDirty()
 }
 
 // set
-void Transform::SetPosition(float x, float y) 
+void Transform::SetPosition(const Vector2& position)
+{
+    isLocalDirty = true;
+    this->position = position;
+    MarkWorldDirty();
+}
+
+void Transform::SetPosition(const float& x, const float& y)
 { 
     isLocalDirty = true;
     position = { x, y }; 
     MarkWorldDirty();
 }
 
-void Transform::SetRotation(float angle) 
+void Transform::SetRotation(const float& angle)
 { 
     isLocalDirty = true; 
     rotation = angle; 
     MarkWorldDirty();
 }
 
-void Transform::SetScale(float scaleX, float scaleY) 
+void Transform::SetScale(const Vector2& scale)
+{
+    isLocalDirty = true;
+    this->scale = scale;
+    MarkWorldDirty();
+}
+
+void Transform::SetScale(const float& scaleX, const float& scaleY)
 {
     isLocalDirty = true; 
     scale = { scaleX, scaleY }; 
@@ -93,25 +107,35 @@ void Transform::ResetTransform()
     MarkWorldDirty();
 }
 
-// add
-void Transform::AddPosition(float x, float y)
-{ 
-    isLocalDirty = true;
-    position.x += x; position.y += y;
-    MarkWorldDirty();
-}
-
-void Transform::AddRotation(float angle)
+// translate
+void Transform::Translate(const Vector2& translation)
 {
     isLocalDirty = true;
-    rotation += angle; 
+    position += translation;
     MarkWorldDirty();
 }
 
-void Transform::AddScale(float scaleX, float scaleY) 
-{ 
-    isLocalDirty = true; 
-    scale.x += scaleX; scale.y += scaleY; 
+void Transform::Translate(const float& x, const float& y)
+{
+    isLocalDirty = true;
+    position.x += x;
+    position.y += y;
+    MarkWorldDirty();
+}
+
+// Scaleing
+void Transform::Scaleing(const Vector2& scale)
+{
+    isLocalDirty = true;
+    this->scale += scale;
+    MarkWorldDirty();
+}
+
+void Transform::Scaleing(const float& scaleX, const float& scaleY)
+{
+    isLocalDirty = true;
+    this->scale.x += scaleX;
+    this->scale.y += scaleY;
     MarkWorldDirty();
 }
 

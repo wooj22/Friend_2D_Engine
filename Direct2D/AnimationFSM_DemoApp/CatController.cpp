@@ -20,18 +20,18 @@ void CatController::Update()
 {
 	InputCheak();
 
-	// cat state
+	// speed setting
 	if (isW || isA || isS || isD) {
-		if (!isShift) {
-			curSpeed = walkSpeed;
-			Walk();
-		}
-		else {
-			curSpeed = runSpeed;
-			Run();
-		}
+		if (!isShift) curSpeed = walkSpeed;
+		else curSpeed = runSpeed;
 	}
 	else curSpeed = 0;
+
+	// move
+	float inputX = Input::GetAxisHorizontal();
+	float inputY = Input::GetAxisVertical();
+	Vector2 direction = Vector2(inputX, inputY).Normalized();
+	tr->Translate(direction * curSpeed * Time::GetDeltaTime());
 
 	// filp
 	sr->flipX = Input::GetAxisHorizontal() >= 0 ? false : true;
@@ -52,21 +52,4 @@ void CatController::InputCheak()
 	isS = Input::GetKey('S');
 	isD = Input::GetKey('D');
 	isShift = Input::GetKey(VK_SHIFT);
-}
-
-void CatController::Walk()
-{
-	// TODO :: vector µµÀÔ
-	if (isW) tr->AddPosition(0, curSpeed * Time::GetDeltaTime());
-	if (isA) tr->AddPosition(-curSpeed * Time::GetDeltaTime(), 0);
-	if (isS) tr->AddPosition(0, -curSpeed * Time::GetDeltaTime());
-	if (isD) tr->AddPosition(curSpeed * Time::GetDeltaTime(), 0);
-}
-
-void CatController::Run()
-{
-	if (isW) tr->AddPosition(0, curSpeed * Time::GetDeltaTime());
-	if (isA) tr->AddPosition(-curSpeed * Time::GetDeltaTime(), 0);
-	if (isS) tr->AddPosition(0, -curSpeed * Time::GetDeltaTime());
-	if (isD) tr->AddPosition(curSpeed * Time::GetDeltaTime(), 0);
 }

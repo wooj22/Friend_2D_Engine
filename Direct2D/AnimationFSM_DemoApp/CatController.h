@@ -36,7 +36,5 @@ public:
 
 private:
 	void InputCheak();
-	void Walk();
-	void Run();
 };
 
