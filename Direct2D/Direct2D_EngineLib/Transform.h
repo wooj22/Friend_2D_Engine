@@ -95,6 +95,9 @@ public:
     void AddRotation(float angle);
     void AddScale(float scaleX, float scaleY);
 
+    // TODO :: Translate
+    // transform.position += direction * speed * Time.deltaTime;
+
     // get
     D2D1_POINT_2F GetPosition() const { return position; }
     float GetRotation() const { return rotation; }

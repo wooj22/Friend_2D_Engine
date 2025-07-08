@@ -231,6 +231,9 @@
     <ClInclude Include="AnimatorSystem.h">
       <Filter>헤더 파일\04. ComponentSystem</Filter>
     </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>헤더 파일\99. Module</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -340,6 +343,9 @@
     </ClCompile>
     <ClCompile Include="AnimatorSystem.cpp">
       <Filter>소스 파일\04. ComponentSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2.cpp">
+      <Filter>소스 파일\99. Module</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

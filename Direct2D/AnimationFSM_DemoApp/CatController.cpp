@@ -5,6 +5,7 @@
 #include "../Direct2D_EngineLib/Animator.h"
 #include "../Direct2D_EngineLib/Input.h"
 #include "../Direct2D_EngineLib/Time.h"
+#include "../Direct2D_EngineLib/ResourceManager.h"
 
 void CatController::OnEnable()
 {
@@ -13,7 +14,6 @@ void CatController::OnEnable()
 	ac = owner->GetComponent<Animator>()->controller;
 
 	tr->SetScale(3, 3);
-	//sr->flipX = true;
 }
 
 void CatController::Update()

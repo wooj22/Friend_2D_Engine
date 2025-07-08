@@ -173,6 +173,7 @@
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="UI_Image.h" />
     <ClInclude Include="UI_Text.h" />
+    <ClInclude Include="Vector2.h" />
     <ClInclude Include="WorldTextRenderer.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Transform.h" />
@@ -211,6 +212,7 @@
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="UI_Image.cpp" />
     <ClCompile Include="UI_Text.cpp" />
+    <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="WorldTextRenderer.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Transform.cpp" />

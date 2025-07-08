@@ -32,8 +32,9 @@ public:
 	void OnDestroy() override;
 
 public:
-	//func
 	float GetSpeed() { return curSpeed; }
+
+private:
 	void InputCheak();
 	void Walk();
 	void Run();

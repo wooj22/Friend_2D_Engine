@@ -22,6 +22,7 @@ struct AnimationFrame
     float time = 0.0f;              // start timing
 };
 
+// TODO :: 리소스 매니저로 관리하기
 class AnimationClip
 {
 public:

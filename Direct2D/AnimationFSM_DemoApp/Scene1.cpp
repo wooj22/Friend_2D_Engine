@@ -44,9 +44,16 @@ void Scene1::Update()
 	// camera ¿ªÇà·Ä update
 	Transform::SetCameraMatrix(camera->transform->GetWorldMatrix());
 
+	// create
+	if (Input::GetKeyDown('I')) CreateObject<Cat>();
+
 	// ui update
 	float speed = cat->GetComponent<CatController>()->GetSpeed();
 	catSpeed_text->screenTextRenderer->SetText(L"Speed : " + to_wstring(speed));
+
+	// debug
+	if (Input::GetKeyDown('T'))ResourceManager::Get().Trim();
+	if (Input::GetKeyDown('R')) ResourceManager::Get().PrintMemoryUsage();
 }
 
 void Scene1::Exit()
