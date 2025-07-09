@@ -21,19 +21,25 @@ void RectTransform::OnDestroy()
 }
 
 // set
-void RectTransform::SetPosition(float x, float y)
+void RectTransform::SetPosition(const Vector2& position)
+{
+    this->position = position;
+    isDirty = true;
+}
+
+void RectTransform::SetPosition(const float& x, const float& y)
 {
     position = { x, y };
     isDirty = true;
 }
 
-void RectTransform::SetSize(float w, float h)
+void RectTransform::SetSize(const float& w, const float& h)
 {
     size = { w, h };
     isDirty = true;
 }
 
-void RectTransform::SetPivot(float x, float y)
+void RectTransform::SetPivot(const float& x, const float& y)
 {
     pivot = { x, y };
     isDirty = true;

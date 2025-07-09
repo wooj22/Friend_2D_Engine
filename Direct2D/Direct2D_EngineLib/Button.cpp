@@ -24,7 +24,7 @@ void Button::Update()
     float mouseY = static_cast<float>(mouse.y);
 
     // 3. 버튼 영역 계산 (pivot 보정된 screen 영역)
-    D2D1_POINT_2F pos = rectTransform->GetPosition();
+    Vector2 pos = rectTransform->GetPosition();
     D2D1_SIZE_F size = rectTransform->GetSize();
     D2D1_POINT_2F pivot = rectTransform->GetPivot();
 

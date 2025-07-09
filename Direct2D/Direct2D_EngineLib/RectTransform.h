@@ -1,5 +1,6 @@
 #pragma once
 #include <d2d1_1.h>
+#include "Vector2.h"
 #include "ITransform.h"
 #include "TransformSystem.h"
 
@@ -14,7 +15,7 @@ class RectTransform : public ITransform
 {
 private:
     // rect transform
-    D2D1_POINT_2F position = { 0, 0 };     
+    Vector2 position = { 0, 0 };
     D2D1_SIZE_F size = { 100, 100 };
     D2D1_POINT_2F pivot = { 0.5f, 0.5f };  // rect의 중심점 (unity 좌표계 사용시 left down = 0,0) -> offset 처리
 
@@ -46,13 +47,14 @@ public:
 
 public:
     // set
-    void SetPosition(float x, float y);
-    void SetSize(float w, float h);
-    void SetPivot(float x, float y);
+    void SetPosition(const Vector2& position);
+    void SetPosition(const float& x, const float& y);
+    void SetSize(const float& w, const float& h);
+    void SetPivot(const float& x, const float& y);
 
     // get
     D2D1_SIZE_F GetSize() const { return size; }
-    D2D1_POINT_2F GetPosition() const { return position; }
+    Vector2 GetPosition() const { return position; }
     D2D1_POINT_2F GetPivot() const { return pivot; }
 
     
