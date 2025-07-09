@@ -8,15 +8,13 @@
 #include "CatController.h"
 #include "CatAnimatorController.h"
 
-/* Animation FSM condition & transition °úÁ¦ */
-// Animator -> AnimatorController -> State -> AnimationClip
 class Cat : public GameObject
 {
 private:
 	// components
 	Transform* transform;
 	SpriteRenderer* spriteRenderer;
-	CatController* controller;
+	CatController* controller;		// script compoennt
 	Animator* animator;
 
 	// animation asset
