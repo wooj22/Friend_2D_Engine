@@ -115,6 +115,18 @@
     <Filter Include="헤더 파일\99. Module">
       <UniqueIdentifier>{06fd47b0-4a6c-4d08-a0d1-25bdded1526d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\03. Component\Physics">
+      <UniqueIdentifier>{d03fce7e-b50a-4e6e-9fa5-35211f254ead}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\03. Component\Collider">
+      <UniqueIdentifier>{6f3cffc4-1059-42ac-898d-6e3592c25920}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03. Component\Collider">
+      <UniqueIdentifier>{d6572bea-53bd-4fa9-8dcc-e14ee3842b1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03. Component\Physics">
+      <UniqueIdentifier>{bb8635bb-3b42-4d67-a3af-04ffe10608e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h">
@@ -234,6 +246,18 @@
     <ClInclude Include="Vector2.h">
       <Filter>헤더 파일\99. Module</Filter>
     </ClInclude>
+    <ClInclude Include="Rigidbody.h">
+      <Filter>헤더 파일\03. Component\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCollider.h">
+      <Filter>헤더 파일\03. Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsSystem.h">
+      <Filter>헤더 파일\04. ComponentSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderSystem.h">
+      <Filter>헤더 파일\04. ComponentSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -346,6 +370,18 @@
     </ClCompile>
     <ClCompile Include="Vector2.cpp">
       <Filter>소스 파일\99. Module</Filter>
+    </ClCompile>
+    <ClCompile Include="Rigidbody.cpp">
+      <Filter>소스 파일\03. Component\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCollider.cpp">
+      <Filter>소스 파일\03. Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="ColliderSystem.cpp">
+      <Filter>소스 파일\04. ComponentSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsSystem.cpp">
+      <Filter>소스 파일\04. ComponentSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

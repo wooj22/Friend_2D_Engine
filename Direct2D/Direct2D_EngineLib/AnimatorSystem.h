@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include "Singleton.h"
-
 using namespace std;
 
 class Animator;
