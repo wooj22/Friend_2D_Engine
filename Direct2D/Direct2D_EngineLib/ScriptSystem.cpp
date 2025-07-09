@@ -22,18 +22,19 @@ void ScriptSystem::Unregist(Script* component)
 // 게임 오브젝트에 모든 컴포넌트 생성 후
 void ScriptSystem::Awake()
 {
-	for (auto it = components.begin(); it != components.end(); ++it)
+	for (Script* script : components)
 	{
-		(*it)->Awake();
+		script->Awake();
 	}
 }
 
 // Awake()이후, 첫 Update 전에
 void ScriptSystem::Start()
 {
-	for (auto it = components.begin(); it != components.end(); ++it)
+	for (Script* script : components)
 	{
-		(*it)->Start();
+		script->Start();
+		script->started = true;
 	}
 }
 
@@ -47,7 +48,6 @@ void ScriptSystem::Update()
 		{
 			script->Awake(); 
 			script->Start();
-			script->started = true;
 		}
 		script->Update();
 	}

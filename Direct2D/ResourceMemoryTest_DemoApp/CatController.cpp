@@ -1,6 +1,6 @@
 #include "CatController.h"
 
-void CatController::OnEnable()
+void CatController::Start()
 {
 	// get component
 	tr = this->owner->GetComponent<Transform>();
@@ -21,9 +21,4 @@ void CatController::OnEnable()
 void CatController::Update()
 {
 	tr->Rotate(rotationSpeed * rotationDirection * Time::GetDeltaTime());
-}
-
-void CatController::OnDestroy()
-{
-
 }

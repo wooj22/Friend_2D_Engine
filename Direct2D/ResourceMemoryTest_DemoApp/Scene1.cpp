@@ -7,20 +7,17 @@ void Scene1::Awake()
 	camera->transform->SetPosition(0, 0);
 
 	// gameobject create
-	Scene1ObjectCreate(); // »ý¼ºÀÚ -> ComponentInit() -> Awake()
+	Scene1ObjectCreate();
+	Scene1ObjectSetting();
 }
 
 void Scene1::Start()
 {
-	// game object -> SceneStartInit
 	__super::Start();
-
-	Scene1ObjectSetting();
 }
 
 void Scene1::Update()
 {
-	// game object -> Update
 	__super::Update();
 
 	// camera move
@@ -47,7 +44,6 @@ void Scene1::Update()
 
 void Scene1::Exit()
 {
-	// game object -> destroy
 	camera = nullptr;
 	__super::Exit();
 }

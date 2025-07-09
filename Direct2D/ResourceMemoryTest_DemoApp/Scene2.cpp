@@ -7,17 +7,15 @@ void Scene2::Awake()
 	camera->transform->SetPosition(0, 0);
 
 	// gameobject create
-	Scene2ObjectCreate(); // 생성자()->ComponentInit()->Awake()
+	Scene2ObjectCreate();
+	Scene2ObjectSetting();
 }
 
 void Scene2::Start()
 {
-	// game object -> SceneStartInit
 	__super::Start();
 
-	Scene2ObjectSetting();
-
-	// Button event 등록
+	// Button event
 	createButton->button->onClickListeners.AddListener(
 		this, std::bind(&Scene2::CreateButtonClick, this));
 	deleteButton->button->onClickListeners.AddListener(
@@ -26,7 +24,6 @@ void Scene2::Start()
 
 void Scene2::Update()
 {
-	// game object -> Update
 	__super::Update();
 
 	// camera move
