@@ -14,14 +14,16 @@
 class Script : public Component
 {
 public:
-    /* component cycle */
+    /* script component cycle */
 	Script() { ScriptSystem::Get().Regist(this); }
 	~Script() override { ScriptSystem::Get().Unregist(this); }
 
-	void OnEnable() override {};
-    virtual void Update() {};           // 프레임 단위
-    virtual void FixedUpdate() {};      // physice update (0.02f 보장)
-	void OnDestroy() override {};
+	void OnEnable() override {}        // 컴포넌트 활성화시
+    virtual void Awake() {}            // 
+    virtual void Start() {}            // 
+    virtual void Update() {}           // 프레임 단위
+    virtual void FixedUpdate() {}      // physice update (0.02f 보장)
+	void OnDestroy() override {}       // 
 
     /* Collition Event */
     // trigger

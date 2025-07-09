@@ -10,8 +10,8 @@ class CatController : public Script
 private:
 	// stat
 	float curSpeed = 0;
-	float walkSpeed = 100.f;
-	float runSpeed = 300.f;
+	float walkSpeed = 5.f;
+	float runSpeed = 10.f;
 
 	// key
 	bool isW, isA, isS, isD, isShift;
@@ -24,7 +24,10 @@ private:
 public:
 	// component cycle
 	void OnEnable() override;
+	void Awake() override;
+	void Start() override;
 	void Update() override;
+	void FixedUpdate() override;
 	void OnDestroy() override;
 
 public:

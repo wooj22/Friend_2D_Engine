@@ -16,6 +16,16 @@ void CatController::OnEnable()
 	tr->SetScale(3, 3);
 }
 
+void CatController::Awake()
+{
+
+}
+
+void CatController::Start()
+{
+
+}
+
 void CatController::Update()
 {
 	InputCheak();
@@ -27,17 +37,20 @@ void CatController::Update()
 	}
 	else curSpeed = 0;
 
-	// move
-	float inputX = Input::GetAxisHorizontal();
-	float inputY = Input::GetAxisVertical();
-	Vector2 direction = Vector2(inputX, inputY).Normalized();
-	tr->Translate(direction * curSpeed * Time::GetDeltaTime());
-
 	// filp
 	sr->flipX = Input::GetAxisHorizontal() >= 0 ? false : true;
 
 	// animation
 	ac->SetFloat("Speed", curSpeed);
+}
+
+void CatController::FixedUpdate()
+{
+	// move
+	float inputX = Input::GetAxisHorizontal();
+	float inputY = Input::GetAxisVertical();
+	Vector2 direction = Vector2(inputX, inputY).Normalized();
+	tr->Translate(direction * curSpeed);
 }
 
 void CatController::OnDestroy()

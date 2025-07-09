@@ -53,9 +53,9 @@ public:
     void Update(float dt) override
     {
         // tansition
-        if (controller->GetFloat("Speed") >= 300.f)
+        if (controller->GetFloat("Speed") >= 10.f)
             controller->PlayAnimation("Cat_Run");
-        else if (controller->GetFloat("Speed") >= 100.f)
+        else if (controller->GetFloat("Speed") >= 5.f)
             controller->PlayAnimation("Cat_Walk");
     }
     void Exit() override {}
@@ -72,7 +72,7 @@ public:
         // tansition
         if (controller->GetFloat("Speed") == 0)
             controller->PlayAnimation("Cat_Idle");
-        else if (controller->GetFloat("Speed") >= 300.f)
+        else if (controller->GetFloat("Speed") >= 10.f)
             controller->PlayAnimation("Cat_Run");
     }
     void Exit() override {}
@@ -91,8 +91,8 @@ public:
         // tansition
         if (controller->GetFloat("Speed") == 0)
             controller->PlayAnimation("Cat_Idle");
-        else if (controller->GetFloat("Speed") < 300.f &&
-            controller->GetFloat("Speed") >= 100.f)
+        else if (controller->GetFloat("Speed") < 10.f &&
+            controller->GetFloat("Speed") >= 5.f)
             controller->PlayAnimation("Cat_Walk");
     }
     void Exit() override {}
