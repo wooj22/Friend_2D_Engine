@@ -7,7 +7,7 @@ void ImageRenderer::OnEnable()
 	rectTransform = this->owner->GetComponent<RectTransform>();
 
 	// brush »ý¼º
-	RenderSystem::Get().renderTarget->CreateSolidColorBrush(textColor, brush.GetAddressOf());
+	RenderSystem::Get().renderTarget->CreateSolidColorBrush(baseColor, brush.GetAddressOf());
 }
 
 void ImageRenderer::Update()
@@ -36,4 +36,15 @@ void ImageRenderer::Render()
 void ImageRenderer::OnDestroy() 
 {
 	sprite = nullptr;
+}
+
+void ImageRenderer::SetBaseColor(const D2D1_COLOR_F& newColor) 
+{
+    baseColor = newColor;
+    if (brush) {
+        brush->SetColor(baseColor);
+    }
+    else {
+        RenderSystem::Get().renderTarget->CreateSolidColorBrush(baseColor, brush.GetAddressOf());
+    }
 }

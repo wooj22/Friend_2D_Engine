@@ -26,7 +26,7 @@ public:
 private:
 	// sprite가 없을 경우 box draw
 	ComPtr<ID2D1SolidColorBrush> brush;
-	D2D1_COLOR_F textColor = D2D1::ColorF(D2D1::ColorF::White);
+	D2D1_COLOR_F baseColor = D2D1::ColorF(D2D1::ColorF::White);
 
 public:
 	// component cycle
@@ -47,10 +47,6 @@ public:
 	void OnDestroy() override;
 
 public:
-	// function
-	/*void CreateTexture2D(const std::string& path)
-	{
-		sprite_old = ResourceManager::Get().CreateTexture2D(path);
-	}*/
+	void SetBaseColor(const D2D1_COLOR_F& newColor);
 };
 
