@@ -67,7 +67,10 @@
       <Filter>02. GameObject\UI</Filter>
     </ClCompile>
     <ClCompile Include="StartUIManager.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>02. GameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Cloud.cpp">
+      <Filter>02. GameObject\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -99,7 +102,10 @@
       <Filter>02. GameObject\UI</Filter>
     </ClInclude>
     <ClInclude Include="StartUIManager.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>02. GameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Cloud.h">
+      <Filter>02. GameObject\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

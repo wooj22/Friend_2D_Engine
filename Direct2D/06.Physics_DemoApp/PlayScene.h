@@ -6,7 +6,6 @@
 #include "DemoApp.h"
 
 #include "PlayUIManager.h"
-#include "SkyBackground.h"
 #include "MapManager.h"
 #include "Cat.h"
 
@@ -19,7 +18,6 @@ private:
 
 	PlayUIManager* uiManager;
 	MapManager* mapManager;
-	SkyBackground* backSprite1;
 	Cat* player;
 
 public:

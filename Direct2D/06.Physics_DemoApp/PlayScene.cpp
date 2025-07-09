@@ -16,7 +16,11 @@ void PlayScene::Awake()
 	mapManager->map1 = CreateObject<SkyBackground>();
 	mapManager->map2 = CreateObject<SkyBackground>();
 	mapManager->map3 = CreateObject<SkyBackground>();
-
+	mapManager->cloud1 = CreateObject<Cloud>();
+	mapManager->cloud2 = CreateObject<Cloud>();
+	mapManager->cloud3 = CreateObject<Cloud>();
+	mapManager->cloud4 = CreateObject<Cloud>();
+	mapManager->cloud5 = CreateObject<Cloud>();
 	player = CreateObject<Cat>();
 }
 
