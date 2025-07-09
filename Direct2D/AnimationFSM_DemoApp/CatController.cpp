@@ -9,6 +9,11 @@
 
 void CatController::OnEnable()
 {
+
+}
+
+void CatController::Start()
+{
 	tr = owner->GetComponent<Transform>();
 	sr = owner->GetComponent<SpriteRenderer>();
 	ac = owner->GetComponent<Animator>()->controller;

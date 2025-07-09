@@ -24,6 +24,7 @@ private:
 public:
 	// component cycle
 	void OnEnable() override;
+	void Start() override;
 	void Update() override;
 	void OnDestroy() override;
 
