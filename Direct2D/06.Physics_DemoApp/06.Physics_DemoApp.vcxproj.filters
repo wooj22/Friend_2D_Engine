@@ -31,6 +31,9 @@
     <Filter Include="02. GameObject\Map">
       <UniqueIdentifier>{c20fd043-55bb-4b19-bdd6-f418710cd5c2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. GameObject\UI">
+      <UniqueIdentifier>{cb1ed4f0-e970-4065-854a-df6ab9592f24}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -57,6 +60,15 @@
     <ClCompile Include="CatAnimatorController.cpp">
       <Filter>04. Animation</Filter>
     </ClCompile>
+    <ClCompile Include="MapManager.cpp">
+      <Filter>02. GameObject\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayUIManager.cpp">
+      <Filter>02. GameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="StartUIManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DemoApp.h">
@@ -79,6 +91,15 @@
     </ClInclude>
     <ClInclude Include="CatAnimatorController.h">
       <Filter>04. Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="MapManager.h">
+      <Filter>02. GameObject\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayUIManager.h">
+      <Filter>02. GameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="StartUIManager.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

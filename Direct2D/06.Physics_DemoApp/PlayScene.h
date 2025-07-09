@@ -1,13 +1,13 @@
 #pragma once
 #include "../Direct2D_EngineLib/Scene.h"
 #include "../Direct2D_EngineLib/Input.h"
+#include "../Direct2D_EngineLib/Time.h"
 #include "../Direct2D_EngineLib/Camera.h"
-#include "../Direct2D_EngineLib/UI_Button.h"
-#include "../Direct2D_EngineLib/UI_Image.h"
-#include"../Direct2D_EngineLib/UI_Text.h"
 #include "DemoApp.h"
 
+#include "PlayUIManager.h"
 #include "SkyBackground.h"
+#include "MapManager.h"
 #include "Cat.h"
 
 class PlayScene : public Scene
@@ -17,6 +17,8 @@ private:
 	UI_Text* adviceText;
 	UI_Button* backButton;
 
+	PlayUIManager* uiManager;
+	MapManager* mapManager;
 	SkyBackground* backSprite1;
 	Cat* player;
 

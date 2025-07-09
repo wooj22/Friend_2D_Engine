@@ -5,7 +5,7 @@
 
 class SkyBackground	: public GameObject
 {
-private:
+public:
     Transform* transform;
     SpriteRenderer* spriteRenderer;
 
@@ -18,7 +18,7 @@ public:
     }
     ~SkyBackground() override {}
 
-    void Awake() override             // 오브젝트가 생성될 때
+    void Awake() override                // 오브젝트가 생성될 때
     {
         auto darkSky = ResourceManager::Get().CreateTexture2D("../Resource/DarkSky.png");
         spriteRenderer->sprite = ResourceManager::Get().CreateSprite(darkSky, "DarkSky");

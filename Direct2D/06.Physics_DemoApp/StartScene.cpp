@@ -8,9 +8,10 @@ void StartScene::Awake()
 
 	// create gameobject
 	// »ý¼ºÀÚ -> ComponentInit() -> Awake()
-	backgroundImage = CreateObject<UI_Image>();
-	titleText = CreateObject<UI_Text>();
-	startButton = CreateObject<UI_Button>();
+	uiManager = CreateObject<StartUIManager>();
+	uiManager->backgroundImage = CreateObject<UI_Image>();
+	uiManager->titleText = CreateObject<UI_Text>();
+	uiManager->startButton = CreateObject<UI_Button>();
 }
 
 void StartScene::Start()
@@ -18,28 +19,8 @@ void StartScene::Start()
 	// game object -> SceneStartInit
 	__super::Start();
 
-	// background
-	backgroundImage->rectTransform->SetPivot(0, 1);
-	backgroundImage->rectTransform->SetPosition(-700, 400);
-	backgroundImage->rectTransform->SetSize(1400, 800);
-	auto sky = ResourceManager::Get().CreateTexture2D("../Resource/Sky.png");
-	backgroundImage->imageRenderer->sprite = ResourceManager::Get().CreateSprite(sky, "Sky");
-	//backgroundImage->imageRenderer->SetBaseColor(D2D1::ColorF(D2D1::ColorF::Coral));
-
-	// text
-	titleText->rectTransform->SetPosition(0, 80);
-	titleText->rectTransform->SetSize(800, 200);
-	titleText->screenTextRenderer->SetFontSize(60);
-	titleText->screenTextRenderer->SetText(L"Flatformer DemoApp");
-	titleText->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::LightPink));
-
-	// button
-	startButton->rectTransform->SetPosition(0, -50);
-	startButton->rectTransform->SetSize(180, 70);
-	startButton->imageRenderer->SetBaseColor(D2D1::ColorF(D2D1::ColorF::LightPink));
-	startButton->screenTextRenderer->SetText(L"Start");
-	startButton->screenTextRenderer->SetFontSize(30);
-	startButton->button->onClickListeners.AddListener(
+	// button event
+	uiManager->startButton->button->onClickListeners.AddListener(
 		this, std::bind(&StartScene::ChagnePlayScene, this));
 }
 

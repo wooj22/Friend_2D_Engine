@@ -1,6 +1,4 @@
 #include "PlayScene.h"
-#include "../Direct2D_EngineLib/Time.h"
-#include "DemoApp.h"
 
 void PlayScene::Awake()
 {
@@ -10,9 +8,15 @@ void PlayScene::Awake()
 
 	// create gameobject
 	// »ý¼ºÀÚ -> ComponentInit() -> Awake()
-	adviceText = CreateObject<UI_Text>();
-	backButton = CreateObject<UI_Button>();
-	backSprite1 = CreateObject<SkyBackground>();
+	uiManager = CreateObject<PlayUIManager>();
+	uiManager->adviceText = CreateObject<UI_Text>();
+	uiManager->backButton = CreateObject<UI_Button>();
+
+	mapManager = CreateObject<MapManager>();
+	mapManager->map1 = CreateObject<SkyBackground>();
+	mapManager->map2 = CreateObject<SkyBackground>();
+	mapManager->map3 = CreateObject<SkyBackground>();
+
 	player = CreateObject<Cat>();
 }
 
@@ -21,19 +25,8 @@ void PlayScene::Start()
 	// game object -> SceneStartInit
 	__super::Start();
 
-	adviceText->rectTransform->SetPosition(0, 350);
-	adviceText->rectTransform->SetSize(800, 200);
-	adviceText->screenTextRenderer->SetFontSize(30);
-	adviceText->screenTextRenderer->SetText(L"advide text");
-	adviceText->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::LightPink));
-
-	backButton->rectTransform->SetPivot(0, 1);
-	backButton->rectTransform->SetPosition(-680, 380);
-	backButton->rectTransform->SetSize(50, 50);
-	backButton->imageRenderer->SetBaseColor(D2D1::ColorF(D2D1::ColorF::LightPink));
-	backButton->screenTextRenderer->SetText(L"Back");
-	backButton->screenTextRenderer->SetFontSize(20);
-	backButton->button->onClickListeners.AddListener(
+	// button event add
+	uiManager->backButton->button->onClickListeners.AddListener(
 		this, std::bind(&PlayScene::ChagneStartScene, this));
 }
 
