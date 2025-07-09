@@ -389,6 +389,7 @@
     <ClCompile Include="Script.cpp">
       <Filter>소스 파일\03. Component\Script</Filter>
     </ClCompile>
+    <ClCompile Include="ReadMe.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="D2D_EngineLib.rc">
