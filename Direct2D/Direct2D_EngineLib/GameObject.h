@@ -84,18 +84,6 @@ public:
     virtual void Destroyed() = 0;       // Scene의 Exit, GameObject Delete
 
 public:
-    /* Collition Event */
-     // trigger
-    virtual void OnTriggerEnter() {}
-    virtual void OnTriggerStay() {}
-    virtual void OnTriggerExit() {}
-
-    // collision
-    virtual void OnCollisionEnter() {}
-    virtual void OnCollisionStay() {}
-    virtual void OnCollisionExit() {}
-
-public:
     // game object find
     static GameObject* Find(const std::string& targetName)
     {

@@ -99,25 +99,15 @@ void GameApp::Init()
 	resourceManager.Init();	 // rendersystem init 후에 호출해야 함
 }
 
-/// PreUpdate
-void GameApp::PreUpdate()
-{
-	Input::Update();
-	Time::Update();
-}
-
 /// Update
 void GameApp::Update()
 {
+	Input::Update();
+	Time::Update();
 	buttonSystem.Update();
 	transformSystem.Update();
 	sceneManager.Update();
 	scriptSystem.Update();
-}
-
-/// LateUpdate
-void GameApp::LateUpdate()
-{
 	animatorSystem.Update();
 	renderSystem.Update();
 }
@@ -147,10 +137,16 @@ void GameApp::Loop()
 
 		}
 
-		// game loop cycle
-		PreUpdate();
+		// physics update -> fixed udpate
+		accumulator += Time::GetDeltaTime();
+		while (accumulator >= fixedDeltaTime)
+		{
+			scriptSystem.FixedUpdate();
+			accumulator -= fixedDeltaTime;
+		}
+
+		// update
 		Update();
-		LateUpdate();
 		Render();
 	}
 }

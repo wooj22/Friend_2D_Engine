@@ -19,10 +19,20 @@ void ScriptSystem::Unregist(Script* component)
 }
 
 // component system
+// update -> 프레임(deltaTime) 단위 호출
 void ScriptSystem::Update()
 {
 	for (auto it = components.begin(); it != components.end(); ++it)
 	{
 		(*it)->Update();
+	}
+}
+
+// fixed udpate -> deltaTime에 따라 늦어졌다면 여러번 호출하고 넘어감
+void ScriptSystem::FixedUpdate()
+{
+	for (auto* component : components)
+	{
+		if (component) component->FixedUpdate();
 	}
 }

@@ -16,5 +16,6 @@ public:
 
 	// component system
 	void Update();
+	void FixedUpdate();
 };
 

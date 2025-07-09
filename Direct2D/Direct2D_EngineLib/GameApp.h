@@ -29,6 +29,12 @@ protected:
 	string			modulePath;
 	string			workingPath;
 
+private:
+	// physics update
+	float accumulator = 0.0f;
+	const float fixedDeltaTime = 0.02f;
+
+protected:
 	// object table
 	ObjectTable objectTable;
 
@@ -52,9 +58,7 @@ public:
 
 	/* Game Life Cycle */
 	virtual void Init();
-	void PreUpdate();		// input, time
-	void Update();			// buttonsystem, transformSystem, scene(gameObject), scriptsystem
-	void LateUpdate();		// animatorSystem, renderSystem.update
+	void Update();			// input, time, buttonsystem, transformSystem, scene(gameObject), scriptsystem, animatorSystem, renderSystem.update
 	void Render();			// renderSystem.render
 	void Loop();
 	virtual void UnInit();
