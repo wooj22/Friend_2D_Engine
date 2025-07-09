@@ -16,7 +16,7 @@ public:
 	~MenuUIManager() override { OutputDebugStringA("~MenuUIManager()\n"); }
 
 	void Awake() override;
-	void SceneStartInit() override;
+	void SceneStart() override;
 	void Update() override;
 	void Destroyed() override;
 };

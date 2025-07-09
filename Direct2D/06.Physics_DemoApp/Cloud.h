@@ -20,10 +20,5 @@ public:
 		spriteRenderer->sprite = ResourceManager::Get().CreateSprite(cloud, "Cloud");
 	}
 	~Cloud() override {}
-
-	void Awake() override {}			 // 오브젝트가 생성되고 모든 컴포넌트의 OnEnable()이 실행된 이후
-	void SceneStartInit() override {}	 // Scene의 Start
-	void Update() override {}			 // Scene의 Update
-	void Destroyed() override {}		 // Scene의 Exit, GameObject Delete
 };
 

@@ -7,7 +7,6 @@ void PlayScene::Awake()
 	camera->transform->SetPosition(0, 0);
 
 	// create gameobject
-	// »ý¼ºÀÚ -> ComponentInit() -> Awake()
 	uiManager = CreateObject<PlayUIManager>();
 	uiManager->adviceText = CreateObject<UI_Text>();
 	uiManager->backButton = CreateObject<UI_Button>();
@@ -26,7 +25,7 @@ void PlayScene::Awake()
 
 void PlayScene::Start()
 {
-	// game object -> SceneStartInit
+	// game object -> SceneStart()
 	__super::Start();
 
 	// button event add
@@ -36,7 +35,7 @@ void PlayScene::Start()
 
 void PlayScene::Update()
 {
-	// game object -> Update
+	// game object -> Update()
 	__super::Update();
 
 	// camera move
@@ -51,7 +50,7 @@ void PlayScene::Update()
 
 void PlayScene::Exit()
 {
-	// game object -> destroy
+	// game object -> destroy()
 	camera = nullptr;
 	__super::Exit();
 }

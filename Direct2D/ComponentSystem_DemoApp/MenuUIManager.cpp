@@ -5,7 +5,7 @@ void MenuUIManager::Awake()
 
 }
 
-void MenuUIManager::SceneStartInit()
+void MenuUIManager::SceneStart()
 {
 	// BackGround Image setting
 	titleImage->imageRenderer->CreateTexture2D("../Resource/Camera.png");

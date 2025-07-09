@@ -22,13 +22,13 @@ private:
 	AnimatorController* ac;
 
 public:
-	// component cycle
-	void OnEnable() override;
-	void Awake() override;
-	void Start() override;
-	void Update() override;
-	void FixedUpdate() override;
-	void OnDestroy() override;
+	// script component cycle
+	void OnEnable() override;				// 컴포넌트 활성화 시점
+	void Awake() override;					// 오브젝트의 모든 컴포넌트가 생성된 직후 시점 1회 호출
+	void Start() override;					// Awake() 이후 시점 1회 호출
+	void Update() override;					// 매 프레임 반복 호출
+	void FixedUpdate() override;			// 물리 업데이트 0.02f 보장 반복 호출
+	void OnDestroy() override;				// 컴포넌트 or 오브젝트 소멸 시점
 
 public:
 	float GetSpeed() { return curSpeed; }

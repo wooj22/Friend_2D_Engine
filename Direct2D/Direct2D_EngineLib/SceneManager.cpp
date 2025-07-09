@@ -1,13 +1,16 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "ResourceManager.h"
+#include "ScriptSystem.h"
 
 /// first Scene Init
 void SceneManager::Init()
 {
 	if (currentScene) {
 		currentScene->Awake();
+		ScriptSystem::Get().Awake();
 		currentScene->Start();
+		ScriptSystem::Get().Start();
 	}	
 }
 
@@ -16,15 +19,20 @@ void SceneManager::Update()
 {
 	if (nextScene)
 	{
+		// scene change
 		if (currentScene)
 			currentScene->Exit();
 
 		currentScene = nextScene;
 		nextScene = nullptr;
+		ResourceManager::Get().Trim(); //gpu 리소스 정리
 
-		ResourceManager::Get().Trim(); // 씬 전환시 gpu 리소스 정리
+		// scene init
 		currentScene->Awake();
+		ScriptSystem::Get().Awake();
+
 		currentScene->Start();
+		ScriptSystem::Get().Start();
 	}
 
 	if (currentScene)

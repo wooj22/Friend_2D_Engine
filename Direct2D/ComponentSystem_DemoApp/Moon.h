@@ -19,7 +19,7 @@ public:
 	SpriteRenderer* sr;
 
 	void Awake() override;
-	void SceneStartInit() override;
+	void SceneStart() override;
 	void Update() override;
 	void Destroyed() override;
 };

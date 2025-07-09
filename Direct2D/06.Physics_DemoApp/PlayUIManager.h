@@ -22,7 +22,7 @@ public:
     }
 
     // Scene의 Start (씬의 모든 오브젝트가 생성되고 난 뒤)
-    void SceneStartInit() override     
+    void SceneStart() override     
     {
         adviceText->rectTransform->SetPosition(0, 350);
         adviceText->rectTransform->SetSize(800, 200);

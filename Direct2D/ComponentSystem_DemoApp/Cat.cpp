@@ -5,7 +5,7 @@ void Cat::Awake()
 	
 }
 
-void Cat::SceneStartInit() 
+void Cat::SceneStart() 
 {
 	// find other component
 	catController->fishTransform = GameObject::Find("Fish")->GetComponent<Transform>();

@@ -22,7 +22,7 @@ public:
 	~UI_Image() override { OutputDebugStringA("~UI_Image()\n"); }
 
 	void Awake() override {}
-	void SceneStartInit() override {}
+	void SceneStart() override {}
 	void Update() override {}
 	void Destroyed() override {}
 };

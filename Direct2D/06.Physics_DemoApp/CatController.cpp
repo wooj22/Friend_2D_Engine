@@ -7,23 +7,22 @@
 #include "../Direct2D_EngineLib/Time.h"
 #include "../Direct2D_EngineLib/ResourceManager.h"
 
+// 컴포넌트 활성화 시점
 void CatController::OnEnable()
 {
-	tr = owner->GetComponent<Transform>();
-	sr = owner->GetComponent<SpriteRenderer>();
-	ac = owner->GetComponent<Animator>()->controller;
-
-	tr->SetScale(3, 3);
+	
 }
 
 void CatController::Awake()
 {
-
+	tr = owner->GetComponent<Transform>();
+	sr = owner->GetComponent<SpriteRenderer>();
+	ac = owner->GetComponent<Animator>()->controller;
 }
 
 void CatController::Start()
 {
-
+	tr->SetScale(3, 3);
 }
 
 void CatController::Update()

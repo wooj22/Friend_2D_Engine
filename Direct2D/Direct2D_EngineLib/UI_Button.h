@@ -28,7 +28,7 @@ public:
 	~UI_Button() override { OutputDebugStringA("~UI_Button()\n"); }
 
 	void Awake() override {}
-	void SceneStartInit() override {}
+	void SceneStart() override {}
 	void Update() override {}
 	void Destroyed() override {}
 };

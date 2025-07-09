@@ -5,7 +5,7 @@ void Sun::Awake()
 	
 }
 
-void Sun::SceneStartInit()
+void Sun::SceneStart()
 {
 	transform->SetPosition(0, 0);
 	transform->SetScale(2.5, 2.5);

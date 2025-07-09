@@ -5,6 +5,8 @@
 #include "SkyBackground.h"
 #include "Cloud.h"
 
+// gameobject cycle을 활용하여, script 컴포넌트를 사용하지 않고 간단한 오브젝트를 바로 setting
+
 class MapManager : public GameObject
 {
 private:
@@ -31,9 +33,14 @@ public:
     }
     ~MapManager() override {}
 
-    void Awake() override {}              // 오브젝트가 생성될 때
+    // 생성자 이후
+    void Awake() override         
+    {
 
-    void SceneStartInit() override       // Scene의 Start
+    }
+
+    // Scene의 Start
+    void SceneStart() override       
     {
         map1->transform->SetParent(transform);
         map2->transform->SetParent(transform);
@@ -49,10 +56,17 @@ public:
         cloud4->transform->SetPosition(1200, 50);
         cloud5->transform->SetPosition(1600, 10);
     }
-    void Update()  override              // Scene의 Update
+
+    // Scene의 Update
+    void Update()  override             
     {
         transform->Translate(-mapslidSpeed * Time::GetDeltaTime(), 0);
     }
-    void Destroyed() override {}         // Scene의 Exit, GameObject Delete
+
+    // Scene의 Exit, GameObject Delete
+    void Destroyed() override 
+    {
+        
+    }         
 };
 

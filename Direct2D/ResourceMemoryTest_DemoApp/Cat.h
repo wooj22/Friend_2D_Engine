@@ -28,7 +28,7 @@ public:
 		auto new_sprite = ResourceManager::Get().CreateSprite(catTexture, "Cat_Sprite");
 		spriteRenderer->sprite = new_sprite;
 	}
-	void SceneStartInit() override {}	 // Scene의 Start
+	void SceneStart() override {}	 // Scene의 Start
 	void Update() override {}			 // Scene의 Update
 	void Destroyed() override {}		 // Scene의 Exit, GameObject Delete
 };

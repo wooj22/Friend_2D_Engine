@@ -5,7 +5,7 @@ void Moon::Awake()
 	
 }
 
-void Moon::SceneStartInit()
+void Moon::SceneStart()
 {
 	transform->SetPosition(50, 0);
 	sr->CreateTexture2D("../Resource/Moon.png");

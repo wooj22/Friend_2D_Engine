@@ -6,7 +6,7 @@ void Scene::Start()
 {
 	for (auto& object : objectList)
 	{
-		object->SceneStartInit();
+		object->SceneStart();
 	}
 }
 

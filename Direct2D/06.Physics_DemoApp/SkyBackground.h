@@ -24,7 +24,7 @@ public:
         spriteRenderer->sprite = ResourceManager::Get().CreateSprite(darkSky, "DarkSky");
         transform->Scaleing(1.3, 1.3);
     }
-    void SceneStartInit() override {}    // Scene의 Start
+    void SceneStart() override {}        // Scene의 Start
     void Update()  override {}           // Scene의 Update
     void Destroyed() override {}         // Scene의 Exit, GameObject Delete
 };

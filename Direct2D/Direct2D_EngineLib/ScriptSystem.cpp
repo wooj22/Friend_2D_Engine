@@ -19,12 +19,37 @@ void ScriptSystem::Unregist(Script* component)
 }
 
 // component system
-// update -> 프레임(deltaTime) 단위 호출
-void ScriptSystem::Update()
+// 게임 오브젝트에 모든 컴포넌트 생성 후
+void ScriptSystem::Awake()
 {
 	for (auto it = components.begin(); it != components.end(); ++it)
 	{
-		(*it)->Update();
+		(*it)->Awake();
+	}
+}
+
+// Awake()이후, 첫 Update 전에
+void ScriptSystem::Start()
+{
+	for (auto it = components.begin(); it != components.end(); ++it)
+	{
+		(*it)->Start();
+	}
+}
+
+// update -> 프레임(deltaTime) 단위 호출
+void ScriptSystem::Update()
+{
+	for (Script* script : components)
+	{
+		// update중 생성된 경우
+		if (!script->started)
+		{
+			script->Awake(); 
+			script->Start();
+			script->started = true;
+		}
+		script->Update();
 	}
 }
 

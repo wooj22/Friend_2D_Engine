@@ -5,7 +5,7 @@ void Earth::Awake()
 	
 }
 
-void Earth::SceneStartInit()
+void Earth::SceneStart()
 {
 	transform->SetPosition(150, 0);
 	transform->SetScale(0.5, 0.5);

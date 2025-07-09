@@ -22,7 +22,7 @@ public:
 	~UI_Text() override { OutputDebugStringA("~UI_Text()\n"); }
 
 	void Awake() override {}
-	void SceneStartInit() override {}
+	void SceneStart() override {}
 	void Update() override {}
 	void Destroyed() override {}
 };

@@ -5,7 +5,7 @@ void Fish::Awake()
 	
 }
 
-void Fish::SceneStartInit() 
+void Fish::SceneStart() 
 {
 	transform->SetScale(0.3, 0.3);
 	transform->SetRotation(-60);

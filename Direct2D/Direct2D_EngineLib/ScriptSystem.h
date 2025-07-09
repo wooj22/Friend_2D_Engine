@@ -15,6 +15,8 @@ public:
 	void Unregist(Script* component);
 
 	// component system
+	void Awake();
+	void Start();
 	void Update();
 	void FixedUpdate();
 };
