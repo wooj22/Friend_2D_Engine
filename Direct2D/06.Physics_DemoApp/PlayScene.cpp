@@ -20,9 +20,6 @@ void PlayScene::Awake()
 	mapManager->cloud3 = CreateObject<Cloud>();
 	mapManager->cloud4 = CreateObject<Cloud>();
 	mapManager->cloud5 = CreateObject<Cloud>();
-
-	player = CreateObject<Cat>();
-	player->catText = CreateObject<CatText>();
 }
 
 void PlayScene::Start()
@@ -39,6 +36,15 @@ void PlayScene::Update()
 {
 	// game object -> Update()
 	__super::Update();
+
+	if (!isCatCreate && Input::GetKeyDown(VK_SPACE))
+	{
+		catText = CreateObject<CatText>();
+		player = CreateObject<Cat>();
+		catText->transform->SetParent(player->transform);
+
+		isCatCreate = true;
+	}
 
 	// camera move
 	if (Input::GetKey(VK_LEFT)) camera->transform->Translate(-300 * Time::GetDeltaTime(), 0);

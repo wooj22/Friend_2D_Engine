@@ -17,10 +17,10 @@ public:
 		transform = AddComponent<Transform>();
 		text = AddComponent<WorldTextRenderer>();
 
-		transform->Translate(0, 15);
+		transform->Translate(0, -15);
 		text->SetLayout(70, 20);
 		text->SetFontSize(4.5);
-		text->SetColor(D2D1::ColorF(D2D1::ColorF::Yellow));
+		text->SetColor(D2D1::ColorF(D2D1::ColorF::DarkBlue));
 		text->SetText(L"World Text");
 	}
 	~CatText() override { }

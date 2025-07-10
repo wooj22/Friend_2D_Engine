@@ -7,11 +7,10 @@
 
 #include "CatController.h"
 #include "CatAnimatorController.h"
-#include "CatText.h"
 
 class Cat : public GameObject
 {
-private:
+public:
 	// components
 	Transform* transform;
 	SpriteRenderer* spriteRenderer;
@@ -22,13 +21,10 @@ private:
 	CatAnimatorController* catAnimatorController;
 
 public:
-	// child gameObject
-	CatText* catText;
-
-public:
 	// game object cycle
-	Cat() : GameObject("Cat")
+	Cat() : GameObject("Cat\n")
 	{
+		OutputDebugStringA("Cat Cat()\n");
 		transform = AddComponent<Transform>();
 		spriteRenderer = AddComponent<SpriteRenderer>();
 		controller = AddComponent<CatController>();
@@ -37,12 +33,14 @@ public:
 		catAnimatorController = new CatAnimatorController();  // animator controller
 		animator->SetController(catAnimatorController);
 	}
-	~Cat() override { delete catAnimatorController; }
+	~Cat() override { delete catAnimatorController; OutputDebugStringA("Cat ~Cat()\n");
+	}
 
+	void Awake() { OutputDebugStringA("Cat Awake()\n"); }
 	void SceneStart() override
 	{
-		catText->transform->SetParent(this->transform);
-		controller->infoText = catText->text;
+		OutputDebugStringA("Cat SceneStart()\n");
 	}
+	void Destroyed() { OutputDebugStringA("Cat Destroyed()\n"); }
 };
 

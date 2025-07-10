@@ -8,9 +8,14 @@
 #include "PlayUIManager.h"
 #include "MapManager.h"
 #include "Cat.h"
+#include "CatText.h"
 
 class PlayScene : public Scene
 {
+private:
+	// test play¿ë
+	bool isCatCreate;
+
 private:
 	Camera* camera;
 	UI_Text* adviceText;
@@ -19,6 +24,7 @@ private:
 	PlayUIManager* uiManager;
 	MapManager* mapManager;
 	Cat* player;
+	CatText* catText;
 
 public:
 	PlayScene() = default;

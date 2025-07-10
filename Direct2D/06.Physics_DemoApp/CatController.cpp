@@ -11,18 +11,23 @@
 // 컴포넌트 활성화 시점
 void CatController::OnEnable()
 {
-	
+	OutputDebugStringA("CatController OnEnable()\n");
 }
 
 void CatController::Awake()
 {
+	OutputDebugStringA("CatController Awake()\n");
+
 	tr = owner->GetComponent<Transform>();
 	sr = owner->GetComponent<SpriteRenderer>();
 	ac = owner->GetComponent<Animator>()->controller;
+
+	infoText = GameObject::Find("CatText")->GetComponent<WorldTextRenderer>();
 }
 
 void CatController::Start()
 {
+	OutputDebugStringA("CatController Start()\n");
 	tr->SetScale(3, 3);
 }
 
@@ -59,7 +64,7 @@ void CatController::FixedUpdate()
 
 void CatController::OnDestroy()
 {
-
+	OutputDebugStringA("CatController OnDestroy()\n");
 }
 
 void CatController::InputCheak()
