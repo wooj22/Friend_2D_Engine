@@ -4,6 +4,7 @@
 class Transform;
 class SpriteRenderer;
 class AnimatorController;
+class WorldTextRenderer;
 
 class CatController : public Script
 {
@@ -22,6 +23,9 @@ private:
 	AnimatorController* ac;
 
 public:
+	WorldTextRenderer* infoText;
+
+public:
 	// script component cycle
 	void OnEnable() override;				// 컴포넌트 활성화 시점
 	void Awake() override;					// 오브젝트의 모든 컴포넌트가 생성된 직후 시점 1회 호출
@@ -35,5 +39,6 @@ public:
 
 private:
 	void InputCheak();
+	void InfoTextUpdate();
 };
 

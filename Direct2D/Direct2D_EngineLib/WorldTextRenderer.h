@@ -61,4 +61,3 @@ public:
 	void SetColor(const D2D1_COLOR_F& newColor);
 	void SetLayout(int width, int height);
 };
-

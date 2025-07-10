@@ -20,7 +20,9 @@ void PlayScene::Awake()
 	mapManager->cloud3 = CreateObject<Cloud>();
 	mapManager->cloud4 = CreateObject<Cloud>();
 	mapManager->cloud5 = CreateObject<Cloud>();
+
 	player = CreateObject<Cat>();
+	player->catText = CreateObject<CatText>();
 }
 
 void PlayScene::Start()

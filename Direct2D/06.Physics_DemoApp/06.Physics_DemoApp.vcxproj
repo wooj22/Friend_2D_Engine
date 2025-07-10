@@ -135,6 +135,7 @@
     <ClCompile Include="Cat.cpp" />
     <ClCompile Include="CatAnimatorController.cpp" />
     <ClCompile Include="CatController.cpp" />
+    <ClCompile Include="CatText.cpp" />
     <ClCompile Include="Cloud.cpp" />
     <ClCompile Include="DemoApp.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="Cat.h" />
     <ClInclude Include="CatAnimatorController.h" />
     <ClInclude Include="CatController.h" />
+    <ClInclude Include="CatText.h" />
     <ClInclude Include="Cloud.h" />
     <ClInclude Include="DemoApp.h" />
     <ClInclude Include="MapManager.h" />

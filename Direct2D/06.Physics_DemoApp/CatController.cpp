@@ -6,6 +6,7 @@
 #include "../Direct2D_EngineLib/Input.h"
 #include "../Direct2D_EngineLib/Time.h"
 #include "../Direct2D_EngineLib/ResourceManager.h"
+#include "../Direct2D_EngineLib/WorldTextRenderer.h"
 
 // 컴포넌트 활성화 시점
 void CatController::OnEnable()
@@ -27,6 +28,7 @@ void CatController::Start()
 
 void CatController::Update()
 {
+	// input
 	InputCheak();
 
 	// speed setting
@@ -41,6 +43,9 @@ void CatController::Update()
 
 	// animation
 	ac->SetFloat("Speed", curSpeed);
+
+	// ui
+	InfoTextUpdate();
 }
 
 void CatController::FixedUpdate()
@@ -64,4 +69,9 @@ void CatController::InputCheak()
 	isS = Input::GetKey('S');
 	isD = Input::GetKey('D');
 	isShift = Input::GetKey(VK_SHIFT);
+}
+
+void CatController::InfoTextUpdate()
+{
+	infoText->SetText(L"speed : " + to_wstring(curSpeed));
 }

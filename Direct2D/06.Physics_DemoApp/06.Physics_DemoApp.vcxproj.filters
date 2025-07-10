@@ -72,6 +72,9 @@
     <ClCompile Include="Cloud.cpp">
       <Filter>02. GameObject\Map</Filter>
     </ClCompile>
+    <ClCompile Include="CatText.cpp">
+      <Filter>02. GameObject\Cat</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DemoApp.h">
@@ -106,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="Cloud.h">
       <Filter>02. GameObject\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="CatText.h">
+      <Filter>02. GameObject\Cat</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

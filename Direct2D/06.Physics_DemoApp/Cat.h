@@ -7,6 +7,7 @@
 
 #include "CatController.h"
 #include "CatAnimatorController.h"
+#include "CatText.h"
 
 class Cat : public GameObject
 {
@@ -21,6 +22,10 @@ private:
 	CatAnimatorController* catAnimatorController;
 
 public:
+	// child gameObject
+	CatText* catText;
+
+public:
 	// game object cycle
 	Cat() : GameObject("Cat")
 	{
@@ -33,5 +38,11 @@ public:
 		animator->SetController(catAnimatorController);
 	}
 	~Cat() override { delete catAnimatorController; }
+
+	void SceneStart() override
+	{
+		catText->transform->SetParent(this->transform);
+		controller->infoText = catText->text;
+	}
 };
 
