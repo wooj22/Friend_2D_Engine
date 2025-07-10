@@ -51,16 +51,21 @@ public:
         memoryInfoText->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::FloralWhite));
 
         buttonInfoText-> rectTransform->SetPivot(0, 1);
-        buttonInfoText->rectTransform->SetPosition(-615, 380);
+        buttonInfoText->rectTransform->SetPosition(-580, 380);
         buttonInfoText->rectTransform->SetSize(120, 50);
         buttonInfoText->screenTextRenderer->SetFontSize(16);
         buttonInfoText->screenTextRenderer->SetText(L"<- button click!");
         buttonInfoText->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::FloralWhite));
 
+
+        auto image = ResourceManager::Get().CreateTexture2D("../Resource/UI_Button2.png");
+        auto new_sprite = ResourceManager::Get().CreateSprite(image, "UI_Button2");
+
         backButton->rectTransform->SetPivot(0, 1);
         backButton->rectTransform->SetPosition(-680, 380);
-        backButton->rectTransform->SetSize(55, 50);
-        backButton->imageRenderer->SetBaseColor(D2D1::ColorF(D2D1::ColorF::LightSkyBlue));
+        backButton->rectTransform->SetSize(100, 50);
+        //backButton->imageRenderer->SetBaseColor(D2D1::ColorF(D2D1::ColorF::LightSkyBlue));
+        backButton->imageRenderer->sprite = new_sprite;
         backButton->screenTextRenderer->SetText(L"Back");
         backButton->screenTextRenderer->SetFontSize(20);
     }

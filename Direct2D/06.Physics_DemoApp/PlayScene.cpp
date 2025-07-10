@@ -23,6 +23,8 @@ void PlayScene::Awake()
 	mapManager->cloud3 = CreateObject<Cloud>();
 	mapManager->cloud4 = CreateObject<Cloud>();
 	mapManager->cloud5 = CreateObject<Cloud>();
+
+	isCatCreate = false;
 }
 
 void PlayScene::Start()
