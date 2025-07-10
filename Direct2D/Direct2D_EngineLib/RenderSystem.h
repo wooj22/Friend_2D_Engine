@@ -36,7 +36,7 @@ public :
 	ComPtr<IDXGISwapChain1> swapChain;	            // SwapChain (더블버퍼링)
 	ComPtr<ID2D1DeviceContext7> renderTarget;       // D2D Device Context (그리기)
 	ComPtr<ID2D1Bitmap1> backBufferBitmap;	  	    // 화면 출력용 D2D Bitmap (그릴 대상)
-	ComPtr<IWICImagingFactory> wicImagingFactory;   // WIC Imaging Factory (이미지 로딩)
+	ComPtr<IWICImagingFactory> wicImagingFactory;   // WIC Imaging Factory (이미지 로딩)		// TODO :: 삭제해도됨 -> 지금 리소스매니저에서 관할
 	ComPtr<IDWriteFactory> dWriteFactory;			// Text Write Factory (텍스그 그리기)
 
 	// componenet
@@ -48,7 +48,4 @@ public :
 	void Update();
 	void Render();
 	void UnInit();			
-
-	// functions
-	HRESULT CreateBitmapFromFile(const wchar_t* path, ID2D1Bitmap1** outBitmap);	// 이미지 로드
 };
