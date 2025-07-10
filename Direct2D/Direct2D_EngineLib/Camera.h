@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Transform.h"
 
+// TODO :: this remove, 카메라 컴포넌트 작성
 class Camera : public GameObject
 {
 public:
