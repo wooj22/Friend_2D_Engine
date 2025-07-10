@@ -28,12 +28,6 @@ void StartScene::Update()
 	// game object -> Update()
 	__super::Update();
 
-	// camera move
-	if (Input::GetKey(VK_LEFT)) camera->transform->Translate(-300 * Time::GetDeltaTime(), 0);
-	if (Input::GetKey(VK_RIGHT)) camera->transform->Translate(300 * Time::GetDeltaTime(), 0);
-	if (Input::GetKey(VK_UP)) camera->transform->Translate(0, 300 * Time::GetDeltaTime());
-	if (Input::GetKey(VK_DOWN)) camera->transform->Translate(0, -300 * Time::GetDeltaTime());
-
 	// camera ¿ªÇà·Ä update
 	Transform::SetCameraMatrix(camera->transform->GetWorldMatrix());
 }

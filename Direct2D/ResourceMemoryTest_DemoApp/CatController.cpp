@@ -1,6 +1,6 @@
 #include "CatController.h"
 
-void CatController::Start()
+void CatController::Awake()
 {
 	// get component
 	tr = this->owner->GetComponent<Transform>();

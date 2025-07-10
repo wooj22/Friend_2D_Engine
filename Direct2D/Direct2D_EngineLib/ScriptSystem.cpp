@@ -48,6 +48,7 @@ void ScriptSystem::Update()
 		{
 			script->Awake(); 
 			script->Start();
+			script->started = true;
 		}
 		script->Update();
 	}

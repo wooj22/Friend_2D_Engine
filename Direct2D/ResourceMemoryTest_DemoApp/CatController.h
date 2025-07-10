@@ -12,7 +12,7 @@ private:
 	Transform* tr;
 
 public:
-	void Start() override;
+	void Awake() override;
 	void Update() override;
 };
 
