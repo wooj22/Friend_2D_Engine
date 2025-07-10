@@ -27,8 +27,8 @@ void ScreenTextRenderer::Update()
 		);
 
 		// 정렬
-		textFormat->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
-		textFormat->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
+		textFormat->SetTextAlignment(ToDWriteTextAlignment(horizontalAlign));
+		textFormat->SetParagraphAlignment(ToDWriteParagraphAlignment(verticalAlign));
 
 		// 텍스트 레이아웃 재생성
 		RenderSystem::Get().dWriteFactory->CreateTextLayout(
@@ -89,5 +89,47 @@ void ScreenTextRenderer::SetColor(const D2D1_COLOR_F& newColor)
 	}
 	else {
 		RenderSystem::Get().renderTarget->CreateSolidColorBrush(textColor, brush.GetAddressOf());
+	}
+}
+
+void ScreenTextRenderer::SetHorizontalAlign(TextHorizontalAlign align)
+{
+	horizontalAlign = align;
+	isTextDirty = true;
+}
+
+void ScreenTextRenderer::SetVerticalAlign(TextVerticalAlign align)
+{
+	verticalAlign = align;
+	isTextDirty = true;
+}
+
+inline DWRITE_TEXT_ALIGNMENT ScreenTextRenderer::ToDWriteTextAlignment(TextHorizontalAlign align)
+{
+	switch (align)
+	{
+	case TextHorizontalAlign::Left:
+		return DWRITE_TEXT_ALIGNMENT_LEADING;
+	case TextHorizontalAlign::Center:
+		return DWRITE_TEXT_ALIGNMENT_CENTER;
+	case TextHorizontalAlign::Right:
+		return DWRITE_TEXT_ALIGNMENT_TRAILING;
+	default:
+		return DWRITE_TEXT_ALIGNMENT_CENTER;
+	}
+}
+
+inline DWRITE_PARAGRAPH_ALIGNMENT ScreenTextRenderer::ToDWriteParagraphAlignment(TextVerticalAlign align)
+{
+	switch (align)
+	{
+	case TextVerticalAlign::Top:
+		return DWRITE_PARAGRAPH_ALIGNMENT_NEAR;
+	case TextVerticalAlign::Center:
+		return DWRITE_PARAGRAPH_ALIGNMENT_CENTER;
+	case TextVerticalAlign::Bottom:
+		return DWRITE_PARAGRAPH_ALIGNMENT_FAR;
+	default:
+		return DWRITE_PARAGRAPH_ALIGNMENT_CENTER;
 	}
 }

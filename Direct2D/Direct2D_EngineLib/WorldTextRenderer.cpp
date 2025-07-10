@@ -100,3 +100,46 @@ void WorldTextRenderer::SetLayout(int width, int height)
 	this->width = width; this->height = height;
 	isTextDirty = true;
 }
+
+
+void WorldTextRenderer::SetHorizontalAlign(TextHorizontalAlign align)
+{
+	horizontalAlign = align;
+	isTextDirty = true;
+}
+
+void WorldTextRenderer::SetVerticalAlign(TextVerticalAlign align)
+{
+	verticalAlign = align;
+	isTextDirty = true;
+}
+
+inline DWRITE_TEXT_ALIGNMENT WorldTextRenderer::ToDWriteTextAlignment(TextHorizontalAlign align)
+{
+	switch (align)
+	{
+	case TextHorizontalAlign::Left:
+		return DWRITE_TEXT_ALIGNMENT_LEADING;
+	case TextHorizontalAlign::Center:
+		return DWRITE_TEXT_ALIGNMENT_CENTER;
+	case TextHorizontalAlign::Right:
+		return DWRITE_TEXT_ALIGNMENT_TRAILING;
+	default:
+		return DWRITE_TEXT_ALIGNMENT_CENTER;
+	}
+}
+
+inline DWRITE_PARAGRAPH_ALIGNMENT WorldTextRenderer::ToDWriteParagraphAlignment(TextVerticalAlign align)
+{
+	switch (align)
+	{
+	case TextVerticalAlign::Top:
+		return DWRITE_PARAGRAPH_ALIGNMENT_NEAR;
+	case TextVerticalAlign::Center:
+		return DWRITE_PARAGRAPH_ALIGNMENT_CENTER;
+	case TextVerticalAlign::Bottom:
+		return DWRITE_PARAGRAPH_ALIGNMENT_FAR;
+	default:
+		return DWRITE_PARAGRAPH_ALIGNMENT_CENTER;
+	}
+}

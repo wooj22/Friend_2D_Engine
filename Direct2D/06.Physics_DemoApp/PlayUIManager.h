@@ -9,6 +9,7 @@ class PlayUIManager : public GameObject
 public:
     UI_Text* titleText;
     UI_Text* adviceText;
+    UI_Text* buttonInfoText;
     UI_Button* backButton;
 
 public:
@@ -32,15 +33,23 @@ public:
         titleText->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::LightSkyBlue));
 
         adviceText->rectTransform->SetPivot(0, 0.5);
-        adviceText->rectTransform->SetPosition(-700, -350);
+        adviceText->rectTransform->SetPosition(-690, -350);
         adviceText->rectTransform->SetSize(400, 200);
-        adviceText->screenTextRenderer->SetFontSize(18);
+        adviceText->screenTextRenderer->SetFontSize(16);
+        adviceText->screenTextRenderer->SetHorizontalAlign(TextHorizontalAlign::Left);
         adviceText->screenTextRenderer->SetText(L"플레이어 이동 : [W][A][S][D] + [Shfit]\n카메라 이동 : [<-] [->]\n현재 메모리 확인 [M]");
         adviceText->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::FloralWhite));
 
+        buttonInfoText-> rectTransform->SetPivot(0, 1);
+        buttonInfoText->rectTransform->SetPosition(-615, 380);
+        buttonInfoText->rectTransform->SetSize(120, 50);
+        buttonInfoText->screenTextRenderer->SetFontSize(16);
+        buttonInfoText->screenTextRenderer->SetText(L"<- button click!");
+        buttonInfoText->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::FloralWhite));
+
         backButton->rectTransform->SetPivot(0, 1);
         backButton->rectTransform->SetPosition(-680, 380);
-        backButton->rectTransform->SetSize(50, 50);
+        backButton->rectTransform->SetSize(55, 50);
         backButton->imageRenderer->SetBaseColor(D2D1::ColorF(D2D1::ColorF::LightSkyBlue));
         backButton->screenTextRenderer->SetText(L"Back");
         backButton->screenTextRenderer->SetFontSize(20);

@@ -8,6 +8,18 @@ enum class RenderType
 	UI, GameObject
 };
 
+enum class TextHorizontalAlign {
+	Left,
+	Center,
+	Right
+};
+
+enum class TextVerticalAlign {
+	Top,
+	Center,
+	Bottom
+};
+
 class IRenderer : public Component
 {
 public : 

@@ -29,6 +29,10 @@ private:
 	int width = 100;
 	int height = 100;
 
+	// align
+	TextHorizontalAlign horizontalAlign = TextHorizontalAlign::Center;
+	TextVerticalAlign verticalAlign = TextVerticalAlign::Center;
+
 	// d2d
 	ComPtr<ID2D1SolidColorBrush> brush;
 	ComPtr<IDWriteTextFormat> textFormat;
@@ -60,4 +64,13 @@ public:
 	void SetFontName(const std::wstring& newName);
 	void SetColor(const D2D1_COLOR_F& newColor);
 	void SetLayout(int width, int height);
+
+	// align
+	void SetHorizontalAlign(TextHorizontalAlign align);
+	void SetVerticalAlign(TextVerticalAlign align);
+
+private:
+	// align
+	DWRITE_TEXT_ALIGNMENT ToDWriteTextAlignment(TextHorizontalAlign align);
+	DWRITE_PARAGRAPH_ALIGNMENT ToDWriteParagraphAlignment(TextVerticalAlign align);
 };
