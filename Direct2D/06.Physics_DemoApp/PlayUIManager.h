@@ -1,14 +1,16 @@
 #pragma once
 #include "../Direct2D_EngineLib/UI_Button.h"
 #include "../Direct2D_EngineLib/UI_Image.h"
-#include"../Direct2D_EngineLib/UI_Text.h"
+#include "../Direct2D_EngineLib/UI_Text.h"
 #include "../Direct2D_EngineLib/GameObject.h"
+#include "../Direct2D_EngineLib/Input.h"
 
 class PlayUIManager : public GameObject
 {
 public:
     UI_Text* titleText;
     UI_Text* adviceText;
+    UI_Text* memoryInfoText;
     UI_Text* buttonInfoText;
     UI_Button* backButton;
 
@@ -40,6 +42,14 @@ public:
         adviceText->screenTextRenderer->SetText(L"플레이어 이동 : [W][A][S][D] + [Shfit]\n카메라 이동 : [<-] [->]\n현재 메모리 확인 [M]");
         adviceText->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::FloralWhite));
 
+        memoryInfoText->rectTransform->SetPivot(1, 0.5);
+        memoryInfoText->rectTransform->SetPosition(690, -360);
+        memoryInfoText->rectTransform->SetSize(400, 200);
+        memoryInfoText->screenTextRenderer->SetFontSize(16);
+        memoryInfoText->screenTextRenderer->SetHorizontalAlign(TextHorizontalAlign::Right);
+        memoryInfoText->screenTextRenderer->SetText(L"*** memory ***");
+        memoryInfoText->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::FloralWhite));
+
         buttonInfoText-> rectTransform->SetPivot(0, 1);
         buttonInfoText->rectTransform->SetPosition(-615, 380);
         buttonInfoText->rectTransform->SetSize(120, 50);
@@ -58,7 +68,10 @@ public:
     // Scene의 Update
     void Update()  override           
     {
-       
+        if (Input::GetKeyDown('M'))
+        {
+            memoryInfoText->screenTextRenderer->SetText(ResourceManager::Get().GetMemoryUsageWString());
+        }
     }
 
     // Scene의 Exit, GameObject Delete

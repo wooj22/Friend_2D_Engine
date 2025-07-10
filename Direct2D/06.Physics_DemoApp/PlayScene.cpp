@@ -10,6 +10,7 @@ void PlayScene::Awake()
 	uiManager = CreateObject<PlayUIManager>();
 	uiManager->titleText = CreateObject<UI_Text>();
 	uiManager->adviceText = CreateObject<UI_Text>();
+	uiManager->memoryInfoText = CreateObject<UI_Text>();
 	uiManager->buttonInfoText = CreateObject<UI_Text>();
 	uiManager->backButton = CreateObject<UI_Button>();
 

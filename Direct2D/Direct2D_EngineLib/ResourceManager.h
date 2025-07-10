@@ -51,7 +51,7 @@ public:
 	HRESULT Init();
 	void UnInit();
 	wstring FormatBytes(UINT64 bytes);
-	wstring GetMemoryUsageString();
+	wstring GetMemoryUsageWString();
 	void PrintMemoryUsage();
 	void Trim();
 

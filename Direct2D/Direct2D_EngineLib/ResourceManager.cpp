@@ -77,12 +77,12 @@ wstring ResourceManager::FormatBytes(UINT64 bytes) {
 
 /// Print memory usage
 void ResourceManager::PrintMemoryUsage() {
-    std::wstring usage = GetMemoryUsageString();
+    std::wstring usage = GetMemoryUsageWString();
     OutputDebugStringW(usage.c_str());
 }
 
 /// Return memory usage info as string
-wstring ResourceManager::GetMemoryUsageString()
+wstring ResourceManager::GetMemoryUsageWString()
 {
     DXGI_QUERY_VIDEO_MEMORY_INFO memInfo = {};
     HANDLE hProcess = GetCurrentProcess();
@@ -91,7 +91,7 @@ wstring ResourceManager::GetMemoryUsageString()
     HRESULT hr = dxgiAdapter->QueryVideoMemoryInfo(0, DXGI_MEMORY_SEGMENT_GROUP_LOCAL, &memInfo);
 
     std::wostringstream oss;
-    oss << L"--------- 메모리 조회 ---------\n";
+    oss << L"------- 메모리 조회 -------\n";
 
     if (GetProcessMemoryInfo(hProcess, (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc))) {
         oss << L"VRAM: " << FormatBytes(memInfo.CurrentUsage).c_str() << L"\n";

@@ -34,7 +34,7 @@ void Scene1::Update()
 	if (Input::GetKeyDown('D')) TestCatPop();
 	if (Input::GetKeyDown('T')) ResourceManager::Get().Trim();
 	if (Input::GetKeyDown(VK_SHIFT)) 
-		memoryUsageText->screenTextRenderer->SetText(ResourceManager::Get().GetMemoryUsageString());
+		memoryUsageText->screenTextRenderer->SetText(ResourceManager::Get().GetMemoryUsageWString());
 
 	// scene change
 	if (Input::GetKeyDown(VK_SPACE)) {
