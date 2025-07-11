@@ -53,4 +53,3 @@ public:
     void SetInt(const string& name, int value);
     int GetInt(const string& name);
 };
-

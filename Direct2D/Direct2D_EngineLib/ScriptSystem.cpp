@@ -18,26 +18,6 @@ void ScriptSystem::Unregist(Script* component)
 	}
 }
 
-// component system
-// 게임 오브젝트에 모든 컴포넌트 생성 후
-void ScriptSystem::Awake()
-{
-	for (Script* script : components)
-	{
-		script->Awake();
-	}
-}
-
-// Awake()이후, 첫 Update 전에
-void ScriptSystem::Start()
-{
-	for (Script* script : components)
-	{
-		script->Start();
-		script->started = true;
-	}
-}
-
 // update -> 프레임(deltaTime) 단위 호출
 void ScriptSystem::Update()
 {

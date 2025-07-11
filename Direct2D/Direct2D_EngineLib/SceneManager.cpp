@@ -8,9 +8,7 @@ void SceneManager::Init()
 {
 	if (currentScene) {
 		currentScene->Awake();
-		ScriptSystem::Get().Awake();
 		currentScene->Start();
-		ScriptSystem::Get().Start();
 	}	
 }
 
@@ -29,10 +27,7 @@ void SceneManager::Update()
 
 		// scene init
 		currentScene->Awake();
-		ScriptSystem::Get().Awake();
-
 		currentScene->Start();
-		ScriptSystem::Get().Start();
 	}
 
 	if (currentScene)
