@@ -35,6 +35,9 @@ private:
     float rotation;
     Vector2 scale;
 
+public:
+    Vector2 prePosition;    // 이전 프레임 position
+
 private:
     // parent, children
     Transform* parent = nullptr;

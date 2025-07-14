@@ -70,7 +70,8 @@ void BoxCollider::OnDestroy()
 
 void BoxCollider::OnCollisionEnter(ICollider* other)
 {
-    // 이전 위치로 이동
+    // Block
+    transform->SetPosition(transform->prePosition);
 
     // script
     auto scripts = owner->GetComponents<Script>();
@@ -80,6 +81,9 @@ void BoxCollider::OnCollisionEnter(ICollider* other)
 
 void BoxCollider::OnCollisionStay(ICollider* other)
 {
+    // Block
+    transform->SetPosition(transform->prePosition);
+
     // script
     auto scripts = owner->GetComponents<Script>();
     for (auto s : scripts)

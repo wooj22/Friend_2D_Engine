@@ -13,6 +13,8 @@ void Transform::OnEnable()
 
 void Transform::Update()
 {
+    prePosition = position;
+
     MakeLocalMatrix();
     MakeWorldMatrix();
     MakeScreenMatrix();
