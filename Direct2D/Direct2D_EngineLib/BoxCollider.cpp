@@ -4,24 +4,81 @@
 #include "Script.h"
 #include "RenderSystem.h"
 #include "DebugGizmo.h"
+#include "CircleCollider.h"
 
 void BoxCollider::OnEnable()
 {
     transform = this->owner->GetComponent<Transform>();
 }
 
+void BoxCollider::OnDestroy()
+{
+
+}
+
 bool BoxCollider::isCollision(ICollider* other)
 {
     if (other->colliderType == ColliderType::Box)
     {
-        return CheckAABB(static_cast<BoxCollider*>(other));
+        return CheckAABBCollision(static_cast<BoxCollider*>(other));
     }
     else if (other->colliderType == ColliderType::Circle)
     {
-        // TODO :: circle collider
+        return CheakCircleCollision(static_cast<CircleCollider*>(other));
     }
 
     return false;
+}
+
+bool BoxCollider::CheckAABBCollision(BoxCollider* other)
+{
+    // this transform 정보
+    const Vector2 posA = transform->GetPosition() + Vector2(offset.x, -offset.y);
+    const Vector2 scaleA = transform->GetScale();
+
+    // 컴포넌트별 곱 직접 작성
+    Vector2 scaledSizeA = Vector2(size.x * scaleA.x, size.y * scaleA.y);
+    Vector2 halfSizeA = scaledSizeA * 0.5f;
+
+    // other transform 정보
+    const Vector2 posB = other->transform->GetPosition() + Vector2(other->offset.x, -other->offset.y);
+    const Vector2 scaleB = other->transform->GetScale();
+
+    Vector2 scaledSizeB = Vector2(other->size.x * scaleB.x, other->size.y * scaleB.y);
+    Vector2 halfSizeB = scaledSizeB * 0.5f;
+
+    // AABB 충돌 검사 (std::abs 사용)
+    bool collisionX = std::abs(posA.x - posB.x) <= (halfSizeA.x + halfSizeB.x);
+    bool collisionY = std::abs(posA.y - posB.y) <= (halfSizeA.y + halfSizeB.y);
+
+    return collisionX && collisionY;
+}
+
+bool BoxCollider::CheakCircleCollision(CircleCollider* other)
+{
+    // 박스 중심 위치 (offset.y 반전 적용)
+    Vector2 boxPos = transform->GetPosition() + Vector2(offset.x, -offset.y);
+    Vector2 boxScale = transform->GetScale();
+    Vector2 boxHalfSize = (size * boxScale) * 0.5f;
+
+    // 원 중심 위치 (offset.y 반전 적용)
+    Vector2 circlePos = other->transform->GetPosition() + Vector2(other->offset.x, -other->offset.y);
+    float circleRadius = other->radius; // scale 무시하거나 필요하면 곱함
+
+    // 원 중심에서 박스 좌표계를 기준으로 상대 위치 구하기
+    Vector2 diff = circlePos - boxPos;
+
+    // 박스 내부에 점을 클램핑 (박스 경계 내로)
+    float closestX = clamp(diff.x, -boxHalfSize.x, boxHalfSize.x);
+    float closestY = clamp(diff.y, -boxHalfSize.y, boxHalfSize.y);
+
+    // 클램핑된 점과 원 중심 간 거리 계산
+    Vector2 closestPoint = boxPos + Vector2(closestX, closestY);
+    Vector2 distanceVec = circlePos - closestPoint;
+
+    float distanceSq = distanceVec.x * distanceVec.x + distanceVec.y * distanceVec.y;
+
+    return distanceSq <= (circleRadius * circleRadius);
 }
 
 void BoxCollider::FinalizeCollision()
@@ -61,11 +118,6 @@ void BoxCollider::FinalizeCollision()
 
     // Swap
     lastFrameCollisions = currentFrameCollisions;
-}
-
-void BoxCollider::OnDestroy()
-{
-    
 }
 
 void BoxCollider::OnCollisionEnter(ICollider* other)
@@ -123,30 +175,6 @@ void BoxCollider::OnTriggerExit(ICollider* other)
         s->OnTriggerExit(other);
 }
 
-bool BoxCollider::CheckAABB(BoxCollider* other)
-{
-    // this transform 정보
-    const Vector2 posA = transform->GetPosition() + Vector2(offset.x, -offset.y);
-    const Vector2 scaleA = transform->GetScale();
-
-    // 컴포넌트별 곱 직접 작성
-    Vector2 scaledSizeA = Vector2(size.x * scaleA.x, size.y * scaleA.y);
-    Vector2 halfSizeA = scaledSizeA * 0.5f;
-
-    // other transform 정보
-    const Vector2 posB = other->transform->GetPosition() + Vector2(other->offset.x, -other->offset.y);
-    const Vector2 scaleB = other->transform->GetScale();
-
-    Vector2 scaledSizeB = Vector2(other->size.x * scaleB.x, other->size.y * scaleB.y);
-    Vector2 halfSizeB = scaledSizeB * 0.5f;
-
-    // AABB 충돌 검사 (std::abs 사용)
-    bool collisionX = std::abs(posA.x - posB.x) <= (halfSizeA.x + halfSizeB.x);
-    bool collisionY = std::abs(posA.y - posB.y) <= (halfSizeA.y + halfSizeB.y);
-
-    return collisionX && collisionY;
-}
-
 void BoxCollider::DebugColliderDraw()
 {
     // localRect에 offset 직접 반영 (y 축 반전 포함)
@@ -156,8 +184,5 @@ void BoxCollider::DebugColliderDraw()
     float bottom = size.y * 0.5f - offset.y;
     D2D1_RECT_F localRect = D2D1::RectF(left, top, right, bottom);
 
-    // offsetMatrix 없이 offset을 localRect에 더했으니 transform 행렬만 곱함
-    auto finalMatrix = transform->GetScreenMatrix();
-
-    RenderSystem::Get().DrawRect(localRect, finalMatrix);
+    RenderSystem::Get().DrawRect(localRect, transform->GetScreenMatrix());
 }

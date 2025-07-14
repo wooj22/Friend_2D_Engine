@@ -5,6 +5,7 @@
 #include "../Direct2D_EngineLib/Animator.h"
 #include "../Direct2D_EngineLib/Time.h"
 #include "../Direct2D_EngineLib/BoxCollider.h"
+#include "../Direct2D_EngineLib/CircleCollider.h"
 
 #include "CatController.h"
 #include "CatAnimatorController.h"
@@ -28,6 +29,7 @@ public:
 	// game object cycle
 	Cat() : GameObject("Cat\n")
 	{
+		// component
 		OutputDebugStringA("Cat Cat()\n");
 		transform = AddComponent<Transform>();
 		spriteRenderer = AddComponent<SpriteRenderer>();
@@ -35,10 +37,14 @@ public:
 		controller = AddComponent<CatController>();
 		animator = AddComponent<Animator>();
 
-		catAnimatorController = new CatAnimatorController();  // animator controller
+		// animator controller
+		catAnimatorController = new CatAnimatorController();  
 		animator->SetController(catAnimatorController);
 
-		collider->size.x = 15;
+		// setting
+		transform->SetPosition(0, 100);
+		collider->size = { 15, 10 };
+		collider->isTrigger = false;
 	}
 	~Cat() override { delete catAnimatorController; };
 };

@@ -7,6 +7,14 @@ enum class ColliderType
 	Box, Circle
 };
 
+template<typename T>
+T clamp(T value, T minVal, T maxVal)
+{
+    if (value < minVal) return minVal;
+    else if (value > maxVal) return maxVal;
+    else return value;
+}
+
 class ICollider : public Component
 {
 public:

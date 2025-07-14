@@ -97,3 +97,8 @@ Vector2 Vector2::Normalized() const
         return Vector2(0, 0);
     return Vector2(x / len, y / len);
 }
+
+float Vector2::SqrMagnitude() const
+{
+    return x * x + y * y;
+}

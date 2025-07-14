@@ -1,6 +1,7 @@
 #include "ColliderSystem.h"
 #include "ICollider.h"
 #include "BoxCollider.h"
+#include "CircleCollider.h"
 
 // component µî·Ï
 void ColliderSystem::Regist(ICollider* component)

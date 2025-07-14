@@ -2,24 +2,24 @@
 #include "ICollider.h"
 #include "ColliderSystem.h"
 
-/* [BoxCollider Component]
-* 
+/* [CircleCollider Component]
+*
 */
 
 class Transform;
-class CircleCollider;
-class BoxCollider : public ICollider
+class BoxCollider;
+class CircleCollider : public ICollider
 {
 public:
     Transform* transform;
     Vector2 offset = Vector2::zero;
-    Vector2 size = { 10,10 };
+    float radius = 1.0f;
     //bool isTrigger = false;             // ICollider
-    
+
 public:
     // component cycle
-    BoxCollider() { ColliderSystem::Get().Regist(this); }
-    ~BoxCollider() override { ColliderSystem::Get().Unregist(this); }
+    CircleCollider() { ColliderSystem::Get().Regist(this); }
+    ~CircleCollider() override { ColliderSystem::Get().Unregist(this); }
 
     void OnEnable() override;
     bool isCollision(ICollider* other) override;
@@ -35,13 +35,12 @@ private:
     void OnTriggerStay(ICollider* other) override;
     void OnTriggerExit(ICollider* other) override;
 
-    // collisio cheak
-    bool CheckAABBCollision(BoxCollider* other);
-    bool CheakCircleCollision(CircleCollider* other);
+    // collistion cheak
+    bool CheckCircleCollision(CircleCollider* other);
+    bool CheakBoxCollision(BoxCollider* other);
 
 public:
     // debug draw
     void DebugColliderDraw() override;
 };
-
 

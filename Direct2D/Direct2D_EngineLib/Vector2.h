@@ -40,4 +40,5 @@ public:
     // function
     float Magnitude() const;
     Vector2 Normalized() const;
+    float SqrMagnitude() const;
 };

@@ -282,6 +282,9 @@
     <ClInclude Include="DebugGizmo.h">
       <Filter>헤더 파일\98. Utils</Filter>
     </ClInclude>
+    <ClInclude Include="CircleCollider.h">
+      <Filter>헤더 파일\03. Component\Collider</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -413,6 +416,9 @@
     </ClCompile>
     <ClCompile Include="DebugGizmo.cpp">
       <Filter>소스 파일\98. Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleCollider.cpp">
+      <Filter>소스 파일\03. Component\Collider</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
