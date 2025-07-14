@@ -37,6 +37,8 @@ public:
 
 		catAnimatorController = new CatAnimatorController();  // animator controller
 		animator->SetController(catAnimatorController);
+
+		collider->isTrigger = true;
 	}
 	~Cat() override { delete catAnimatorController; };
 };

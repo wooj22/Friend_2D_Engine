@@ -23,6 +23,13 @@ void ColliderSystem::Unregist(ICollider* component)
 // component system
 void ColliderSystem::Update()
 {
+    // curent frame collision data reset
+    for (auto collider : components)
+    {
+        collider->currentFrameCollisions.clear();
+    }
+
+    // collision cheak
 	for (size_t i = 0; i < components.size(); ++i)
     {
         for (size_t j = i + 1; j < components.size(); ++j)
@@ -32,18 +39,17 @@ void ColliderSystem::Update()
 
             if (a->isCollision(b))
             {
-                if (a->isTrigger || b->isTrigger)
-                {
-                    a->OnTriggerEnter(b);
-                    b->OnTriggerEnter(a);
-                }
-                else
-                {
-                    a->OnCollisionEnter(b);
-                    b->OnCollisionEnter(a);
-                }
+                // cur frame collision
+                a->currentFrameCollisions.insert(b);
+                b->currentFrameCollisions.insert(a);
             }
         }
+    }
+
+    // Enter/ Stay/ Exit
+    for (auto collider : components)
+    {
+        collider->FinalizeCollision();
     }
 }
 

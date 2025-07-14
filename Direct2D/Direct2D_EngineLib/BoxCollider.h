@@ -21,13 +21,18 @@ public:
     ~BoxCollider() override { ColliderSystem::Get().Unregist(this); }
     void OnEnable() override;
     bool isCollision(ICollider* other) override;
+    void FinalizeCollision() override;
     void OnDestroy() override;
 
-    // collision event
-    void OnCollisionEnter(ICollider* other);
-    void OnTriggerEnter(ICollider* other);
-
 private:
+    // collision event
+    void OnCollisionEnter(ICollider* other) override;
+    void OnCollisionStay(ICollider* other) override;
+    void OnCollisionExit(ICollider* other) override;
+    void OnTriggerEnter(ICollider* other) override;
+    void OnTriggerStay(ICollider* other) override;
+    void OnTriggerExit(ICollider* other) override;
+
     // aabb collistion cheak
     bool CheckAABB(BoxCollider* other);
 

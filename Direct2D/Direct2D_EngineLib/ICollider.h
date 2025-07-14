@@ -14,13 +14,22 @@ public:
 	ColliderType colliderType = ColliderType::Box;
 	bool isTrigger = false;             // collision, trigger
 
+	// collision data
+	std::unordered_set<ICollider*> currentFrameCollisions;
+	std::unordered_set<ICollider*> lastFrameCollisions;
+
 	// cycle
 	virtual ~ICollider() = default;
 	virtual bool isCollision(ICollider* other) = 0;
+	virtual void FinalizeCollision() = 0;
 
 	// collision event
 	virtual void OnCollisionEnter(ICollider* other) = 0;
+	virtual void OnCollisionStay(ICollider* other) = 0;
+	virtual void OnCollisionExit(ICollider* other) = 0;
 	virtual void OnTriggerEnter(ICollider* other) = 0;
+	virtual void OnTriggerStay(ICollider* other) = 0;
+	virtual void OnTriggerExit(ICollider* other) = 0;
 
 	// debug draw
 	virtual void DebugColliderDraw() {}

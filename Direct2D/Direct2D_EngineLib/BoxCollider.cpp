@@ -24,6 +24,45 @@ bool BoxCollider::isCollision(ICollider* other)
     return false;
 }
 
+void BoxCollider::FinalizeCollision()
+{
+    // Enter & Stay
+    for (ICollider* other : currentFrameCollisions)
+    {
+        if (lastFrameCollisions.find(other) == lastFrameCollisions.end())
+        {
+            // Enter
+            if (isTrigger || other->isTrigger)
+                OnTriggerEnter(other);
+            else
+                OnCollisionEnter(other);
+        }
+        else
+        {
+            // Stay
+            if (isTrigger || other->isTrigger)
+                OnTriggerStay(other);
+            else
+                OnCollisionStay(other);
+        }
+    }
+
+    // Exit
+    for (ICollider* other : lastFrameCollisions)
+    {
+        if (currentFrameCollisions.find(other) == currentFrameCollisions.end())
+        {
+            if (isTrigger || other->isTrigger)
+                OnTriggerExit(other);
+            else
+                OnCollisionExit(other);
+        }
+    }
+
+    // Swap
+    lastFrameCollisions = currentFrameCollisions;
+}
+
 void BoxCollider::OnDestroy()
 {
     
@@ -39,12 +78,45 @@ void BoxCollider::OnCollisionEnter(ICollider* other)
         s->OnCollisionEnter(other);
 }
 
+void BoxCollider::OnCollisionStay(ICollider* other)
+{
+    // script
+    auto scripts = owner->GetComponents<Script>();
+    for (auto s : scripts)
+        s->OnCollisionStay(other);
+}
+
+void BoxCollider::OnCollisionExit(ICollider* other)
+{
+    // script
+    auto scripts = owner->GetComponents<Script>();
+    for (auto s : scripts)
+        s->OnCollisionExit(other);
+}
+
+
 void BoxCollider::OnTriggerEnter(ICollider* other)
 {
     // script
     auto scripts = owner->GetComponents<Script>();
     for (auto s : scripts)
         s->OnTriggerEnter(other);
+}
+
+void BoxCollider::OnTriggerStay(ICollider* other)
+{
+    // script
+    auto scripts = owner->GetComponents<Script>();
+    for (auto s : scripts)
+        s->OnTriggerStay(other);
+}
+
+void BoxCollider::OnTriggerExit(ICollider* other)
+{
+    // script
+    auto scripts = owner->GetComponents<Script>();
+    for (auto s : scripts)
+        s->OnTriggerExit(other);
 }
 
 bool BoxCollider::CheckAABB(BoxCollider* other)
