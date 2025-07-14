@@ -22,7 +22,7 @@ void ColliderSystem::Unregist(ICollider* component)
 }
 
 // component system
-void ColliderSystem::Update()
+void ColliderSystem::FixedUpdate()
 {
     // curent frame collision data reset
     for (auto collider : components)

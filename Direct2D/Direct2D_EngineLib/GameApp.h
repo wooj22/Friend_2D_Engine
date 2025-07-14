@@ -14,7 +14,6 @@
 #include "Time.h"
 #include "Input.h"
 #include "ObjectTable.h"
-//#include "DebugGizmo.h"
 
 using namespace std;
 
@@ -51,7 +50,6 @@ protected:
 	// manager
 	SceneManager sceneManager;
 	ResourceManager resourceManager;
-	//DebugGizmo debugGizmo;
 
 public:
 	bool isLoop = true;
