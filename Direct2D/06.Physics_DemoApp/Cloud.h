@@ -27,12 +27,6 @@ public:
 	void Awake() override
 	{
 		collider->size = { spriteRenderer->sprite->size.width,spriteRenderer->sprite->size.height };
-		//collider->offset = { -100,100 };
-	}
-
-	void Update() override
-	{
-		//collider->DrawDebug();
 	}
 };
 

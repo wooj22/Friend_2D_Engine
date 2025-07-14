@@ -39,18 +39,5 @@ public:
 		animator->SetController(catAnimatorController);
 	}
 	~Cat() override { delete catAnimatorController; };
-
-
-	void Awake() override
-	{
-		transform->SetPosition(-700, 400);
-		
-	}
-
-	void Update() override
-	{
-		collider->size = { spriteRenderer->sprite->size.width,spriteRenderer->sprite->size.height };
-		//collider->DrawDebug();
-	}
 };
 

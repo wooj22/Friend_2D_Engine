@@ -3,7 +3,6 @@
 #include "WorldTextRenderer.h"
 #include "ImageRenderer.h"
 #include "ScreenTextRenderer.h"
-//#include "DebugGizmo.h"
 #include "ColliderSystem.h"
 
 /// Component µî·Ï
@@ -88,6 +87,9 @@ void RenderSystem::Init(HWND hwnd, int width, int height)
 		__uuidof(dWriteFactory),
 		reinterpret_cast<IUnknown**>(dWriteFactory.GetAddressOf()));
 
+	// debug
+	renderTarget->CreateSolidColorBrush(debug_color, &debug_brush);
+
 	assert(SUCCEEDED(hr));
 }
 
@@ -121,10 +123,7 @@ void RenderSystem::Render()
 	}
 
 	// collider draw
-	ColliderSystem::Get().DebugDraw();
-
-	// Debug Util
-	//DebugGizmo::Get().DrawAll();
+	ColliderSystem::Get().DebugColliderDraw();
 
 	renderTarget->EndDraw();
 	swapChain->Present(1, 0);
@@ -140,4 +139,26 @@ void RenderSystem::UnInit()
 	backBufferBitmap.Reset();
 	wicImagingFactory.Reset();
 	dWriteFactory.Reset();
+}
+
+
+// debug
+void RenderSystem::DrawRect(const D2D1_RECT_F& rect, const D2D1_MATRIX_3X2_F& transform, float strokeWidth)
+{
+	renderTarget->SetTransform(transform);
+	renderTarget->DrawRectangle(rect, debug_brush.Get(), strokeWidth);
+}
+
+void RenderSystem::DrawCircle(const D2D1_ELLIPSE& ellipse, const D2D1_MATRIX_3X2_F& transform, float strokeWidth)
+{
+	renderTarget->SetTransform(transform);
+	renderTarget->DrawEllipse(ellipse, debug_brush.Get(), strokeWidth);
+	renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
+}
+
+void RenderSystem::DrawLine(const D2D1_POINT_2F& start, const D2D1_POINT_2F& end, const D2D1_MATRIX_3X2_F& transform, float strokeWidth)
+{
+	renderTarget->SetTransform(transform);
+	renderTarget->DrawLine(start, end, debug_brush.Get(), strokeWidth);
+	renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
 }

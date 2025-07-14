@@ -39,6 +39,12 @@ public :
 	ComPtr<IWICImagingFactory> wicImagingFactory;   // WIC Imaging Factory (이미지 로딩)		// TODO :: 삭제해도됨 -> 지금 리소스매니저에서 관할
 	ComPtr<IDWriteFactory> dWriteFactory;			// Text Write Factory (텍스트 그리기)
 
+private:
+	// debug
+	ComPtr<ID2D1SolidColorBrush> debug_brush;
+	D2D1_COLOR_F debug_color = D2D1::ColorF(D2D1::ColorF::Red);
+
+public:
 	// componenet
 	void Regist(IRenderer* component);
 	void Unregist(IRenderer* component);
@@ -49,22 +55,8 @@ public :
 	void Render();
 	void UnInit();			
 
-
-	// test
-	void DrawRect(const D2D1_RECT_F& rect, const D2D1_COLOR_F& color, const D2D1_MATRIX_3X2_F& transform = D2D1::Matrix3x2F::Identity(), float strokeWidth = 1.0f)
-	{
-		// Brush 생성
-		ComPtr<ID2D1SolidColorBrush> brush;
-		HRESULT hr = renderTarget->CreateSolidColorBrush(color, &brush);
-		assert(SUCCEEDED(hr));
-
-		// Transform 설정
-		renderTarget->SetTransform(transform);
-
-		// 사각형 그리기
-		renderTarget->DrawRectangle(rect, brush.Get(), strokeWidth);
-
-		// Transform 초기화
-		renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
-	}
+	// debug function
+	void DrawRect(const D2D1_RECT_F& rect, const D2D1_MATRIX_3X2_F& transform, float strokeWidth = 0.5f);
+	void DrawCircle(const D2D1_ELLIPSE& ellipse, const D2D1_MATRIX_3X2_F& transform, float strokeWidth = 0.5f);
+	void DrawLine(const D2D1_POINT_2F& start, const D2D1_POINT_2F& end, const D2D1_MATRIX_3X2_F& transform, float strokeWidth = 0.5f);
 };

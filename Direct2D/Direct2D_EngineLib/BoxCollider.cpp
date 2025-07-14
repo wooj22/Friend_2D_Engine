@@ -37,8 +37,6 @@ void BoxCollider::OnCollisionEnter(ICollider* other)
     auto scripts = owner->GetComponents<Script>();
     for (auto s : scripts)
         s->OnCollisionEnter(other);
-
-    OutputDebugStringA("Test OnCollisionEnter!");
 }
 
 void BoxCollider::OnTriggerEnter(ICollider* other)
@@ -47,65 +45,43 @@ void BoxCollider::OnTriggerEnter(ICollider* other)
     auto scripts = owner->GetComponents<Script>();
     for (auto s : scripts)
         s->OnTriggerEnter(other);
-
-    OutputDebugStringA("Test OnTriggerEnter!");
 }
 
 bool BoxCollider::CheckAABB(BoxCollider* other)
 {
-    // this의 실제 위치 계산 (offset.y 반전 포함)
-    Vector2 posA = transform->GetPosition() + Vector2(offset.x, -offset.y);
-    Vector2 scaleA = transform->GetScale();  // Vector2 타입이라고 가정
+    // this transform 정보
+    const Vector2 posA = transform->GetPosition() + Vector2(offset.x, -offset.y);
+    const Vector2 scaleA = transform->GetScale();
 
-    // 스케일이 반영된 반 크기
-    Vector2 halfSizeA = (size * scaleA) * 0.5f;
+    // 컴포넌트별 곱 직접 작성
+    Vector2 scaledSizeA = Vector2(size.x * scaleA.x, size.y * scaleA.y);
+    Vector2 halfSizeA = scaledSizeA * 0.5f;
 
-    // other의 실제 위치 계산 (offset.y 반전 포함)
-    Vector2 posB = other->transform->GetPosition() + Vector2(other->offset.x, -other->offset.y);
-    Vector2 scaleB = other->transform->GetScale();
+    // other transform 정보
+    const Vector2 posB = other->transform->GetPosition() + Vector2(other->offset.x, -other->offset.y);
+    const Vector2 scaleB = other->transform->GetScale();
 
-    // 스케일이 반영된 반 크기
-    Vector2 halfSizeB = (other->size * scaleB) * 0.5f;
+    Vector2 scaledSizeB = Vector2(other->size.x * scaleB.x, other->size.y * scaleB.y);
+    Vector2 halfSizeB = scaledSizeB * 0.5f;
 
-    // AABB 충돌 검사
-    bool collisionX = fabs(posA.x - posB.x) <= (halfSizeA.x + halfSizeB.x);
-    bool collisionY = fabs(posA.y - posB.y) <= (halfSizeA.y + halfSizeB.y);
+    // AABB 충돌 검사 (std::abs 사용)
+    bool collisionX = std::abs(posA.x - posB.x) <= (halfSizeA.x + halfSizeB.x);
+    bool collisionY = std::abs(posA.y - posB.y) <= (halfSizeA.y + halfSizeB.y);
 
     return collisionX && collisionY;
 }
 
-void BoxCollider::DebugDraw()
+void BoxCollider::DebugColliderDraw()
 {
-    // 콜라이더 로컬 영역 기준 rect (0,0 중심)
-    float left = -size.x * 0.5f;
-    float right = size.x * 0.5f;
-    float top = -size.y * 0.5f;
-    float bottom = size.y * 0.5f;
+    // localRect에 offset 직접 반영 (y 축 반전 포함)
+    float left = -size.x * 0.5f + offset.x;
+    float right = size.x * 0.5f + offset.x;
+    float top = -size.y * 0.5f - offset.y;
+    float bottom = size.y * 0.5f - offset.y;
     D2D1_RECT_F localRect = D2D1::RectF(left, top, right, bottom);
 
-    // offset을 matrix로 만들 때 y 반전
-    auto offsetMatrix = D2D1::Matrix3x2F::Translation(offset.x, -offset.y);
+    // offsetMatrix 없이 offset을 localRect에 더했으니 transform 행렬만 곱함
+    auto finalMatrix = transform->GetScreenMatrix();
 
-    // 행렬 곱 순서 (transform 먼저, offset 나중)
-    auto finalMatrix = transform->GetScreenMatrix() * offsetMatrix;
-
-    RenderSystem::Get().DrawRect(localRect, D2D1::ColorF(D2D1::ColorF::Lime), finalMatrix);
+    RenderSystem::Get().DrawRect(localRect, finalMatrix);
 }
-
-//void BoxCollider::DrawDebug()
-//{
-//    // 콜라이더 로컬 영역 기준 rect (0,0 중심)
-//    float left = -size.x * 0.5f;
-//    float right = size.x * 0.5f;
-//    float top = -size.y * 0.5f;
-//    float bottom = size.y * 0.5f;
-//    D2D1_RECT_F localRect = D2D1::RectF(left, top, right, bottom);
-//
-//    // offset을 matrix로 만들 때 y 반전
-//    auto offsetMatrix = D2D1::Matrix3x2F::Translation(offset.x, -offset.y);
-//
-//    // 행렬 곱 순서 (transform 먼저, offset 나중)
-//    auto finalMatrix = transform->GetScreenMatrix() * offsetMatrix;
-//
-//    //DebugGizmo::Get().AddGizmoRect(finalMatrix, localRect);
-//}

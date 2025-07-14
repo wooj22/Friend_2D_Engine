@@ -48,10 +48,10 @@ void ColliderSystem::Update()
 }
 
 
-void ColliderSystem::DebugDraw()
+void ColliderSystem::DebugColliderDraw()
 {
     for (auto& col : components)
     {
-        col->DebugDraw();
+        col->DebugColliderDraw();
     }
 }

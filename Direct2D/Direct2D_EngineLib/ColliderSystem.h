@@ -16,5 +16,5 @@ public:
 
 	// component system
 	void Update();
-	void DebugDraw();
+	void DebugColliderDraw();
 };

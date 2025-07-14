@@ -34,6 +34,17 @@ public:
 	void FixedUpdate() override;			// 물리 업데이트 0.02f 보장 반복 호출
 	void OnDestroy() override;				// 컴포넌트 or 오브젝트 소멸 시점
 
+	/* Collition Event */
+	// trigger
+	void OnTriggerEnter(ICollider* other) override { OutputDebugStringA("OnTriggerEnter()\n"); }
+	void OnTriggerStay(ICollider* other)  override { OutputDebugStringA("OnTriggerStay()\n"); }
+	void OnTriggerExit(ICollider* other)  override { OutputDebugStringA("OnTriggerExit()\n"); }
+
+	// collision
+	void OnCollisionEnter(ICollider* other)  override { OutputDebugStringA("OnCollisionEnter()\n"); }
+	void OnCollisionStay(ICollider* other) override { OutputDebugStringA("OnCollisionStay()\n"); }
+	void OnCollisionExit(ICollider* other)  override { OutputDebugStringA("OnCollisionExit()\n"); }
+
 public:
 	float GetSpeed() { return curSpeed; }
 

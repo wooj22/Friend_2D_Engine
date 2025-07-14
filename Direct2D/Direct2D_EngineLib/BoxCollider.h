@@ -12,7 +12,7 @@ class BoxCollider : public ICollider
 public:
     Transform* transform;
     Vector2 offset = Vector2::zero;
-    Vector2 size = Vector2::one;
+    Vector2 size = { 10,10 };
     //bool isTrigger = false;             // ICollider
     
 public:
@@ -28,11 +28,12 @@ public:
     void OnTriggerEnter(ICollider* other);
 
 private:
+    // aabb collistion cheak
     bool CheckAABB(BoxCollider* other);
 
 public:
-    void DebugDraw() override;
-    //void DrawDebug();
+    // debug draw
+    void DebugColliderDraw() override;
 };
 
 
