@@ -119,7 +119,7 @@ void GameApp::FixedUpdate()
 {
 	// 여기 물리 update 로직
 	scriptSystem.FixedUpdate();
-	colliderSystem.Update();
+	colliderSystem.FixedUpdate();
 }
 
 /// Render

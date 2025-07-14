@@ -32,13 +32,13 @@ bool CircleCollider::isCollision(ICollider* other)
 
 bool CircleCollider::CheckCircleCollision(CircleCollider* other)
 {
-    Vector2 posA = transform->GetPosition() + Vector2(offset.x, -offset.y);
-    Vector2 posB = other->transform->GetPosition() + Vector2(other->offset.x, -other->offset.y);
+    Vector2 posA = transform->GetPosition() + offset;
+    Vector2 posB = other->transform->GetPosition() + other->offset;
 
     Vector2 scaleA = transform->GetScale();
     Vector2 scaleB = other->transform->GetScale();
 
-    float scaledRadiusA = radius * scaleA.x; // 보통 x 축만 사용
+    float scaledRadiusA = radius * scaleA.x; // x축 기준
     float scaledRadiusB = other->radius * scaleB.x;
 
     float distSq = (posA - posB).SqrMagnitude();

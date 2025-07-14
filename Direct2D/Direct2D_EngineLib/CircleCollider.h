@@ -18,7 +18,11 @@ public:
 
 public:
     // component cycle
-    CircleCollider() { ColliderSystem::Get().Regist(this); }
+    CircleCollider() 
+    {
+        colliderType = ColliderType::Circle;
+        ColliderSystem::Get().Regist(this);
+    }
     ~CircleCollider() override { ColliderSystem::Get().Unregist(this); }
 
     void OnEnable() override;

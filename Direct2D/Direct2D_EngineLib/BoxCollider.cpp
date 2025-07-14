@@ -32,22 +32,21 @@ bool BoxCollider::isCollision(ICollider* other)
 
 bool BoxCollider::CheckAABBCollision(BoxCollider* other)
 {
-    // this transform 정보
-    const Vector2 posA = transform->GetPosition() + Vector2(offset.x, -offset.y);
+    // this transform
+    const Vector2 posA = transform->GetPosition() + offset;
     const Vector2 scaleA = transform->GetScale();
 
-    // 컴포넌트별 곱 직접 작성
-    Vector2 scaledSizeA = Vector2(size.x * scaleA.x, size.y * scaleA.y);
+    Vector2 scaledSizeA(size.x * scaleA.x, size.y * scaleA.y);
     Vector2 halfSizeA = scaledSizeA * 0.5f;
 
-    // other transform 정보
-    const Vector2 posB = other->transform->GetPosition() + Vector2(other->offset.x, -other->offset.y);
+    // other transform
+    const Vector2 posB = other->transform->GetPosition() + other->offset;
     const Vector2 scaleB = other->transform->GetScale();
 
-    Vector2 scaledSizeB = Vector2(other->size.x * scaleB.x, other->size.y * scaleB.y);
+    Vector2 scaledSizeB(other->size.x * scaleB.x, other->size.y * scaleB.y);
     Vector2 halfSizeB = scaledSizeB * 0.5f;
 
-    // AABB 충돌 검사 (std::abs 사용)
+    // AABB collision cheak
     bool collisionX = std::abs(posA.x - posB.x) <= (halfSizeA.x + halfSizeB.x);
     bool collisionY = std::abs(posA.y - posB.y) <= (halfSizeA.y + halfSizeB.y);
 
@@ -150,7 +149,6 @@ void BoxCollider::OnCollisionExit(ICollider* other)
         s->OnCollisionExit(other);
 }
 
-
 void BoxCollider::OnTriggerEnter(ICollider* other)
 {
     // script
@@ -177,7 +175,6 @@ void BoxCollider::OnTriggerExit(ICollider* other)
 
 void BoxCollider::DebugColliderDraw()
 {
-    // localRect에 offset 직접 반영 (y 축 반전 포함)
     float left = -size.x * 0.5f + offset.x;
     float right = size.x * 0.5f + offset.x;
     float top = -size.y * 0.5f - offset.y;

@@ -18,7 +18,11 @@ public:
     
 public:
     // component cycle
-    BoxCollider() { ColliderSystem::Get().Regist(this); }
+    BoxCollider() 
+    { 
+        colliderType = ColliderType::Box;
+        ColliderSystem::Get().Regist(this);
+    }
     ~BoxCollider() override { ColliderSystem::Get().Unregist(this); }
 
     void OnEnable() override;

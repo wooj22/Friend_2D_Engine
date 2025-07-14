@@ -15,6 +15,6 @@ public:
 	void Unregist(ICollider* component);
 
 	// component system
-	void Update();
+	void FixedUpdate();
 	void DebugColliderDraw();
 };

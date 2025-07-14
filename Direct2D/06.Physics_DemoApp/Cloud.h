@@ -26,7 +26,10 @@ public:
 
 	void Awake() override
 	{
-		collider->size = { spriteRenderer->sprite->size.width,spriteRenderer->sprite->size.height };
+		collider->size = { spriteRenderer->sprite->size.width-40,
+			spriteRenderer->sprite->size.height-90 };
+
+		collider->offset = { 0, -30 };
 	}
 };
 

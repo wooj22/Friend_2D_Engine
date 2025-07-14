@@ -19,8 +19,9 @@ public:
 	Transform* transform;
 	SpriteRenderer* spriteRenderer;
 	BoxCollider* collider;
-	CatController* controller;		// script compoennt
 	Animator* animator;
+	CatController* controller;		// script compoennt
+	
 
 	// animation asset
 	CatAnimatorController* catAnimatorController;
@@ -34,18 +35,22 @@ public:
 		transform = AddComponent<Transform>();
 		spriteRenderer = AddComponent<SpriteRenderer>();
 		collider = AddComponent<BoxCollider>();
-		controller = AddComponent<CatController>();
 		animator = AddComponent<Animator>();
+		controller = AddComponent<CatController>();
+	}
+	~Cat() override { delete catAnimatorController; };
 
+	void Awake() override
+	{
 		// animator controller
-		catAnimatorController = new CatAnimatorController();  
+		catAnimatorController = new CatAnimatorController();
 		animator->SetController(catAnimatorController);
 
 		// setting
 		transform->SetPosition(0, 100);
 		collider->size = { 15, 10 };
+		//collider->radius = 15;
 		collider->isTrigger = false;
 	}
-	~Cat() override { delete catAnimatorController; };
 };
 
