@@ -1,8 +1,8 @@
 #include "AnimationClip.h"
 
 /// LoadSpritesFromJson
-/// 넘겨받은 Texture를 바탕으로 json data에 따라 sprite들을 생성한다.
-void AnimationClip::LoadSpritesFromJson(shared_ptr<Texture2D> texture, const string& jsonPath)
+/// 넘겨받은 Texture(sprite sheet)를 바탕으로 json data에 따라 sprite들을 생성하고, spriteList에 저장한다.
+void AnimationClip::LoadSpriteSheetFromJson(shared_ptr<Texture2D> texture, const string& jsonPath)
 {
     nlohmann::json j = nlohmann::json::parse(ifstream(jsonPath));
 
@@ -27,7 +27,7 @@ void AnimationClip::LoadSpritesFromJson(shared_ptr<Texture2D> texture, const str
 }
 
 /// LoadAnimationClipFromJson
-/// 
+/// Animation Clip에 대한 json을 읽고 어떤 AnimationFrame data를 저장한다.(sprite, time)
 void AnimationClip::LoadAnimationClipFromJson(shared_ptr<Texture2D> texture, const string& jsonPath)
 {
     nlohmann::json j = nlohmann::json::parse(ifstream(jsonPath));

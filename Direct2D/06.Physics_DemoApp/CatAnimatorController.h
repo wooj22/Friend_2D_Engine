@@ -13,7 +13,7 @@ public:
     CatIdleClip()
     {
         auto texture = ResourceManager::Get().CreateTexture2D("../Resource/Texture/Cat_Idle.png");
-        LoadSpritesFromJson(texture, "../Resource/Data/SpriteSheet/Cat_Idle_Sprites.json");
+        LoadSpriteSheetFromJson(texture, "../Resource/Data/SpriteSheet/Cat_Idle_Sprites.json");
         LoadAnimationClipFromJson(texture, "../Resource/Data/AnimationClip/Cat_Idle_AniClip.json");
     }
     ~CatIdleClip() override {}
@@ -25,7 +25,7 @@ public:
     CatWalkClip()
     {
         auto texture = ResourceManager::Get().CreateTexture2D("../Resource/Texture/Cat_Walk.png");
-        LoadSpritesFromJson(texture, "../Resource/Data/SpriteSheet/Cat_Walk_Sprites.json");
+        LoadSpriteSheetFromJson(texture, "../Resource/Data/SpriteSheet/Cat_Walk_Sprites.json");
         LoadAnimationClipFromJson(texture, "../Resource/Data/AnimationClip/Cat_Walk_AniClip.json");
     }
     ~CatWalkClip() override {}
@@ -37,7 +37,7 @@ public:
     CatRunClip()
     {
         auto texture = ResourceManager::Get().CreateTexture2D("../Resource/Texture/Cat_Run.png");
-        LoadSpritesFromJson(texture, "../Resource/Data/SpriteSheet/Cat_Run_Sprites.json");
+        LoadSpriteSheetFromJson(texture, "../Resource/Data/SpriteSheet/Cat_Run_Sprites.json");
         LoadAnimationClipFromJson(texture, "../Resource/Data/AnimationClip/Cat_Run_AniClip.json");
     }
     ~CatRunClip() override {}
@@ -116,12 +116,18 @@ public:
     CatAnimatorController()
     {
         // clip 积己
-        idleClip = new CatIdleClip();
+        //idleClip = new CatIdleClip();
         walkClip = new CatWalkClip();
         runClip = new CatRunClip();
 
+        // clip 积己狼 促弗 规侥
+        auto texture = ResourceManager::Get().CreateTexture2D("../Resource/Texture/Cat_Idle.png");
+        AnimationClip* clip1 = new AnimationClip();
+        clip1->LoadSpriteSheetFromJson(texture, "../Resource/Data/SpriteSheet/Cat_Idle_Sprites.json");
+        clip1->LoadAnimationClipFromJson(texture, "../Resource/Data/AnimationClip/Cat_Idle_AniClip.json");
+
         // state 积己
-        idleState = new CatIdleState(idleClip, this);
+        idleState = new CatIdleState(clip1, this);
         walkState = new CatWalkState(walkClip, this);
         runState = new CatRunState(runClip, this);
 
