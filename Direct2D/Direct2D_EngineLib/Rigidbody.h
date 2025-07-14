@@ -18,7 +18,7 @@ public:
     Vector2 acceleration = Vector2::zero;       // 가속도
     float mass = 1.0f;                          // 질량
     bool useGravity = true;                     // 중력 사용 여부
-    float gravityScale = 1.0f;                  // 중력
+    float gravityScale = 10.0f;                 // 중력 보정ㄴ
     float drag = 0.0f;
 
 public:

@@ -124,7 +124,7 @@ void BoxCollider::FinalizeCollision()
 void BoxCollider::OnCollisionEnter(ICollider* other)
 {
     // Block
-    transform->SetPosition(transform->prePosition);
+    transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);
 
     // script
     auto scripts = owner->GetComponents<Script>();
@@ -135,7 +135,7 @@ void BoxCollider::OnCollisionEnter(ICollider* other)
 void BoxCollider::OnCollisionStay(ICollider* other)
 {
     // Block
-    transform->SetPosition(transform->prePosition);
+    transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);
 
     // script
     auto scripts = owner->GetComponents<Script>();

@@ -16,13 +16,12 @@ void Rigidbody::OnDestroy()
 void Rigidbody::FixedUpdate()
 {
     if (!transform) return;
-
     if (useGravity) acceleration += Vector2(0, -9.8f) * gravityScale;
 
     velocity += acceleration * Time::GetFixedDeltaTime();
     velocity *= (1.0f - drag);
 
-    transform->SetPosition(transform->GetPosition() + velocity * Time::GetFixedDeltaTime());
+    transform->SetPosition(transform->GetPosition() + velocity);
     acceleration = Vector2::zero;
 }
 

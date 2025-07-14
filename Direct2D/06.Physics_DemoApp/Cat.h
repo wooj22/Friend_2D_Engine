@@ -6,6 +6,7 @@
 #include "../Direct2D_EngineLib/Time.h"
 #include "../Direct2D_EngineLib/BoxCollider.h"
 #include "../Direct2D_EngineLib/CircleCollider.h"
+#include "../Direct2D_EngineLib/Rigidbody.h"
 
 #include "CatController.h"
 #include "CatAnimatorController.h"
@@ -18,6 +19,7 @@ public:
 	// components
 	Transform* transform;
 	SpriteRenderer* spriteRenderer;
+	Rigidbody* rigidbody;
 	BoxCollider* collider;
 	Animator* animator;
 	CatController* controller;		// script compoennt
@@ -34,6 +36,7 @@ public:
 		OutputDebugStringA("Cat Cat()\n");
 		transform = AddComponent<Transform>();
 		spriteRenderer = AddComponent<SpriteRenderer>();
+		rigidbody = AddComponent<Rigidbody>();
 		collider = AddComponent<BoxCollider>();
 		animator = AddComponent<Animator>();
 		controller = AddComponent<CatController>();

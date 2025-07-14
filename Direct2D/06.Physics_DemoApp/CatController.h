@@ -5,6 +5,7 @@ class Transform;
 class SpriteRenderer;
 class AnimatorController;
 class WorldTextRenderer;
+class Rigidbody;
 
 class CatController : public Script
 {
@@ -13,13 +14,18 @@ private:
 	float curSpeed = 0;
 	float walkSpeed = 5.f;
 	float runSpeed = 10.f;
+	float jumpForce = 3000.0f;
+
+	// move
+	float inputX, inputY;
 
 	// key
-	bool isW, isA, isS, isD, isShift;
+	bool isW, isA, isS, isD, isShift, isSpace;
 
 	// ref component
 	Transform* tr;
 	SpriteRenderer* sr;
+	Rigidbody* rb;
 	AnimatorController* ac;
 
 public:
@@ -50,6 +56,9 @@ public:
 
 private:
 	void InputCheak();
+	void Move_Transform();
+	void Move_Physics();
+	void Jump_Physics();
 	void InfoTextUpdate();
 };
 
