@@ -3,16 +3,16 @@
 #include "Singleton.h"
 using namespace std;
 
-class BoxCollider;
+class ICollider;
 class ColliderSystem : public Singleton<ColliderSystem>
 {
 private:
-	vector<BoxCollider*> components;
+	vector<ICollider*> components;
 
 public:
 	// componenet
-	void Regist(BoxCollider* component);
-	void Unregist(BoxCollider* component);
+	void Regist(ICollider* component);
+	void Unregist(ICollider* component);
 
 	// component system
 	void Update();

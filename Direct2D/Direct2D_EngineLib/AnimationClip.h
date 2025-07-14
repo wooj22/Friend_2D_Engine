@@ -31,7 +31,7 @@ public:
     bool loop = true;                // 반복 여부
     vector<AnimationFrame> frames;   // sprite, time data
 
-protected:
+private:
     std::vector<shared_ptr<Sprite>> spritesList;    // sprite sheet 생성 보관용
 
 public:

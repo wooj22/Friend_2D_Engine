@@ -133,6 +133,12 @@
     <Filter Include="소스 파일\03. Component\Script">
       <UniqueIdentifier>{471c213b-0ae5-40f9-afe0-bb09cb8d44e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\03. Component\Base\Interface">
+      <UniqueIdentifier>{dd2f0dfb-cdb5-4146-9f6b-5a057e0a29ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03. Component\Base\Interface">
+      <UniqueIdentifier>{22716079-ba44-4d47-a50b-ffc96aabf2ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h">
@@ -174,13 +180,7 @@
     <ClInclude Include="UI_Button.h">
       <Filter>헤더 파일\02. GameObject\Content</Filter>
     </ClInclude>
-    <ClInclude Include="IRenderer.h">
-      <Filter>헤더 파일\03. Component\Base</Filter>
-    </ClInclude>
     <ClInclude Include="Component.h">
-      <Filter>헤더 파일\03. Component\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="ITransform.h">
       <Filter>헤더 파일\03. Component\Base</Filter>
     </ClInclude>
     <ClInclude Include="ImageRenderer.h">
@@ -264,6 +264,15 @@
     <ClInclude Include="Script.h">
       <Filter>헤더 파일\03. Component\Script</Filter>
     </ClInclude>
+    <ClInclude Include="IRenderer.h">
+      <Filter>헤더 파일\03. Component\Base\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="ITransform.h">
+      <Filter>헤더 파일\03. Component\Base\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="ICollider.h">
+      <Filter>헤더 파일\03. Component\Base\Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -303,12 +312,6 @@
       <Filter>소스 파일\02. GameObject\Content</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
-      <Filter>소스 파일\03. Component\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="IRenderer.cpp">
-      <Filter>소스 파일\03. Component\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="ITransform.cpp">
       <Filter>소스 파일\03. Component\Base</Filter>
     </ClCompile>
     <ClCompile Include="ImageRenderer.cpp">
@@ -390,6 +393,15 @@
       <Filter>소스 파일\03. Component\Script</Filter>
     </ClCompile>
     <ClCompile Include="ReadMe.cpp" />
+    <ClCompile Include="IRenderer.cpp">
+      <Filter>소스 파일\03. Component\Base\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="ITransform.cpp">
+      <Filter>소스 파일\03. Component\Base\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="ICollider.cpp">
+      <Filter>소스 파일\03. Component\Base\Interface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="D2D_EngineLib.rc">

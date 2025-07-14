@@ -9,6 +9,7 @@
 * 기능별로 스크립트를 분리하고, 재활용 할 수 있다. ex) Movement.cs, Inventory.cs
 */
 
+class ICollider;
 class Script : public Component
 {
 public:
@@ -27,14 +28,14 @@ public:
 
     /* Collition Event */
     // trigger
-    virtual void OnTriggerEnter() {}
-    virtual void OnTriggerStay() {}
-    virtual void OnTriggerExit() {}
+    virtual void OnTriggerEnter(ICollider* other) {}
+    virtual void OnTriggerStay(ICollider* other) {}
+    virtual void OnTriggerExit(ICollider* other) {}
 
     // collision
-    virtual void OnCollisionEnter() {}
-    virtual void OnCollisionStay() {}
-    virtual void OnCollisionExit() {}
+    virtual void OnCollisionEnter(ICollider* other) {}
+    virtual void OnCollisionStay(ICollider* other) {}
+    virtual void OnCollisionExit(ICollider* other) {}
 };
 
 

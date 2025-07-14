@@ -151,6 +151,7 @@
     <ClInclude Include="ColliderSystem.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="ICollider.h" />
     <ClInclude Include="ImageRenderer.h" />
     <ClInclude Include="ITransform.h" />
     <ClInclude Include="json.hpp" />
@@ -196,6 +197,7 @@
     <ClCompile Include="ColliderSystem.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="ICollider.cpp" />
     <ClCompile Include="ImageRenderer.cpp" />
     <ClCompile Include="ITransform.cpp" />
     <ClCompile Include="MultiDelegate.cpp" />

@@ -13,7 +13,7 @@ public:
     CatIdleClip()
     {
         auto texture = ResourceManager::Get().CreateTexture2D("../Resource/Texture/Cat_Idle.png");
-        LoadSpritesFromJson(texture, "../Resource/Data/SpriteSheet/Cat_Idle_Sprites.json");
+        LoadSpriteSheetFromJson(texture, "../Resource/Data/SpriteSheet/Cat_Idle_Sprites.json");
         LoadAnimationClipFromJson(texture, "../Resource/Data/AnimationClip/Cat_Idle_AniClip.json");
     }
     ~CatIdleClip() override {}
@@ -25,7 +25,7 @@ public:
     CatWalkClip()
     {
         auto texture = ResourceManager::Get().CreateTexture2D("../Resource/Texture/Cat_Walk.png");
-        LoadSpritesFromJson(texture, "../Resource/Data/SpriteSheet/Cat_Walk_Sprites.json");
+        LoadSpriteSheetFromJson(texture, "../Resource/Data/SpriteSheet/Cat_Walk_Sprites.json");
         LoadAnimationClipFromJson(texture, "../Resource/Data/AnimationClip/Cat_Walk_AniClip.json");
     }
     ~CatWalkClip() override {}
@@ -37,7 +37,7 @@ public:
     CatRunClip()
     {
         auto texture = ResourceManager::Get().CreateTexture2D("../Resource/Texture/Cat_Run.png");
-        LoadSpritesFromJson(texture, "../Resource/Data/SpriteSheet/Cat_Run_Sprites.json");
+        LoadSpriteSheetFromJson(texture, "../Resource/Data/SpriteSheet/Cat_Run_Sprites.json");
         LoadAnimationClipFromJson(texture, "../Resource/Data/AnimationClip/Cat_Run_AniClip.json");
     }
     ~CatRunClip() override {}

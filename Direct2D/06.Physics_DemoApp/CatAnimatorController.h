@@ -115,16 +115,22 @@ public:
 public:
     CatAnimatorController()
     {
+        // idle clip 생성의 다른 방법
+        AnimationClip* clip1 = new AnimationClip();
+
+        // 1) 스프라이트 시트 이미지를 로드하여 생성한다 (단순 이미지 로드)
+        auto texture = ResourceManager::Get().CreateTexture2D("../Resource/Texture/Cat_Idle.png");      
+
+        // 2) 스프라이트 시트 데이터를 로드하여 sprite들을 생성한다. (rect별로 잘라서 생성)
+        clip1->LoadSpriteSheetFromJson(texture, "../Resource/Data/SpriteSheet/Cat_Idle_Sprites.json");
+
+        // 3) 애니메이션 클립 데이터를 로드하여 저장한다. (어떤 sprite가 몇초에 재생되는지)
+        clip1->LoadAnimationClipFromJson(texture, "../Resource/Data/AnimationClip/Cat_Idle_AniClip.json");
+
         // clip 생성
         //idleClip = new CatIdleClip();
         walkClip = new CatWalkClip();
         runClip = new CatRunClip();
-
-        // clip 생성의 다른 방식
-        auto texture = ResourceManager::Get().CreateTexture2D("../Resource/Texture/Cat_Idle.png");
-        AnimationClip* clip1 = new AnimationClip();
-        clip1->LoadSpriteSheetFromJson(texture, "../Resource/Data/SpriteSheet/Cat_Idle_Sprites.json");
-        clip1->LoadAnimationClipFromJson(texture, "../Resource/Data/AnimationClip/Cat_Idle_AniClip.json");
 
         // state 생성
         idleState = new CatIdleState(clip1, this);

@@ -1,27 +1,34 @@
 #pragma once
-#include "Component.h"
+#include "ICollider.h"
 #include "ColliderSystem.h"
 
-/* [Animator Component]
+/* [BoxCollider Component]
 * 
 */
 
-class BoxCollider : public Component
+class Transform;
+class BoxCollider : public ICollider
 {
 public:
+    Transform* transform;
+    Vector2 offset = Vector2::zero;
+    Vector2 size = Vector2::one;
+    //bool isTrigger = false;             // ICollider
+    
+public:
     // component cycle
-    BoxCollider()
-    {
-        ColliderSystem::Get().Regist(this);
-    }
-    ~BoxCollider() override
-    {
-        ColliderSystem::Get().Unregist(this);
-    }
-
+    BoxCollider() { ColliderSystem::Get().Regist(this); }
+    ~BoxCollider() override { ColliderSystem::Get().Unregist(this); }
     void OnEnable() override;
-    void Update();
+    bool isCollision(ICollider* other) override;
     void OnDestroy() override;
+
+    // collision event
+    void OnCollisionEnter(ICollider* other);
+    void OnTriggerEnter(ICollider* other);
+
+private:
+    bool CheckAABB(BoxCollider* other);
 };
 
 

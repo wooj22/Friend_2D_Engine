@@ -58,7 +58,8 @@ public:
 
 	/* Game Life Cycle */
 	virtual void Init();
-	void Update();			// input, time, buttonsystem, transformSystem, scene(gameObject), scriptsystem, animatorSystem, renderSystem.update
+	void Update();			// input, time, buttonsystem, transformSystem, scene(gameObject), scriptsystem.Update(), animatorSystem, renderSystem.update
+	void FixedUpdate();		// scriptsystem.FixedUpdate(), 물리 관련
 	void Render();			// renderSystem.render
 	void Loop();
 	virtual void UnInit();

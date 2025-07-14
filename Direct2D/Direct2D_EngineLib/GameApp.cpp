@@ -104,12 +104,21 @@ void GameApp::Update()
 {
 	Input::Update();
 	Time::Update();
-	buttonSystem.Update();
-	transformSystem.Update();
+	
 	sceneManager.Update();
 	scriptSystem.Update();
 	animatorSystem.Update();
+	transformSystem.Update();
+
+	buttonSystem.Update();
 	renderSystem.Update();
+}
+
+/// Fixed Update
+void GameApp::FixedUpdate()
+{
+	// 여기 물리 update 로직
+	scriptSystem.FixedUpdate();
 }
 
 /// Render
@@ -141,7 +150,7 @@ void GameApp::Loop()
 		accumulator += Time::GetDeltaTime();
 		while (accumulator >= fixedDeltaTime)
 		{
-			scriptSystem.FixedUpdate();
+			FixedUpdate();
 			accumulator -= fixedDeltaTime;
 		}
 
