@@ -6,6 +6,7 @@
 void ColliderSystem::Regist(ICollider* component)
 {
 	components.push_back(component);
+    OutputDebugStringA("BoxCollider Regist()\n");
 }
 
 // component 등록 해제
@@ -43,5 +44,14 @@ void ColliderSystem::Update()
                 }
             }
         }
+    }
+}
+
+
+void ColliderSystem::DebugDraw()
+{
+    for (auto& col : components)
+    {
+        col->DebugDraw();
     }
 }

@@ -29,6 +29,10 @@ public:
 
 private:
     bool CheckAABB(BoxCollider* other);
+
+public:
+    void DebugDraw() override;
+    //void DrawDebug();
 };
 
 

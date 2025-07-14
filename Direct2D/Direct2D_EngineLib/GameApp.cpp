@@ -97,6 +97,7 @@ void GameApp::Init()
 	Time::Init();
 	renderSystem.Init(hWnd, width, height);
 	resourceManager.Init();	 // rendersystem init 후에 호출해야 함
+	//debugGizmo.Init(renderSystem.renderTarget);
 }
 
 /// Update
@@ -118,6 +119,7 @@ void GameApp::Update()
 void GameApp::FixedUpdate()
 {
 	// 여기 물리 update 로직
+	colliderSystem.Update();
 	scriptSystem.FixedUpdate();
 }
 

@@ -4,9 +4,12 @@
 #include "../Direct2D_EngineLib/SpriteRenderer.h"
 #include "../Direct2D_EngineLib/Animator.h"
 #include "../Direct2D_EngineLib/Time.h"
+#include "../Direct2D_EngineLib/BoxCollider.h"
 
 #include "CatController.h"
 #include "CatAnimatorController.h"
+
+// window : (1400, 800)
 
 class Cat : public GameObject
 {
@@ -14,6 +17,7 @@ public:
 	// components
 	Transform* transform;
 	SpriteRenderer* spriteRenderer;
+	BoxCollider* collider;
 	CatController* controller;		// script compoennt
 	Animator* animator;
 
@@ -27,20 +31,26 @@ public:
 		OutputDebugStringA("Cat Cat()\n");
 		transform = AddComponent<Transform>();
 		spriteRenderer = AddComponent<SpriteRenderer>();
+		collider = AddComponent<BoxCollider>();
 		controller = AddComponent<CatController>();
 		animator = AddComponent<Animator>();
 
 		catAnimatorController = new CatAnimatorController();  // animator controller
 		animator->SetController(catAnimatorController);
 	}
-	~Cat() override { delete catAnimatorController; OutputDebugStringA("Cat ~Cat()\n");
+	~Cat() override { delete catAnimatorController; };
+
+
+	void Awake() override
+	{
+		transform->SetPosition(-700, 400);
+		
 	}
 
-	void Awake() { OutputDebugStringA("Cat Awake()\n"); }
-	void SceneStart() override
+	void Update() override
 	{
-		OutputDebugStringA("Cat SceneStart()\n");
+		collider->size = { spriteRenderer->sprite->size.width,spriteRenderer->sprite->size.height };
+		//collider->DrawDebug();
 	}
-	void Destroyed() { OutputDebugStringA("Cat Destroyed()\n"); }
 };
 

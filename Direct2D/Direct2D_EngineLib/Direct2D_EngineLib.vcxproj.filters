@@ -139,6 +139,12 @@
     <Filter Include="소스 파일\03. Component\Base\Interface">
       <UniqueIdentifier>{22716079-ba44-4d47-a50b-ffc96aabf2ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\98. Utils">
+      <UniqueIdentifier>{3516b520-6400-4bec-8012-40259d7799ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\98. Utils">
+      <UniqueIdentifier>{6f05c64d-473a-42b4-9cbd-3424cf9c8fa2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h">
@@ -273,6 +279,9 @@
     <ClInclude Include="ICollider.h">
       <Filter>헤더 파일\03. Component\Base\Interface</Filter>
     </ClInclude>
+    <ClInclude Include="DebugGizmo.h">
+      <Filter>헤더 파일\98. Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -401,6 +410,9 @@
     </ClCompile>
     <ClCompile Include="ICollider.cpp">
       <Filter>소스 파일\03. Component\Base\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugGizmo.cpp">
+      <Filter>소스 파일\98. Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,8 @@
 #include "WorldTextRenderer.h"
 #include "ImageRenderer.h"
 #include "ScreenTextRenderer.h"
+//#include "DebugGizmo.h"
+#include "ColliderSystem.h"
 
 /// Component µî·Ï
 void RenderSystem::Regist(IRenderer* component)
@@ -117,6 +119,12 @@ void RenderSystem::Render()
 		if (component && component->rendertype == RenderType::UI)
 			component->Render();
 	}
+
+	// collider draw
+	ColliderSystem::Get().DebugDraw();
+
+	// Debug Util
+	//DebugGizmo::Get().DrawAll();
 
 	renderTarget->EndDraw();
 	swapChain->Present(1, 0);

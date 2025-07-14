@@ -21,4 +21,7 @@ public:
 	// collision event
 	virtual void OnCollisionEnter(ICollider* other) = 0;
 	virtual void OnTriggerEnter(ICollider* other) = 0;
+
+	// debug draw
+	virtual void DebugDraw() = 0;
 };

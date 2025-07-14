@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "RenderSystem.h"
 #include "TransformSystem.h"
+#include "ColliderSystem.h"
 #include "AnimatorSystem.h"
 #include "ButtonSystem.h"
 #include "ScriptSystem.h"
@@ -13,6 +14,7 @@
 #include "Time.h"
 #include "Input.h"
 #include "ObjectTable.h"
+//#include "DebugGizmo.h"
 
 using namespace std;
 
@@ -44,10 +46,12 @@ protected:
 	AnimatorSystem animatorSystem;		// animator
 	ButtonSystem buttonSystem;			// button
 	ScriptSystem scriptSystem;			// script
+	ColliderSystem colliderSystem;		// collider
 
 	// manager
 	SceneManager sceneManager;
 	ResourceManager resourceManager;
+	//DebugGizmo debugGizmo;
 
 public:
 	bool isLoop = true;
