@@ -6,6 +6,7 @@
 #include "RenderSystem.h"
 #include "TransformSystem.h"
 #include "ColliderSystem.h"
+#include "PhysicsSystem.h"
 #include "AnimatorSystem.h"
 #include "ButtonSystem.h"
 #include "ScriptSystem.h"
@@ -46,6 +47,7 @@ protected:
 	ButtonSystem buttonSystem;			// button
 	ScriptSystem scriptSystem;			// script
 	ColliderSystem colliderSystem;		// collider
+	PhysicsSystem physicsSystem;		// rigidbody
 
 	// manager
 	SceneManager sceneManager;

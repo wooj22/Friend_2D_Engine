@@ -19,10 +19,10 @@ void PhysicsSystem::Unregist(Rigidbody* component)
 }
 
 // component system
-void PhysicsSystem::Update()
+void PhysicsSystem::FixedUpdate()
 {
 	for (auto it = components.begin(); it != components.end(); ++it)
 	{
-		(*it)->Update();
+		(*it)->FixedUpdate();
 	}
 }

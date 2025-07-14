@@ -11,7 +11,7 @@ class CircleCollider;
 class BoxCollider : public ICollider
 {
 public:
-    Transform* transform;
+    Transform* transform = nullptr;
     Vector2 offset = Vector2::zero;
     Vector2 size = { 10,10 };
     //bool isTrigger = false;             // ICollider

@@ -5,6 +5,7 @@ LARGE_INTEGER Time::initCounter = {};
 LARGE_INTEGER Time::prevCounter = {};
 LARGE_INTEGER Time::currentCounter = {};
 float Time::deltaTime = 0.0f;
+float Time::fixedDeltaTime = 0.02f;
 
 void Time::Init()
 {
@@ -23,6 +24,11 @@ void Time::Update()
 float Time::GetDeltaTime()
 {
     return deltaTime;
+}
+
+float Time::GetFixedDeltaTime()
+{
+    return fixedDeltaTime;
 }
 
 float Time::GetTotalTime()

@@ -119,6 +119,7 @@ void GameApp::FixedUpdate()
 {
 	// 여기 물리 update 로직
 	scriptSystem.FixedUpdate();
+	physicsSystem.FixedUpdate();
 	colliderSystem.FixedUpdate();
 }
 

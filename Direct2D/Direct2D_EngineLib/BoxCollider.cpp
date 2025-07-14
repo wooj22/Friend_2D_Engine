@@ -18,6 +18,8 @@ void BoxCollider::OnDestroy()
 
 bool BoxCollider::isCollision(ICollider* other)
 {
+    if (!transform) return false;
+
     if (other->colliderType == ColliderType::Box)
     {
         return CheckAABBCollision(static_cast<BoxCollider*>(other));

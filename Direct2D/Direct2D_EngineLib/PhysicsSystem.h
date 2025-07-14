@@ -15,6 +15,6 @@ public:
 	void Unregist(Rigidbody* component);
 
 	// component system
-	void Update();
+	void FixedUpdate();
 };
 

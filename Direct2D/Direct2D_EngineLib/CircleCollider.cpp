@@ -18,6 +18,8 @@ void CircleCollider::OnDestroy()
 
 bool CircleCollider::isCollision(ICollider* other)
 {
+    if (!transform) return false;
+
     if (other->colliderType == ColliderType::Circle)
     {
         return CheckCircleCollision(static_cast<CircleCollider*>(other));
