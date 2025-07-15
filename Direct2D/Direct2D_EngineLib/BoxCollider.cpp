@@ -6,6 +6,8 @@
 #include "DebugGizmo.h"
 #include "CircleCollider.h"
 
+// TODO :: 축별 이동 시도 후 복원 로직 추가
+
 void BoxCollider::OnEnable()
 {
     transform = this->owner->GetComponent<Transform>();
@@ -55,7 +57,25 @@ bool BoxCollider::CheckAABBCollision(BoxCollider* other)
 
 bool BoxCollider::CheakCircleCollision(CircleCollider* other)
 {
-    return false;
+    Vector2 boxPos = transform->GetPosition() + offset;
+    Vector2 boxScale = transform->GetScale();
+    Vector2 boxSizeScaled(size.x * boxScale.x, size.y * boxScale.y);
+    Vector2 halfBoxSize = boxSizeScaled * 0.5f;
+
+    Vector2 circlePos = other->transform->GetPosition() + other->offset;
+    Vector2 circleScale = other->transform->GetScale();
+    float circleRadius = other->radius * circleScale.x;
+
+    // AABB clamp point 찾기
+    float closestX = clamp(circlePos.x, boxPos.x - halfBoxSize.x, boxPos.x + halfBoxSize.x);
+    float closestY = clamp(circlePos.y, boxPos.y - halfBoxSize.y, boxPos.y + halfBoxSize.y);
+
+    Vector2 closestPoint(closestX, closestY);
+
+    // 거리 계산
+    float distSq = (circlePos - closestPoint).SqrMagnitude();
+
+    return distSq <= circleRadius * circleRadius;
 }
 
 void BoxCollider::FinalizeCollision()
@@ -101,6 +121,7 @@ void BoxCollider::OnCollisionEnter(ICollider* other)
 {
     // Block
     transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);
+    //transform->SetPosition(transform->prePosition.x, transform->prePosition.y);
 
     // script
     auto scripts = owner->GetComponents<Script>();
@@ -112,6 +133,7 @@ void BoxCollider::OnCollisionStay(ICollider* other)
 {
     // Block
     transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);
+    //transform->SetPosition(transform->prePosition.x, transform->prePosition.y);
 
     // script
     auto scripts = owner->GetComponents<Script>();
@@ -157,7 +179,7 @@ void BoxCollider::DebugColliderDraw()
     float right = size.x * 0.5f + offset.x;
     float top = -size.y * 0.5f - offset.y;
     float bottom = size.y * 0.5f - offset.y;
-    D2D1_RECT_F localRect = D2D1::RectF(left, top, right, bottom);
 
+    D2D1_RECT_F localRect = D2D1::RectF(left, top, right, bottom);
     RenderSystem::Get().DrawRect(localRect, transform->GetScreenMatrix());
 }

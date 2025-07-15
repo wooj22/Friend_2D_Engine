@@ -31,7 +31,6 @@ void CatController::Start()
 {
 	OutputDebugStringA("CatController Start()\n");
 	tr->SetScale(3, 3);
-	rb->useGravity = true;
 }
 
 void CatController::Update()

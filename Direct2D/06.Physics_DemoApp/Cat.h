@@ -20,7 +20,7 @@ public:
 	Transform* transform;
 	SpriteRenderer* spriteRenderer;
 	Rigidbody* rigidbody;
-	BoxCollider* collider;
+	CircleCollider* collider;
 	Animator* animator;
 	CatController* controller;		// script compoennt
 
@@ -36,7 +36,8 @@ public:
 		transform = AddComponent<Transform>();
 		spriteRenderer = AddComponent<SpriteRenderer>();
 		rigidbody = AddComponent<Rigidbody>();
-		collider = AddComponent<BoxCollider>();
+		rigidbody->useGravity = false;
+		collider = AddComponent<CircleCollider>();
 		animator = AddComponent<Animator>();
 		controller = AddComponent<CatController>();
 	}
@@ -50,8 +51,10 @@ public:
 
 		// setting
 		transform->SetPosition(0, 100);
-		collider->size = { 15, 10 };
+		//collider->size = { 15, 10 };
+		collider->radius = 5;
 		collider->isTrigger = false;
+		rigidbody->useGravity = false;
 	}
 };
 

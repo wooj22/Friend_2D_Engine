@@ -3,6 +3,7 @@
 #include "../Direct2D_EngineLib/Transform.h"
 #include "../Direct2D_EngineLib/SpriteRenderer.h"
 #include "../Direct2D_EngineLib/BoxCollider.h"
+#include "../Direct2D_EngineLib/CircleCollider.h"
 
 class Cloud : public GameObject
 {
@@ -28,7 +29,7 @@ public:
 	{
 		collider->size = { spriteRenderer->sprite->size.width-40,
 			spriteRenderer->sprite->size.height-90 };
-
+		//collider->radius = 30;
 		collider->offset = { 0, -30 };
 		collider->isTrigger = false;
 	}

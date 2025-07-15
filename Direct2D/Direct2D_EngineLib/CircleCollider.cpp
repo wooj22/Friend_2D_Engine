@@ -19,8 +19,7 @@ void CircleCollider::OnDestroy()
 void CircleCollider::UpdateBounds()
 {
     Vector2 pos = transform->GetPosition() + offset;
-    Vector2 scale = transform->GetScale();
-    float scaledRadius = radius * scale.x;  // Circle은 x축만 쓰는 관행
+    float scaledRadius = radius * transform->GetScale().x;
 
     minX = pos.x - scaledRadius;
     maxX = pos.x + scaledRadius;
@@ -63,7 +62,19 @@ bool CircleCollider::CheckCircleCollision(CircleCollider* other)
 
 bool CircleCollider::CheakBoxCollision(BoxCollider* other)
 {
-    return false;
+    Vector2 circlePos = transform->GetPosition() + offset;
+    Vector2 boxPos = other->transform->GetPosition() + other->offset;
+    Vector2 boxHalfSize = other->size * 0.5f * other->transform->GetScale();
+
+    float radiusScaled = radius * transform->GetScale().x;
+
+    float closestX = clamp(circlePos.x, boxPos.x - boxHalfSize.x, boxPos.x + boxHalfSize.x);
+    float closestY = clamp(circlePos.y, boxPos.y - boxHalfSize.y, boxPos.y + boxHalfSize.y);
+
+    float distX = circlePos.x - closestX;
+    float distY = circlePos.y - closestY;
+
+    return (distX * distX + distY * distY) <= (radiusScaled * radiusScaled);
 }
 
 void CircleCollider::FinalizeCollision()
@@ -108,8 +119,9 @@ void CircleCollider::FinalizeCollision()
 void CircleCollider::OnCollisionEnter(ICollider* other)
 {
     // Block
-    transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);
-
+    //transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);
+    transform->SetPosition(transform->prePosition.x, transform->prePosition.y);
+    
     // script
     auto scripts = owner->GetComponents<Script>();
     for (auto s : scripts)
@@ -119,7 +131,8 @@ void CircleCollider::OnCollisionEnter(ICollider* other)
 void CircleCollider::OnCollisionStay(ICollider* other)
 {
     // Block
-    transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);
+    //transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);
+    transform->SetPosition(transform->prePosition.x, transform->prePosition.y);
 
     // script
     auto scripts = owner->GetComponents<Script>();
@@ -160,15 +173,12 @@ void CircleCollider::OnTriggerExit(ICollider* other)
 
 void CircleCollider::DebugColliderDraw()
 {
-    Vector2 scale = transform->GetScale();
-    float scaledRadius = radius * scale.x;
-
-    Vector2 pos = transform->GetPosition() + Vector2(offset.x, -offset.y);
+    Vector2 localPos = Vector2(offset.x, -offset.y);
 
     D2D1_ELLIPSE ellipse = D2D1::Ellipse(
-        D2D1::Point2F(pos.x, pos.y),
-        scaledRadius,
-        scaledRadius
+        D2D1::Point2F(localPos.x, localPos.y),
+        radius,
+        radius
     );
 
     RenderSystem::Get().DrawCircle(ellipse, transform->GetScreenMatrix());
