@@ -8,7 +8,7 @@ enum class ColliderType
 };
 
 template<typename T>
-T clamp(T value, T minVal, T maxVal)
+T clamp(T value, T minVal, T maxVal)		// 범위 제한
 {
     if (value < minVal) return minVal;
     else if (value > maxVal) return maxVal;

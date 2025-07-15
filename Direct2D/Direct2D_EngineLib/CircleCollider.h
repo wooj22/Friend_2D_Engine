@@ -3,7 +3,16 @@
 #include "ColliderSystem.h"
 
 /* [CircleCollider Component]
+* 원 충돌 영역을 지정하여 충돌 체크를 담당하는 컴포넌트
+* transform의 position을 중점으로 offset만큼 떨어뜨린 radius의 원 영역을 가진다
+* bound 정보를 Update하며 ColliderSystem에서 sap 알고리즘을 사용하도록 지원한다.
+* ICollider를 상속받은 모든 종류의 콜라이더와의 상호작용을 지원한다.
+* isTrigger 플래그를 설정하여 Block, Overlap 처리를 지정할 수 있다.
+* Block(collistion mode)시에는 transform의 이전 프레임 position으로 되돌아가게 한다.
+* ColliderSystem에 등록되어 충돌 발생시 충돌 이벤트를 호출하게 되고,
+* 각 이벤트 종류에 맞게 Script 컴포넌트를 찾아 이벤트 함수를 호출해준다. -> 유니티처럼 사용 가능하도록
 * 
+* TODO :: 축별 이동 시도 후 복원 로직 추가
 */
 
 class Transform;

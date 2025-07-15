@@ -4,7 +4,9 @@
 #include "Vector2.h"
 
 /* [Rigidbody Component]
-* 
+* 물리 게산을 담당하는 컴포넌트로, Transform을 참조하여 이동시킨다.
+* 속도, 가속도, 질량, 중력, 공기 저항 등의 물리 속성을 관리하며
+* PhysicsSystem에 등록되어 FixedUpdate()주기로 로직을 처리한다.
 */
 
 class Transform;

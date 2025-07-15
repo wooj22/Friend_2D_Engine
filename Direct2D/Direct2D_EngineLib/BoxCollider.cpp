@@ -6,8 +6,6 @@
 #include "DebugGizmo.h"
 #include "CircleCollider.h"
 
-// TODO :: 축별 이동 시도 후 복원 로직 추가
-
 void BoxCollider::OnEnable()
 {
     transform = this->owner->GetComponent<Transform>();
