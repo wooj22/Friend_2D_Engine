@@ -7,7 +7,8 @@
 - Button                                             - UI
 - Animator
 - Script
-- Rigidbody, BoxCollider  // TODO :: 구현중
+- Rigidbody
+- BoxCollider, CircleCollider
 
 
 
@@ -24,8 +25,8 @@
 - ButtonSystem : Button 컴포넌트 update() -> 마우스 클릭 영역 체크 -> 이벤트 발생시 콜백
 - AnimatorSystem : 등록된 AnimatorController를 update()시키고, 참조중인 SpriteRenderer의 sprite를 바꿔줌
 - ScriptSystem : 유니티 모노비헤이어처럼 실행되도록 구현해놨음
-- ColliderSystem :   // TODO :: 구현중
-- RigidbodySystem :  // TODO :: 구현중
+- ColliderSystem :  collider끼리의 충돌을 체크한다. (sap 알고리즘 활용)
+- PhysicsSystem : 중력, 속력 등을 계산하여 tranform의 position을 지정한다
 
 - Input : Input Static System
 - Time : Time Static System
@@ -121,15 +122,16 @@ class Script;
 	virtual void FixedUpdate() {}      // 물리 업데이트 0.02f 보장 반복 호출
 	void OnDestroy() override {}       // 컴포넌트 or 오브젝트 소멸 시점
 
+	/* [collision event] */
 	// trigger
-	virtual void OnTriggerEnter() {}
-	virtual void OnTriggerStay() {}
-	virtual void OnTriggerExit() {}
+	virtual void OnTriggerEnter(ICollider* other) {}		// 유니티와 동일
+	virtual void OnTriggerStay(ICollider* other) {}
+	virtual void OnTriggerExit(ICollider* other) {}
 
 	// collision
-	virtual void OnCollisionEnter() {}
-	virtual void OnCollisionStay() {}
-	virtual void OnCollisionExit() {}
+	virtual void OnCollisionEnter(ICollider* other) {}
+	virtual void OnCollisionStay(ICollider* other) {}
+	virtual void OnCollisionExit(ICollider* other) {}
 }
 
 
@@ -150,8 +152,9 @@ class Button;
 class Animator;
 class Script;
 
-//class BoxCollider;
-//class Rigidbody;
+class BoxCollider;
+class Rigidbody;
+class Rigidbody;
 
 
 
