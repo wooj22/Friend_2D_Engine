@@ -23,7 +23,6 @@ public:
 	BoxCollider* collider;
 	Animator* animator;
 	CatController* controller;		// script compoennt
-	
 
 	// animation asset
 	CatAnimatorController* catAnimatorController;
@@ -52,7 +51,6 @@ public:
 		// setting
 		transform->SetPosition(0, 100);
 		collider->size = { 15, 10 };
-		//collider->radius = 15;
 		collider->isTrigger = false;
 	}
 };

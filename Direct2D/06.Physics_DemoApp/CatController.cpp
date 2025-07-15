@@ -39,7 +39,7 @@ void CatController::Update()
 	// input
 	InputCheak();
 
-	// jump
+	// jump -> input이 update에서 update되고있기 때문에
 	Jump_Physics();
 
 	// speed setting
@@ -57,13 +57,18 @@ void CatController::Update()
 
 	// ui
 	InfoTextUpdate();
+
+	if (tr->GetPosition().y < -500.0f)
+	{
+		tr->SetPosition(0, 300);
+		// Destory 
+	}
 }
 
 void CatController::FixedUpdate()
 {
 	//Move_Transform();
 	Move_Physics();
-	//Jump_Physics();
 }
 
 void CatController::OnDestroy()

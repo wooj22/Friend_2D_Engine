@@ -30,6 +30,7 @@ public:
 			spriteRenderer->sprite->size.height-90 };
 
 		collider->offset = { 0, -30 };
+		collider->isTrigger = false;
 	}
 };
 

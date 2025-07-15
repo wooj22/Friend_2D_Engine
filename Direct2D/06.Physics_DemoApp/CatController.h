@@ -1,5 +1,7 @@
 #pragma once
 #include "../Direct2D_EngineLib/Script.h"
+#include "../Direct2D_EngineLib/GameObject.h"
+#include "../Direct2D_EngineLib/ICollider.h"
 
 class Transform;
 class SpriteRenderer;
@@ -14,7 +16,7 @@ private:
 	float curSpeed = 0;
 	float walkSpeed = 5.f;
 	float runSpeed = 10.f;
-	float jumpForce = 3000.0f;
+	float jumpForce = 6500.0f;
 
 	// move
 	float inputX, inputY;
@@ -40,16 +42,32 @@ public:
 	void FixedUpdate() override;			// 물리 업데이트 0.02f 보장 반복 호출
 	void OnDestroy() override;				// 컴포넌트 or 오브젝트 소멸 시점
 
-	/* Collition Event */
 	// trigger
 	void OnTriggerEnter(ICollider* other) override { OutputDebugStringA("OnTriggerEnter()\n"); }
 	void OnTriggerStay(ICollider* other)  override { OutputDebugStringA("OnTriggerStay()\n"); }
 	void OnTriggerExit(ICollider* other)  override { OutputDebugStringA("OnTriggerExit()\n"); }
 
 	// collision
-	void OnCollisionEnter(ICollider* other)  override { OutputDebugStringA("OnCollisionEnter()\n"); }
-	void OnCollisionStay(ICollider* other) override { OutputDebugStringA("OnCollisionStay()\n"); }
-	void OnCollisionExit(ICollider* other)  override { OutputDebugStringA("OnCollisionExit()\n"); }
+	void OnCollisionEnter(ICollider* other)  override 
+	{ 
+		if (other->owner->name == "Cloud") {
+			OutputDebugStringA("OnCollisionEnter() - Could\n");
+		}
+	}
+
+	void OnCollisionStay(ICollider* other) override 
+	{ 
+		if (other->owner->name == "Cloud") {
+			OutputDebugStringA("OnCollisionStay() - Could\n");
+		}
+	}
+
+	void OnCollisionExit(ICollider* other)  override 
+	{ 
+		if (other->owner->name == "Cloud") {
+			OutputDebugStringA("OnCollisionExit() - Could\n");
+		}
+	}
 
 public:
 	float GetSpeed() { return curSpeed; }

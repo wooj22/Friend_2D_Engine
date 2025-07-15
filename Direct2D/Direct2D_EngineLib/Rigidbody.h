@@ -14,12 +14,12 @@ private:
     Transform* transform = nullptr;
 
 public:
-    Vector2 velocity = Vector2::zero;           // 속력
+    Vector2 velocity = Vector2::zero;           // 속도
     Vector2 acceleration = Vector2::zero;       // 가속도
     float mass = 1.0f;                          // 질량
     bool useGravity = true;                     // 중력 사용 여부
-    float gravityScale = 10.0f;                 // 중력 보정ㄴ
-    float drag = 0.0f;
+    float gravityScale = 50.0f;                 // 중력 보정값
+    float drag = 0.0f;                          // 공기 저항, 마찰력 (클수록 속도 깎임)
 
 public:
     // component cycle
