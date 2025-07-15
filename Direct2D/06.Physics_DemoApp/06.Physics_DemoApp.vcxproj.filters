@@ -34,13 +34,13 @@
     <Filter Include="02. GameObject\UI">
       <UniqueIdentifier>{cb1ed4f0-e970-4065-854a-df6ab9592f24}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. GameObject\Collider Objects">
+      <UniqueIdentifier>{06869c29-34a5-4015-8f07-417ac6990db2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>헤더 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="DemoApp.cpp">
-      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="StartScene.cpp">
       <Filter>01. Scene</Filter>
@@ -74,6 +74,27 @@
     </ClCompile>
     <ClCompile Include="CatText.cpp">
       <Filter>02. GameObject\Cat</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionTestScene.cpp">
+      <Filter>01. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="DemoApp.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ColUIManager.cpp">
+      <Filter>02. GameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxObject.cpp">
+      <Filter>02. GameObject\Collider Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleObject.cpp">
+      <Filter>02. GameObject\Collider Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionEventCheak.cpp">
+      <Filter>03. Script</Filter>
+    </ClCompile>
+    <ClCompile Include="ColObText.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +133,24 @@
     </ClInclude>
     <ClInclude Include="CatText.h">
       <Filter>02. GameObject\Cat</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionTestScene.h">
+      <Filter>01. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="ColUIManager.h">
+      <Filter>02. GameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxObject.h">
+      <Filter>02. GameObject\Collider Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleObject.h">
+      <Filter>02. GameObject\Collider Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionEventCheak.h">
+      <Filter>03. Script</Filter>
+    </ClInclude>
+    <ClInclude Include="ColObText.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

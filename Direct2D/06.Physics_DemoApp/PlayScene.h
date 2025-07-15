@@ -19,7 +19,6 @@ private:
 private:
 	Camera* camera;
 	UI_Text* adviceText;
-	UI_Button* backButton;
 
 	PlayUIManager* uiManager;
 	MapManager* mapManager;
@@ -36,6 +35,7 @@ public:
 	void Exit() override;
 
 private:
-	void ChagneStartScene();
+	void ChagneBackScene();
+	void ChagneNectScene();
 };
 

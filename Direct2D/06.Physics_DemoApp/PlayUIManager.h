@@ -12,7 +12,9 @@ public:
     UI_Text* adviceText;
     UI_Text* memoryInfoText;
     UI_Text* buttonInfoText;
+    UI_Text* buttonInfo2Text;
     UI_Button* backButton;
+    UI_Button* nextButton;
 
 public:
     // game object cycle
@@ -57,6 +59,13 @@ public:
         buttonInfoText->screenTextRenderer->SetText(L"<- button click!");
         buttonInfoText->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::FloralWhite));
 
+        buttonInfo2Text->rectTransform->SetPivot(1, 1);
+        buttonInfo2Text->rectTransform->SetPosition(580, 380);
+        buttonInfo2Text->rectTransform->SetSize(120, 50);
+        buttonInfo2Text->screenTextRenderer->SetFontSize(16);
+        buttonInfo2Text->screenTextRenderer->SetHorizontalAlign(TextHorizontalAlign::Right);
+        buttonInfo2Text->screenTextRenderer->SetText(L"button click!->");
+        buttonInfo2Text->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::FloralWhite));
 
         auto image = ResourceManager::Get().CreateTexture2D("../Resource/UI_Button2.png");
         auto new_sprite = ResourceManager::Get().CreateSprite(image, "UI_Button2");
@@ -64,10 +73,16 @@ public:
         backButton->rectTransform->SetPivot(0, 1);
         backButton->rectTransform->SetPosition(-680, 380);
         backButton->rectTransform->SetSize(100, 50);
-        //backButton->imageRenderer->SetBaseColor(D2D1::ColorF(D2D1::ColorF::LightSkyBlue));
         backButton->imageRenderer->sprite = new_sprite;
         backButton->screenTextRenderer->SetText(L"Back");
         backButton->screenTextRenderer->SetFontSize(20);
+
+        nextButton->rectTransform->SetPivot(1, 1);
+        nextButton->rectTransform->SetPosition(680, 380);
+        nextButton->rectTransform->SetSize(100, 50);
+        nextButton->imageRenderer->sprite = new_sprite;
+        nextButton->screenTextRenderer->SetText(L"Next");
+        nextButton->screenTextRenderer->SetFontSize(20);
     }
 
     // Scene¿« Update

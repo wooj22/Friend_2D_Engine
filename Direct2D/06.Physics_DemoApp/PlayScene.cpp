@@ -12,7 +12,9 @@ void PlayScene::Awake()
 	uiManager->adviceText = CreateObject<UI_Text>();
 	uiManager->memoryInfoText = CreateObject<UI_Text>();
 	uiManager->buttonInfoText = CreateObject<UI_Text>();
+	uiManager->buttonInfo2Text = CreateObject<UI_Text>();
 	uiManager->backButton = CreateObject<UI_Button>();
+	uiManager->nextButton = CreateObject<UI_Button>();
 
 	mapManager = CreateObject<MapManager>();
 	mapManager->map1 = CreateObject<SkyBackground>();
@@ -34,7 +36,10 @@ void PlayScene::Start()
 
 	// button event add
 	uiManager->backButton->button->onClickListeners.AddListener(
-		this, std::bind(&PlayScene::ChagneStartScene, this));
+		this, std::bind(&PlayScene::ChagneBackScene, this));
+
+	uiManager->nextButton->button->onClickListeners.AddListener(
+		this, std::bind(&PlayScene::ChagneNectScene, this));
 }
 
 void PlayScene::Update()
@@ -66,7 +71,12 @@ void PlayScene::Exit()
 	__super::Exit();
 }
 
-void PlayScene::ChagneStartScene()
+void PlayScene::ChagneBackScene()
 {
 	SceneManager::Get().ChangeScene(DemoApp::START);
+}
+
+void PlayScene::ChagneNectScene()
+{
+	SceneManager::Get().ChangeScene(DemoApp::COL_TEST);
 }

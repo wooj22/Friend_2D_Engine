@@ -5,7 +5,7 @@
 class DemoApp : public GameApp
 {
 public:
-	enum SceneName { START, PLAY };	// scene enum
+	enum SceneName { START, PLAY, COL_TEST };	// scene enum
 	static Camera* mainCamera;
 
 	DemoApp(int inputWidth, int inputHeight) 

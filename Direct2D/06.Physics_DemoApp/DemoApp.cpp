@@ -2,6 +2,7 @@
 #include "../Direct2D_EngineLib/RectTransform.h"
 #include "StartScene.h"
 #include "PlayScene.h"
+#include "CollisionTestScene.h"
 
 // static member init
 Camera* DemoApp::mainCamera = nullptr;
@@ -26,6 +27,7 @@ void DemoApp::Init()
 	// scene init
 	sceneManager.CreateScene<StartScene>();
 	sceneManager.CreateScene<PlayScene>();
+	sceneManager.CreateScene<CollisionTestScene>();
 	sceneManager.SetCurrentScene(START);
 	sceneManager.Init();
 }

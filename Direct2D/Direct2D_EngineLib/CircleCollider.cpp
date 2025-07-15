@@ -129,8 +129,8 @@ void CircleCollider::FinalizeCollision()
 void CircleCollider::OnCollisionEnter(ICollider* other)
 {
     // Block
-    //transform->SetPosition(transform->prePosition.x, transform->prePosition.y);
-    transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);
+    //transform->SetPosition(transform->prePosition.x, transform->prePosition.y);   // top view
+    transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);   // gravity
 
     // TODO :: 축별 이동 제한 로직 추가
     //float deltaX = transform->GetPosition().x - transform->prePosition.x;
@@ -166,8 +166,8 @@ void CircleCollider::OnCollisionEnter(ICollider* other)
 void CircleCollider::OnCollisionStay(ICollider* other)
 {
     // Block
-    //transform->SetPosition(transform->prePosition.x, transform->prePosition.y);
-    transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);
+    //transform->SetPosition(transform->prePosition.x, transform->prePosition.y);   // top view
+    transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);   // gravity
 
     // TODO :: 축별 이동 제한 로직 추가
     //float deltaX = transform->GetPosition().x - transform->prePosition.x;
