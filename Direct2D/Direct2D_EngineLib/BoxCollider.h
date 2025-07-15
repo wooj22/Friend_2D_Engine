@@ -11,7 +11,7 @@
 * 각 이벤트 종류에 맞게 Script 컴포넌트를 찾아 이벤트 함수를 호출해준다. -> 유니티처럼 사용 가능하도록
 * Block(collistion mode)시에는 transform의 이전 프레임 position으로 되돌아가게 한다.
 * 
-* TODO :: 축별 이동 시도 후 복원 로직 추가
+* TODO :: 축별 이동 제한 로직 추가
 * 현재는 중력 적용 모드를 고려하여 충돌중에는 yPos만 못움직이게 막아두고 있는데
 * 이렇게 하면 중력을 안받는 애들도 좌우에 있는 콜라이더와 충돌했을 때 위아래로 못움직임 (탑뷰)
 * 중력과 관계 없이 충돌 중에도 그 테두리에서는 전방향으로 움직일 수 있게 하고싶음
@@ -56,9 +56,12 @@ private:
     void OnTriggerStay(ICollider* other) override;
     void OnTriggerExit(ICollider* other) override;
 
-    // collisio cheak
+    // collision cheak
     bool CheckAABBCollision(BoxCollider* other);
     bool CheakCircleCollision(CircleCollider* other);
+
+    // 내부 체크용 (축별 이동 로직을 위한)
+    bool InternalCheckCollision(ICollider* other);
 
 public:
     // debug draw

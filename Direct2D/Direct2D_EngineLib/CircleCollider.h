@@ -12,7 +12,7 @@
 * ColliderSystem에 등록되어 충돌 발생시 충돌 이벤트를 호출하게 되고,
 * 각 이벤트 종류에 맞게 Script 컴포넌트를 찾아 이벤트 함수를 호출해준다. -> 유니티처럼 사용 가능하도록
 * 
-* TODO :: 축별 이동 시도 후 복원 로직 추가
+* TODO :: 축별 이동 제한 로직 추가
 */
 
 class Transform;
@@ -53,6 +53,9 @@ private:
     // collistion cheak
     bool CheckCircleCollision(CircleCollider* other);
     bool CheakBoxCollision(BoxCollider* other);
+
+    // 내부 체크용 (축별 이동 로직을 위한)
+    bool InternalCheckCollision(ICollider* other);
 
 public:
     // debug draw

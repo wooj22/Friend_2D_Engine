@@ -15,6 +15,9 @@ void Scene::Update()
 {
 	for (auto& object : objectList)
 	{
+		if (!ObjectTable::Get().IsValid(object)) {
+			// »©±â
+		}
 		object->Update();
 	}
 }

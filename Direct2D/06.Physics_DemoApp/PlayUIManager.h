@@ -39,7 +39,7 @@ public:
         adviceText->rectTransform->SetSize(400, 200);
         adviceText->screenTextRenderer->SetFontSize(16);
         adviceText->screenTextRenderer->SetHorizontalAlign(TextHorizontalAlign::Left);
-        adviceText->screenTextRenderer->SetText(L"플레이어 이동 : [W][A][S][D] + [Shfit]\n카메라 이동 : [<-] [->]\n현재 메모리 확인 [M]");
+        adviceText->screenTextRenderer->SetText(L"플레이어 이동 : [W][A][S][D], [Shfit], [Spacebar]\n카메라 이동 : [<-] [->]\n현재 메모리 확인 [M]");
         adviceText->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::FloralWhite));
 
         memoryInfoText->rectTransform->SetPivot(1, 0.5);

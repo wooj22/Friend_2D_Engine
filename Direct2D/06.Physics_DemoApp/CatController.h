@@ -16,7 +16,7 @@ private:
 	float curSpeed = 0;
 	float walkSpeed = 5.f;
 	float runSpeed = 10.f;
-	float jumpForce = 6500.0f;
+	float jumpForce = 4000.0f;
 
 	// move
 	float inputX, inputY;

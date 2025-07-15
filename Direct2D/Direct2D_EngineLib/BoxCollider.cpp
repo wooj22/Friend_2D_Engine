@@ -5,6 +5,7 @@
 #include "RenderSystem.h"
 #include "DebugGizmo.h"
 #include "CircleCollider.h"
+#include "Rigidbody.h"
 
 void BoxCollider::OnEnable()
 {
@@ -76,6 +77,16 @@ bool BoxCollider::CheakCircleCollision(CircleCollider* other)
     return distSq <= circleRadius * circleRadius;
 }
 
+bool BoxCollider::InternalCheckCollision(ICollider* other)
+{
+    if (other->colliderType == ColliderType::Box)
+        return CheckAABBCollision(static_cast<BoxCollider*>(other));
+    else if (other->colliderType == ColliderType::Circle)
+        return CheakCircleCollision(static_cast<CircleCollider*>(other));
+
+    return false;
+}
+
 void BoxCollider::FinalizeCollision()
 {
     // Enter & Stay
@@ -118,8 +129,33 @@ void BoxCollider::FinalizeCollision()
 void BoxCollider::OnCollisionEnter(ICollider* other)
 {
     // Block
-    transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);
     //transform->SetPosition(transform->prePosition.x, transform->prePosition.y);
+    transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);
+
+    // TODO :: 축별 이동 제한 로직 추가
+    //float deltaX = transform->GetPosition().x - transform->prePosition.x;
+    //float deltaY = transform->GetPosition().y - transform->prePosition.y;
+
+    //Vector2 tryX = Vector2(transform->prePosition.x + deltaX, transform->prePosition.y);
+    //Vector2 tryY = Vector2(transform->prePosition.x, transform->prePosition.y + deltaY);
+
+    //auto rb = owner->GetComponent<Rigidbody>();
+ 
+    //// x축
+    //transform->SetPosition(tryX);
+    //if (InternalCheckCollision(other))
+    //{
+    //    if (rb) { rb->blockX = true; }
+    //    deltaX = 0;
+    //}
+
+    //// y
+    //transform->SetPosition(tryY);
+    //if (InternalCheckCollision(other))
+    //{
+    //    if (rb) { rb->blockY = true; }
+    //    deltaY = 0;
+    //}
 
     // script
     auto scripts = owner->GetComponents<Script>();
@@ -130,8 +166,33 @@ void BoxCollider::OnCollisionEnter(ICollider* other)
 void BoxCollider::OnCollisionStay(ICollider* other)
 {
     // Block
-    transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);
     //transform->SetPosition(transform->prePosition.x, transform->prePosition.y);
+    transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);
+
+    // TODO :: 축별 이동 제한 로직 추가
+    //float deltaX = transform->GetPosition().x - transform->prePosition.x;
+    //float deltaY = transform->GetPosition().y - transform->prePosition.y;
+
+    //Vector2 tryX = Vector2(transform->prePosition.x + deltaX, transform->prePosition.y);
+    //Vector2 tryY = Vector2(transform->prePosition.x, transform->prePosition.y + deltaY);
+
+    //auto rb = owner->GetComponent<Rigidbody>();
+
+    //// x축
+    //transform->SetPosition(tryX);
+    //if (InternalCheckCollision(other))
+    //{
+    //    if (rb) { rb->blockX = true; }
+    //    deltaX = 0;
+    //}
+
+    //// y
+    //transform->SetPosition(tryY);
+    //if (InternalCheckCollision(other))
+    //{
+    //    if (rb) { rb->blockY = true; }
+    //    deltaY = 0;
+    //}
 
     // script
     auto scripts = owner->GetComponents<Script>();

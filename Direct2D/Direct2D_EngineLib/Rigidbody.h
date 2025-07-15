@@ -23,6 +23,8 @@ public:
     float gravityScale = 50.0f;                 // 중력 보정값
     float drag = 0.0f;                          // 공기 저항, 마찰력 (클수록 속도 깎임)
 
+    //bool blockX, blockY;
+
 public:
     // component cycle
     Rigidbody()
