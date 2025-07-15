@@ -16,6 +16,19 @@ void BoxCollider::OnDestroy()
 
 }
 
+void BoxCollider::UpdateBounds()
+{
+    Vector2 pos = transform->GetPosition() + offset;
+    Vector2 scale = transform->GetScale();
+    Vector2 scaledSize(size.x * scale.x, size.y * scale.y);
+    Vector2 halfSize = scaledSize * 0.5f;
+
+    minX = pos.x - halfSize.x;
+    maxX = pos.x + halfSize.x;
+    minY = pos.y - halfSize.y;
+    maxY = pos.y + halfSize.y;
+}
+
 bool BoxCollider::isCollision(ICollider* other)
 {
     if (!transform) return false;
@@ -34,52 +47,15 @@ bool BoxCollider::isCollision(ICollider* other)
 
 bool BoxCollider::CheckAABBCollision(BoxCollider* other)
 {
-    // this transform
-    const Vector2 posA = transform->GetPosition() + offset;
-    const Vector2 scaleA = transform->GetScale();
+    bool overlapX = !(maxX < other->minX || minX > other->maxX);
+    bool overlapY = !(maxY < other->minY || minY > other->maxY);
 
-    Vector2 scaledSizeA(size.x * scaleA.x, size.y * scaleA.y);
-    Vector2 halfSizeA = scaledSizeA * 0.5f;
-
-    // other transform
-    const Vector2 posB = other->transform->GetPosition() + other->offset;
-    const Vector2 scaleB = other->transform->GetScale();
-
-    Vector2 scaledSizeB(other->size.x * scaleB.x, other->size.y * scaleB.y);
-    Vector2 halfSizeB = scaledSizeB * 0.5f;
-
-    // AABB collision cheak
-    bool collisionX = std::abs(posA.x - posB.x) <= (halfSizeA.x + halfSizeB.x);
-    bool collisionY = std::abs(posA.y - posB.y) <= (halfSizeA.y + halfSizeB.y);
-
-    return collisionX && collisionY;
+    return overlapX && overlapY;
 }
 
 bool BoxCollider::CheakCircleCollision(CircleCollider* other)
 {
-    // 박스 중심 위치 (offset.y 반전 적용)
-    Vector2 boxPos = transform->GetPosition() + Vector2(offset.x, -offset.y);
-    Vector2 boxScale = transform->GetScale();
-    Vector2 boxHalfSize = (size * boxScale) * 0.5f;
-
-    // 원 중심 위치 (offset.y 반전 적용)
-    Vector2 circlePos = other->transform->GetPosition() + Vector2(other->offset.x, -other->offset.y);
-    float circleRadius = other->radius; // scale 무시하거나 필요하면 곱함
-
-    // 원 중심에서 박스 좌표계를 기준으로 상대 위치 구하기
-    Vector2 diff = circlePos - boxPos;
-
-    // 박스 내부에 점을 클램핑 (박스 경계 내로)
-    float closestX = clamp(diff.x, -boxHalfSize.x, boxHalfSize.x);
-    float closestY = clamp(diff.y, -boxHalfSize.y, boxHalfSize.y);
-
-    // 클램핑된 점과 원 중심 간 거리 계산
-    Vector2 closestPoint = boxPos + Vector2(closestX, closestY);
-    Vector2 distanceVec = circlePos - closestPoint;
-
-    float distanceSq = distanceVec.x * distanceVec.x + distanceVec.y * distanceVec.y;
-
-    return distanceSq <= (circleRadius * circleRadius);
+    return false;
 }
 
 void BoxCollider::FinalizeCollision()

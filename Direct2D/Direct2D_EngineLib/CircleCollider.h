@@ -12,9 +12,10 @@ class CircleCollider : public ICollider
 {
 public:
     Transform* transform = nullptr;
+
+    // collider
     Vector2 offset = Vector2::zero;
     float radius = 1.0f;
-    //bool isTrigger = false;             // ICollider
 
 public:
     // component cycle
@@ -26,6 +27,7 @@ public:
     ~CircleCollider() override { ColliderSystem::Get().Unregist(this); }
 
     void OnEnable() override;
+    void UpdateBounds() override;
     bool isCollision(ICollider* other) override;
     void FinalizeCollision() override;
     void OnDestroy() override;

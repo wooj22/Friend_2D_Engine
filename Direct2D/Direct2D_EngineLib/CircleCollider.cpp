@@ -16,6 +16,18 @@ void CircleCollider::OnDestroy()
 
 }
 
+void CircleCollider::UpdateBounds()
+{
+    Vector2 pos = transform->GetPosition() + offset;
+    Vector2 scale = transform->GetScale();
+    float scaledRadius = radius * scale.x;  // Circle은 x축만 쓰는 관행
+
+    minX = pos.x - scaledRadius;
+    maxX = pos.x + scaledRadius;
+    minY = pos.y - scaledRadius;
+    maxY = pos.y + scaledRadius;
+}
+
 bool CircleCollider::isCollision(ICollider* other)
 {
     if (!transform) return false;
@@ -51,29 +63,7 @@ bool CircleCollider::CheckCircleCollision(CircleCollider* other)
 
 bool CircleCollider::CheakBoxCollision(BoxCollider* other)
 {
-    // 박스 중심 위치 (offset.y 반전 적용)
-    Vector2 boxPos = other->transform->GetPosition() + Vector2(other->offset.x, -other->offset.y);
-    Vector2 boxScale = other->transform->GetScale();
-    Vector2 boxHalfSize = (other->size * boxScale) * 0.5f;
-
-    // 원 중심 위치 (offset.y 반전 적용)
-    Vector2 circlePos = transform->GetPosition() + Vector2(offset.x, -offset.y);
-    float circleRadius = radius;  // 필요하면 scale 무시
-
-    // 원 중심에서 박스 좌표계를 기준으로 상대 위치 구하기
-    Vector2 diff = circlePos - boxPos;
-
-    // 박스 내부에 점을 클램핑 (박스 경계 내로)
-    float closestX = clamp(diff.x, -boxHalfSize.x, boxHalfSize.x);
-    float closestY = clamp(diff.y, -boxHalfSize.y, boxHalfSize.y);
-
-    // 클램핑된 점과 원 중심 간 거리 계산
-    Vector2 closestPoint = boxPos + Vector2(closestX, closestY);
-    Vector2 distanceVec = circlePos - closestPoint;
-
-    float distanceSq = distanceVec.x * distanceVec.x + distanceVec.y * distanceVec.y;
-
-    return distanceSq <= (circleRadius * circleRadius);
+    return false;
 }
 
 void CircleCollider::FinalizeCollision()
@@ -117,8 +107,10 @@ void CircleCollider::FinalizeCollision()
 
 void CircleCollider::OnCollisionEnter(ICollider* other)
 {
-    transform->SetPosition(transform->prePosition);
+    // Block
+    transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);
 
+    // script
     auto scripts = owner->GetComponents<Script>();
     for (auto s : scripts)
         s->OnCollisionEnter(other);
@@ -126,8 +118,10 @@ void CircleCollider::OnCollisionEnter(ICollider* other)
 
 void CircleCollider::OnCollisionStay(ICollider* other)
 {
-    transform->SetPosition(transform->prePosition);
+    // Block
+    transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);
 
+    // script
     auto scripts = owner->GetComponents<Script>();
     for (auto s : scripts)
         s->OnCollisionStay(other);
@@ -142,6 +136,7 @@ void CircleCollider::OnCollisionExit(ICollider* other)
 
 void CircleCollider::OnTriggerEnter(ICollider* other)
 {
+    // script
     auto scripts = owner->GetComponents<Script>();
     for (auto s : scripts)
         s->OnTriggerEnter(other);
@@ -149,6 +144,7 @@ void CircleCollider::OnTriggerEnter(ICollider* other)
 
 void CircleCollider::OnTriggerStay(ICollider* other)
 {
+    // script
     auto scripts = owner->GetComponents<Script>();
     for (auto s : scripts)
         s->OnTriggerStay(other);
@@ -156,6 +152,7 @@ void CircleCollider::OnTriggerStay(ICollider* other)
 
 void CircleCollider::OnTriggerExit(ICollider* other)
 {
+    // script
     auto scripts = owner->GetComponents<Script>();
     for (auto s : scripts)
         s->OnTriggerExit(other);

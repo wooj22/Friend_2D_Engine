@@ -20,7 +20,12 @@ class ICollider : public Component
 public:
 	// default type
 	ColliderType colliderType = ColliderType::Box;
-	bool isTrigger = false;             // collision, trigger
+
+	// collision, trigger
+	bool isTrigger = false;             
+
+	// bound
+	float minX, maxX, minY, maxY;
 
 	// collision data
 	std::unordered_set<ICollider*> currentFrameCollisions;
@@ -28,6 +33,7 @@ public:
 
 	// cycle
 	virtual ~ICollider() = default;
+	virtual void UpdateBounds() = 0;
 	virtual bool isCollision(ICollider* other) = 0;
 	virtual void FinalizeCollision() = 0;
 

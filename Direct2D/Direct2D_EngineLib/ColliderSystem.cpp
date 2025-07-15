@@ -1,4 +1,5 @@
 #include "ColliderSystem.h"
+#include <algorithm>
 #include "ICollider.h"
 #include "BoxCollider.h"
 #include "CircleCollider.h"
@@ -24,30 +25,39 @@ void ColliderSystem::Unregist(ICollider* component)
 // component system
 void ColliderSystem::FixedUpdate()
 {
-    // curent frame collision data reset
     for (auto collider : components)
     {
-        collider->currentFrameCollisions.clear();
+        collider->currentFrameCollisions.clear();   // curent frame collision data reset
+        collider->UpdateBounds();                   // update bounds
     }
 
+    // Sweep and Prune - SweepandPruneOverlapCheck
+    // minX sort
+    std::sort(components.begin(), components.end(), [](ICollider* a, ICollider* b)
+        { return a->minX < b->minX; });
+
     // collision cheak
-	for (size_t i = 0; i < components.size(); ++i)
+    for (size_t i = 0; i < components.size(); ++i)
     {
+        ICollider* a = components[i];
         for (size_t j = i + 1; j < components.size(); ++j)
         {
-            ICollider* a = components[i];
             ICollider* b = components[j];
+            if (b->minX > a->maxX)
+                break;
+
+            if (a->maxY < b->minY || a->minY > b->maxY)
+                continue;
 
             if (a->isCollision(b))
             {
-                // cur frame collision
                 a->currentFrameCollisions.insert(b);
                 b->currentFrameCollisions.insert(a);
             }
         }
     }
 
-    // Enter/ Stay/ Exit
+    // Enter / Stay / Exit
     for (auto collider : components)
     {
         collider->FinalizeCollision();
