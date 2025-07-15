@@ -74,8 +74,8 @@ public:
 
 private:
 	void InputCheak();
-	void Move_Transform();
-	void Move_Physics();
+	void Move_Transform();		// kinematic move
+	void Move_Physics();		// physics move
 	void Jump_Physics();
 	void InfoTextUpdate();
 };
