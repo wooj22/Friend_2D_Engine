@@ -150,6 +150,7 @@
     <ClInclude Include="ButtonSystem.h" />
     <ClInclude Include="CircleCollider.h" />
     <ClInclude Include="ColliderSystem.h" />
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="DebugGizmo.h" />
     <ClInclude Include="GameObject.h" />
@@ -198,6 +199,7 @@
     <ClCompile Include="ButtonSystem.cpp" />
     <ClCompile Include="CircleCollider.cpp" />
     <ClCompile Include="ColliderSystem.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DebugGizmo.cpp" />
     <ClCompile Include="GameObject.cpp" />

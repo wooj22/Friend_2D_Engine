@@ -145,6 +145,12 @@
     <Filter Include="헤더 파일\98. Utils">
       <UniqueIdentifier>{6f05c64d-473a-42b4-9cbd-3424cf9c8fa2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\09. Physics">
+      <UniqueIdentifier>{3ddbce61-6c7b-411f-890f-4136c46179b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\09. Physics">
+      <UniqueIdentifier>{535720f3-34c0-4754-a77c-239f7169cc0f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h">
@@ -285,6 +291,9 @@
     <ClInclude Include="CircleCollider.h">
       <Filter>헤더 파일\03. Component\Collider</Filter>
     </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -419,6 +428,9 @@
     </ClCompile>
     <ClCompile Include="CircleCollider.cpp">
       <Filter>소스 파일\03. Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

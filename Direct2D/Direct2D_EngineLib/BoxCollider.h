@@ -44,28 +44,30 @@ public:
 
     void OnEnable() override;
     void UpdateBounds() override;
-    bool isCollision(ICollider* other) override;
+    bool isCollision(ICollider* other, ContactInfo& outContact) override;
     void FinalizeCollision() override;
     void OnDestroy() override;
 
 private:
+    // collision cheak
+    bool CheckAABBCollision(BoxCollider* other, ContactInfo& outContact);
+    bool CheckCircleCollision(CircleCollider* other, ContactInfo& outContact);
+
+    // 내부 체크용 (축별 이동 로직을 위한)
+    //bool InternalCheckCollision(ICollider* other);
+
+private:
     // collision event
-    void OnCollisionEnter(ICollider* other) override;
-    void OnCollisionStay(ICollider* other) override;
+    void OnCollisionEnter(ICollider* other, ContactInfo& outContact) override;
+    void OnCollisionStay(ICollider* other, ContactInfo& outContact) override;
     void OnCollisionExit(ICollider* other) override;
     void OnTriggerEnter(ICollider* other) override;
     void OnTriggerStay(ICollider* other) override;
     void OnTriggerExit(ICollider* other) override;
 
-    // collision cheak
-    bool CheckAABBCollision(BoxCollider* other);
-    bool CheakCircleCollision(CircleCollider* other);
-
-    // 내부 체크용 (축별 이동 로직을 위한)
-    bool InternalCheckCollision(ICollider* other);
-
 public:
-    // debug draw
+    // func
+    Vector2 GetCenter() const;
     void DebugColliderDraw() override;
 };
 

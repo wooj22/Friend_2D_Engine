@@ -30,31 +30,53 @@ void BoxCollider::UpdateBounds()
     maxY = pos.y + halfSize.y;
 }
 
-bool BoxCollider::isCollision(ICollider* other)
+bool BoxCollider::isCollision(ICollider* other, ContactInfo& outContact)
 {
     if (!transform) return false;
 
     if (other->colliderType == ColliderType::Box)
     {
-        return CheckAABBCollision(static_cast<BoxCollider*>(other));
+        return CheckAABBCollision(static_cast<BoxCollider*>(other), outContact);
     }
     else if (other->colliderType == ColliderType::Circle)
     {
-        return CheakCircleCollision(static_cast<CircleCollider*>(other));
+        return CheckCircleCollision(static_cast<CircleCollider*>(other), outContact);
     }
 
     return false;
 }
 
-bool BoxCollider::CheckAABBCollision(BoxCollider* other)
+bool BoxCollider::CheckAABBCollision(BoxCollider* other, ContactInfo& outContact)
 {
-    bool overlapX = !(maxX < other->minX || minX > other->maxX);
-    bool overlapY = !(maxY < other->minY || minY > other->maxY);
+    // 1. AABB 겹침 체크
+    if (maxX < other->minX || minX > other->maxX || maxY < other->minY || minY > other->maxY)
+        return false;
 
-    return overlapX && overlapY;
+    // 2. 충돌 지점: 두 AABB 중심 중간점
+    Vector2 thisCenter = GetCenter();
+    Vector2 otherCenter = other->GetCenter();
+    outContact.point = (thisCenter + otherCenter) * 0.5f;
+
+    // 3. 축별 침투 깊이 계산
+    float overlapX = min(maxX, other->maxX) -max(minX, other->minX);
+    float overlapY = min(maxY, other->maxY) - max(minY, other->minY);
+
+    // 4. 침투가 적은 축을 따라 법선 결정
+    if (overlapX < overlapY)
+    {
+        // X축 방향 법선
+        outContact.normal = (thisCenter.x < otherCenter.x) ? Vector2(-1, 0) : Vector2(1, 0);
+    }
+    else
+    {
+        // Y축 방향 법선
+        outContact.normal = (thisCenter.y < otherCenter.y) ? Vector2(0, -1) : Vector2(0, 1);
+    }
+
+    return true;
 }
 
-bool BoxCollider::CheakCircleCollision(CircleCollider* other)
+bool BoxCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& outContact)
 {
     Vector2 boxPos = transform->GetPosition() + offset;
     Vector2 boxScale = transform->GetScale();
@@ -65,54 +87,77 @@ bool BoxCollider::CheakCircleCollision(CircleCollider* other)
     Vector2 circleScale = other->transform->GetScale();
     float circleRadius = other->radius * circleScale.x;
 
-    // AABB clamp point 찾기
+    // AABB 내부 가장 가까운 점(clamp)
     float closestX = clamp(circlePos.x, boxPos.x - halfBoxSize.x, boxPos.x + halfBoxSize.x);
     float closestY = clamp(circlePos.y, boxPos.y - halfBoxSize.y, boxPos.y + halfBoxSize.y);
 
     Vector2 closestPoint(closestX, closestY);
 
-    // 거리 계산
-    float distSq = (circlePos - closestPoint).SqrMagnitude();
+    // 원 중심과 가장 가까운 점 거리 제곱 계산
+    Vector2 diff = circlePos - closestPoint;
+    float distSq = diff.SqrMagnitude();
 
-    return distSq <= circleRadius * circleRadius;
+    // 충돌 여부
+    if (distSq > circleRadius * circleRadius)
+        return false;
+
+    // 충돌 지점
+    outContact.point = closestPoint;
+
+    // 충돌 법선 (원 중심에서 박스 경계점 방향)
+    if (distSq == 0.0f)
+    {
+        // 중심이 박스 안에 완전히 들어갔을 때 (예외처리)
+        // 임의로 위쪽 방향 지정
+        outContact.normal = Vector2(0, 1);
+    }
+    else
+    {
+        outContact.normal = diff.Normalized();
+    }
+
+    return true;
 }
 
-bool BoxCollider::InternalCheckCollision(ICollider* other)
-{
-    if (other->colliderType == ColliderType::Box)
-        return CheckAABBCollision(static_cast<BoxCollider*>(other));
-    else if (other->colliderType == ColliderType::Circle)
-        return CheakCircleCollision(static_cast<CircleCollider*>(other));
-
-    return false;
-}
+//bool BoxCollider::InternalCheckCollision(ICollider* other)
+//{
+//    if (other->colliderType == ColliderType::Box)
+//        return CheckAABBCollision(static_cast<BoxCollider*>(other));
+//    else if (other->colliderType == ColliderType::Circle)
+//        return CheakCircleCollision(static_cast<CircleCollider*>(other));
+//
+//    return false;
+//}
 
 void BoxCollider::FinalizeCollision()
 {
     // Enter & Stay
-    for (ICollider* other : currentFrameCollisions)
+    for (auto& pair : currentFrameCollisions)
     {
+        ICollider* other = pair.first;
+        ContactInfo& contact = pair.second;
+
         if (lastFrameCollisions.find(other) == lastFrameCollisions.end())
         {
-            // Enter
             if (isTrigger || other->isTrigger)
                 OnTriggerEnter(other);
             else
-                OnCollisionEnter(other);
+                OnCollisionEnter(other, contact);
         }
         else
         {
-            // Stay
             if (isTrigger || other->isTrigger)
                 OnTriggerStay(other);
             else
-                OnCollisionStay(other);
+                OnCollisionStay(other, contact);
         }
     }
 
     // Exit
-    for (ICollider* other : lastFrameCollisions)
+    for (auto& pair : lastFrameCollisions)
     {
+        ICollider* other = pair.first;
+
         if (currentFrameCollisions.find(other) == currentFrameCollisions.end())
         {
             if (isTrigger || other->isTrigger)
@@ -122,40 +167,15 @@ void BoxCollider::FinalizeCollision()
         }
     }
 
-    // Swap
     lastFrameCollisions = currentFrameCollisions;
+    currentFrameCollisions.clear();
 }
 
-void BoxCollider::OnCollisionEnter(ICollider* other)
+void BoxCollider::OnCollisionEnter(ICollider* other, ContactInfo& outContact)
 {
     // Block
     //transform->SetPosition(transform->prePosition.x, transform->prePosition.y);   // top view
     transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);   // gravity
-
-    // TODO :: 축별 이동 제한 로직 추가
-    //float deltaX = transform->GetPosition().x - transform->prePosition.x;
-    //float deltaY = transform->GetPosition().y - transform->prePosition.y;
-
-    //Vector2 tryX = Vector2(transform->prePosition.x + deltaX, transform->prePosition.y);
-    //Vector2 tryY = Vector2(transform->prePosition.x, transform->prePosition.y + deltaY);
-
-    //auto rb = owner->GetComponent<Rigidbody>();
- 
-    //// x축
-    //transform->SetPosition(tryX);
-    //if (InternalCheckCollision(other))
-    //{
-    //    if (rb) { rb->blockX = true; }
-    //    deltaX = 0;
-    //}
-
-    //// y
-    //transform->SetPosition(tryY);
-    //if (InternalCheckCollision(other))
-    //{
-    //    if (rb) { rb->blockY = true; }
-    //    deltaY = 0;
-    //}
 
     // script
     auto scripts = owner->GetComponents<Script>();
@@ -163,36 +183,11 @@ void BoxCollider::OnCollisionEnter(ICollider* other)
         s->OnCollisionEnter(other);
 }
 
-void BoxCollider::OnCollisionStay(ICollider* other)
+void BoxCollider::OnCollisionStay(ICollider* other, ContactInfo& outContact)
 {
     // Block
     //transform->SetPosition(transform->prePosition.x, transform->prePosition.y);   // top view
     transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);   // gravity
-
-    // TODO :: 축별 이동 제한 로직 추가
-    //float deltaX = transform->GetPosition().x - transform->prePosition.x;
-    //float deltaY = transform->GetPosition().y - transform->prePosition.y;
-
-    //Vector2 tryX = Vector2(transform->prePosition.x + deltaX, transform->prePosition.y);
-    //Vector2 tryY = Vector2(transform->prePosition.x, transform->prePosition.y + deltaY);
-
-    //auto rb = owner->GetComponent<Rigidbody>();
-
-    //// x축
-    //transform->SetPosition(tryX);
-    //if (InternalCheckCollision(other))
-    //{
-    //    if (rb) { rb->blockX = true; }
-    //    deltaX = 0;
-    //}
-
-    //// y
-    //transform->SetPosition(tryY);
-    //if (InternalCheckCollision(other))
-    //{
-    //    if (rb) { rb->blockY = true; }
-    //    deltaY = 0;
-    //}
 
     // script
     auto scripts = owner->GetComponents<Script>();
@@ -230,6 +225,12 @@ void BoxCollider::OnTriggerExit(ICollider* other)
     auto scripts = owner->GetComponents<Script>();
     for (auto s : scripts)
         s->OnTriggerExit(other);
+}
+
+Vector2 BoxCollider::GetCenter() const
+{
+    // transform 위치 + offset + size의 절반 (중심)
+    return transform->GetPosition() + offset + (size * 0.5f);
 }
 
 void BoxCollider::DebugColliderDraw()

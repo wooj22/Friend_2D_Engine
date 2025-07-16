@@ -49,10 +49,13 @@ void ColliderSystem::FixedUpdate()
             if (a->maxY < b->minY || a->minY > b->maxY)
                 continue;
 
-            if (a->isCollision(b))
+            // collision contact info
+            ContactInfo contact;
+
+            if (a->isCollision(b, contact))
             {
-                a->currentFrameCollisions.insert(b);
-                b->currentFrameCollisions.insert(a);
+                a->currentFrameCollisions[b] = contact;
+                b->currentFrameCollisions[a] = contact; // .Flip(); // 반대 방향 ContactInfo일 수도 있으니 필요에 따라 처리
             }
         }
     }

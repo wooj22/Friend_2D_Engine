@@ -27,23 +27,23 @@ void CircleCollider::UpdateBounds()
     maxY = pos.y + scaledRadius;
 }
 
-bool CircleCollider::isCollision(ICollider* other)
+bool CircleCollider::isCollision(ICollider* other, ContactInfo& outContact)
 {
     if (!transform) return false;
 
     if (other->colliderType == ColliderType::Circle)
     {
-        return CheckCircleCollision(static_cast<CircleCollider*>(other));
+        return CheckCircleCollision(static_cast<CircleCollider*>(other), outContact);
     }
     else if (other->colliderType == ColliderType::Box)
     {
-        return CheakBoxCollision(static_cast<BoxCollider*>(other));
+        return CheckBoxCollision(static_cast<BoxCollider*>(other), outContact);
     }
 
     return false;
 }
 
-bool CircleCollider::CheckCircleCollision(CircleCollider* other)
+bool CircleCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& outContact)
 {
     Vector2 posA = transform->GetPosition() + offset;
     Vector2 posB = other->transform->GetPosition() + other->offset;
@@ -51,68 +51,107 @@ bool CircleCollider::CheckCircleCollision(CircleCollider* other)
     Vector2 scaleA = transform->GetScale();
     Vector2 scaleB = other->transform->GetScale();
 
-    float scaledRadiusA = radius * scaleA.x; // x축 기준
+    float scaledRadiusA = radius * scaleA.x;
     float scaledRadiusB = other->radius * scaleB.x;
 
-    float distSq = (posA - posB).SqrMagnitude();
+    Vector2 diff = posA - posB;
+    float distSq = diff.SqrMagnitude();
     float radiusSum = scaledRadiusA + scaledRadiusB;
 
-    return distSq <= radiusSum * radiusSum;
+    if (distSq > radiusSum * radiusSum)
+        return false;
+
+    // Contact Info
+    Vector2 dir;
+    if (distSq == 0.0f)
+        dir = Vector2(1, 0); // 예외처리 (완전히 겹쳤을 때)
+    else
+        dir = diff.Normalized();
+
+    outContact.normal = dir;
+    outContact.point = posB + dir * scaledRadiusB;
+
+    return true;
 }
 
-bool CircleCollider::CheakBoxCollision(BoxCollider* other)
+bool CircleCollider::CheckBoxCollision(BoxCollider* other, ContactInfo& outContact)
 {
     Vector2 circlePos = transform->GetPosition() + offset;
+    Vector2 circleScale = transform->GetScale();
+    float radiusScaled = radius * circleScale.x;
+
     Vector2 boxPos = other->transform->GetPosition() + other->offset;
-    Vector2 boxHalfSize = other->size * 0.5f * other->transform->GetScale();
+    Vector2 boxScale = other->transform->GetScale();
+    Vector2 boxSizeScaled = other->size * boxScale;
+    Vector2 halfBoxSize = boxSizeScaled * 0.5f;
 
-    float radiusScaled = radius * transform->GetScale().x;
+    // Clamp point 계산
+    float closestX = clamp(circlePos.x, boxPos.x - halfBoxSize.x, boxPos.x + halfBoxSize.x);
+    float closestY = clamp(circlePos.y, boxPos.y - halfBoxSize.y, boxPos.y + halfBoxSize.y);
 
-    float closestX = clamp(circlePos.x, boxPos.x - boxHalfSize.x, boxPos.x + boxHalfSize.x);
-    float closestY = clamp(circlePos.y, boxPos.y - boxHalfSize.y, boxPos.y + boxHalfSize.y);
+    Vector2 closestPoint(closestX, closestY);
+    Vector2 diff = circlePos - closestPoint;
 
-    float distX = circlePos.x - closestX;
-    float distY = circlePos.y - closestY;
+    float distSq = diff.SqrMagnitude();
 
-    return (distX * distX + distY * distY) <= (radiusScaled * radiusScaled);
+    if (distSq > radiusScaled * radiusScaled)
+        return false;
+
+    // Contact Info
+    outContact.point = closestPoint;
+
+    if (distSq == 0.0f)
+    {
+        // 중심이 박스 내부에 완전히 들어간 경우, 예외처리
+        outContact.normal = Vector2(0, 1);
+    }
+    else
+    {
+        outContact.normal = diff.Normalized();
+    }
+
+    return true;
 }
 
-bool CircleCollider::InternalCheckCollision(ICollider* other)
-{
-    if (other->colliderType == ColliderType::Box)
-        return CheakBoxCollision(static_cast<BoxCollider*>(other));
-    else if (other->colliderType == ColliderType::Circle)
-        return CheckCircleCollision(static_cast<CircleCollider*>(other));
-
-    return false;
-}
+//bool CircleCollider::InternalCheckCollision(ICollider* other)
+//{
+//    if (other->colliderType == ColliderType::Box)
+//        return CheakBoxCollision(static_cast<BoxCollider*>(other));
+//    else if (other->colliderType == ColliderType::Circle)
+//        return CheckCircleCollision(static_cast<CircleCollider*>(other));
+//
+//    return false;
+//}
 
 void CircleCollider::FinalizeCollision()
 {
     // Enter & Stay
-    for (ICollider* other : currentFrameCollisions)
+    for (auto& pair : currentFrameCollisions)
     {
+        ICollider* other = pair.first;
+        ContactInfo& contact = pair.second;
+
         if (lastFrameCollisions.find(other) == lastFrameCollisions.end())
         {
-            // Enter
             if (isTrigger || other->isTrigger)
                 OnTriggerEnter(other);
             else
-                OnCollisionEnter(other);
+                OnCollisionEnter(other, contact);
         }
         else
         {
-            // Stay
             if (isTrigger || other->isTrigger)
                 OnTriggerStay(other);
             else
-                OnCollisionStay(other);
+                OnCollisionStay(other, contact);
         }
     }
 
     // Exit
-    for (ICollider* other : lastFrameCollisions)
+    for (auto& pair : lastFrameCollisions)
     {
+        ICollider* other = pair.first;
+
         if (currentFrameCollisions.find(other) == currentFrameCollisions.end())
         {
             if (isTrigger || other->isTrigger)
@@ -122,40 +161,15 @@ void CircleCollider::FinalizeCollision()
         }
     }
 
-    // Swap
     lastFrameCollisions = currentFrameCollisions;
+    currentFrameCollisions.clear();
 }
 
-void CircleCollider::OnCollisionEnter(ICollider* other)
+void CircleCollider::OnCollisionEnter(ICollider* other, ContactInfo& outContact)
 {
     // Block
     //transform->SetPosition(transform->prePosition.x, transform->prePosition.y);   // top view
     transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);   // gravity
-
-    // TODO :: 축별 이동 제한 로직 추가
-    //float deltaX = transform->GetPosition().x - transform->prePosition.x;
-    //float deltaY = transform->GetPosition().y - transform->prePosition.y;
-
-    //Vector2 tryX = Vector2(transform->prePosition.x + deltaX, transform->prePosition.y);
-    //Vector2 tryY = Vector2(transform->prePosition.x, transform->prePosition.y + deltaY);
-
-    //auto rb = owner->GetComponent<Rigidbody>();
-
-    //// x축
-    //transform->SetPosition(tryX);
-    //if (InternalCheckCollision(other))
-    //{
-    //    if (rb) { rb->blockX = true; }
-    //    deltaX = 0;
-    //}
-
-    //// y
-    //transform->SetPosition(tryY);
-    //if (InternalCheckCollision(other))
-    //{
-    //    if (rb) { rb->blockY = true; }
-    //    deltaY = 0;
-    //}
     
     // script
     auto scripts = owner->GetComponents<Script>();
@@ -163,36 +177,11 @@ void CircleCollider::OnCollisionEnter(ICollider* other)
         s->OnCollisionEnter(other);
 }
 
-void CircleCollider::OnCollisionStay(ICollider* other)
+void CircleCollider::OnCollisionStay(ICollider* other, ContactInfo& outContact)
 {
     // Block
     //transform->SetPosition(transform->prePosition.x, transform->prePosition.y);   // top view
     transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);   // gravity
-
-    // TODO :: 축별 이동 제한 로직 추가
-    //float deltaX = transform->GetPosition().x - transform->prePosition.x;
-    //float deltaY = transform->GetPosition().y - transform->prePosition.y;
-
-    //Vector2 tryX = Vector2(transform->prePosition.x + deltaX, transform->prePosition.y);
-    //Vector2 tryY = Vector2(transform->prePosition.x, transform->prePosition.y + deltaY);
-
-    //auto rb = owner->GetComponent<Rigidbody>();
-
-    //// x축
-    //transform->SetPosition(tryX);
-    //if (InternalCheckCollision(other))
-    //{
-    //    if (rb) { rb->blockX = true; }
-    //    deltaX = 0;
-    //}
-
-    //// y
-    //transform->SetPosition(tryY);
-    //if (InternalCheckCollision(other))
-    //{
-    //    if (rb) { rb->blockY = true; }
-    //    deltaY = 0;
-    //}
 
     // script
     auto scripts = owner->GetComponents<Script>();
