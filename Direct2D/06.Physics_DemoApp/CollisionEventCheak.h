@@ -14,7 +14,7 @@ public:
 	void Update() override {}
 	void FixedUpdate() override {}
 	void OnDestroy() override {}
-
+	
 	// trigger enter
 	void OnTriggerEnter(ICollider* other) override 
 	{

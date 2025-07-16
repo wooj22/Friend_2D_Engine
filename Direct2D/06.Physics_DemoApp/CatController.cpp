@@ -85,26 +85,28 @@ void CatController::InputCheak()
 	isSpace = Input::GetKeyDown(VK_SPACE);
 }
 
+// 일반 이동
 void CatController::Move_Transform()
 {
 	Vector2 direction = Vector2(inputX, inputY).Normalized();
 	tr->Translate(direction * curSpeed);
 }
 
+// 물리 이동
 void CatController::Move_Physics()
 {
 	Vector2 direction = Vector2(inputX, inputY).Normalized();
 	rb->velocity = direction * curSpeed;
 }
 
+// 물리 점프 => inputsystem의 update 주기가 update()라서 fixed udpate가 아닌 update()에서 호출중
 void CatController::Jump_Physics()
 {
 	if (isSpace)
 	{
-		rb->AddForce(Vector2(0, jumpForce));
+		rb->AddForce(Vector2(0, jumpForce));		// rigidbody 내부적으로는 fixed update()
 	}
 }
-
 
 void CatController::InfoTextUpdate()
 {
