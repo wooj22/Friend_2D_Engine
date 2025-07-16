@@ -52,6 +52,7 @@ public:
 			delete *it;
 			objectList.erase(it);
 		}
+
 		else {
 			OutputDebugStringA("삭제할 GameObject가 없습니다.\n");
 		}

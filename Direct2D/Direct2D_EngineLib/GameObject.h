@@ -16,8 +16,8 @@
 *    보통 Script 컴포넌트를 활용하여 로직을 작성하며, 
      간단한 오브젝트 같은 경우에 Script 컴포넌트를 만들지 않고 빨리 작성할 수 있도록 냅둔 것이다.
 *  1．　게임오브젝트 생성자() : 컴포넌트 생성. 초기화 로직
-*  2．　게임오브젝트 Awake()           // 여기서부턴 보통 사용하지 않는다.
-*  3．　게임오브젝트 SceneStart()　    // 초기 오브젝트만　해당 (Scene Start() 시점에 생성되어있는 오브젝트)
+*  2．　게임오브젝트 Awake()           // 해당 게임오브젝트의 모든 컴포넌트가 생성되고 난 뒤
+*  3．　게임오브젝트 SceneStart()　    // Scene의 Start시점 (update중 생성된 오브젝트라면 호출되지 않음)
 *  4．　게임오브젝트 Update()
 *  5．　게임오브젝트 Destroyed()
 * 
@@ -40,11 +40,14 @@
 class Component;
 class GameObject : public Object
 {
+    // GameObject Data
 private:
     std::vector<Component*> components;
-    static std::vector<GameObject*> allGameObjects;
 public:
     std::string name = "GameObject";
+
+private:
+    static std::vector<GameObject*> allGameObjects;
 
 public:
     GameObject(const std::string& objName = "GameObject")
