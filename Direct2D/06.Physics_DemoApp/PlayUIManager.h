@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "../Direct2D_EngineLib/UI_Button.h"
 #include "../Direct2D_EngineLib/UI_Image.h"
 #include "../Direct2D_EngineLib/UI_Text.h"
@@ -21,19 +21,19 @@ public:
     PlayUIManager() {}
     ~PlayUIManager() override {}
 
-    // ¿ÀºêÁ§Æ®°¡ »ı¼ºµÉ ¶§
+    // ì˜¤ë¸Œì íŠ¸ê°€ ìƒì„±ë  ë•Œ
     void Awake() override             
     {
 
     }
 
-    // SceneÀÇ Start (¾ÀÀÇ ¸ğµç ¿ÀºêÁ§Æ®°¡ »ı¼ºµÇ°í ³­ µÚ)
+    // Sceneì˜ Start (ì”¬ì˜ ëª¨ë“  ì˜¤ë¸Œì íŠ¸ê°€ ìƒì„±ë˜ê³  ë‚œ ë’¤)
     void SceneStart() override     
     {
         titleText->rectTransform->SetPosition(0, 350);
         titleText->rectTransform->SetSize(800, 200);
         titleText->screenTextRenderer->SetFontSize(25);
-        titleText->screenTextRenderer->SetText(L"[Spacebar]¸¦ ´©¸£¸é °í¾çÀÌ°¡ »ı¼ºµË´Ï´Ù.");
+        titleText->screenTextRenderer->SetText(L"[Spacebar]ë¥¼ ëˆ„ë¥´ë©´ ê³ ì–‘ì´ê°€ ìƒì„±ë©ë‹ˆë‹¤.");
         titleText->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::LightSkyBlue));
 
         adviceText->rectTransform->SetPivot(0, 0.5);
@@ -41,7 +41,7 @@ public:
         adviceText->rectTransform->SetSize(400, 200);
         adviceText->screenTextRenderer->SetFontSize(16);
         adviceText->screenTextRenderer->SetHorizontalAlign(TextHorizontalAlign::Left);
-        adviceText->screenTextRenderer->SetText(L"ÇÃ·¹ÀÌ¾î ÀÌµ¿ : [W][A][S][D], [Shfit], [Spacebar]\nÄ«¸Ş¶ó ÀÌµ¿ : [<-] [->]\nÇöÀç ¸Ş¸ğ¸® È®ÀÎ [M]");
+        adviceText->screenTextRenderer->SetText(L"í”Œë ˆì´ì–´ ì´ë™ : [W][A][S][D], [Shfit], [Spacebar]\nì¹´ë©”ë¼ ì´ë™ : [<-] [->]\ní˜„ì¬ ë©”ëª¨ë¦¬ í™•ì¸ [M]");
         adviceText->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::FloralWhite));
 
         memoryInfoText->rectTransform->SetPivot(1, 0.5);
@@ -61,11 +61,11 @@ public:
 
         buttonInfo2Text->rectTransform->SetPivot(1, 1);
         buttonInfo2Text->rectTransform->SetPosition(580, 380);
-        buttonInfo2Text->rectTransform->SetSize(120, 50);
+        buttonInfo2Text->rectTransform->SetSize(170, 50);
         buttonInfo2Text->screenTextRenderer->SetFontSize(16);
         buttonInfo2Text->screenTextRenderer->SetHorizontalAlign(TextHorizontalAlign::Right);
-        buttonInfo2Text->screenTextRenderer->SetText(L"button click!->");
-        buttonInfo2Text->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::FloralWhite));
+        buttonInfo2Text->screenTextRenderer->SetText(L"â­ ì½œë¦¬ì…˜ í…ŒìŠ¤íŠ¸ ì”¬->");
+        buttonInfo2Text->screenTextRenderer->SetColor(D2D1::ColorF(D2D1::ColorF::LightBlue));
 
         auto image = ResourceManager::Get().CreateTexture2D("../Resource/UI_Button2.png");
         auto new_sprite = ResourceManager::Get().CreateSprite(image, "UI_Button2");
@@ -85,7 +85,7 @@ public:
         nextButton->screenTextRenderer->SetFontSize(20);
     }
 
-    // SceneÀÇ Update
+    // Sceneì˜ Update
     void Update()  override           
     {
         if (Input::GetKeyDown('M'))
@@ -94,7 +94,7 @@ public:
         }
     }
 
-    // SceneÀÇ Exit, GameObject Delete
+    // Sceneì˜ Exit, GameObject Delete
     void Destroyed() override         
     {
 
