@@ -10,20 +10,20 @@
 
 // 일단 Contect Info로 해볼거. 이거 안씀!
 
-class Collision
-{
-private:
-    ICollider* thisCollider = nullptr;    // this collider
-
-public:
-    ICollider* otherCollider = nullptr;   // other collider
-    Vector2 contactPoint;                 // 충돌 지점
-    Vector2 contactNormal;                // 충돌 법선
-    Vector2 relativeVelocity;             // 상대 속도
-
-    Collision(ICollider* _this, ICollider* other) 
-        : thisCollider(_this), otherCollider(other) { }
-
-
-};
-
+//class Collision
+//{
+//private:
+//    ICollider* thisCollider = nullptr;    // this collider
+//
+//public:
+//    ICollider* otherCollider = nullptr;   // other collider
+//    Vector2 contactPoint;                 // 충돌 지점
+//    Vector2 contactNormal;                // 충돌 법선
+//    Vector2 relativeVelocity;             // 상대 속도
+//
+//    Collision(ICollider* _this, ICollider* other) 
+//        : thisCollider(_this), otherCollider(other) { }
+//
+//
+//};
+//

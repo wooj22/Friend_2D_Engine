@@ -153,7 +153,7 @@ class Animator;
 class Script;
 
 class BoxCollider;
-class Rigidbody;
+class CircleCollider;
 class Rigidbody;
 
 
@@ -202,3 +202,27 @@ class AnimationBaseState;			// "일반 Class" 각 animation clip에 대한 state, Ente
 class AnimationClip;				// "일반 Class" animation clip asset
 
 
+/*-------------------------------------------------------------------*/
+/*----------------------   Collision 시스템  ------------------------*/
+/*------------------------------------------------------------------*/
+/* ColliderSystem -> ICollider(Box, Circle) -> Script Event Func */
+
+// 콜라이더들이 생성되면 아래 시스템에 등록되고,
+// 각 콜라이더들이 가지고있는 aabb에 따라 정렬하고, 
+// sap 알고리즘을 활용하여 모든 콜라이더에 대해 충돌 체크를 진행한다.
+// 만약 두 콜라이더가 충돌했다면 해당 콜라이더들의 현재 프레임에 충돌한 콜라이더 map 컨테이너에 충돌 정보를 추가한다.
+class ColliderSystem;
+
+// ColliderSystem에서 충돌 체크하라고 상대 콜라이더를 던져주면, 해당 콜라이더의 Type을 판별하여 알맞는 충돌 체크를 진행한다.
+// 이때 충돌한 경우 ContactInfo(충돌 지점, 충돌 법선벡터)를 함께 계산한다.
+// 충돌한 콜라이더를 저장하기 위한 unordered_map<ICollider*, ContactInfo>을 이전 프레임 map, 현재 프레임 map으로 저장하며
+// 이번 프레임의 충돌 계산이 모두 끝나면 이를 비교하여 Enter, Stay, Exit를 호출한다.
+// => 이때 이 콜라이더가 등록되어있는 게임오브젝트의 Script 컴포넌트의 이벤트함수까지 호출해준다.
+// OnCollisionEnter, Stay같은 경우 block이 필요하기 때문에 콜라이더 내부에서 ContactInfo에 따라 축별 이동을 제한하고 있다.
+class ICollider;
+class BoxCollider;
+class CircleCollider;
+
+// Script 컴포넌트에 있는 충돌 이벤트 함수를 맘 편하게 오버라이드해서 쓰면 된다! 
+// 위에서 알아서 호출해준다.
+class Script;

@@ -55,7 +55,7 @@ void ColliderSystem::FixedUpdate()
             if (a->isCollision(b, contact))
             {
                 a->currentFrameCollisions[b] = contact;
-                b->currentFrameCollisions[a] = contact; // .Flip(); // 반대 방향 ContactInfo일 수도 있으니 필요에 따라 처리
+                b->currentFrameCollisions[a] = contact;
             }
         }
     }

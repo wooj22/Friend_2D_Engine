@@ -8,11 +8,14 @@
 * bound 정보를 Update하며 ColliderSystem에서 sap 알고리즘을 사용하도록 지원한다.
 * ICollider를 상속받은 모든 종류의 콜라이더와의 상호작용을 지원한다.
 * isTrigger 플래그를 설정하여 Block, Overlap 처리를 지정할 수 있다.
-* Block(collistion mode)시에는 transform의 이전 프레임 position으로 되돌아가게 한다.
 * ColliderSystem에 등록되어 충돌 발생시 충돌 이벤트를 호출하게 되고,
 * 각 이벤트 종류에 맞게 Script 컴포넌트를 찾아 이벤트 함수를 호출해준다. -> 유니티처럼 사용 가능하도록
 * 
-* TODO :: 축별 이동 제한 로직 추가
+* * Block(collistion mode) 구현 방식 - ContectInfo
+* 각 콜라이더에서 충돌 체크 연산시 두 콜라이더가 충돌한 경우에는
+* 충돌 지점(point)과 법선벡터(normal)를 구해 map에 콜라이더와 함께 저장한다.
+* FinalizeCollision시점에서 OnCollisionEnter(), OnCollisionStay()시에 
+* 해당 ContectInfo를 함께 전달하여 normal에 따라 이동 시도를 제한한다.
 */
 
 class Transform;
@@ -37,22 +40,19 @@ public:
 
     void OnEnable() override;
     void UpdateBounds() override;
-    bool isCollision(ICollider* other, ContactInfo& outContact) override;
+    bool isCollision(ICollider* other, ContactInfo& contact) override;
     void FinalizeCollision() override;
     void OnDestroy() override;
 
 private:
     // collistion cheak
-    bool CheckCircleCollision(CircleCollider* other, ContactInfo& outContact);
-    bool CheckBoxCollision(BoxCollider* other, ContactInfo& outContact);
-
-    // 내부 체크용 (축별 이동 로직을 위한)
-    //bool InternalCheckCollision(ICollider* other);
+    bool CheckCircleCollision(CircleCollider* other, ContactInfo& contact);
+    bool CheckBoxCollision(BoxCollider* other, ContactInfo& contact);
 
 private:
     // collision event
-    void OnCollisionEnter(ICollider* other, ContactInfo& outContact) override;
-    void OnCollisionStay(ICollider* other, ContactInfo& outContact) override;
+    void OnCollisionEnter(ICollider* other, ContactInfo& contact) override;
+    void OnCollisionStay(ICollider* other, ContactInfo& contact) override;
     void OnCollisionExit(ICollider* other) override;
     void OnTriggerEnter(ICollider* other) override;
     void OnTriggerStay(ICollider* other) override;

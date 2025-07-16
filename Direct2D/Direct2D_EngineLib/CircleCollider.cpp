@@ -16,6 +16,9 @@ void CircleCollider::OnDestroy()
 
 }
 
+// UpdateBounds()
+// circle collider의 aabb bound를 update한다
+// colldierSystem의 sap 알고리즘에 사용된다. (최적화)
 void CircleCollider::UpdateBounds()
 {
     Vector2 pos = transform->GetPosition() + offset;
@@ -27,23 +30,28 @@ void CircleCollider::UpdateBounds()
     maxY = pos.y + scaledRadius;
 }
 
-bool CircleCollider::isCollision(ICollider* other, ContactInfo& outContact)
+// isCollision()
+// 넘겨받은 콜라이더의 타입에 따른 충돌 결과를 return한다
+// 충돌한 경우 contact info를 계산한다
+bool CircleCollider::isCollision(ICollider* other, ContactInfo& contact)
 {
     if (!transform) return false;
 
     if (other->colliderType == ColliderType::Circle)
     {
-        return CheckCircleCollision(static_cast<CircleCollider*>(other), outContact);
+        return CheckCircleCollision(static_cast<CircleCollider*>(other), contact);
     }
     else if (other->colliderType == ColliderType::Box)
     {
-        return CheckBoxCollision(static_cast<BoxCollider*>(other), outContact);
+        return CheckBoxCollision(static_cast<BoxCollider*>(other), contact);
     }
 
     return false;
 }
 
-bool CircleCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& outContact)
+// CheckCircleCollision()
+// this circle과 other circle의 충돌 체크
+bool CircleCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& contact)
 {
     Vector2 posA = transform->GetPosition() + offset;
     Vector2 posB = other->transform->GetPosition() + other->offset;
@@ -68,13 +76,15 @@ bool CircleCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& ou
     else
         dir = diff.Normalized();
 
-    outContact.normal = dir;
-    outContact.point = posB + dir * scaledRadiusB;
+    contact.normal = dir;
+    contact.point = posB + dir * scaledRadiusB;
 
     return true;
 }
 
-bool CircleCollider::CheckBoxCollision(BoxCollider* other, ContactInfo& outContact)
+// CheckBoxCollision()
+// this circle와 other box의 충돌 체크
+bool CircleCollider::CheckBoxCollision(BoxCollider* other, ContactInfo& contact)
 {
     Vector2 circlePos = transform->GetPosition() + offset;
     Vector2 circleScale = transform->GetScale();
@@ -98,31 +108,24 @@ bool CircleCollider::CheckBoxCollision(BoxCollider* other, ContactInfo& outConta
         return false;
 
     // Contact Info
-    outContact.point = closestPoint;
+    contact.point = closestPoint;
 
     if (distSq == 0.0f)
     {
         // 중심이 박스 내부에 완전히 들어간 경우, 예외처리
-        outContact.normal = Vector2(0, 1);
+        contact.normal = Vector2(0, 1);
     }
     else
     {
-        outContact.normal = diff.Normalized();
+        contact.normal = diff.Normalized();
     }
 
     return true;
 }
 
-//bool CircleCollider::InternalCheckCollision(ICollider* other)
-//{
-//    if (other->colliderType == ColliderType::Box)
-//        return CheakBoxCollision(static_cast<BoxCollider*>(other));
-//    else if (other->colliderType == ColliderType::Circle)
-//        return CheckCircleCollision(static_cast<CircleCollider*>(other));
-//
-//    return false;
-//}
-
+// FinalizeCollision()
+// 이전 프레임 충돌 정보와 현재 프레임 충돌 정보를 비교하여
+// isTrigger 유무에 따라 Enter, Stay, Exit 충돌 이벤트 함수를 호출한다.
 void CircleCollider::FinalizeCollision()
 {
     // Enter & Stay
@@ -165,23 +168,31 @@ void CircleCollider::FinalizeCollision()
     currentFrameCollisions.clear();
 }
 
-void CircleCollider::OnCollisionEnter(ICollider* other, ContactInfo& outContact)
+void CircleCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
 {
-    // Block
-    //transform->SetPosition(transform->prePosition.x, transform->prePosition.y);   // top view
-    transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);   // gravity
-    
+    Vector2 pos = transform->GetPosition();
+    Vector2 prePos = transform->prePosition;
+
+    // 축별 보정
+    if (contact.normal.x != 0) { pos.x = prePos.x; }
+    if (contact.normal.y != 0) { pos.y = prePos.y; }
+    transform->SetPosition(pos);
+
     // script
     auto scripts = owner->GetComponents<Script>();
     for (auto s : scripts)
         s->OnCollisionEnter(other);
 }
 
-void CircleCollider::OnCollisionStay(ICollider* other, ContactInfo& outContact)
+void CircleCollider::OnCollisionStay(ICollider* other, ContactInfo& contact)
 {
-    // Block
-    //transform->SetPosition(transform->prePosition.x, transform->prePosition.y);   // top view
-    transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);   // gravity
+    Vector2 pos = transform->GetPosition();
+    Vector2 prePos = transform->prePosition;
+
+    // 축별 보정
+    if (contact.normal.x != 0) { pos.x = prePos.x; }
+    if (contact.normal.y != 0) { pos.y = prePos.y; }
+    transform->SetPosition(pos);
 
     // script
     auto scripts = owner->GetComponents<Script>();

@@ -17,6 +17,8 @@ void BoxCollider::OnDestroy()
 
 }
 
+// UpdateBounds()
+// box collider의 aabb bound를 update한다
 void BoxCollider::UpdateBounds()
 {
     Vector2 pos = transform->GetPosition() + offset;
@@ -30,23 +32,28 @@ void BoxCollider::UpdateBounds()
     maxY = pos.y + halfSize.y;
 }
 
-bool BoxCollider::isCollision(ICollider* other, ContactInfo& outContact)
+// isCollision()
+// 넘겨받은 콜라이더의 타입에 따른 충돌 결과를 return한다
+// 충돌한 경우 contact info를 계산한다
+bool BoxCollider::isCollision(ICollider* other, ContactInfo& contact)
 {
     if (!transform) return false;
 
     if (other->colliderType == ColliderType::Box)
     {
-        return CheckAABBCollision(static_cast<BoxCollider*>(other), outContact);
+        return CheckAABBCollision(static_cast<BoxCollider*>(other), contact);
     }
     else if (other->colliderType == ColliderType::Circle)
     {
-        return CheckCircleCollision(static_cast<CircleCollider*>(other), outContact);
+        return CheckCircleCollision(static_cast<CircleCollider*>(other), contact);
     }
 
     return false;
 }
 
-bool BoxCollider::CheckAABBCollision(BoxCollider* other, ContactInfo& outContact)
+// CheckAABBCollision()
+// this box와 other box의 aabb 충돌 체크
+bool BoxCollider::CheckAABBCollision(BoxCollider* other, ContactInfo& contact)
 {
     // 1. AABB 겹침 체크
     if (maxX < other->minX || minX > other->maxX || maxY < other->minY || minY > other->maxY)
@@ -55,7 +62,7 @@ bool BoxCollider::CheckAABBCollision(BoxCollider* other, ContactInfo& outContact
     // 2. 충돌 지점: 두 AABB 중심 중간점
     Vector2 thisCenter = GetCenter();
     Vector2 otherCenter = other->GetCenter();
-    outContact.point = (thisCenter + otherCenter) * 0.5f;
+    contact.point = (thisCenter + otherCenter) * 0.5f;
 
     // 3. 축별 침투 깊이 계산
     float overlapX = min(maxX, other->maxX) -max(minX, other->minX);
@@ -65,18 +72,20 @@ bool BoxCollider::CheckAABBCollision(BoxCollider* other, ContactInfo& outContact
     if (overlapX < overlapY)
     {
         // X축 방향 법선
-        outContact.normal = (thisCenter.x < otherCenter.x) ? Vector2(-1, 0) : Vector2(1, 0);
+        contact.normal = (thisCenter.x < otherCenter.x) ? Vector2(-1, 0) : Vector2(1, 0);
     }
     else
     {
         // Y축 방향 법선
-        outContact.normal = (thisCenter.y < otherCenter.y) ? Vector2(0, -1) : Vector2(0, 1);
+        contact.normal = (thisCenter.y < otherCenter.y) ? Vector2(0, -1) : Vector2(0, 1);
     }
 
     return true;
 }
 
-bool BoxCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& outContact)
+// CheckCircleCollision()
+// this box와 other circle의 충돌 체크
+bool BoxCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& contact)
 {
     Vector2 boxPos = transform->GetPosition() + offset;
     Vector2 boxScale = transform->GetScale();
@@ -102,33 +111,26 @@ bool BoxCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& outCo
         return false;
 
     // 충돌 지점
-    outContact.point = closestPoint;
+    contact.point = closestPoint;
 
     // 충돌 법선 (원 중심에서 박스 경계점 방향)
     if (distSq == 0.0f)
     {
         // 중심이 박스 안에 완전히 들어갔을 때 (예외처리)
         // 임의로 위쪽 방향 지정
-        outContact.normal = Vector2(0, 1);
+        contact.normal = Vector2(0, 1);
     }
     else
     {
-        outContact.normal = diff.Normalized();
+        contact.normal = diff.Normalized();
     }
 
     return true;
 }
 
-//bool BoxCollider::InternalCheckCollision(ICollider* other)
-//{
-//    if (other->colliderType == ColliderType::Box)
-//        return CheckAABBCollision(static_cast<BoxCollider*>(other));
-//    else if (other->colliderType == ColliderType::Circle)
-//        return CheakCircleCollision(static_cast<CircleCollider*>(other));
-//
-//    return false;
-//}
-
+// FinalizeCollision()
+// 이전 프레임 충돌 정보와 현재 프레임 충돌 정보를 비교하여
+// isTrigger 유무에 따라 Enter, Stay, Exit 충돌 이벤트 함수를 호출한다.
 void BoxCollider::FinalizeCollision()
 {
     // Enter & Stay
@@ -171,11 +173,15 @@ void BoxCollider::FinalizeCollision()
     currentFrameCollisions.clear();
 }
 
-void BoxCollider::OnCollisionEnter(ICollider* other, ContactInfo& outContact)
+void BoxCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
 {
-    // Block
-    //transform->SetPosition(transform->prePosition.x, transform->prePosition.y);   // top view
-    transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);   // gravity
+    Vector2 pos = transform->GetPosition();
+    Vector2 prePos = transform->prePosition;
+
+    // 축별 보정
+    if (contact.normal.x != 0) { pos.x = prePos.x; }
+    if (contact.normal.y != 0) { pos.y = prePos.y; }
+    transform->SetPosition(pos);
 
     // script
     auto scripts = owner->GetComponents<Script>();
@@ -183,11 +189,15 @@ void BoxCollider::OnCollisionEnter(ICollider* other, ContactInfo& outContact)
         s->OnCollisionEnter(other);
 }
 
-void BoxCollider::OnCollisionStay(ICollider* other, ContactInfo& outContact)
+void BoxCollider::OnCollisionStay(ICollider* other, ContactInfo& contact)
 {
-    // Block
-    //transform->SetPosition(transform->prePosition.x, transform->prePosition.y);   // top view
-    transform->SetPosition(transform->GetPosition().x, transform->prePosition.y);   // gravity
+    Vector2 pos = transform->GetPosition();
+    Vector2 prePos = transform->prePosition;
+
+    // 축별 보정
+    if (contact.normal.x != 0) { pos.x = prePos.x; }
+    if (contact.normal.y != 0) { pos.y = prePos.y; }
+    transform->SetPosition(pos);
 
     // script
     auto scripts = owner->GetComponents<Script>();
