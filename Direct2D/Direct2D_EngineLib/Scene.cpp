@@ -13,12 +13,24 @@ void Scene::Start()
 /// Scene Update
 void Scene::Update()
 {
+	// game object update
 	for (auto& object : objectList)
 	{
-		if (!ObjectTable::Get().IsValid(object)) {
-			// »©±â
+		if (!object->IsDestroyed())
+			object->Update();
+	}
+
+	// destroyed gameobject delete
+	auto it = objectList.begin();
+	while (it != objectList.end()) 
+	{
+		GameObject* obj = *it;
+		if (obj->IsDestroyed()) {
+			obj->Destroyed();
+			delete obj;
+			it = objectList.erase(it);
 		}
-		object->Update();
+		else { ++it; }
 	}
 }
 

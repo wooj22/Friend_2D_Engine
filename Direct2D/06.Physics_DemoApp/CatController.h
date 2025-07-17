@@ -66,6 +66,7 @@ public:
 	{ 
 		if (other->owner->name == "Cloud") {
 			OutputDebugStringA("OnCollisionExit() - Could\n");
+			//GameObject::Destroy(other->owner);
 		}
 	}
 

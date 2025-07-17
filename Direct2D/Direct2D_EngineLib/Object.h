@@ -8,9 +8,11 @@
 * GameObject 참조, Component 참조, 콜백함수 호출 등에서 댕글링 포인터 문제를 방지한다.
 * ObjectTable::Get().IsValid(object)
 */
+
 class Object
 {
 public:
+	// 유효성 검사
 	Object() { ObjectTable::Get().Register(this); }
 	virtual ~Object() { ObjectTable::Get().Unregister(this); }
 };

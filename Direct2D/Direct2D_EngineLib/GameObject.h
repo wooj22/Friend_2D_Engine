@@ -6,6 +6,8 @@
 #include "Component.h"
 #include "Object.h"
 
+using namespace std;
+
 /* [GameObject]
 * Component를 등록시킬 수 있는 오브젝트로,
 * 게임 콘텐츠에 활용할 오브젝트는 이 클래스를 상속받아 컴포넌트를 조합하여 구현한다.
@@ -40,21 +42,17 @@
 class Component;
 class GameObject : public Object
 {
-    // GameObject Data
-private:
-    std::vector<Component*> components;
-public:
-    std::string name = "GameObject";
+    /* GameObject Data */
+private: vector<Component*> components; 
+public: string name = "GameObject";
+    
 
-private:
-    static std::vector<GameObject*> allGameObjects;
-
+    /* GameObject Cycle */
 public:
-    GameObject(const std::string& objName = "GameObject")
+    GameObject(const string& objName = "GameObject")
         : name(objName)
     {
         allGameObjects.push_back(this);
-        OutputDebugStringA("GameObject()\n");
     }
 
     virtual ~GameObject()
@@ -68,22 +66,35 @@ public:
 
 		// gameobject delete
         auto it = std::find(allGameObjects.begin(), allGameObjects.end(), this);
-        if (it != allGameObjects.end())
-            allGameObjects.erase(it);
-
-        OutputDebugStringA("~GameObject()\n");
+        if (it != allGameObjects.end()) allGameObjects.erase(it);  
     }
-
-public:
-    /* GameObject Cycle */
+ 
     virtual void Awake() {};           // 오브젝트가 생성될 때, 생성자 이후
     virtual void SceneStart() {};      // Scene의 Start -> Update중 SceneStart() 호출 보장 x
     virtual void Update() {};          // Scene의 Update
     virtual void Destroyed() {};       // Scene의 Exit, GameObject Delete
 
+
+    /*  GameObject Destroy  */
+    // isDestroyed true가 되면 Scene쪽에서 delete
+private:
+    bool isDestroyed = false;           
 public:
-    // game object find  // 문제있어서 사용 x 이름도 아직 제어 없음
-    static GameObject* Find(const std::string& targetName)
+    void Destroy() { isDestroyed = true; }
+    bool IsDestroyed() const { return isDestroyed; }
+    static void Destroy(GameObject* obj) 
+    {
+        obj->Destroy();
+    }
+
+
+    /*  GameObject Find  */
+    // 
+private:
+    static vector<GameObject*> allGameObjects;
+public:
+    // game object find
+    static GameObject* Find(const string& targetName)
     {
         for (GameObject* obj : allGameObjects)
         {
@@ -93,15 +104,15 @@ public:
         return nullptr;
     }
 
+
+    /*  Component  */
 public:
-    // Component
-    // TODO :: 스마트 포인터 구조로 바꾸기
     template<typename T, typename... Args>
     T* AddComponent(Args&&... args)
     {
-        static_assert(std::is_base_of<Component, T>::value, "T must derive from Component");
+        static_assert(is_base_of<Component, T>::value, "T must derive from Component");
 
-        T* comp = new T(std::forward<Args>(args)...);
+        T* comp = new T(forward<Args>(args)...);
         comp->owner = this;
         components.push_back(comp);
         comp->OnEnable();
@@ -109,8 +120,8 @@ public:
     }
 
     template<typename T>
-    std::vector<T*> GetComponents() {
-        std::vector<T*> result;
+    vector<T*> GetComponents() {
+        vector<T*> result;
         for (Component* comp : components) {
             if (auto casted = dynamic_cast<T*>(comp))
                 result.push_back(casted);
