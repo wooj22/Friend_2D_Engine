@@ -4,19 +4,33 @@
 #include "ImageRenderer.h"
 #include "ScreenTextRenderer.h"
 #include "ColliderSystem.h"
+#include <algorithm>
 
 /// Component 등록
 void RenderSystem::Regist(IRenderer* component)
 {
-	components.push_back(component);
+	if (component->rendertype == RenderType::GameObject)
+	{
+		game_renderers.push_back(component);
+	}
+	else if (component->rendertype == RenderType::UI)
+	{
+		ui_renderers.push_back(component);
+	}
 }
 
 /// Component 등록 해제
 void RenderSystem::Unregist(IRenderer* component)
 {
-	for (auto it = components.begin(); it != components.end(); ++it) {
+	for (auto it = game_renderers.begin(); it != game_renderers.end(); ++it) {
 		if (*it == component) {
-			components.erase(it);
+			game_renderers.erase(it);
+			return;
+		}
+	}
+	for (auto it = ui_renderers.begin(); it != ui_renderers.end(); ++it) {
+		if (*it == component) {
+			ui_renderers.erase(it);
 			return;
 		}
 	}
@@ -87,9 +101,16 @@ void RenderSystem::Init(HWND hwnd, int width, int height)
 
 void RenderSystem::Update()
 {
-	for (auto it = components.begin(); it != components.end(); ++it)
+	// GameObject Update()
+	for (IRenderer* renderer : game_renderers)
 	{
-		(*it)->Update();
+		renderer->Update();
+	}
+
+	// UI Update()
+	for (IRenderer* renderer : ui_renderers)
+	{
+		renderer->Update();
 	}
 }
 
@@ -100,18 +121,23 @@ void RenderSystem::Render()
 	renderTarget->Clear(D2D1::ColorF(D2D1::ColorF::Black));
 	renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
 
+	// layer sort
+	sort(game_renderers.begin(), game_renderers.end(),
+		[](IRenderer* a, IRenderer* b) { return a->layer < b->layer; });
+
+	sort(ui_renderers.begin(), ui_renderers.end(),
+		[](IRenderer* a, IRenderer* b) { return a->layer < b->layer; });
+
 	// GameObject Render()
-	for (IRenderer* component : components)
+	for (IRenderer* renderer : game_renderers)
 	{
-		if (component && component->rendertype == RenderType::GameObject)
-			component->Render();
+		renderer->Render();
 	}
 
 	// UI Render()
-	for (IRenderer* component : components)
+	for (IRenderer* renderer : ui_renderers)
 	{
-		if (component && component->rendertype == RenderType::UI)
-			component->Render();
+		renderer->Render();
 	}
 
 	// collider draw

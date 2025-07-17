@@ -28,6 +28,9 @@ public :
 	virtual void Update() = 0;
 	virtual void Render() = 0;
 
-	// gameobject 위에 ui 그리기 (일단 이렇게 함)
+	// gameobject 위에 ui 그리기
 	RenderType rendertype = RenderType::GameObject;
+
+	// layer: 낮을수록 먼저 렌더됨
+	int layer = 0;
 };
