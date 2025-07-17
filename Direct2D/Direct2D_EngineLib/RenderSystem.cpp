@@ -75,12 +75,6 @@ void RenderSystem::Init(HWND hwnd, int width, int height)
 	renderTarget->CreateBitmapFromDxgiSurface(backBuffer.Get(), &bmpProps, backBufferBitmap.GetAddressOf());
 	renderTarget->SetTarget(backBufferBitmap.Get());
 
-	// Create WIC Factory
-	HRESULT hr = CoCreateInstance(CLSID_WICImagingFactory,
-		NULL, CLSCTX_INPROC_SERVER,
-		__uuidof(wicImagingFactory),
-		(void**)wicImagingFactory.GetAddressOf());
-
 	// DirectWrite ÆÑÅÍ¸®¸¦ ¸¸µì´Ï´Ù.
 	DWriteCreateFactory(
 		DWRITE_FACTORY_TYPE_SHARED,
@@ -89,8 +83,6 @@ void RenderSystem::Init(HWND hwnd, int width, int height)
 
 	// debug
 	renderTarget->CreateSolidColorBrush(debug_color, &debug_brush);
-
-	assert(SUCCEEDED(hr));
 }
 
 void RenderSystem::Update()
@@ -137,7 +129,6 @@ void RenderSystem::UnInit()
 	swapChain.Reset();
 	renderTarget.Reset();
 	backBufferBitmap.Reset();
-	wicImagingFactory.Reset();
 	dWriteFactory.Reset();
 }
 
