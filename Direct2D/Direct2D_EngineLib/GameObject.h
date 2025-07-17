@@ -44,13 +44,14 @@ class GameObject : public Object
 {
     /* GameObject Data */
 private: vector<Component*> components; 
-public: string name = "GameObject";
-    
+public: 
+    string name = "GameObject";
+    string tag = "Untagged";
 
     /* GameObject Cycle */
 public:
-    GameObject(const string& objName = "GameObject")
-        : name(objName)
+    GameObject(const string& objName = "GameObject", const string& objTag = "Untagged")
+        : name(objName), tag(objTag)
     {
         allGameObjects.push_back(this);
     }
@@ -84,24 +85,67 @@ public:
     bool IsDestroyed() const { return isDestroyed; }
     static void Destroy(GameObject* obj) 
     {
-        obj->Destroy();
+        if(obj) obj->Destroy();
     }
 
 
     /*  GameObject Find  */
-    // 
 private:
     static vector<GameObject*> allGameObjects;
 public:
-    // game object find
+    // game object find - name
+    // targetName과 같은 게임오브젝트 하나를 반환한다.
     static GameObject* Find(const string& targetName)
     {
         for (GameObject* obj : allGameObjects)
         {
-            if (obj && obj->name == targetName)
+            if (obj && !obj->IsDestroyed() && obj->name == targetName)
                 return obj;
         }
         return nullptr;
+    }
+
+    // game object all find - name
+    // targetName과 같은 게임오브젝트 전체를 반환한다.
+    static vector<GameObject*> FindAll(const string& targetName)
+    {
+        vector<GameObject*> result;
+
+        for (GameObject* obj : allGameObjects)
+        {
+            if (obj && !obj->IsDestroyed() && obj->name == targetName)
+            {
+                result.push_back(obj);
+            }
+        }
+
+        return result;
+    }
+
+    // game object find - tag
+    // targetTag과 같은 태그의 게임오브젝트 전체를 반환한다.
+    static GameObject* FindWithTag(const string& targetTag)
+    {
+        for (GameObject* obj : allGameObjects)
+        {
+            if (obj && !obj->IsDestroyed() && obj->tag == targetTag)
+                return obj;
+        }
+        return nullptr;
+    }
+
+    // game object all find - tag
+    // targetTag과 같은 태그의 게임오브젝트 전체를 반환한다.
+    static vector<GameObject*> FindAllWithTag(const string& targetTag)
+    {
+        vector<GameObject*> result;
+
+        for (GameObject* obj : allGameObjects)
+        {
+            if (obj && !obj->IsDestroyed() && obj->tag == targetTag)
+                result.push_back(obj);
+        }
+        return result;
     }
 
 
