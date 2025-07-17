@@ -52,10 +52,8 @@ public:
 		transform->SetPosition(0, 100);
 		transform->SetScale(3, 3);
 		collider->size = { 15, 10 };
-		//collider->radius = 5;
 		collider->isTrigger = false;
 		rigidbody->useGravity = true;
-		rigidbody->mass = 0.5;
 		rigidbody->gravityScale = 30;
 	}
 };

@@ -14,15 +14,16 @@ class CatController : public Script
 private:
 	// stat
 	float curSpeed = 0;
-	float walkSpeed = 5.f;
-	float runSpeed = 10.f;
-	float jumpForce = 4000.0f;
+	float walkSpeed = 280.f;
+	float runSpeed = 350.f;
+	float jumpForce = 350.0f;
 
 	// move
 	float inputX, inputY;
+	bool isGround;
 
 	// key
-	bool isW, isA, isS, isD, isShift, isSpace;
+	bool isW, isA, isD, isShift, isSpace;
 
 	// ref component
 	Transform* tr;
@@ -52,6 +53,7 @@ public:
 	{ 
 		if (other->owner->name == "Cloud") {
 			OutputDebugStringA("OnCollisionEnter() - Could\n");
+			isGround = true;
 		}
 	}
 
@@ -66,6 +68,7 @@ public:
 	{ 
 		if (other->owner->name == "Cloud") {
 			OutputDebugStringA("OnCollisionExit() - Could\n");
+			isGround = false;
 		}
 	}
 

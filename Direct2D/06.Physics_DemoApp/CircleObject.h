@@ -10,7 +10,7 @@
 class CircleObject : public GameObject
 {
 private:
-	float moveSpeed = 5.0f;
+	float moveSpeed = 80.0f;
 
 public:
 	Transform* transform;

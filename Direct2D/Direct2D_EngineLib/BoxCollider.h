@@ -52,7 +52,7 @@ private:
     // collision event
     void OnCollisionEnter(ICollider* other, ContactInfo& contact) override;
     void OnCollisionStay(ICollider* other, ContactInfo& contact) override;
-    void OnCollisionExit(ICollider* other) override;
+    void OnCollisionExit(ICollider* other, ContactInfo& contact) override;
     void OnTriggerEnter(ICollider* other) override;
     void OnTriggerStay(ICollider* other) override;
     void OnTriggerExit(ICollider* other) override;

@@ -5,6 +5,7 @@
 #include "RenderSystem.h"
 #include "DebugGizmo.h"
 #include "BoxCollider.h"
+#include "Rigidbody.h"
 
 void CircleCollider::OnEnable()
 {
@@ -154,13 +155,14 @@ void CircleCollider::FinalizeCollision()
     for (auto& pair : lastFrameCollisions)
     {
         ICollider* other = pair.first;
+        ContactInfo& contact = pair.second;
 
         if (currentFrameCollisions.find(other) == currentFrameCollisions.end())
         {
             if (isTrigger || other->isTrigger)
                 OnTriggerExit(other);
             else
-                OnCollisionExit(other);
+                OnCollisionExit(other, contact);
         }
     }
 
@@ -175,7 +177,17 @@ void CircleCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
 
     // 축별 보정
     if (contact.normal.x != 0) { pos.x = prePos.x; }
-    if (contact.normal.y != 0) { pos.y = prePos.y; }
+    if (contact.normal.y != 0)
+    {
+        pos.y = prePos.y;
+
+        // 바닥에 닿았을 때 (contact.normal.y > 0 이면 바닥 방향)
+        if (contact.normal.y > 0)
+        {
+            Rigidbody* rb = owner->GetComponent<Rigidbody>();
+            if (rb) rb->isGrounded = true;
+        }
+    }
     transform->SetPosition(pos);
 
     // script
@@ -191,7 +203,17 @@ void CircleCollider::OnCollisionStay(ICollider* other, ContactInfo& contact)
 
     // 축별 보정
     if (contact.normal.x != 0) { pos.x = prePos.x; }
-    if (contact.normal.y != 0) { pos.y = prePos.y; }
+    if (contact.normal.y != 0)
+    {
+        pos.y = prePos.y;
+
+        // 바닥에 닿았을 때 (contact.normal.y > 0 이면 바닥 방향)
+        if (contact.normal.y > 0)
+        {
+            Rigidbody* rb = owner->GetComponent<Rigidbody>();
+            if (rb) rb->isGrounded = true;
+        }
+    }
     transform->SetPosition(pos);
 
     // script
@@ -200,8 +222,16 @@ void CircleCollider::OnCollisionStay(ICollider* other, ContactInfo& contact)
         s->OnCollisionStay(other);
 }
 
-void CircleCollider::OnCollisionExit(ICollider* other)
+void CircleCollider::OnCollisionExit(ICollider* other, ContactInfo& contact)
 {
+    // gravity
+    if (contact.normal.y > 0)
+    {
+        Rigidbody* rb = owner->GetComponent<Rigidbody>();
+        if (rb) rb->isGrounded = false;
+    }
+
+    // script
     auto scripts = owner->GetComponents<Script>();
     for (auto s : scripts)
         s->OnCollisionExit(other);

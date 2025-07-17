@@ -17,28 +17,43 @@ void Rigidbody::FixedUpdate()
 {
     if (!transform) return;
 
+    // impulse
+    velocity += impulse / mass;
+
     // gravity
-    if (useGravity) 
+    if (useGravity)
     {
         acceleration += Vector2(0, -9.8f) * gravityScale;
     }
 
-    // apply acceleration
+    // acceleration
     velocity += acceleration * Time::GetFixedDeltaTime();
     velocity *= (1.0f - drag);
+
+    // grounded
+    if (isGrounded && velocity.y < 0)
+    {
+        velocity.y = -1;
+    }
 
     // block
     //if (blockX) { velocity.x = 0; blockX = false; }
     //if (blockY) { velocity.y = 0; blockY = false; }
 
     // position update
-    transform->SetPosition(transform->GetPosition() + velocity);
+    transform->SetPosition(transform->GetPosition() + velocity * Time::GetFixedDeltaTime());
 
-    // reset acceleration
+    // reset
+    impulse = Vector2::zero;
     acceleration = Vector2::zero;
 }
 
 void Rigidbody::AddForce(const Vector2& force)
 {
     acceleration += force / mass;
+}
+
+void Rigidbody::AddImpulse(const Vector2& impulse) 
+{
+    this->impulse = impulse / mass;
 }

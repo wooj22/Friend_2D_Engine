@@ -45,13 +45,13 @@ public:
 	// cycle
 	virtual ~ICollider() = default;
 	virtual void UpdateBounds() = 0;
-	virtual bool isCollision(ICollider* other, ContactInfo& outContact) = 0;
+	virtual bool isCollision(ICollider* other, ContactInfo& contact) = 0;
 	virtual void FinalizeCollision() = 0;
 
 	// collision event
-	virtual void OnCollisionEnter(ICollider* other, ContactInfo& outContact) = 0;
-	virtual void OnCollisionStay(ICollider* other, ContactInfo& outContact) = 0;
-	virtual void OnCollisionExit(ICollider* other) = 0;
+	virtual void OnCollisionEnter(ICollider* other, ContactInfo& contact) = 0;
+	virtual void OnCollisionStay(ICollider* other, ContactInfo& contact) = 0;
+	virtual void OnCollisionExit(ICollider* other, ContactInfo& contact) = 0;
 	virtual void OnTriggerEnter(ICollider* other) = 0;
 	virtual void OnTriggerStay(ICollider* other) = 0;
 	virtual void OnTriggerExit(ICollider* other) = 0;

@@ -2,6 +2,8 @@
 #include "Component.h"
 #include "PhysicsSystem.h"
 #include "Vector2.h"
+#include "BoxCollider.h"
+#include "CircleCollider.h"
 
 /* [Rigidbody Component]
 * 물리 게산을 담당하는 컴포넌트로, Transform을 참조하여 이동시킨다.
@@ -16,14 +18,19 @@ private:
     Transform* transform = nullptr;
 
 public:
+    bool isGrounded;             // 바닥 flag (collision)
+    bool blockX, blockY;         // collision 방향에 따른 이동 제한
+
+public:
     Vector2 velocity = Vector2::zero;           // 속도
     Vector2 acceleration = Vector2::zero;       // 가속도
     float mass = 1.0f;                          // 질량
     bool useGravity = true;                     // 중력 사용 여부
-    float gravityScale = 50.0f;                 // 중력 보정값
+    float gravityScale = 1.0f;                  // 중력 보정값
     float drag = 0.0f;                          // 공기 저항, 마찰력 (클수록 속도 깎임)
 
-    //bool blockX, blockY;
+private:
+    Vector2 impulse = Vector2::zero;            // 추진력 (순간적인 힘)
 
 public:
     // component cycle
@@ -43,6 +50,11 @@ public:
 public:
     // func
     void AddForce(const Vector2& force);
+    void AddImpulse(const Vector2& impulse);
+
+    // friend
+    friend class BoxCollider;
+    friend class CircleCollider;
 };
 
 
