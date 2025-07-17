@@ -214,12 +214,9 @@ void CircleCollider::OnCollisionStay(ICollider* other, ContactInfo& contact)
 
 void CircleCollider::OnCollisionExit(ICollider* other, ContactInfo& contact)
 {
-    // isGrounded                       // TODO 노말 말고 isGround 콜라이더 개수로 체크하기
-    if (contact.normal.y < 0)           // TODO texture reverse
-    {
-        Rigidbody* rb = owner->GetComponent<Rigidbody>();
-        if (rb) rb->isGrounded = false;
-    }
+    // isGrounded    // TODO :: isGround 콜라이더 개수로 체크하기
+    Rigidbody* rb = owner->GetComponent<Rigidbody>();
+    if (rb) rb->isGrounded = false;
 
     // script
     auto scripts = owner->GetComponents<Script>();

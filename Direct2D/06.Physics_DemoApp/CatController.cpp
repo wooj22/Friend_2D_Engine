@@ -94,8 +94,7 @@ void CatController::Move_Transform()
 // 물리 이동
 void CatController::Move_Physics()
 {
-	Vector2 direction = Vector2(inputX, 0).Normalized();
-	rb->velocity.x = direction.x * curSpeed;
+	rb->velocity.x = inputX * curSpeed;
 }
 
 // 물리 점프 => inputsystem의 update 주기가 update()라서 fixed udpate가 아닌 update()에서 호출중
@@ -111,7 +110,6 @@ void CatController::InfoTextUpdate()
 {
 	//infoText->SetText(L"speed : " + to_wstring(curSpeed));
 	//infoText->SetText(L"is Ground: " + to_wstring(isGround));
-	//infoText->SetText(L"rb is Grounded: " + to_wstring(rb->isGrounded));
 	infoText->SetText(L"velocity y : " + to_wstring(rb->velocity.y));
 }
 
