@@ -186,10 +186,14 @@ void BoxCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
         pos.y = prePos.y;
 
         // isGrounded
-        if (contact.normal.y < 0)   // TODO texture reverse
+        if (contact.normal.y < 0.5f)   // TODO texture reverse
         {
             Rigidbody* rb = owner->GetComponent<Rigidbody>();
-            if (rb) rb->isGrounded = true;
+            if (rb)
+            {
+                rb->groundContactCount++;
+                rb->isGrounded = true;
+            }
         }
     }
     transform->SetPosition(pos);
@@ -218,9 +222,18 @@ void BoxCollider::OnCollisionStay(ICollider* other, ContactInfo& contact)
 
 void BoxCollider::OnCollisionExit(ICollider* other, ContactInfo& contact)
 {
-    // isGrounded    // TODO :: isGround 콜라이더 개수로 체크하기
+    // isGrounded
     Rigidbody* rb = owner->GetComponent<Rigidbody>();
-    if (rb) rb->isGrounded = false;          
+    if (rb && contact.normal.y < 0.5f)
+    {
+        rb->groundContactCount--;
+
+        if (rb->groundContactCount <= 0)
+        {
+            rb->groundContactCount = 0;
+            rb->isGrounded = false;
+        }
+    }
 
     // script
     auto scripts = owner->GetComponents<Script>();

@@ -19,6 +19,7 @@ private:
 
 private:
     bool isGrounded;             // 바닥 flag (collision)
+    int groundContactCount = 0;  // collsition enter/ exit count로 flag 관리
 
 public:
     Vector2 velocity = Vector2::zero;           // 속도

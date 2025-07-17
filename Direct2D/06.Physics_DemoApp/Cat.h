@@ -54,7 +54,7 @@ public:
 		collider->size = { 15, 10 };
 		collider->isTrigger = false;
 		rigidbody->useGravity = true;
-		rigidbody->gravityScale = 30;
+		rigidbody->gravityScale = 40;
 	}
 };
 

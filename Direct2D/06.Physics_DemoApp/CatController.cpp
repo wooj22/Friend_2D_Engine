@@ -97,12 +97,12 @@ void CatController::Move_Physics()
 	rb->velocity.x = inputX * curSpeed;
 }
 
-// 물리 점프 => inputsystem의 update 주기가 update()라서 fixed udpate가 아닌 update()에서 호출중
+// 물리 점프
 void CatController::Jump_Physics()
 {
 	if (isW && isGround)
 	{
-		rb->AddImpulse(Vector2(0, jumpForce));		// rigidbody 내부적으로는 fixed update()
+		rb->AddImpulse(Vector2(0, jumpForce));
 	}
 }
 
