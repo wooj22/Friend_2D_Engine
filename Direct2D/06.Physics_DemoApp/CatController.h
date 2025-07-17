@@ -60,7 +60,7 @@ public:
 	void OnCollisionStay(ICollider* other) override 
 	{ 
 		if (other->owner->name == "Cloud") {
-			OutputDebugStringA("OnCollisionStay() - Could\n");
+			//OutputDebugStringA("OnCollisionStay() - Could\n");
 		}
 	}
 

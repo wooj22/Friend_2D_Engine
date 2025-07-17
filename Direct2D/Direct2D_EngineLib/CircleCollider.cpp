@@ -181,8 +181,8 @@ void CircleCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
     {
         pos.y = prePos.y;
 
-        // 바닥에 닿았을 때 (contact.normal.y > 0 이면 바닥 방향)
-        if (contact.normal.y > 0)
+        // isGrounded
+        if (contact.normal.y < 0)   // TODO texture reverse
         {
             Rigidbody* rb = owner->GetComponent<Rigidbody>();
             if (rb) rb->isGrounded = true;
@@ -203,17 +203,7 @@ void CircleCollider::OnCollisionStay(ICollider* other, ContactInfo& contact)
 
     // 축별 보정
     if (contact.normal.x != 0) { pos.x = prePos.x; }
-    if (contact.normal.y != 0)
-    {
-        pos.y = prePos.y;
-
-        // 바닥에 닿았을 때 (contact.normal.y > 0 이면 바닥 방향)
-        if (contact.normal.y > 0)
-        {
-            Rigidbody* rb = owner->GetComponent<Rigidbody>();
-            if (rb) rb->isGrounded = true;
-        }
-    }
+    if (contact.normal.y != 0) { pos.y = prePos.y; }
     transform->SetPosition(pos);
 
     // script
@@ -224,8 +214,8 @@ void CircleCollider::OnCollisionStay(ICollider* other, ContactInfo& contact)
 
 void CircleCollider::OnCollisionExit(ICollider* other, ContactInfo& contact)
 {
-    // gravity
-    if (contact.normal.y > 0)
+    // isGrounded                       // TODO 노말 말고 isGround 콜라이더 개수로 체크하기
+    if (contact.normal.y < 0)           // TODO texture reverse
     {
         Rigidbody* rb = owner->GetComponent<Rigidbody>();
         if (rb) rb->isGrounded = false;

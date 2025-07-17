@@ -19,7 +19,7 @@ private:
 
 public:
     bool isGrounded;             // 바닥 flag (collision)
-    bool blockX, blockY;         // collision 방향에 따른 이동 제한
+    //bool blockX, blockY;         // collision 방향에 따른 이동 제한
 
 public:
     Vector2 velocity = Vector2::zero;           // 속도
@@ -53,8 +53,8 @@ public:
     void AddImpulse(const Vector2& impulse);
 
     // friend
-    friend class BoxCollider;
-    friend class CircleCollider;
+    //friend class BoxCollider;
+    //friend class CircleCollider;
 };
 
 

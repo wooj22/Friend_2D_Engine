@@ -21,10 +21,7 @@ void Rigidbody::FixedUpdate()
     velocity += impulse / mass;
 
     // gravity
-    if (useGravity)
-    {
-        acceleration += Vector2(0, -9.8f) * gravityScale;
-    }
+    if (useGravity) acceleration += Vector2(0, -9.8f) * gravityScale;
 
     // acceleration
     velocity += acceleration * Time::GetFixedDeltaTime();

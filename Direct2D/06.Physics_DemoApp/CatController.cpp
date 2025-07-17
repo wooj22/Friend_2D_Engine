@@ -111,7 +111,7 @@ void CatController::InfoTextUpdate()
 {
 	//infoText->SetText(L"speed : " + to_wstring(curSpeed));
 	//infoText->SetText(L"is Ground: " + to_wstring(isGround));
-	infoText->SetText(L"rb is Grounded: " + to_wstring(rb->isGrounded));
-	//infoText->SetText(L"velocity y : " + to_wstring(rb->velocity.y));
+	//infoText->SetText(L"rb is Grounded: " + to_wstring(rb->isGrounded));
+	infoText->SetText(L"velocity y : " + to_wstring(rb->velocity.y));
 }
 
