@@ -174,7 +174,6 @@
     <ClInclude Include="ScriptSystem.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteRenderer.h" />
-    <ClInclude Include="Camera_Old.h" />
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="Input.h" />
@@ -228,7 +227,6 @@
     <ClCompile Include="ScriptSystem.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
-    <ClCompile Include="Camera_Old.cpp" />
     <ClCompile Include="GameApp.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="Input.cpp" />

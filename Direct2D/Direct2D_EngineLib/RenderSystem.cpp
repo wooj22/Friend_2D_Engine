@@ -4,6 +4,7 @@
 #include "ImageRenderer.h"
 #include "ScreenTextRenderer.h"
 #include "ColliderSystem.h"
+#include "Camera.h"
 #include <algorithm>
 
 /// Component µî·Ï
@@ -132,6 +133,7 @@ void RenderSystem::Render()
 	// culling
 	for (IRenderer* renderer : game_renderers)
 	{
+		// TODO :: culling
 		renderer->Render();
 	}
 

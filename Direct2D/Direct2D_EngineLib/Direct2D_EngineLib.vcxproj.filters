@@ -162,9 +162,6 @@
     <ClInclude Include="GameApp.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Camera_Old.h">
-      <Filter>헤더 파일\02. GameObject\Camera</Filter>
-    </ClInclude>
     <ClInclude Include="RenderSystem.h">
       <Filter>헤더 파일\04. ComponentSystem</Filter>
     </ClInclude>
@@ -310,9 +307,6 @@
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera_Old.cpp">
-      <Filter>소스 파일\02. GameObject\Camera</Filter>
     </ClCompile>
     <ClCompile Include="RenderSystem.cpp">
       <Filter>소스 파일\04. ComponentSystem</Filter>

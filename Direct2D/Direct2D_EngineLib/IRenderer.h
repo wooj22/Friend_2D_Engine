@@ -23,14 +23,14 @@ enum class TextVerticalAlign {
 class IRenderer : public Component
 {
 public : 
-	virtual ~IRenderer() = default;
+	// layer
+	RenderType rendertype = RenderType::GameObject;
+	int layer = 0;
 
+	// culling
+
+	// component cycle
+	virtual ~IRenderer() = default;
 	virtual void Update() = 0;
 	virtual void Render() = 0;
-
-	// gameobject À§¿¡ ui ±×¸®±â
-	RenderType rendertype = RenderType::GameObject;
-
-	// layer: ³·À»¼ö·Ï ¸ÕÀú ·»´õµÊ
-	int layer = 0;
 };

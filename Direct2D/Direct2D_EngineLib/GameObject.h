@@ -5,6 +5,7 @@
 #include <windows.h> 
 #include "Component.h"
 #include "Object.h"
+#include "Transform.h";         // TODO 삭제 :: 왜 갑자기 오류나지?
 
 using namespace std;
 
