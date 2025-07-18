@@ -12,7 +12,7 @@
 class Scene2 : public Scene
 {
 private:
-	Camera* camera;
+	Camera_Old* camera;
 	UI_Image* titleBackground;
 	UI_Text* titleText;
 	UI_Text* adviceText;

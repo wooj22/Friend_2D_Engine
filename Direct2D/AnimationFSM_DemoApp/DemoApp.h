@@ -6,7 +6,7 @@ class DemoApp : public GameApp
 {
 public:
 	enum SceneName { SCENE1 };	// scene enum
-	static Camera* mainCamera;
+	static Camera_Old* mainCamera;
 
 	DemoApp(int inputWidth, int inputHeight) : GameApp(inputWidth, inputHeight) {};
 	~DemoApp() override = default;

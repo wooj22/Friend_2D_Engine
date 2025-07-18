@@ -112,6 +112,7 @@ void GameApp::Update()
 
 	buttonSystem.Update();
 	renderSystem.Update();
+	cameraSystem.Update();
 }
 
 /// Fixed Update

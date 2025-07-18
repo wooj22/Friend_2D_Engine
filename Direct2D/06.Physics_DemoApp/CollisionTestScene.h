@@ -2,7 +2,7 @@
 #include "../Direct2D_EngineLib/Scene.h"
 #include "../Direct2D_EngineLib/Input.h"
 #include "../Direct2D_EngineLib/Time.h"
-#include "../Direct2D_EngineLib/Camera.h"
+#include "../Direct2D_EngineLib/Camera_Old.h"
 
 #include "DemoApp.h"
 #include "ColUIManager.h"
@@ -13,7 +13,7 @@
 class CollisionTestScene : public Scene
 {
 private:
-	Camera* camera;
+	Camera_Old* camera;
 	ColUIManager* uiManager;
 	BoxObject* box;
 	CircleObject* circle;

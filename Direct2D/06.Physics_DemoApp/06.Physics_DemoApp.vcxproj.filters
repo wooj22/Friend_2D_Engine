@@ -94,7 +94,7 @@
       <Filter>03. Script</Filter>
     </ClCompile>
     <ClCompile Include="ColObText.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>02. GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -150,7 +150,7 @@
       <Filter>03. Script</Filter>
     </ClInclude>
     <ClInclude Include="ColObText.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>02. GameObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

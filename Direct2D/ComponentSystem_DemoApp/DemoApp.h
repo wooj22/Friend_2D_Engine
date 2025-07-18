@@ -6,7 +6,7 @@ class DemoApp : public GameApp
 {
 public:
 	enum SceneName { MENU, PLAY };	// scene enum
-	static Camera* mainCamera;		// 전체 scene이 같이 쓸 카메라
+	static Camera_Old* mainCamera;		// 전체 scene이 같이 쓸 카메라
 	
 	DemoApp(int inputWidth, int inputHeight) : GameApp(inputWidth, inputHeight) {};
 	~DemoApp() override = default;

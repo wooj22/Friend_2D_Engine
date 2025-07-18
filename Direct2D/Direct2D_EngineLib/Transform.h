@@ -42,7 +42,7 @@ private:
     // parent, children
     Transform* parent = nullptr;
     std::vector<Transform*> children;
-
+    
     // this matrix
     D2D1::Matrix3x2F localMatrix;
     D2D1::Matrix3x2F worldMatrix;

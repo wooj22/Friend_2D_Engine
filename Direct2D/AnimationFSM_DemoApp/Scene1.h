@@ -10,7 +10,7 @@
 class Scene1 : public Scene
 {
 private:
-	Camera* camera;
+	Camera_Old* camera;
 	Cat* cat;
 	UI_Text* advice_text;
 	UI_Text* catSpeed_text;

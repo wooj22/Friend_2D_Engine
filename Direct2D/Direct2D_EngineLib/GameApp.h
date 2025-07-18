@@ -12,6 +12,7 @@
 #include "ScriptSystem.h"
 #include "SceneManager.h"
 #include "ResourceManager.h"
+#include "CameraSystem.h"
 #include "Time.h"
 #include "Input.h"
 #include "ObjectTable.h"
@@ -48,6 +49,7 @@ protected:
 	ScriptSystem scriptSystem;			// script
 	ColliderSystem colliderSystem;		// collider
 	PhysicsSystem physicsSystem;		// rigidbody
+	CameraSystem cameraSystem;			// camera
 
 	// manager
 	SceneManager sceneManager;

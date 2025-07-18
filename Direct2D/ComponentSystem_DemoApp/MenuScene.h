@@ -12,7 +12,7 @@ class MenuScene : public Scene
 {
 private:
 	// menu scene objects
-	Camera* camera;
+	Camera_Old* camera;
 	Cat* cat;
 	Fish* fish;
 	MenuBackground* background;

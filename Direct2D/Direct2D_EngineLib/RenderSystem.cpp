@@ -129,6 +129,7 @@ void RenderSystem::Render()
 		[](IRenderer* a, IRenderer* b) { return a->layer < b->layer; });
 
 	// GameObject Render()
+	// culling
 	for (IRenderer* renderer : game_renderers)
 	{
 		renderer->Render();

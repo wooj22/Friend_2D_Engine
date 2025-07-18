@@ -148,6 +148,8 @@
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="ButtonSystem.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraSystem.h" />
     <ClInclude Include="CircleCollider.h" />
     <ClInclude Include="ColliderSystem.h" />
     <ClInclude Include="Collision.h" />
@@ -172,7 +174,7 @@
     <ClInclude Include="ScriptSystem.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteRenderer.h" />
-    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Camera_Old.h" />
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="Input.h" />
@@ -197,6 +199,8 @@
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ButtonSystem.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraSystem.cpp" />
     <ClCompile Include="CircleCollider.cpp" />
     <ClCompile Include="ColliderSystem.cpp" />
     <ClCompile Include="Collision.cpp" />
@@ -224,7 +228,7 @@
     <ClCompile Include="ScriptSystem.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
-    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Camera_Old.cpp" />
     <ClCompile Include="GameApp.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="Input.cpp" />

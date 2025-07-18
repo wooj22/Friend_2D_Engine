@@ -23,7 +23,7 @@ class RenderSystem : public Singleton<RenderSystem>
 {
 private:
 	// renderList
-	vector<IRenderer*> components;		// render °´Ã¼µé
+	//vector<IRenderer*> components;		// render °´Ã¼µé
 	vector<IRenderer*> ui_renderers;
 	vector<IRenderer*> game_renderers;
 

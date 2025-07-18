@@ -11,7 +11,7 @@ class PlayScene : public Scene
 {
 private:
 	// play scene objects
-	Camera* camera;
+	Camera_Old* camera;
 	Sun* sun;
 	Earth* earth;
 	Moon* moon; 

@@ -2,7 +2,7 @@
 #include "../Direct2D_EngineLib/Scene.h"
 #include "../Direct2D_EngineLib/Input.h"
 #include "../Direct2D_EngineLib/Time.h"
-#include "../Direct2D_EngineLib/Camera.h"
+#include "../Direct2D_EngineLib/Camera_Old.h"
 #include "DemoApp.h"
 
 #include "PlayUIManager.h"
@@ -17,7 +17,7 @@ private:
 	bool isCatCreate;
 
 private:
-	Camera* camera;
+	Camera_Old* camera;
 	UI_Text* adviceText;
 
 	PlayUIManager* uiManager;

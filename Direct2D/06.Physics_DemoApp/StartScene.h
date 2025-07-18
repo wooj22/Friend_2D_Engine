@@ -1,7 +1,7 @@
 #pragma once
 #include "../Direct2D_EngineLib/Scene.h"
 #include "../Direct2D_EngineLib/Input.h"
-#include "../Direct2D_EngineLib/Camera.h"
+#include "../Direct2D_EngineLib/Camera_Old.h"
 
 #include "StartUIManager.h"
 #include "DemoApp.h"
@@ -9,7 +9,7 @@
 class StartScene : public Scene
 {
 private:
-	Camera* camera;
+	Camera_Old* camera;
 	StartUIManager* uiManager;
 	
 public:

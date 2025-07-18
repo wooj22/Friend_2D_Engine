@@ -151,12 +151,18 @@
     <Filter Include="소스 파일\09. Physics">
       <UniqueIdentifier>{535720f3-34c0-4754-a77c-239f7169cc0f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\03. Component\Camera">
+      <UniqueIdentifier>{868e3cc9-3da9-425e-b9c4-63fc24ef188e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\03. Component\Camera">
+      <UniqueIdentifier>{91620ce1-effb-4a48-825c-0695ddc00421}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
+    <ClInclude Include="Camera_Old.h">
       <Filter>헤더 파일\02. GameObject\Camera</Filter>
     </ClInclude>
     <ClInclude Include="RenderSystem.h">
@@ -294,12 +300,18 @@
     <ClInclude Include="Collision.h">
       <Filter>헤더 파일\09. Physics</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>헤더 파일\03. Component\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraSystem.h">
+      <Filter>헤더 파일\04. ComponentSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
+    <ClCompile Include="Camera_Old.cpp">
       <Filter>소스 파일\02. GameObject\Camera</Filter>
     </ClCompile>
     <ClCompile Include="RenderSystem.cpp">
@@ -431,6 +443,12 @@
     </ClCompile>
     <ClCompile Include="Collision.cpp">
       <Filter>소스 파일\09. Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>소스 파일\03. Component\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraSystem.cpp">
+      <Filter>소스 파일\04. ComponentSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

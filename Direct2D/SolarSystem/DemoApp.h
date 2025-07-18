@@ -6,7 +6,7 @@ class DemoApp : public GameApp
 {
 private:
 	// camera
-	Camera mainCamera;
+	Camera_Old mainCamera;
 
 	// image object
 	SpriteRenderer sun;

@@ -5,7 +5,7 @@
 #include "CollisionTestScene.h"
 
 // static member init
-Camera* DemoApp::mainCamera = nullptr;
+Camera_Old* DemoApp::mainCamera = nullptr;
 
 /// Game Init
 void DemoApp::Init()
@@ -13,7 +13,7 @@ void DemoApp::Init()
 	__super::Init();
 
 	// main camera init
-	mainCamera = new Camera(width, height);
+	mainCamera = new Camera_Old(width, height);
 	mainCamera->transform = mainCamera->AddComponent<Transform>();
 
 	// matrix init
