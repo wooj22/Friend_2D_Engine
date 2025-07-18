@@ -99,6 +99,10 @@ public:
     Vector2 GetPosition() const { return position; }
     float GetRotation() const { return rotation; }
     Vector2 GetScale() const { return scale; }
+    Vector2 GetWorldPosition() const
+    {
+        return Vector2(worldMatrix._31, worldMatrix._32);
+    }
 
 private:
     //  matrix
