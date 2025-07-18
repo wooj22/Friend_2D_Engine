@@ -13,6 +13,14 @@ void WorldTextRenderer::OnEnable()
 
 void WorldTextRenderer::Update() 
 {
+	// bound update
+	if (transform) 
+	{
+		Vector2 boundPos = transform->GetPosition();
+		Vector2 boundSize = Vector2(width, height);
+	}
+
+	// text update
 	if (isTextDirty) {
 		// 텍스트 포맷 재생성
 		RenderSystem::Get().dWriteFactory->CreateTextFormat(

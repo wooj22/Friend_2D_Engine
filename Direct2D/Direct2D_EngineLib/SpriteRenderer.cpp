@@ -9,7 +9,16 @@ void SpriteRenderer::OnEnable()
 
 void SpriteRenderer::Update() 
 {
+	// bound udpate
+	if (!transform || !sprite) return;
 
+	Vector2 worldPos = transform->GetPosition();
+	Vector2 size = Vector2(sprite->size.width, sprite->size.height);
+
+	// pivot 보정 (pivot: 0~1 기준)
+	boundPos = worldPos - Vector2(size.x * sprite->pivot.x, size.y * sprite->pivot.y) + 
+		Vector2(size.x * 0.5f, size.y * 0.5f);
+	boundSize = size;
 }
 
 void SpriteRenderer::Render() 

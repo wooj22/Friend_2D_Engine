@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.h"
+#include "Vector2.h"
 
 /* Renderer Componenets Interface */
 
@@ -27,7 +28,9 @@ public :
 	RenderType rendertype = RenderType::GameObject;
 	int layer = 0;
 
-	// culling
+	// culling - gameobject
+	Vector2 boundPos;   // world pos + pivot
+	Vector2 boundSize;  // size
 
 	// component cycle
 	virtual ~IRenderer() = default;

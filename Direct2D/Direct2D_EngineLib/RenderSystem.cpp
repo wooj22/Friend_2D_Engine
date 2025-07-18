@@ -133,8 +133,10 @@ void RenderSystem::Render()
 	// culling
 	for (IRenderer* renderer : game_renderers)
 	{
-		// TODO :: culling
-		renderer->Render();
+		if (Camera::GetMainCamera()->IsInView(renderer->boundPos, renderer->boundSize))
+		{
+			renderer->Render();
+		}
 	}
 
 	// UI Render()
