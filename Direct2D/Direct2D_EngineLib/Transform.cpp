@@ -1,4 +1,5 @@
 #include "Transform.h"
+#include "Camera.h"
 
 // static mamber init
 D2D1::Matrix3x2F Transform::cameraInversMatrix = D2D1::Matrix3x2F::Identity();
@@ -13,8 +14,10 @@ void Transform::OnEnable()
 
 void Transform::Update()
 {
+    // previous position
     prePosition = position;
 
+    // transform update
     MakeLocalMatrix();
     MakeWorldMatrix();
     MakeScreenMatrix();
@@ -177,5 +180,5 @@ void Transform::MakeScreenMatrix() {
     //screenMatrix = GetWorldMatrix() * cameraInversMatrix;
 
     // unity
-    screenMatrix = renderMatrix * worldMatrix * cameraInversMatrix * unityMatrix;
+    screenMatrix = renderMatrix * worldMatrix * Camera::GetMainInverseMatrix() * unityMatrix;
 }

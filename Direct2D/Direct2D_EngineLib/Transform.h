@@ -58,6 +58,7 @@ public:
     static D2D1::Matrix3x2F renderMatrix;         // 고정
 
     // camera 역행렬 set
+    // todo :: delete
     static void SetCameraMatrix(const D2D1::Matrix3x2F& cameraMatrix)
     {
         D2D1::Matrix3x2F invert = cameraMatrix;

@@ -1,9 +1,12 @@
 #pragma once
+#include <d2d1.h>
 #include "Component.h"
 #include "CameraSystem.h"
+#include "Vector2.h"
 
 /* [Camera Conponent]
 * 
+* TODO :: zoom 등 기능 함수 추가
 */
 
 class Transform;
@@ -12,12 +15,37 @@ class Camera : public Component
 private:
 	Transform* transform = nullptr;
 
+	// view
+	float viewWidth = 1280.0f;
+	float viewHeight = 720.0f;
+
+	// matrix
+	D2D1::Matrix3x2F worldMatrix = D2D1::Matrix3x2F::Identity();
+	D2D1::Matrix3x2F inverseMatrix = D2D1::Matrix3x2F::Identity();
+
+public:
+	// main camera
+	static Camera* mainCamera;
+	static void SetMainCamera(Camera* cam);
+	static Camera* GetMainCamera();
+	static const D2D1::Matrix3x2F& GetMainInverseMatrix();		// -> transform screen matrix
+
 public:
 	// component cycle
-	Camera() { CameraSystem::Get().Regist(this); }
+	Camera(float width, float height) : viewWidth(width), viewHeight(height)
+		{ CameraSystem::Get().Regist(this); }
 	~Camera() override { CameraSystem::Get().Unregist(this); }
 	void OnEnable();
 	void OnDestroy();
 	void Update();
+
+public:
+	// culling
+	bool IsInView(const Vector2& worldPos, const Vector2& boundSize = Vector2(0, 0)) const;
+
+	// get / set
+	void SetViewSize(float width, float height) { viewWidth = width; viewHeight = height; }
+	float GetViewWidth() const { return viewWidth; }
+	float GetViewHeight() const { return viewHeight; }
 };
 

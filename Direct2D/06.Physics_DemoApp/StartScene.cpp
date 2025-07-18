@@ -3,8 +3,12 @@
 void StartScene::Awake()
 {
 	// camera init
-	camera = DemoApp::mainCamera;
-	camera->transform->SetPosition(0, 0);
+	//camera = DemoApp::mainCamera;
+	//camera->transform->SetPosition(0, 0);
+
+	cam = CreateObject<GameObject>();
+	cam->AddComponent<Transform>();
+	cam->AddComponent<Camera>(1400, 800);
 
 	// create gameobject
 	uiManager = CreateObject<StartUIManager>();
@@ -29,13 +33,13 @@ void StartScene::Update()
 	__super::Update();
 
 	// camera ¿ªÇà·Ä update
-	Transform::SetCameraMatrix(camera->transform->GetWorldMatrix());
+	//Transform::SetCameraMatrix(camera->transform->GetWorldMatrix());
 }
 
 void StartScene::Exit()
 {
 	// game object -> destroy()
-	camera = nullptr;
+	//camera = nullptr;
 	__super::Exit();
 }
 

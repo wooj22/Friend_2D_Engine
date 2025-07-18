@@ -3,6 +3,7 @@
 #include "../Direct2D_EngineLib/Input.h"
 #include "../Direct2D_EngineLib/Time.h"
 #include "../Direct2D_EngineLib/Camera_Old.h"
+#include "../Direct2D_EngineLib/Camera.h"
 #include "DemoApp.h"
 
 #include "PlayUIManager.h"
@@ -17,7 +18,8 @@ private:
 	bool isCatCreate;
 
 private:
-	Camera_Old* camera;
+	//Camera_Old* camera;
+	GameObject* cam;
 	UI_Text* adviceText;
 
 	PlayUIManager* uiManager;

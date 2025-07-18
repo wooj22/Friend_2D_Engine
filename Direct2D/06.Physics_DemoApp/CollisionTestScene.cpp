@@ -3,8 +3,13 @@
 void CollisionTestScene::Awake()
 {
 	// camera init
-	camera = DemoApp::mainCamera;
-	camera->transform->SetPosition(0, 0);
+	//camera = DemoApp::mainCamera;
+	//camera->transform->SetPosition(0, 0);
+
+	cam = CreateObject<GameObject>();
+	cam->AddComponent<Transform>();
+	cam->AddComponent<Camera>(1400, 800);
+	cam->GetComponent<Camera>()->SetMainCamera(cam->GetComponent<Camera>());
 
 	// create gameobject
 	uiManager = CreateObject<ColUIManager>();
@@ -41,13 +46,13 @@ void CollisionTestScene::Update()
 	__super::Update();
 
 	// camera ¿ªÇà·Ä update
-	Transform::SetCameraMatrix(camera->transform->GetWorldMatrix());
+	//Transform::SetCameraMatrix(camera->transform->GetWorldMatrix());
 }
 
 void CollisionTestScene::Exit()
 {
 	// game object -> destroy()
-	camera = nullptr;
+	//camera = nullptr;
 	__super::Exit();
 }
 
