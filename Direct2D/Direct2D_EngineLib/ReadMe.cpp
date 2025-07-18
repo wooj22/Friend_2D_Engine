@@ -227,7 +227,7 @@ class ColliderSystem;
 // 충돌한 콜라이더를 저장하기 위한 unordered_map<ICollider*, ContactInfo>을 이전 프레임 map, 현재 프레임 map으로 저장하며
 // 이번 프레임의 충돌 계산이 모두 끝나면 이를 비교하여 Enter, Stay, Exit를 호출한다.
 // => 이때 이 콜라이더가 등록되어있는 게임오브젝트의 Script 컴포넌트의 이벤트함수까지 호출해준다.
-// OnCollisionEnter, Stay같은 경우 block이 필요하기 때문에 콜라이더 내부에서 ContactInfo에 따라 축별 이동을 제한하고 있다.
+// OnCollision같은 경우는 ContactInfo를 통해 Block을 수행한다.
 class ICollider;
 class BoxCollider;
 class CircleCollider;
