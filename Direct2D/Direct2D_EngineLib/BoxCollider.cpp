@@ -77,7 +77,7 @@ bool BoxCollider::CheckAABBCollision(BoxCollider* other, ContactInfo& contact)
     else
     {
         // Y축 방향 법선
-        contact.normal = (thisCenter.y < otherCenter.y) ? Vector2(0, -1) : Vector2(0, 1);
+        contact.normal = (thisCenter.y > otherCenter.y) ? Vector2(0, -1) : Vector2(0, 1);
     }
 
     return true;
@@ -186,7 +186,7 @@ void BoxCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
         pos.y = prePos.y;
 
         // isGrounded
-        if (contact.normal.y < 0.5f)   // TODO texture reverse
+        if (contact.normal.y > 0)
         {
             Rigidbody* rb = owner->GetComponent<Rigidbody>();
             if (rb)
@@ -224,7 +224,7 @@ void BoxCollider::OnCollisionExit(ICollider* other, ContactInfo& contact)
 {
     // isGrounded
     Rigidbody* rb = owner->GetComponent<Rigidbody>();
-    if (rb && contact.normal.y < 0.5f)
+    if (rb && contact.normal.y > 0)
     {
         rb->groundContactCount--;
 
@@ -268,7 +268,7 @@ void BoxCollider::OnTriggerExit(ICollider* other)
 Vector2 BoxCollider::GetCenter() const
 {
     // transform 위치 + offset + size의 절반 (중심)
-    return transform->GetPosition() + offset + (size * 0.5f);
+    return transform->GetPosition() + offset +(size * 0.5f);
 }
 
 void BoxCollider::DebugColliderDraw()

@@ -182,7 +182,7 @@ void CircleCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
         pos.y = prePos.y;
 
         // isGrounded
-        if (contact.normal.y < 0.5f)   // TODO texture reverse
+        if (contact.normal.y > 0)
         {
             Rigidbody* rb = owner->GetComponent<Rigidbody>();
             if (rb)
@@ -220,7 +220,7 @@ void CircleCollider::OnCollisionExit(ICollider* other, ContactInfo& contact)
 {
     // isGrounded
     Rigidbody* rb = owner->GetComponent<Rigidbody>();
-    if (rb && contact.normal.y < 0.5f)
+    if (rb && contact.normal.y > 0)
     {
         rb->groundContactCount--;
 
