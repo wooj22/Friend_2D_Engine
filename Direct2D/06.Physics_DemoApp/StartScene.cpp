@@ -3,9 +3,6 @@
 void StartScene::Awake()
 {
 	// camera init
-	//camera = DemoApp::mainCamera;
-	//camera->transform->SetPosition(0, 0);
-
 	cam = CreateObject<GameObject>();
 	cam->AddComponent<Transform>();
 	cam->AddComponent<Camera>(1400, 800);
@@ -31,15 +28,11 @@ void StartScene::Update()
 {
 	// game object -> Update()
 	__super::Update();
-
-	// camera ¿ªÇà·Ä update
-	//Transform::SetCameraMatrix(camera->transform->GetWorldMatrix());
 }
 
 void StartScene::Exit()
 {
 	// game object -> destroy()
-	//camera = nullptr;
 	__super::Exit();
 }
 

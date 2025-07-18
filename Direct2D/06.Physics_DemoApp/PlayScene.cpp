@@ -3,9 +3,6 @@
 void PlayScene::Awake()
 {
 	// camera init
-	//camera = DemoApp::mainCamera;
-	//camera->transform->SetPosition(0, 0);
-
 	cam = CreateObject<GameObject>();
 	cam->AddComponent<Transform>();
 	cam->AddComponent<Camera>(1400, 800);
@@ -64,15 +61,11 @@ void PlayScene::Update()
 	// camera move
 	if (Input::GetKey(VK_LEFT)) cam->GetComponent<Transform>()->Translate(-300 * Time::GetDeltaTime(), 0);
 	if (Input::GetKey(VK_RIGHT)) cam->GetComponent<Transform>()->Translate(300 * Time::GetDeltaTime(), 0);
-
-	// camera ¿ªÇà·Ä update
-	//Transform::SetCameraMatrix(camera->transform->GetWorldMatrix());
 }
 
 void PlayScene::Exit()
 {
 	// game object -> destroy()
-	//camera = nullptr;
 	__super::Exit();
 }
 

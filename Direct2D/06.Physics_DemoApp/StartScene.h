@@ -1,7 +1,6 @@
 #pragma once
 #include "../Direct2D_EngineLib/Scene.h"
 #include "../Direct2D_EngineLib/Input.h"
-#include "../Direct2D_EngineLib/Camera_Old.h"
 #include "../Direct2D_EngineLib/Camera.h"
 
 #include "StartUIManager.h"
@@ -10,7 +9,6 @@
 class StartScene : public Scene
 {
 private:
-	//Camera_Old* camera;
 	GameObject* cam;
 	StartUIManager* uiManager;
 	

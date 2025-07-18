@@ -53,18 +53,8 @@ private:
 
 public:
     // matrix
-    static D2D1::Matrix3x2F cameraInversMatrix;   // 유동, screen size 필요
     static D2D1::Matrix3x2F unityMatrix;          // 고정, screen size 필요
     static D2D1::Matrix3x2F renderMatrix;         // 고정
-
-    // camera 역행렬 set
-    // todo :: delete
-    static void SetCameraMatrix(const D2D1::Matrix3x2F& cameraMatrix)
-    {
-        D2D1::Matrix3x2F invert = cameraMatrix;
-        invert.Invert();
-        cameraInversMatrix = invert;
-    }
 
 public:
     // component cycle

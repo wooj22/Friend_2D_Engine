@@ -2,7 +2,7 @@
 #include "../Direct2D_EngineLib/Scene.h"
 #include "../Direct2D_EngineLib/Input.h"
 #include "../Direct2D_EngineLib/Time.h"
-#include "../Direct2D_EngineLib/Camera_Old.h"
+
 #include "../Direct2D_EngineLib/Camera.h"
 #include "DemoApp.h"
 

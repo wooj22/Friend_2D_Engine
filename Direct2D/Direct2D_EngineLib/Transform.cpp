@@ -2,7 +2,6 @@
 #include "Camera.h"
 
 // static mamber init
-D2D1::Matrix3x2F Transform::cameraInversMatrix = D2D1::Matrix3x2F::Identity();
 D2D1::Matrix3x2F Transform::unityMatrix = D2D1::Matrix3x2F::Identity();
 D2D1::Matrix3x2F Transform::renderMatrix = D2D1::Matrix3x2F::Scale(1.0f, -1.0f);
 
@@ -174,10 +173,10 @@ void Transform::MakeWorldMatrix() {
     }
 }
 
-// Screen Matrix (TODO :: static 변경 dirty패턴 적용 방식 찾아보기)
+// Screen Matrix
 void Transform::MakeScreenMatrix() {
     // d2d 
-    //screenMatrix = GetWorldMatrix() * cameraInversMatrix;
+    //screenMatrix = GetWorldMatrix() * Camera::GetMainInverseMatrix();
 
     // unity
     screenMatrix = renderMatrix * worldMatrix * Camera::GetMainInverseMatrix() * unityMatrix;
