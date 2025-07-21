@@ -103,7 +103,6 @@ void CatController::Jump_Physics()
 	if (isW && isGround)
 	{
 		rb->AddImpulse(Vector2(0, jumpForce));
-		Time::SetTimeScale(0);
 	}
 }
 
