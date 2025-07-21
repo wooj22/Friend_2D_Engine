@@ -66,11 +66,32 @@ void ColliderSystem::FixedUpdate()
     }
 }
 
-
+// collider debug draw -> renderSystem에서 주석처리
 void ColliderSystem::DebugColliderDraw()
 {
     for (auto& col : components)
     {
         col->DebugColliderDraw();
     }
+}
+
+// Raycast 광선과 콜라이더의 충돌 정보 반환
+RaycastHit ColliderSystem::Raycast(const Ray& ray, float maxDistance)
+{
+    // ray hit
+    for (ICollider* col : components)
+    {
+        RaycastHit hitInfo;
+        if (col->Raycast(ray, maxDistance, hitInfo))
+        {
+            if (hitInfo.distance <= maxDistance)
+                return hitInfo;
+        }
+    }
+
+    // ray none hit
+    RaycastHit closestHit;
+    closestHit.collider = nullptr;
+    closestHit.distance = maxDistance;
+    return closestHit;
 }

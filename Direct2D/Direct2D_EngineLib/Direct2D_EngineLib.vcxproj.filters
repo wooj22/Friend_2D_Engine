@@ -300,6 +300,9 @@
     <ClInclude Include="CameraSystem.h">
       <Filter>헤더 파일\04. ComponentSystem</Filter>
     </ClInclude>
+    <ClInclude Include="RaycastHit.h">
+      <Filter>헤더 파일\09. Physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -437,6 +440,9 @@
     </ClCompile>
     <ClCompile Include="CameraSystem.cpp">
       <Filter>소스 파일\04. ComponentSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="RaycastHit.cpp">
+      <Filter>소스 파일\09. Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

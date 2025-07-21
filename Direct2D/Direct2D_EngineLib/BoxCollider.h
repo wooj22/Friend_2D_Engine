@@ -56,6 +56,9 @@ private:
     void OnTriggerStay(ICollider* other) override;
     void OnTriggerExit(ICollider* other) override;
 
+    // raycast hit
+    bool Raycast(const Ray& ray, float maxDistance, RaycastHit& hitInfo);
+
 public:
     // func
     Vector2 GetCenter() const;

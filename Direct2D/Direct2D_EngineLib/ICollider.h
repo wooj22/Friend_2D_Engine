@@ -2,6 +2,7 @@
 #include <unordered_map>
 #include "Component.h"
 #include "Vector2.h"
+#include "RaycastHit.h"
 
 template<typename T>
 T clamp(T value, T minVal, T maxVal)		
@@ -47,6 +48,9 @@ public:
 	virtual void UpdateBounds() = 0;
 	virtual bool isCollision(ICollider* other, ContactInfo& contact) = 0;
 	virtual void FinalizeCollision() = 0;
+
+	// ray cast hit
+	virtual bool Raycast(const Ray& ray, float maxDistance, RaycastHit& hitInfo) = 0;
 
 	// collision event
 	virtual void OnCollisionEnter(ICollider* other, ContactInfo& contact) = 0;

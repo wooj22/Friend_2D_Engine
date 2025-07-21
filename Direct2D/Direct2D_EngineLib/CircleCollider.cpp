@@ -261,6 +261,12 @@ void CircleCollider::OnTriggerExit(ICollider* other)
         s->OnTriggerExit(other);
 }
 
+bool CircleCollider::Raycast(const Ray& ray, float maxDistance, RaycastHit& hitInfo)
+{
+    // TODO 
+    return false;
+}
+
 void CircleCollider::DebugColliderDraw()
 {
     Vector2 localPos = Vector2(offset.x, -offset.y);

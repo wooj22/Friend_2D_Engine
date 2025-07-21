@@ -163,6 +163,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectTable.h" />
     <ClInclude Include="PhysicsSystem.h" />
+    <ClInclude Include="RaycastHit.h" />
     <ClInclude Include="RectTransform.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Rigidbody.h" />
@@ -211,6 +212,7 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectTable.cpp" />
     <ClCompile Include="PhysicsSystem.cpp" />
+    <ClCompile Include="RaycastHit.cpp" />
     <ClCompile Include="ReadMe.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>

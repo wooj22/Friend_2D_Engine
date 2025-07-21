@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Singleton.h"
+#include "RaycastHit.h"
 using namespace std;
 
 class ICollider;
@@ -17,4 +18,10 @@ public:
 	// component system
 	void FixedUpdate();
 	void DebugColliderDraw();
+
+	
+public:
+	// func
+	// ray hit collision
+	RaycastHit Raycast(const Ray& ray, float maxDistance);
 };

@@ -265,6 +265,12 @@ void BoxCollider::OnTriggerExit(ICollider* other)
         s->OnTriggerExit(other);
 }
 
+bool BoxCollider::Raycast(const Ray& ray, float maxDistance, RaycastHit& hitInfo)
+{
+    // TODO 
+    return false;
+}
+
 Vector2 BoxCollider::GetCenter() const
 {
     // transform 위치 + offset + size의 절반 (중심)
