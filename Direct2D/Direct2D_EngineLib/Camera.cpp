@@ -48,7 +48,7 @@ bool Camera::IsInView(const Vector2& worldPos, const Vector2& boundSize) const
 {
     if (!transform) return false;
 
-    Vector2 cameraPos = transform->GetPosition();
+    Vector2 cameraPos = transform->GetWorldPosition();
     Vector2 viewPos = worldPos - cameraPos;
 
     float halfW = viewWidth * 0.5f;

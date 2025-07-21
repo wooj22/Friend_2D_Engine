@@ -12,7 +12,7 @@ void SpriteRenderer::Update()
 	// bound udpate
 	if (!transform || !sprite) return;
 
-	Vector2 worldPos = transform->GetPosition();
+	Vector2 worldPos = transform->GetWorldPosition();
 	Vector2 size = Vector2(sprite->size.width, sprite->size.height);
 
 	// pivot 보정 (pivot: 0~1 기준)

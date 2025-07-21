@@ -16,8 +16,8 @@ private:
 	Transform* transform = nullptr;
 
 	// view
-	float viewWidth = 1280.0f;
-	float viewHeight = 720.0f;
+	float viewWidth = 1920.0f;
+	float viewHeight = 1080.0f;
 
 	// matrix
 	D2D1::Matrix3x2F worldMatrix = D2D1::Matrix3x2F::Identity();

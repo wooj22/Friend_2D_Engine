@@ -58,7 +58,7 @@ protected:
 public:
 	bool isLoop = true;
 
-	GameApp(int inputWidth = 1024, int inputHeight = 768) :
+	GameApp(int inputWidth = 1920, int inputHeight = 1080) :
 		width(inputWidth), height(inputHeight), hInstance(nullptr), hWnd(nullptr) { };
 	virtual ~GameApp() = default;
 

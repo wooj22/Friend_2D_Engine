@@ -2,7 +2,7 @@
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
     _In_ LPWSTR lpCmdLine, _In_ int nCmdShow){
-    DemoApp demoApp(2000, 1500);
+    DemoApp demoApp(1400, 800);
 
     demoApp.Init();
     demoApp.Loop();

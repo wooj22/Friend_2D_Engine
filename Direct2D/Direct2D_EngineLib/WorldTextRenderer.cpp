@@ -16,7 +16,7 @@ void WorldTextRenderer::Update()
 	// bound update
 	if (transform) 
 	{
-		Vector2 boundPos = transform->GetPosition();
+		Vector2 boundPos = transform->GetWorldPosition();
 		Vector2 boundSize = Vector2(width, height);
 	}
 
