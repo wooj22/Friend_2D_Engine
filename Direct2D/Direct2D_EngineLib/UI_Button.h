@@ -23,9 +23,8 @@ public:
 		imageRenderer = AddComponent <ImageRenderer>();
 		screenTextRenderer = AddComponent<ScreenTextRenderer>();
 		button = AddComponent<Button>();
-		OutputDebugStringA("UI_Button()\n"); 
 	}
-	~UI_Button() override { OutputDebugStringA("~UI_Button()\n"); }
+	~UI_Button() override { }
 
 	void Awake() override {}
 	void SceneStart() override {}

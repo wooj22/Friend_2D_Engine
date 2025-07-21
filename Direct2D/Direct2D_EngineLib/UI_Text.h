@@ -17,9 +17,8 @@ public:
 	{ 
 		rectTransform = AddComponent<RectTransform>();
 		screenTextRenderer = AddComponent <ScreenTextRenderer>();
-		OutputDebugStringA("UI_Text()\n"); 
 	}
-	~UI_Text() override { OutputDebugStringA("~UI_Text()\n"); }
+	~UI_Text() override { }
 
 	void Awake() override {}
 	void SceneStart() override {}

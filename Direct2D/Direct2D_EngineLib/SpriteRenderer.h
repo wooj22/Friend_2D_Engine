@@ -30,12 +30,10 @@ public:
 	SpriteRenderer() 
 	{ 
 		RenderSystem::Get().Regist(this); 
-		OutputDebugStringA("SpriteRenderer()\n");
 	};
 	~SpriteRenderer() override
 	{ 
 		RenderSystem::Get().Unregist(this);
-		OutputDebugStringA("~SpriteRenderer()\n");
 	}
 
 	void OnEnable() override;

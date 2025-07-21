@@ -43,12 +43,10 @@ public:
 	{ 
 		rendertype = RenderType::UI;		// 렌더 타입 지정 (UI)
 		RenderSystem::Get().Regist(this); 
-		OutputDebugStringA("ScreenTextRenderer()\n");
 	};
 	~ScreenTextRenderer() override 
 	{
 		RenderSystem::Get().Unregist(this);
-		OutputDebugStringA("~ScreenTextRenderer()\n");
 	}
 
 	void OnEnable() override;

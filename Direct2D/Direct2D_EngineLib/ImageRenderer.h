@@ -33,12 +33,10 @@ public:
 	ImageRenderer() { 
 		rendertype = RenderType::UI;		// 렌더 타입 지정 (UI)
 		RenderSystem::Get().Regist(this);
-		OutputDebugStringA("ImageRenderer()\n");
 	};
 	~ImageRenderer() override 
 	{
 		RenderSystem::Get().Unregist(this); 
-		OutputDebugStringA("~ImageRenderer()\n");
 	}
 
 	void OnEnable() override;

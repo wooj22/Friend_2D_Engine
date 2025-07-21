@@ -30,16 +30,8 @@ public:
 
 public:
     // component cycle
-    RectTransform() 
-    { 
-        TransformSystem::Get().Regist(this); 
-        OutputDebugStringA("RectTransform()\n");
-    }
-    ~RectTransform() override 
-    { 
-        TransformSystem::Get().Unregist(this); 
-        OutputDebugStringA("~RectTransform()\n");
-    }
+    RectTransform() { TransformSystem::Get().Regist(this); }
+    ~RectTransform() override { TransformSystem::Get().Unregist(this); }
 
     void OnEnable() override;
     void Update() override;

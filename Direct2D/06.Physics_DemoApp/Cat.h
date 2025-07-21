@@ -32,7 +32,6 @@ public:
 	Cat() : GameObject("Cat\n")
 	{
 		// component
-		OutputDebugStringA("Cat Cat()\n");
 		transform = AddComponent<Transform>();
 		spriteRenderer = AddComponent<SpriteRenderer>();
 		rigidbody = AddComponent<Rigidbody>();

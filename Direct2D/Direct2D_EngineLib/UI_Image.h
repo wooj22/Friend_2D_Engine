@@ -17,9 +17,8 @@ public:
 	{ 
 		rectTransform = AddComponent<RectTransform>();
 		imageRenderer = AddComponent <ImageRenderer>(); 
-		OutputDebugStringA("UI_Image()\n"); 
 	}
-	~UI_Image() override { OutputDebugStringA("~UI_Image()\n"); }
+	~UI_Image() override {  }
 
 	void Awake() override {}
 	void SceneStart() override {}

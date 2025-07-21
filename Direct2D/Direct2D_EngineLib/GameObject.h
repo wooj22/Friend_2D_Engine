@@ -71,10 +71,10 @@ public:
         if (it != allGameObjects.end()) allGameObjects.erase(it);  
     }
  
-    virtual void Awake() {};           // 오브젝트가 생성될 때, 생성자 이후
-    virtual void SceneStart() {};      // Scene의 Start -> Update중 SceneStart() 호출 보장 x
-    virtual void Update() {};          // Scene의 Update
-    virtual void Destroyed() {};       // Scene의 Exit, GameObject Delete
+    virtual void Awake() {}            // 오브젝트가 생성될 때, 생성자 이후
+    virtual void SceneStart() {}       // Scene의 Start -> Update중 SceneStart() 호출 보장 x
+    virtual void Update() {}           // Scene의 Update
+    virtual void Destroyed() {}        // Scene의 Exit, GameObject Delete
 
 
     /*  GameObject Destroy  */
