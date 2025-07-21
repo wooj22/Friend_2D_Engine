@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "ResourceManager.h"
 #include "ScriptSystem.h"
+#include "Time.h"
 
 /// first Scene Init
 void SceneManager::Init()
@@ -23,9 +24,10 @@ void SceneManager::Update()
 
 		currentScene = nextScene;
 		nextScene = nullptr;
-		ResourceManager::Get().Trim(); //gpu 府家胶 沥府
+		ResourceManager::Get().Trim();	// gpu 府家胶 沥府
 
 		// scene init
+		Time::SetTimeScale(1);			// time scale
 		currentScene->Awake();
 		currentScene->Start();
 	}

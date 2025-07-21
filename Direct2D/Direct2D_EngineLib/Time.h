@@ -10,12 +10,16 @@ private:
     static LARGE_INTEGER currentCounter;
     static float deltaTime;
     static float fixedDeltaTime;
+    static float timeScale;
 
 public:
     static void Init();
     static void Update();
 
-    static float GetDeltaTime();        // 이번 프레임 경과 시간
-    static float GetFixedDeltaTime();
-    static float GetTotalTime();        // 전체 경과 시간
+    static float GetDeltaTime(); 
+    static float GetFixedDeltaTime();   
+    static float GetTotalTime();
+
+    static void SetTimeScale(float scale);
+    static float GetTimeScale();
 };
