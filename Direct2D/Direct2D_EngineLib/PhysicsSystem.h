@@ -3,6 +3,10 @@
 #include "Singleton.h"
 using namespace std;
 
+/* PhysicsSystem의 역할
+* 1. Rigidbody 컴포넌트의 FixedUpdate() -> 물리 연산 진행 -> transform udpate
+*/
+
 class Rigidbody;
 class PhysicsSystem : public Singleton<PhysicsSystem>
 {

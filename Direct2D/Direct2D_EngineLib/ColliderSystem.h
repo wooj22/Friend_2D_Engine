@@ -4,6 +4,12 @@
 #include "RaycastHit.h"
 using namespace std;
 
+/* ColliderSystem의 역할
+* 1. Collider들의 bound update
+* 2. collision cheak(sap) -> 이벤트 함수 호출 연결
+* 3. RayCast 발생시 모든 콜라이더와의 hit 연산 결과 반환
+*/
+
 class ICollider;
 class ColliderSystem : public Singleton<ColliderSystem>
 {

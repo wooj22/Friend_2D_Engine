@@ -20,6 +20,13 @@
 using namespace Microsoft::WRL;    // Microsoft::WRL::ComPtr<T>
 using namespace std;
 
+
+/* RenderSystem의 역할
+* 1. render를 위한 directX 기반 마련 -> 모든 render는 이곳에서 이루어져야함
+* 2. Renderer 컴포넌트들의 update, render
+* 3. Debug Utility를 제공한다.
+*/
+
 class RenderSystem : public Singleton<RenderSystem>
 {
 private:
@@ -41,11 +48,6 @@ public :
 	ComPtr<ID2D1Bitmap1> backBufferBitmap;	  	    // 화면 출력용 D2D Bitmap (그릴 대상)
 	ComPtr<IDWriteFactory> dWriteFactory;			// Text Write Factory (텍스트 그리기)
 
-private:
-	// debug
-	ComPtr<ID2D1SolidColorBrush> debug_brush;
-	D2D1_COLOR_F debug_color = D2D1::ColorF(D2D1::ColorF::Red);
-
 public:
 	// componenet
 	void Regist(IRenderer* component);
@@ -57,10 +59,16 @@ public:
 	void Render();
 	void UnInit();			
 
-public:
+
+private:
 	// debug
-	// 함수를 호출하면 vector에 저장되어 해당 프레임에 그려지고 clear 된다.
 	vector<DebugDrawCommand> debugDrawCommands;
+	ComPtr<ID2D1SolidColorBrush> debug_brush;
+	D2D1_COLOR_F debug_color = D2D1::ColorF(D2D1::ColorF::Red);
+
+public:
+	// 함수를 호출하면 vector에 저장되어 해당 프레임에 그려지고 clear 된다.
+	// 그려질 rect, circle, line과 ScreenMatrix를 전달해주면 된다.
 	void DebugDrawRect(const D2D1_RECT_F& rect, const D2D1_MATRIX_3X2_F& transform, float strokeWidth = 0.5f);
 	void DebugDrawCircle(const D2D1_ELLIPSE& ellipse, const D2D1_MATRIX_3X2_F& transform, float strokeWidth = 0.5f);
 	void DebugDrawLine(const D2D1_POINT_2F& start, const D2D1_POINT_2F& end, const D2D1_MATRIX_3X2_F& transform, float strokeWidth = 0.5f);

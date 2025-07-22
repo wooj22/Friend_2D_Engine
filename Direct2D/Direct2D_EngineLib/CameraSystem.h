@@ -3,6 +3,10 @@
 #include <vector>
 using namespace std;
 
+/* CameraSystem의 역할
+* 1. Camera 컴포넌트 역행렬 udpate
+*/
+
 class Camera;
 class CameraSystem : public Singleton<CameraSystem>
 {
