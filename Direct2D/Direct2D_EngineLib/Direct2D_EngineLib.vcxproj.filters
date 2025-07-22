@@ -183,12 +183,6 @@
     <ClInclude Include="Time.h">
       <Filter>헤더 파일\05. StaticSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>헤더 파일\99. Module</Filter>
-    </ClInclude>
-    <ClInclude Include="MultiDelegate.h">
-      <Filter>헤더 파일\99. Module</Filter>
-    </ClInclude>
     <ClInclude Include="ButtonSystem.h">
       <Filter>헤더 파일\04. ComponentSystem</Filter>
     </ClInclude>
@@ -252,17 +246,11 @@
     <ClInclude Include="Animator.h">
       <Filter>헤더 파일\03. Component\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="json.hpp">
-      <Filter>헤더 파일\99. Module</Filter>
-    </ClInclude>
     <ClInclude Include="AnimationBaseState.h">
       <Filter>헤더 파일\08. Animation</Filter>
     </ClInclude>
     <ClInclude Include="AnimatorSystem.h">
       <Filter>헤더 파일\04. ComponentSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2.h">
-      <Filter>헤더 파일\99. Module</Filter>
     </ClInclude>
     <ClInclude Include="Rigidbody.h">
       <Filter>헤더 파일\03. Component\Physics</Filter>
@@ -288,9 +276,6 @@
     <ClInclude Include="ICollider.h">
       <Filter>헤더 파일\03. Component\Base\Interface</Filter>
     </ClInclude>
-    <ClInclude Include="DebugGizmo.h">
-      <Filter>헤더 파일\98. Utils</Filter>
-    </ClInclude>
     <ClInclude Include="CircleCollider.h">
       <Filter>헤더 파일\03. Component\Collider</Filter>
     </ClInclude>
@@ -302,6 +287,21 @@
     </ClInclude>
     <ClInclude Include="RaycastHit.h">
       <Filter>헤더 파일\09. Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="json.hpp">
+      <Filter>헤더 파일\99. Module</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>헤더 파일\98. Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>헤더 파일\98. Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiDelegate.h">
+      <Filter>헤더 파일\98. Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugDrawCommand.h">
+      <Filter>헤더 파일\98. Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -328,9 +328,6 @@
     </ClCompile>
     <ClCompile Include="Time.cpp">
       <Filter>소스 파일\05. StaticSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="MultiDelegate.cpp">
-      <Filter>소스 파일\99. Module</Filter>
     </ClCompile>
     <ClCompile Include="ButtonSystem.cpp">
       <Filter>소스 파일\04. ComponentSystem</Filter>
@@ -401,9 +398,6 @@
     <ClCompile Include="AnimatorSystem.cpp">
       <Filter>소스 파일\04. ComponentSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Vector2.cpp">
-      <Filter>소스 파일\99. Module</Filter>
-    </ClCompile>
     <ClCompile Include="Rigidbody.cpp">
       <Filter>소스 파일\03. Component\Physics</Filter>
     </ClCompile>
@@ -429,9 +423,6 @@
     <ClCompile Include="ICollider.cpp">
       <Filter>소스 파일\03. Component\Base\Interface</Filter>
     </ClCompile>
-    <ClCompile Include="DebugGizmo.cpp">
-      <Filter>소스 파일\98. Utils</Filter>
-    </ClCompile>
     <ClCompile Include="CircleCollider.cpp">
       <Filter>소스 파일\03. Component\Collider</Filter>
     </ClCompile>
@@ -443,6 +434,15 @@
     </ClCompile>
     <ClCompile Include="RaycastHit.cpp">
       <Filter>소스 파일\09. Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiDelegate.cpp">
+      <Filter>소스 파일\98. Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2.cpp">
+      <Filter>소스 파일\98. Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugDrawCommand.cpp">
+      <Filter>소스 파일\98. Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -9,6 +9,7 @@
 #include <dwrite.h>	     // Write
 #include "Singleton.h"
 #include "IRenderer.h"
+#include "DebugDrawCommand.h"
 #include <vector>
 
 #pragma comment(lib, "d3d11.lib")
@@ -56,8 +57,11 @@ public:
 	void Render();
 	void UnInit();			
 
-	// debug function
-	void DrawRect(const D2D1_RECT_F& rect, const D2D1_MATRIX_3X2_F& transform, float strokeWidth = 0.5f);
-	void DrawCircle(const D2D1_ELLIPSE& ellipse, const D2D1_MATRIX_3X2_F& transform, float strokeWidth = 0.5f);
-	void DrawLine(const D2D1_POINT_2F& start, const D2D1_POINT_2F& end, const D2D1_MATRIX_3X2_F& transform, float strokeWidth = 0.5f);
+public:
+	// debug
+	// 함수를 호출하면 vector에 저장되어 해당 프레임에 그려지고 clear 된다.
+	vector<DebugDrawCommand> debugDrawCommands;
+	void DebugDrawRect(const D2D1_RECT_F& rect, const D2D1_MATRIX_3X2_F& transform, float strokeWidth = 0.5f);
+	void DebugDrawCircle(const D2D1_ELLIPSE& ellipse, const D2D1_MATRIX_3X2_F& transform, float strokeWidth = 0.5f);
+	void DebugDrawLine(const D2D1_POINT_2F& start, const D2D1_POINT_2F& end, const D2D1_MATRIX_3X2_F& transform, float strokeWidth = 0.5f);
 };

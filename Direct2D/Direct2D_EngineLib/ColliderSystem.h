@@ -17,9 +17,7 @@ public:
 
 	// component system
 	void FixedUpdate();
-	void DebugColliderDraw();
 
-	
 public:
 	// func
 	// ray hit collision

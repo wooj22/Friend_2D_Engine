@@ -3,7 +3,6 @@
 #include "Transform.h"
 #include "Script.h"
 #include "RenderSystem.h"
-#include "DebugGizmo.h"
 #include "BoxCollider.h"
 #include "Rigidbody.h"
 
@@ -277,5 +276,5 @@ void CircleCollider::DebugColliderDraw()
         radius
     );
 
-    RenderSystem::Get().DrawCircle(ellipse, transform->GetScreenMatrix());
+    RenderSystem::Get().DebugDrawCircle(ellipse, transform->GetScreenMatrix());
 }

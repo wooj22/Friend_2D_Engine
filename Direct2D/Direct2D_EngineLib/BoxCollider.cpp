@@ -3,7 +3,6 @@
 #include "Transform.h"
 #include "Script.h"
 #include "RenderSystem.h"
-#include "DebugGizmo.h"
 #include "CircleCollider.h"
 #include "Rigidbody.h"
 
@@ -285,5 +284,5 @@ void BoxCollider::DebugColliderDraw()
     float bottom = size.y * 0.5f - offset.y;
 
     D2D1_RECT_F localRect = D2D1::RectF(left, top, right, bottom);
-    RenderSystem::Get().DrawRect(localRect, transform->GetScreenMatrix());
+    RenderSystem::Get().DebugDrawRect(localRect, transform->GetScreenMatrix());
 }

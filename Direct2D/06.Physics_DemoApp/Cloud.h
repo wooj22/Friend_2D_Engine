@@ -33,5 +33,10 @@ public:
 		collider->offset = { 0, -30 };
 		collider->isTrigger = false;
 	}
+
+	void Update() override
+	{
+		collider->DebugColliderDraw();
+	}
 };
 

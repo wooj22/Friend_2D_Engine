@@ -145,8 +145,25 @@ void RenderSystem::Render()
 		renderer->Render();
 	}
 
-	// collider draw
-	ColliderSystem::Get().DebugColliderDraw();
+	// debug draw
+	for (const DebugDrawCommand& cmd : debugDrawCommands)
+	{
+		renderTarget->SetTransform(cmd.transform);
+		switch (cmd.type)
+		{
+		case DebugDrawType::Rect:
+			renderTarget->DrawRectangle(cmd.rect, debug_brush.Get(), cmd.strokeWidth);
+			break;
+		case DebugDrawType::Circle:
+			renderTarget->DrawEllipse(cmd.ellipse, debug_brush.Get(), cmd.strokeWidth);
+			break;
+		case DebugDrawType::Line:
+			renderTarget->DrawLine(cmd.line.start, cmd.line.end, debug_brush.Get(), cmd.strokeWidth);
+			break;
+		}
+	}
+	debugDrawCommands.clear();
+
 
 	renderTarget->EndDraw();
 	swapChain->Present(1, 0);
@@ -165,22 +182,33 @@ void RenderSystem::UnInit()
 
 
 // debug
-void RenderSystem::DrawRect(const D2D1_RECT_F& rect, const D2D1_MATRIX_3X2_F& transform, float strokeWidth)
+// transform : GetScreenMatrix()으로 넘겨주어야함
+void RenderSystem::DebugDrawRect(const D2D1_RECT_F& rect, const D2D1_MATRIX_3X2_F& transform, float strokeWidth)
 {
-	renderTarget->SetTransform(transform);
-	renderTarget->DrawRectangle(rect, debug_brush.Get(), strokeWidth);
+	DebugDrawCommand cmd;
+	cmd.type = DebugDrawType::Rect;
+	cmd.rect = rect;
+	cmd.transform = transform;
+	cmd.strokeWidth = strokeWidth;
+	debugDrawCommands.push_back(cmd);
 }
 
-void RenderSystem::DrawCircle(const D2D1_ELLIPSE& ellipse, const D2D1_MATRIX_3X2_F& transform, float strokeWidth)
+void RenderSystem::DebugDrawCircle(const D2D1_ELLIPSE& ellipse, const D2D1_MATRIX_3X2_F& transform, float strokeWidth)
 {
-	renderTarget->SetTransform(transform);
-	renderTarget->DrawEllipse(ellipse, debug_brush.Get(), strokeWidth);
-	renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
+	DebugDrawCommand cmd;
+	cmd.type = DebugDrawType::Circle;
+	cmd.ellipse = ellipse;
+	cmd.transform = transform;
+	cmd.strokeWidth = strokeWidth;
+	debugDrawCommands.push_back(cmd);
 }
 
-void RenderSystem::DrawLine(const D2D1_POINT_2F& start, const D2D1_POINT_2F& end, const D2D1_MATRIX_3X2_F& transform, float strokeWidth)
+void RenderSystem::DebugDrawLine(const D2D1_POINT_2F& start, const D2D1_POINT_2F& end, const D2D1_MATRIX_3X2_F& transform, float strokeWidth)
 {
-	renderTarget->SetTransform(transform);
-	renderTarget->DrawLine(start, end, debug_brush.Get(), strokeWidth);
-	renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
+	DebugDrawCommand cmd;
+	cmd.type = DebugDrawType::Line;
+	cmd.line = { D2D1::Point2F(start.x, -start.y), D2D1::Point2F(end.x, -end.y) };		// y 반전
+	cmd.transform = transform;
+	cmd.strokeWidth = strokeWidth;
+	debugDrawCommands.push_back(cmd);
 }

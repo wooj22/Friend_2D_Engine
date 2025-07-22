@@ -55,5 +55,17 @@ public:
 		rigidbody->useGravity = true;
 		rigidbody->gravityScale = 40;
 	}
+
+	void Update() override
+	{
+		collider->DebugColliderDraw();
+
+		D2D1_POINT_2F start = D2D1::Point2F(0.0f, 0.0f);
+		D2D1_POINT_2F end = D2D1::Point2F(100.0f, 50.0f);
+
+		auto transformMatrix = transform->GetScreenMatrix();
+
+		RenderSystem::Get().DebugDrawLine(start, end, transformMatrix);
+	}
 };
 
