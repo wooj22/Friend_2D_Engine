@@ -35,6 +35,7 @@ public:
     bool useGravity = true;                     // 중력 사용 여부
     float gravityScale = 1.0f;                  // 중력 보정값
     float drag = 0.0f;                          // 공기 저항, 마찰력 (클수록 속도 깎임)
+    bool isKinematic = false;                   // 물리계산 미적용 여부
 
 private:
     Vector2 impulse = Vector2::zero;            // 추진력 (순간적인 힘)

@@ -17,31 +17,34 @@ void Rigidbody::FixedUpdate()
 {
     if (!transform) return;
 
-    // impulse
-    velocity += impulse / mass;
+    if (!isKinematic)
+    {
+        // impulse
+        velocity += impulse / mass;
 
-    // gravity
-    if (useGravity && !isGrounded) acceleration += Vector2(0, -9.8f) * gravityScale;
+        // gravity
+        if (useGravity && !isGrounded) acceleration += Vector2(0, -9.8f) * gravityScale;
 
-    // acceleration
-    velocity += acceleration * Time::GetFixedDeltaTime();
-    velocity *= (1.0f - drag);
+        // acceleration
+        velocity += acceleration * Time::GetFixedDeltaTime();
+        velocity *= (1.0f - drag);
 
-    // block
-    if (isBlockedLeft && velocity.x < 0) velocity.x = 0;
-    if (isBlockedRight && velocity.x > 0) velocity.x = 0;
-    if (isBlockedDown && velocity.y < 0) velocity.y = 0;
-    if (isBlockedUp && velocity.y > 0) velocity.y = 0;
+        // block
+        if (isBlockedLeft && velocity.x < 0) velocity.x = 0;
+        if (isBlockedRight && velocity.x > 0) velocity.x = 0;
+        if (isBlockedDown && velocity.y < 0) velocity.y = 0;
+        if (isBlockedUp && velocity.y > 0) velocity.y = 0;
 
-    // grounded
-    if (isGrounded && useGravity && velocity.y < 0) velocity.y = -1;
+        // grounded
+        if (isGrounded && useGravity && velocity.y < 0) velocity.y = -1;
 
-    // position update
-    transform->SetPosition(transform->GetPosition() + velocity * Time::GetFixedDeltaTime());
+        // position update
+        transform->SetPosition(transform->GetPosition() + velocity * Time::GetFixedDeltaTime());
 
-    // reset
-    impulse = Vector2::zero;
-    acceleration = Vector2::zero;
+        // reset
+        impulse = Vector2::zero;
+        acceleration = Vector2::zero;
+    } 
 }
 
 void Rigidbody::AddForce(const Vector2& force)
