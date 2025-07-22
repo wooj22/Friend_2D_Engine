@@ -10,7 +10,7 @@
 class BoxObject : public GameObject
 {
 private:
-	float moveSpeed = 80.0f;
+	float moveSpeed = 100.0f;
 
 public:
 	Transform* transform;
@@ -49,6 +49,9 @@ public:
 
 		inputDir = inputDir.Normalized();
 		rigidbody->velocity = inputDir * moveSpeed;
+
+		// collider draw
+		collider->DebugColliderDraw();
 
 		// spacebar -> trigger
 		if (Input::GetKeyDown(VK_SPACE)) collider->isTrigger = !collider->isTrigger;

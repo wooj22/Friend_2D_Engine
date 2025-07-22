@@ -18,6 +18,12 @@ void CollisionTestScene::Awake()
 	box = CreateObject<BoxObject>();
 	circleText = CreateObject<ColObText>();
 	boxText = CreateObject<ColObText>();
+
+	// test
+	parentOb = CreateObject<GameObject>();
+	parentOb->AddComponent<Transform>();
+	parentOb->GetComponent<Transform>()->SetPosition(-100,0);
+	//box->transform->SetParent(parentOb->GetComponent<Transform>());
 }
 
 void CollisionTestScene::Start()

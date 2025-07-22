@@ -54,6 +54,7 @@ void PlayScene::Update()
 		catText = CreateObject<CatText>();
 		player = CreateObject<Cat>();
 		catText->transform->SetParent(player->transform);
+		//player->transform->SetParent(mapManager->cloud1->transform);
 
 		isCatCreate = true;
 	}

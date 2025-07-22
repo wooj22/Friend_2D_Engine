@@ -20,6 +20,8 @@ private:
 	ColObText* boxText;
 	ColObText* circleText;
 
+	GameObject* parentOb;
+
 public:
 	CollisionTestScene() = default;
 	~CollisionTestScene() = default;

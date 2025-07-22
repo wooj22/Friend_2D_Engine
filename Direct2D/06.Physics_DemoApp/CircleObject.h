@@ -2,6 +2,7 @@
 #include "../Direct2D_EngineLib/GameObject.h"
 #include "../Direct2D_EngineLib/Transform.h"
 #include "../Direct2D_EngineLib/CircleCollider.h"
+#include "../Direct2D_EngineLib/BoxCollider.h"
 #include "../Direct2D_EngineLib/Rigidbody.h"
 #include "../Direct2D_EngineLib/Time.h"
 #include "../Direct2D_EngineLib/Input.h"
@@ -10,19 +11,19 @@
 class CircleObject : public GameObject
 {
 private:
-	float moveSpeed = 80.0f;
+	float moveSpeed = 100.0f;
 
 public:
 	Transform* transform;
 	Rigidbody* rigidbody;
-	CircleCollider* collider;
+	BoxCollider* collider;
 	CollisionEventCheak* testScript;		// -> collision event
 
 	CircleObject()
 	{
 		transform = AddComponent<Transform>();
 		rigidbody = AddComponent<Rigidbody>();
-		collider = AddComponent<CircleCollider>();
+		collider = AddComponent<BoxCollider>();
 		testScript = AddComponent<CollisionEventCheak>();
 	}
 
@@ -32,7 +33,8 @@ public:
 	{
 		transform->SetPosition(0, -100);
 		collider->isTrigger = false;
-		collider->radius = 30;
+		//collider->radius = 30;
+		collider->size = { 50,50 };
 		rigidbody->useGravity = false;
 	}
 
@@ -48,6 +50,9 @@ public:
 
 		inputDir = inputDir.Normalized();
 		rigidbody->velocity = inputDir * moveSpeed;
+
+		// collider draw
+		collider->DebugColliderDraw();
 
 		// spacebar -> trigger
 		if (Input::GetKeyDown(VK_SPACE)) collider->isTrigger = !collider->isTrigger;

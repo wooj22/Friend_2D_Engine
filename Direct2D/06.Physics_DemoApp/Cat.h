@@ -27,6 +27,10 @@ public:
 	// animation asset
 	CatAnimatorController* catAnimatorController;
 
+	// debug
+	float debugTime = 1.0f;
+	float bugger;
+
 public:
 	// game object cycle
 	Cat() : GameObject("Cat\n")
@@ -60,12 +64,30 @@ public:
 	{
 		collider->DebugColliderDraw();
 
-		D2D1_POINT_2F start = D2D1::Point2F(0.0f, 0.0f);
-		D2D1_POINT_2F end = D2D1::Point2F(100.0f, 50.0f);
+		// debug
+		bugger += Time::GetDeltaTime();
+		if (bugger >= debugTime)
+		{
+			// bound
+			wchar_t buffer[256];
+			swprintf_s(buffer, L"UpdateBounds: minX=%.3f, maxX=%.3f, minY=%.3f, maxY=%.3f\n",
+				collider->minX, collider->maxX, collider->minY, collider->maxY);
+			OutputDebugStringW(buffer);
 
-		auto transformMatrix = transform->GetScreenMatrix();
+			// local transform position
+			Vector2 localPos = transform->GetPosition();
+			wchar_t posBuffer[128];
+			swprintf_s(posBuffer, L"Transform Local Position: x=%.3f, y=%.3f\n", localPos.x, localPos.y);
+			OutputDebugStringW(posBuffer);
 
-		RenderSystem::Get().DebugDrawLine(start, end, transformMatrix);
+			// world transform position
+			Vector2 worldPos = transform->GetWorldPosition();
+			wchar_t posBuffer2[128];
+			swprintf_s(posBuffer2, L"Transform World Position: x=%.3f, y=%.3f\n", worldPos.x, worldPos.y);
+			OutputDebugStringW(posBuffer2);
+
+			bugger = 0;
+		}
 	}
 };
 

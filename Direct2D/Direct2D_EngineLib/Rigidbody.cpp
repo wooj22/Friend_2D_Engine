@@ -28,7 +28,7 @@ void Rigidbody::FixedUpdate()
     velocity *= (1.0f - drag);
 
     // grounded
-    if (isGrounded && velocity.y < 0) velocity.y = -1;
+    if (isGrounded && useGravity && velocity.y < 0) velocity.y = -1;
 
     // position update
     transform->SetPosition(transform->GetPosition() + velocity * Time::GetFixedDeltaTime());

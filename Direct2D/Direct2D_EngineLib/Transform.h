@@ -97,9 +97,23 @@ public:
     Vector2 GetPosition() const { return position; }
     float GetRotation() const { return rotation; }
     Vector2 GetScale() const { return scale; }
+
+
     Vector2 GetWorldPosition() const
     {
         return Vector2(worldMatrix._31, worldMatrix._32);
+    }
+
+    float GetWorldRotation() const
+    {
+        return atan2(worldMatrix._21, worldMatrix._11);
+    }
+
+    Vector2 GetWorldScale() const
+    {
+        float scaleX = sqrt(worldMatrix._11 * worldMatrix._11 + worldMatrix._21 * worldMatrix._21);
+        float scaleY = sqrt(worldMatrix._12 * worldMatrix._12 + worldMatrix._22 * worldMatrix._22);
+        return Vector2(scaleX, scaleY);
     }
 
 private:
