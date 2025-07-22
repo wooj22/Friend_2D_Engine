@@ -38,15 +38,19 @@ public:
     ~CircleCollider() override { ColliderSystem::Get().Unregist(this); }
 
     void OnEnable() override;
+    void OnDestroy() override;
+private:
     void UpdateBounds() override;
     bool isCollision(ICollider* other, ContactInfo& contact) override;
     void FinalizeCollision() override;
-    void OnDestroy() override;
 
 private:
     // collistion cheak
     bool CheckCircleCollision(CircleCollider* other, ContactInfo& contact);
     bool CheckBoxCollision(BoxCollider* other, ContactInfo& contact);
+
+    // raycast hit
+    bool Raycast(const Ray& ray, float maxDistance, RaycastHit& hitInfo);
 
 private:
     // collision event
@@ -56,9 +60,6 @@ private:
     void OnTriggerEnter(ICollider* other) override;
     void OnTriggerStay(ICollider* other) override;
     void OnTriggerExit(ICollider* other) override;
-
-    // raycast hit
-    bool Raycast(const Ray& ray, float maxDistance, RaycastHit& hitInfo);
 
 public:
     // debug draw

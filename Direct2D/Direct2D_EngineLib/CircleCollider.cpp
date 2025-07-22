@@ -49,6 +49,52 @@ bool CircleCollider::isCollision(ICollider* other, ContactInfo& contact)
     return false;
 }
 
+// FinalizeCollision()
+// 이전 프레임 충돌 정보와 현재 프레임 충돌 정보를 비교하여
+// isTrigger 유무에 따라 Enter, Stay, Exit 충돌 이벤트 함수를 호출한다.
+void CircleCollider::FinalizeCollision()
+{
+    // Enter & Stay
+    for (auto& pair : currentFrameCollisions)
+    {
+        ICollider* other = pair.first;
+        ContactInfo& contact = pair.second;
+
+        if (lastFrameCollisions.find(other) == lastFrameCollisions.end())
+        {
+            if (isTrigger || other->isTrigger)
+                OnTriggerEnter(other);
+            else
+                OnCollisionEnter(other, contact);
+        }
+        else
+        {
+            if (isTrigger || other->isTrigger)
+                OnTriggerStay(other);
+            else
+                OnCollisionStay(other, contact);
+        }
+    }
+
+    // Exit
+    for (auto& pair : lastFrameCollisions)
+    {
+        ICollider* other = pair.first;
+        ContactInfo& contact = pair.second;
+
+        if (currentFrameCollisions.find(other) == currentFrameCollisions.end())
+        {
+            if (isTrigger || other->isTrigger)
+                OnTriggerExit(other);
+            else
+                OnCollisionExit(other, contact);
+        }
+    }
+
+    lastFrameCollisions = currentFrameCollisions;
+    currentFrameCollisions.clear();
+}
+
 // CheckCircleCollision()
 // this circle과 other circle의 충돌 체크
 bool CircleCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& contact)
@@ -123,50 +169,12 @@ bool CircleCollider::CheckBoxCollision(BoxCollider* other, ContactInfo& contact)
     return true;
 }
 
-// FinalizeCollision()
-// 이전 프레임 충돌 정보와 현재 프레임 충돌 정보를 비교하여
-// isTrigger 유무에 따라 Enter, Stay, Exit 충돌 이벤트 함수를 호출한다.
-void CircleCollider::FinalizeCollision()
+// Raycast()
+// 광선과 this collider의 충돌 결과 반환
+bool CircleCollider::Raycast(const Ray& ray, float maxDistance, RaycastHit& hitInfo)
 {
-    // Enter & Stay
-    for (auto& pair : currentFrameCollisions)
-    {
-        ICollider* other = pair.first;
-        ContactInfo& contact = pair.second;
-
-        if (lastFrameCollisions.find(other) == lastFrameCollisions.end())
-        {
-            if (isTrigger || other->isTrigger)
-                OnTriggerEnter(other);
-            else
-                OnCollisionEnter(other, contact);
-        }
-        else
-        {
-            if (isTrigger || other->isTrigger)
-                OnTriggerStay(other);
-            else
-                OnCollisionStay(other, contact);
-        }
-    }
-
-    // Exit
-    for (auto& pair : lastFrameCollisions)
-    {
-        ICollider* other = pair.first;
-        ContactInfo& contact = pair.second;
-
-        if (currentFrameCollisions.find(other) == currentFrameCollisions.end())
-        {
-            if (isTrigger || other->isTrigger)
-                OnTriggerExit(other);
-            else
-                OnCollisionExit(other, contact);
-        }
-    }
-
-    lastFrameCollisions = currentFrameCollisions;
-    currentFrameCollisions.clear();
+    // TODO 
+    return false;
 }
 
 void CircleCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
@@ -258,12 +266,6 @@ void CircleCollider::OnTriggerExit(ICollider* other)
     auto scripts = owner->GetComponents<Script>();
     for (auto s : scripts)
         s->OnTriggerExit(other);
-}
-
-bool CircleCollider::Raycast(const Ray& ray, float maxDistance, RaycastHit& hitInfo)
-{
-    // TODO 
-    return false;
 }
 
 void CircleCollider::DebugColliderDraw()

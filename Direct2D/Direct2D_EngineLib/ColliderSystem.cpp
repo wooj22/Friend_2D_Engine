@@ -69,7 +69,7 @@ void ColliderSystem::FixedUpdate()
 // Raycast 광선과 콜라이더의 충돌 정보 반환
 RaycastHit ColliderSystem::Raycast(const Ray& ray, float maxDistance)
 {
-    // ray hit
+    // ray hit o
     for (ICollider* col : components)
     {
         RaycastHit hitInfo;
@@ -80,7 +80,7 @@ RaycastHit ColliderSystem::Raycast(const Ray& ray, float maxDistance)
         }
     }
 
-    // ray none hit
+    // ray hit x
     RaycastHit closestHit;
     closestHit.collider = nullptr;
     closestHit.distance = maxDistance;

@@ -82,9 +82,6 @@
     <Filter Include="헤더 파일\03. Component">
       <UniqueIdentifier>{3d2c990e-7876-460f-bff3-c46956d12128}</UniqueIdentifier>
     </Filter>
-    <Filter Include="헤더 파일\03. Component\Base">
-      <UniqueIdentifier>{6d35e9ce-ca52-4160-92b8-f55907eb0883}</UniqueIdentifier>
-    </Filter>
     <Filter Include="헤더 파일\03. Component\Renderer">
       <UniqueIdentifier>{65077f85-ed87-4eec-84ae-599748ac9d48}</UniqueIdentifier>
     </Filter>
@@ -133,9 +130,6 @@
     <Filter Include="소스 파일\03. Component\Script">
       <UniqueIdentifier>{471c213b-0ae5-40f9-afe0-bb09cb8d44e3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="헤더 파일\03. Component\Base\Interface">
-      <UniqueIdentifier>{dd2f0dfb-cdb5-4146-9f6b-5a057e0a29ca}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\03. Component\Base\Interface">
       <UniqueIdentifier>{22716079-ba44-4d47-a50b-ffc96aabf2ec}</UniqueIdentifier>
     </Filter>
@@ -156,6 +150,12 @@
     </Filter>
     <Filter Include="헤더 파일\03. Component\Camera">
       <UniqueIdentifier>{91620ce1-effb-4a48-825c-0695ddc00421}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\03. Component\Base">
+      <UniqueIdentifier>{6d35e9ce-ca52-4160-92b8-f55907eb0883}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\03. Component\Base\Interface">
+      <UniqueIdentifier>{dd2f0dfb-cdb5-4146-9f6b-5a057e0a29ca}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

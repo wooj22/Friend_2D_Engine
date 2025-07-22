@@ -12,20 +12,20 @@ T clamp(T value, T minVal, T maxVal)
     else return value;
 }
 
-/* ContactInfo */
+/* ContactInfo : 콜라이더와 콜라이더의 충돌 정보 */
 struct ContactInfo
 {
 	Vector2 point;   // 충돌 지점
 	Vector2 normal;  // 충돌 법선벡터 : 밀려나야할 방향(상대 콜라이더가 밀어내는 방향)
 };
 
-/* collider type */
+/* collider type : 콜라이더 종류 */
 enum class ColliderType
 {
 	Box, Circle
 };
 
-/* collider interface */
+/* collider interface*/
 class ICollider : public Component
 {
 public:
