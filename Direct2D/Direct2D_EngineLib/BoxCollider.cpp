@@ -100,7 +100,7 @@ void BoxCollider::FinalizeCollision()
 // this box와 other box의 aabb 충돌 결과 반환
 bool BoxCollider::CheckAABBCollision(BoxCollider* other, ContactInfo& contact)
 {
-    // 1. AABB 겹침 체크
+    // 1. AABB
     if (maxX < other->minX || minX > other->maxX || maxY < other->minY || minY > other->maxY)
         return false;
 
@@ -117,12 +117,18 @@ bool BoxCollider::CheckAABBCollision(BoxCollider* other, ContactInfo& contact)
     if (overlapX < overlapY)
     {
         // X축 방향 법선
+
+        Vector2 thisCenter = GetCenter();
+        Vector2 otherCenter = other->GetCenter();
+
         contact.normal = (thisCenter.x < otherCenter.x) ? Vector2(-1, 0) : Vector2(1, 0);
+        contact.depth = overlapX;
     }
     else
     {
         // Y축 방향 법선
         contact.normal = (thisCenter.y > otherCenter.y) ? Vector2(0, -1) : Vector2(0, 1);
+        contact.depth = overlapY;
     }
 
     return true;
@@ -144,7 +150,6 @@ bool BoxCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& conta
     // AABB 내부 가장 가까운 점(clamp)
     float closestX = clamp(circlePos.x, boxPos.x - halfBoxSize.x, boxPos.x + halfBoxSize.x);
     float closestY = clamp(circlePos.y, boxPos.y - halfBoxSize.y, boxPos.y + halfBoxSize.y);
-
     Vector2 closestPoint(closestX, closestY);
 
     // 원 중심과 가장 가까운 점 거리 제곱 계산
@@ -164,10 +169,13 @@ bool BoxCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& conta
         // 중심이 박스 안에 완전히 들어갔을 때 (예외처리)
         // 임의로 위쪽 방향 지정
         contact.normal = Vector2(0, 1);
+        contact.depth = circleRadius;
     }
     else
     {
-        contact.normal = diff.Normalized();
+        float distance = sqrtf(distSq);
+        contact.normal = diff / distance;
+        contact.depth = circleRadius - distance;
     }
 
     return true;
@@ -183,6 +191,11 @@ bool BoxCollider::Raycast(const Ray& ray, float maxDistance, RaycastHit& hitInfo
 
 void BoxCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
 {
+    // 여기 contact info output debug string
+    char buffer[256];
+    sprintf_s(buffer, "Collision Enter: normal(%.2f, %.2f), depth: %.2f\n", contact.normal.x, contact.normal.y, contact.depth);
+    OutputDebugStringA(buffer);
+
     Vector2 pos = transform->GetPosition();
     Vector2 prePos = transform->prePosition;
 

@@ -17,6 +17,7 @@ struct ContactInfo
 {
 	Vector2 point;   // 충돌 지점
 	Vector2 normal;  // 충돌 법선벡터 : 밀려나야할 방향(상대 콜라이더가 밀어내는 방향)
+	float depth;     // 침투 깊이
 };
 
 /* collider type : 콜라이더 종류 */

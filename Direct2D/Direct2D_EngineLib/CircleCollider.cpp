@@ -117,10 +117,19 @@ bool CircleCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& co
 
     // Contact Info
     Vector2 dir;
+    float distance = sqrtf(distSq);
+
     if (distSq == 0.0f)
-        dir = Vector2(1, 0); // 예외처리 (완전히 겹쳤을 때)
+    {
+        // 예외 : 중심이 정확히 겹친 경우
+        dir = Vector2(1, 0);
+        contact.depth = radiusSum; // 겹친 정도를 전체 반지름 합으로 설정
+    }
     else
-        dir = diff.Normalized();
+    {
+        dir = diff / distance;
+        contact.depth = radiusSum - distance;
+    }
 
     contact.normal = dir;
     contact.point = posB + dir * scaledRadiusB;
@@ -153,17 +162,20 @@ bool CircleCollider::CheckBoxCollision(BoxCollider* other, ContactInfo& contact)
     if (distSq > radiusScaled * radiusScaled)
         return false;
 
+
     // Contact Info
     contact.point = closestPoint;
 
     if (distSq == 0.0f)
     {
-        // 중심이 박스 내부에 완전히 들어간 경우, 예외처리
         contact.normal = Vector2(0, 1);
+        contact.depth = radiusScaled; // 박스 안에 완전히 들어간 경우
     }
     else
     {
-        contact.normal = diff.Normalized();
+        float distance = sqrtf(distSq);
+        contact.normal = diff / distance;
+        contact.depth = radiusScaled - distance;
     }
 
     return true;
