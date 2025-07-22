@@ -18,8 +18,15 @@ private:
     Transform* transform = nullptr;
 
 private:
-    bool isGrounded;             // 바닥 flag (collision)
-    int groundContactCount = 0;  // collsition enter/ exit count로 flag 관리
+    // ground gravity controll
+    bool isGrounded;
+    int groundContactCount = 0;
+
+    // collision block controll
+    bool isBlockedLeft = false;
+    bool isBlockedRight = false;
+    bool isBlockedUp = false;
+    bool isBlockedDown = false;
 
 public:
     Vector2 velocity = Vector2::zero;           // 속도

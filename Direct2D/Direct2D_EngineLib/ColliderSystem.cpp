@@ -54,7 +54,10 @@ void ColliderSystem::FixedUpdate()
             if (a->isCollision(b, contact))
             {
                 a->currentFrameCollisions[b] = contact;
-                b->currentFrameCollisions[a] = contact;
+                // B 쪽 contact는 법선을 반대로 해서 저장
+                ContactInfo inverseContact = contact;
+                inverseContact.normal = { -contact.normal.x, contact.normal.y };
+                b->currentFrameCollisions[a] = inverseContact;
             }
         }
     }

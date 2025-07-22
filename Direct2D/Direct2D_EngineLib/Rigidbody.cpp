@@ -27,6 +27,12 @@ void Rigidbody::FixedUpdate()
     velocity += acceleration * Time::GetFixedDeltaTime();
     velocity *= (1.0f - drag);
 
+    // block
+    if (isBlockedLeft && velocity.x < 0) velocity.x = 0;
+    if (isBlockedRight && velocity.x > 0) velocity.x = 0;
+    if (isBlockedDown && velocity.y < 0) velocity.y = 0;
+    if (isBlockedUp && velocity.y > 0) velocity.y = 0;
+
     // grounded
     if (isGrounded && useGravity && velocity.y < 0) velocity.y = -1;
 

@@ -191,11 +191,6 @@ bool BoxCollider::Raycast(const Ray& ray, float maxDistance, RaycastHit& hitInfo
 
 void BoxCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
 {
-    // ¿©±â contact info output debug string
-    char buffer[256];
-    sprintf_s(buffer, "Collision Enter: normal(%.2f, %.2f), depth: %.2f\n", contact.normal.x, contact.normal.y, contact.depth);
-    OutputDebugStringA(buffer);
-
     Vector2 pos = transform->GetPosition();
     Vector2 prePos = transform->prePosition;
 
