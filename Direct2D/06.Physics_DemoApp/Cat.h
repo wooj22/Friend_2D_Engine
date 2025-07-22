@@ -64,6 +64,11 @@ public:
 	{
 		collider->DebugColliderDraw();
 
+		//DebugWOo();
+	}
+
+	void DebugWOo()
+	{
 		// debug
 		bugger += Time::GetDeltaTime();
 		if (bugger >= debugTime)

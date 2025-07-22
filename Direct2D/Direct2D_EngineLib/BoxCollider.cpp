@@ -5,6 +5,7 @@
 #include "RenderSystem.h"
 #include "CircleCollider.h"
 #include "Rigidbody.h"
+#include <string>
 
 void BoxCollider::OnEnable()
 {
@@ -109,27 +110,39 @@ bool BoxCollider::CheckAABBCollision(BoxCollider* other, ContactInfo& contact)
     Vector2 otherCenter = other->GetCenter();
     contact.point = (thisCenter + otherCenter) * 0.5f;
 
+    wchar_t buffer[256];
+    swprintf(buffer, 256, L"thisCenter: (%.3f, %.3f), otherCenter: (%.3f, %.3f)\n",
+        thisCenter.x, thisCenter.y, otherCenter.x, otherCenter.y);
+    OutputDebugStringW(buffer);
+
     // 3. 축별 침투 깊이 계산
     float overlapX = min(maxX, other->maxX) -max(minX, other->minX);
     float overlapY = min(maxY, other->maxY) - max(minY, other->minY);
+
+    swprintf(buffer, 256, L"overlapX: %.3f, overlapY: %.3f\n", overlapX, overlapY);
+    OutputDebugStringW(buffer);
+
+
+    if (overlapX <= 0.0f || overlapY <= 0.0f)
+        return false;
+
 
     // 4. 침투가 적은 축을 따라 법선 결정
     if (overlapX < overlapY)
     {
         // X축 방향 법선
-
-        Vector2 thisCenter = GetCenter();
-        Vector2 otherCenter = other->GetCenter();
-
         contact.normal = (thisCenter.x < otherCenter.x) ? Vector2(-1, 0) : Vector2(1, 0);
         contact.depth = overlapX;
     }
     else
     {
         // Y축 방향 법선
-        contact.normal = (thisCenter.y > otherCenter.y) ? Vector2(0, -1) : Vector2(0, 1);
+        contact.normal = (thisCenter.y < otherCenter.y) ? Vector2(0, 1) : Vector2(0, -1);
         contact.depth = overlapY;
     }
+
+    swprintf(buffer, 256, L"Calculated normal: (%.3f, %.3f)\n", contact.normal.x, contact.normal.y);
+    OutputDebugStringW(buffer);
 
     return true;
 }
@@ -191,69 +204,87 @@ bool BoxCollider::Raycast(const Ray& ray, float maxDistance, RaycastHit& hitInfo
 
 void BoxCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
 {
-    Vector2 pos = transform->GetPosition();
-    Vector2 prePos = transform->prePosition;
-
-    // 축별 보정
-    if (contact.normal.x != 0) { pos.x = prePos.x; }
-    if (contact.normal.y != 0)
+    Rigidbody* rb = owner->GetComponent<Rigidbody>();
+    if (rb)
     {
-        pos.y = prePos.y;
-
-        // isGrounded
+        // ground
+        rb->CorrectPosition(contact);
         if (contact.normal.y > 0)
         {
-            Rigidbody* rb = owner->GetComponent<Rigidbody>();
-            if (rb)
-            {
-                rb->groundContactCount++;
-                rb->isGrounded = true;
-            }
+            rb->groundContactCount++;
+            rb->isGrounded = true;
         }
-    }
-    transform->SetPosition(pos);
 
-    // script
-    auto scripts = owner->GetComponents<Script>();
-    for (auto s : scripts)
-        s->OnCollisionEnter(other);
+        // debug
+        std::string debug = "[Exit] normal = (" +
+            std::to_string(contact.normal.x) + ", " +
+            std::to_string(contact.normal.y) + "), " +
+            "isGrounded = " + (rb->isGrounded ? "true" : "false") + ", " +
+            "groundContactCount = " + std::to_string(rb->groundContactCount) + "\n";
+        OutputDebugStringA(debug.c_str());
+
+        // script
+        auto scripts = owner->GetComponents<Script>();
+        for (auto s : scripts)
+            s->OnCollisionEnter(other);
+    }
 }
 
 void BoxCollider::OnCollisionStay(ICollider* other, ContactInfo& contact)
 {
-    Vector2 pos = transform->GetPosition();
-    Vector2 prePos = transform->prePosition;
+    Rigidbody* rb = owner->GetComponent<Rigidbody>();
+    if (rb)
+    {
+        // ground
+        if (contact.normal.y > 0)
+        {
+            rb->isGrounded = true;
+        }
 
-    // 축별 보정
-    if (contact.normal.x != 0) { pos.x = prePos.x; }
-    if (contact.normal.y != 0) { pos.y = prePos.y; }
-    transform->SetPosition(pos);
-
-    // script
-    auto scripts = owner->GetComponents<Script>();
-    for (auto s : scripts)
-        s->OnCollisionStay(other);
+        // script
+        auto scripts = owner->GetComponents<Script>();
+        for (auto s : scripts)
+            s->OnCollisionStay(other);
+    }
 }
 
 void BoxCollider::OnCollisionExit(ICollider* other, ContactInfo& contact)
 {
     // isGrounded
     Rigidbody* rb = owner->GetComponent<Rigidbody>();
-    if (rb && contact.normal.y > 0)
+    if (rb)
     {
-        rb->groundContactCount--;
-
-        if (rb->groundContactCount <= 0)
+        // ground
+        if (contact.normal.y > 0)
         {
-            rb->groundContactCount = 0;
-            rb->isGrounded = false;
-        }
-    }
+            rb->groundContactCount--;
 
-    // script
-    auto scripts = owner->GetComponents<Script>();
-    for (auto s : scripts)
-        s->OnCollisionExit(other);
+            if (rb->groundContactCount <= 0)
+            {
+                rb->groundContactCount = 0;
+                rb->isGrounded = false;
+            }
+        }
+        
+        // block free
+        if (contact.normal.x > 0)      rb->isBlockedLeft = false;
+        else if (contact.normal.x < 0) rb->isBlockedRight = false;
+        if (contact.normal.y > 0)      rb->isBlockedDown = false;
+        else if (contact.normal.y < 0) rb->isBlockedUp = false;
+
+        // debug
+        std::string debug = "[Exit] normal = (" +
+            std::to_string(contact.normal.x) + ", " +
+            std::to_string(contact.normal.y) + "), " +
+            "isGrounded = " + (rb->isGrounded ? "true" : "false") + ", " +
+            "groundContactCount = " + std::to_string(rb->groundContactCount) + "\n";
+        OutputDebugStringA(debug.c_str());
+
+        // script
+        auto scripts = owner->GetComponents<Script>();
+        for (auto s : scripts)
+            s->OnCollisionExit(other);
+    } 
 }
 
 void BoxCollider::OnTriggerEnter(ICollider* other)

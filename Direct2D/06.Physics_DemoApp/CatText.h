@@ -22,6 +22,8 @@ public:
 		text->SetFontSize(4.5);
 		text->SetColor(D2D1::ColorF(D2D1::ColorF::DarkBlue));
 		text->SetText(L"World Text");
+
+		text->layer = 2;
 	}
 	~CatText() override { }
 };

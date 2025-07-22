@@ -17,7 +17,7 @@ class Rigidbody : public Component
 private:
     Transform* transform = nullptr;
 
-private:
+public:
     // ground gravity controll
     bool isGrounded;
     int groundContactCount = 0;
@@ -54,6 +54,9 @@ public:
     void OnEnable() override;
     void FixedUpdate();
     void OnDestroy() override;
+
+private:
+    void CorrectPosition(const ContactInfo& contact);
 
 public:
     // func

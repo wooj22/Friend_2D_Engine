@@ -19,24 +19,24 @@ void Rigidbody::FixedUpdate()
 
     if (!isKinematic)
     {
-        // impulse
+        // impulse update
         velocity += impulse / mass;
 
-        // gravity
+        // gravity update
         if (useGravity && !isGrounded) acceleration += Vector2(0, -9.8f) * gravityScale;
 
-        // acceleration
+        // acceleration update
         velocity += acceleration * Time::GetFixedDeltaTime();
         velocity *= (1.0f - drag);
 
-        // block
+        // block update
         if (isBlockedLeft && velocity.x < 0) velocity.x = 0;
         if (isBlockedRight && velocity.x > 0) velocity.x = 0;
         if (isBlockedDown && velocity.y < 0) velocity.y = 0;
         if (isBlockedUp && velocity.y > 0) velocity.y = 0;
 
-        // grounded
-        if (isGrounded && useGravity && velocity.y < 0) velocity.y = -1;
+        // grounded -> gravity reset
+        //if (isGrounded && useGravity && velocity.y < 0) velocity.y = 0;
 
         // position update
         transform->SetPosition(transform->GetPosition() + velocity * Time::GetFixedDeltaTime());
@@ -45,6 +45,21 @@ void Rigidbody::FixedUpdate()
         impulse = Vector2::zero;
         acceleration = Vector2::zero;
     } 
+}
+
+void Rigidbody::CorrectPosition(const ContactInfo& contact)
+{
+    if (!isKinematic)
+    {
+        // position
+        transform->Translate(contact.normal * contact.depth);
+
+        // block
+        if (contact.normal.x > 0)      isBlockedLeft = true;
+        else if (contact.normal.x < 0) isBlockedRight = true;
+        if (contact.normal.y > 0)      isBlockedDown = true;
+        else if (contact.normal.y < 0) isBlockedUp = true;
+    }
 }
 
 void Rigidbody::AddForce(const Vector2& force)
