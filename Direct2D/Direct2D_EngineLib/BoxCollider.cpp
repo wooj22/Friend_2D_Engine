@@ -215,14 +215,6 @@ void BoxCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
             rb->isGrounded = true;
         }
 
-        // debug
-        std::string debug = "[Exit] normal = (" +
-            std::to_string(contact.normal.x) + ", " +
-            std::to_string(contact.normal.y) + "), " +
-            "isGrounded = " + (rb->isGrounded ? "true" : "false") + ", " +
-            "groundContactCount = " + std::to_string(rb->groundContactCount) + "\n";
-        OutputDebugStringA(debug.c_str());
-
         // script
         auto scripts = owner->GetComponents<Script>();
         for (auto s : scripts)
@@ -271,14 +263,6 @@ void BoxCollider::OnCollisionExit(ICollider* other, ContactInfo& contact)
         else if (contact.normal.x < 0) rb->isBlockedRight = false;
         if (contact.normal.y > 0)      rb->isBlockedDown = false;
         else if (contact.normal.y < 0) rb->isBlockedUp = false;
-
-        // debug
-        std::string debug = "[Exit] normal = (" +
-            std::to_string(contact.normal.x) + ", " +
-            std::to_string(contact.normal.y) + "), " +
-            "isGrounded = " + (rb->isGrounded ? "true" : "false") + ", " +
-            "groundContactCount = " + std::to_string(rb->groundContactCount) + "\n";
-        OutputDebugStringA(debug.c_str());
 
         // script
         auto scripts = owner->GetComponents<Script>();
