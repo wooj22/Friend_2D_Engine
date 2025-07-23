@@ -32,6 +32,16 @@ float Vector2::Angle(const Vector2& from, const Vector2& to)
 }
 
 // functions
+Vector2 Vector2::operator-() const
+{
+    return Vector2(-x, -y);
+}
+
+Vector2 Vector2::operator+() const
+{
+    return Vector2(+x, +y);
+}
+
 Vector2 Vector2::operator+(const Vector2& other) const
 {
     return Vector2(x + other.x, y + other.y);

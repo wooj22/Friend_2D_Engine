@@ -26,6 +26,9 @@ public:
     static float Angle(const Vector2& from, const Vector2& to);
 
     // operator overloading
+    Vector2 operator-() const;
+    Vector2 operator+() const;
+
     Vector2 operator+(const Vector2& other) const;
     Vector2 operator-(const Vector2& other) const;
     Vector2 operator*(float scalar) const;
