@@ -2,6 +2,7 @@
 #include "Component.h"
 #include "ScriptSystem.h"
 #include "GameObject.h"
+#include "ICollider.h"
 
 /* [Script Conponent]
 * GameObject의 여러 Component들을 controll하는 script 컴포넌트이다.
@@ -34,9 +35,9 @@ public:
     virtual void OnTriggerExit(ICollider* other) {}
 
     // collision
-    virtual void OnCollisionEnter(ICollider* other) {}
-    virtual void OnCollisionStay(ICollider* other) {}
-    virtual void OnCollisionExit(ICollider* other) {}
+    virtual void OnCollisionEnter(ICollider* other, const ContactInfo& contact) {}
+    virtual void OnCollisionStay(ICollider* other, const ContactInfo& contact) {}
+    virtual void OnCollisionExit(ICollider* other, const ContactInfo& contact) {}
 };
 
 

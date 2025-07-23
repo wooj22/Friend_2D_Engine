@@ -36,6 +36,7 @@ public:
 		//collider->radius = 30;
 		collider->size = { 50,50 };
 		rigidbody->useGravity = false;
+		//rigidbody->isKinematic = true;
 	}
 
 	void Update() override

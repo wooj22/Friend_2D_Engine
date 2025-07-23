@@ -216,7 +216,7 @@ void CircleCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
     // script
     auto scripts = owner->GetComponents<Script>();
     for (auto s : scripts)
-        s->OnCollisionEnter(other);
+        s->OnCollisionEnter(other, contact);
 }
 
 void CircleCollider::OnCollisionStay(ICollider* other, ContactInfo& contact)
@@ -232,7 +232,7 @@ void CircleCollider::OnCollisionStay(ICollider* other, ContactInfo& contact)
     // script
     auto scripts = owner->GetComponents<Script>();
     for (auto s : scripts)
-        s->OnCollisionStay(other);
+        s->OnCollisionStay(other, contact);
 }
 
 void CircleCollider::OnCollisionExit(ICollider* other, ContactInfo& contact)
@@ -253,7 +253,7 @@ void CircleCollider::OnCollisionExit(ICollider* other, ContactInfo& contact)
     // script
     auto scripts = owner->GetComponents<Script>();
     for (auto s : scripts)
-        s->OnCollisionExit(other);
+        s->OnCollisionExit(other, contact);
 }
 
 void CircleCollider::OnTriggerEnter(ICollider* other)

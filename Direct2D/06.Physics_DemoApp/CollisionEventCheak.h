@@ -34,21 +34,39 @@ public:
 	}
 
 	// collision enter
-	void OnCollisionEnter(ICollider* other)  override
+	void OnCollisionEnter(ICollider* other, const ContactInfo& contact)  override
 	{
-		text->SetText(L"OnCollisionEnter()");
+		// contact info 에 대한 내용으로 text set
+		wchar_t buffer[256];
+		swprintf_s(buffer, 256, L"Enter\nNormal: (%.3f, %.3f)\nDepth: %.3f",
+			contact.normal.x, contact.normal.y, contact.depth);
+		text->SetText(buffer);
+
+		//text->SetText(L"OnCollisionEnter()");
 	}
 
 	// collision stay
-	void OnCollisionStay(ICollider* other) override
+	void OnCollisionStay(ICollider* other, const ContactInfo& contact) override
 	{
-		text->SetText(L"OnCollisionStay()");
+		// contact info 에 대한 내용으로 text set
+		wchar_t buffer[256];
+		swprintf_s(buffer, 256, L"Stay\nNormal: (%.3f, %.3f)\nDepth: %.3f",
+			contact.normal.x, contact.normal.y, contact.depth);
+		text->SetText(buffer);
+
+		//text->SetText(L"OnCollisionStay()");
 	}
 
 	// collision exit
-	void OnCollisionExit(ICollider* other)  override
+	void OnCollisionExit(ICollider* other, const ContactInfo& contact)  override
 	{
-		text->SetText(L"OnCollisionExit()");
+		// contact info 에 대한 내용으로 text set
+		wchar_t buffer[256];
+		swprintf_s(buffer, 256, L"Exit\nNormal: (%.3f, %.3f)\nDepth: %.3f",
+			contact.normal.x, contact.normal.y, contact.depth);
+		text->SetText(buffer);
+
+		//text->SetText(L"OnCollisionExit()");
 	}
 };
 

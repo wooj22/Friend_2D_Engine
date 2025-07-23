@@ -49,7 +49,7 @@ public:
 	void OnTriggerExit(ICollider* other)  override { OutputDebugStringA("OnTriggerExit()\n"); }
 
 	// collision
-	void OnCollisionEnter(ICollider* other)  override 
+	void OnCollisionEnter(ICollider* other, const ContactInfo& contact)  override
 	{ 
 		if (other->owner->name == "Cloud") {
 			OutputDebugStringA("OnCollisionEnter() - Could\n");
@@ -57,14 +57,14 @@ public:
 		}
 	}
 
-	void OnCollisionStay(ICollider* other) override 
+	void OnCollisionStay(ICollider* other, const ContactInfo& contact) override
 	{ 
-		if (other->owner->name == "Cloud") {
+		if (other->owner->name == "Cloud") { 
 			//OutputDebugStringA("OnCollisionStay() - Could\n");
 		}
 	}
 
-	void OnCollisionExit(ICollider* other)  override 
+	void OnCollisionExit(ICollider* other, const ContactInfo& contact)  override
 	{ 
 		if (other->owner->name == "Cloud") {
 			OutputDebugStringA("OnCollisionExit() - Could\n");

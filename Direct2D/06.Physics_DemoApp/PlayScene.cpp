@@ -28,6 +28,13 @@ void PlayScene::Awake()
 	mapManager->cloud4 = CreateObject<Cloud>();
 	mapManager->cloud5 = CreateObject<Cloud>();
 
+	Wall = CreateObject<GameObject>();
+	Wall->AddComponent<Transform>();
+	Wall->AddComponent<BoxCollider>();
+
+	Wall->GetComponent<Transform>()->SetPosition(-100,0);
+	Wall->GetComponent<BoxCollider>()->size = {10,300};
+
 	isCatCreate = false;
 }
 
@@ -48,6 +55,8 @@ void PlayScene::Update()
 {
 	// game object -> Update()
 	__super::Update();
+
+	Wall->GetComponent<BoxCollider>()->DebugColliderDraw();
 
 	if (!isCatCreate && Input::GetKeyDown(VK_SPACE))
 	{

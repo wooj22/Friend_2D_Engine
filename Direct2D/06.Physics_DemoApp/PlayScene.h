@@ -26,6 +26,7 @@ private:
 	MapManager* mapManager;
 	Cat* player;
 	CatText* catText;
+	GameObject* Wall;
 
 public:
 	PlayScene() = default;

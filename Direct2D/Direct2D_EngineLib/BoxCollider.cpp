@@ -123,8 +123,8 @@ bool BoxCollider::CheckAABBCollision(BoxCollider* other, ContactInfo& contact)
     OutputDebugStringW(buffer);
 
 
-    if (overlapX <= 0.0f || overlapY <= 0.0f)
-        return false;
+    /*if (overlapX <= 0.0f || overlapY <= 0.0f)
+        return false;*/
 
 
     // 4. 침투가 적은 축을 따라 법선 결정
@@ -137,7 +137,7 @@ bool BoxCollider::CheckAABBCollision(BoxCollider* other, ContactInfo& contact)
     else
     {
         // Y축 방향 법선
-        contact.normal = (thisCenter.y < otherCenter.y) ? Vector2(0, 1) : Vector2(0, -1);
+        contact.normal = (thisCenter.y > otherCenter.y) ? Vector2(0, 1) : Vector2(0, -1);
         contact.depth = overlapY;
     }
 
@@ -226,7 +226,7 @@ void BoxCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
         // script
         auto scripts = owner->GetComponents<Script>();
         for (auto s : scripts)
-            s->OnCollisionEnter(other);
+            s->OnCollisionEnter(other, contact);
     }
 }
 
@@ -244,7 +244,7 @@ void BoxCollider::OnCollisionStay(ICollider* other, ContactInfo& contact)
         // script
         auto scripts = owner->GetComponents<Script>();
         for (auto s : scripts)
-            s->OnCollisionStay(other);
+            s->OnCollisionStay(other, contact);
     }
 }
 
@@ -283,7 +283,7 @@ void BoxCollider::OnCollisionExit(ICollider* other, ContactInfo& contact)
         // script
         auto scripts = owner->GetComponents<Script>();
         for (auto s : scripts)
-            s->OnCollisionExit(other);
+            s->OnCollisionExit(other, contact);
     } 
 }
 

@@ -17,6 +17,7 @@ class Rigidbody : public Component
 private:
     Transform* transform = nullptr;
 
+// private:
 public:
     // ground gravity controll
     bool isGrounded;
