@@ -21,8 +21,6 @@ public:
 	SpriteRenderer* spriteRenderer;
 	Rigidbody* rigidbody;
 	BoxCollider* collider;
-	BoxCollider* collider2;
-	BoxCollider* collider3;
 	Animator* animator;
 	CatController* controller;		// script compoennt
 
@@ -42,8 +40,6 @@ public:
 		spriteRenderer = AddComponent<SpriteRenderer>();
 		rigidbody = AddComponent<Rigidbody>();
 		collider = AddComponent<BoxCollider>();
-		collider2 = AddComponent<BoxCollider>();
-		collider3 = AddComponent<BoxCollider>();
 		animator = AddComponent<Animator>();
 		controller = AddComponent<CatController>();
 	}
@@ -58,16 +54,10 @@ public:
 		// setting
 		transform->SetPosition(0, 100);
 		transform->SetScale(3, 3);
-		collider->offset = { 10, 10 };
+
+		collider->offset = { -10, -10 };
 		collider->size = { 15, 10 };
 		collider->isTrigger = false;
-
-		collider2->offset = { 20, 20 };
-		collider2->size = { 15, 10 };
-		collider2->isTrigger = true;
-
-		collider3->size = { 15, 10 };
-		collider3->isTrigger = true;
 
 		rigidbody->useGravity = true;
 		rigidbody->gravityScale = 40;
@@ -76,9 +66,6 @@ public:
 	void Update() override
 	{
 		collider->DebugColliderDraw();
-		collider2->DebugColliderDraw();
-		collider3->DebugColliderDraw();
-
 		DebugWOo();
 	}
 
