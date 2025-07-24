@@ -101,19 +101,26 @@ public:
 
     Vector2 GetWorldPosition() const
     {
-        return Vector2(worldMatrix._31, worldMatrix._32);
+        if (parent)
+            return parent->GetWorldPosition() + position;
+        return position;
     }
 
     float GetWorldRotation() const
     {
-        return atan2(worldMatrix._21, worldMatrix._11);
+        if (parent)
+            return parent->GetWorldRotation() + rotation;
+        return rotation;
     }
 
     Vector2 GetWorldScale() const
     {
-        float scaleX = sqrt(worldMatrix._11 * worldMatrix._11 + worldMatrix._21 * worldMatrix._21);
-        float scaleY = sqrt(worldMatrix._12 * worldMatrix._12 + worldMatrix._22 * worldMatrix._22);
-        return Vector2(scaleX, scaleY);
+        if (parent)
+        {
+            Vector2 parentScale = parent->GetWorldScale();
+            return Vector2(scale.x * parentScale.x, scale.y * parentScale.y);
+        }
+        return scale;
     }
 
 private:
