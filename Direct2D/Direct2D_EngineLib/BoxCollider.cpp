@@ -146,7 +146,7 @@ bool BoxCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& conta
     Vector2 closestPoint(closestX, closestY);
 
     // 원 중심과 가장 가까운 점 사이 거리
-    Vector2 diff = boxCenter - closestPoint;
+    Vector2 diff = circleCenter - closestPoint;
     float distSq = diff.SqrMagnitude();
 
     if (distSq > circleRadius * circleRadius)
@@ -163,7 +163,7 @@ bool BoxCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& conta
     else
     {
         float distance = sqrtf(distSq);
-        contact.normal = diff / distance;
+        contact.normal = -diff.Normalized();
         contact.depth = circleRadius - distance;
     }
 

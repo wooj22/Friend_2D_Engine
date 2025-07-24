@@ -169,7 +169,7 @@ bool CircleCollider::CheckBoxCollision(BoxCollider* other, ContactInfo& contact)
     else
     {
         float distance = sqrtf(distSq);
-        contact.normal = diff / distance;
+        contact.normal = diff.Normalized();
         contact.depth = scaledRadius - distance;
     }
 
