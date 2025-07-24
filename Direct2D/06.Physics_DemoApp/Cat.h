@@ -21,6 +21,7 @@ public:
 	SpriteRenderer* spriteRenderer;
 	Rigidbody* rigidbody;
 	BoxCollider* collider;
+	BoxCollider* collider_t;
 	Animator* animator;
 	CatController* controller;		// script compoennt
 
@@ -40,6 +41,7 @@ public:
 		spriteRenderer = AddComponent<SpriteRenderer>();
 		rigidbody = AddComponent<Rigidbody>();
 		collider = AddComponent<BoxCollider>();
+		collider_t = AddComponent<BoxCollider>();
 		animator = AddComponent<Animator>();
 		controller = AddComponent<CatController>();
 	}
@@ -54,8 +56,13 @@ public:
 		// setting
 		transform->SetPosition(0, 100);
 		transform->SetScale(3, 3);
+		collider->offset = { -5,5 };
 		collider->size = { 15, 10 };
 		collider->isTrigger = false;
+
+		collider_t->size = { 15, 10 };
+		collider_t->isTrigger = true;
+
 		rigidbody->useGravity = true;
 		rigidbody->gravityScale = 40;
 	}
@@ -63,6 +70,17 @@ public:
 	void Update() override
 	{
 		collider->DebugColliderDraw();
+		collider_t->DebugColliderDraw();
+
+		wchar_t buffer[256];
+
+		Vector2 localPos = transform->GetPosition();
+		swprintf_s(buffer, L"Local Position: x=%.3f, y=%.3f\n", localPos.x, localPos.y);
+		OutputDebugStringW(buffer);
+
+		Vector2 worldPos = transform->GetWorldPosition();
+		swprintf_s(buffer, L"World Position: x=%.3f, y=%.3f\n", worldPos.x, worldPos.y);
+		OutputDebugStringW(buffer);
 
 		//DebugWOo();
 	}

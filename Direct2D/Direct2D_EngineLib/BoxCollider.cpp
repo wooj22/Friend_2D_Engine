@@ -110,22 +110,9 @@ bool BoxCollider::CheckAABBCollision(BoxCollider* other, ContactInfo& contact)
     Vector2 otherCenter = other->GetCenter();
     contact.point = (thisCenter + otherCenter) * 0.5f;
 
-    wchar_t buffer[256];
-    swprintf(buffer, 256, L"thisCenter: (%.3f, %.3f), otherCenter: (%.3f, %.3f)\n",
-        thisCenter.x, thisCenter.y, otherCenter.x, otherCenter.y);
-    OutputDebugStringW(buffer);
-
     // 3. 축별 침투 깊이 계산
     float overlapX = min(maxX, other->maxX) -max(minX, other->minX);
     float overlapY = min(maxY, other->maxY) - max(minY, other->minY);
-
-    swprintf(buffer, 256, L"overlapX: %.3f, overlapY: %.3f\n", overlapX, overlapY);
-    OutputDebugStringW(buffer);
-
-
-    /*if (overlapX <= 0.0f || overlapY <= 0.0f)
-        return false;*/
-
 
     // 4. 침투가 적은 축을 따라 법선 결정
     if (overlapX < overlapY)
@@ -140,9 +127,6 @@ bool BoxCollider::CheckAABBCollision(BoxCollider* other, ContactInfo& contact)
         contact.normal = (thisCenter.y > otherCenter.y) ? Vector2(0, 1) : Vector2(0, -1);
         contact.depth = overlapY;
     }
-
-    swprintf(buffer, 256, L"Calculated normal: (%.3f, %.3f)\n", contact.normal.x, contact.normal.y);
-    OutputDebugStringW(buffer);
 
     return true;
 }
