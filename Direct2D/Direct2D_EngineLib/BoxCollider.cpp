@@ -281,6 +281,7 @@ Vector2 BoxCollider::GetCenter() const
 
 void BoxCollider::DebugColliderDraw()
 {
+    // rect
     float left = -size.x * 0.5f + offset.x;
     float right = size.x * 0.5f + offset.x;
     float top = -size.y * 0.5f - offset.y;
@@ -288,4 +289,12 @@ void BoxCollider::DebugColliderDraw()
 
     D2D1_RECT_F localRect = D2D1::RectF(left, top, right, bottom);
     RenderSystem::Get().DebugDrawRect(localRect, transform->GetScreenMatrix());
+
+    // center
+    D2D1_ELLIPSE ellipse2 = D2D1::Ellipse(
+        D2D1::Point2F(offset.x, -offset.y),
+        2,
+        2
+    );
+    RenderSystem::Get().DebugDrawCircle(ellipse2, transform->GetScreenMatrix());
 }

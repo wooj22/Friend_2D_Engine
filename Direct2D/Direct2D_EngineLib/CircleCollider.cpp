@@ -287,8 +287,8 @@ Vector2 CircleCollider::GetCenter() const
 
 void CircleCollider::DebugColliderDraw()
 {
+    // circle
     Vector2 localPos = Vector2(offset.x, -offset.y);
-
     D2D1_ELLIPSE ellipse = D2D1::Ellipse(
         D2D1::Point2F(localPos.x, localPos.y),
         radius,
@@ -296,4 +296,13 @@ void CircleCollider::DebugColliderDraw()
     );
 
     RenderSystem::Get().DebugDrawCircle(ellipse, transform->GetScreenMatrix());
+
+    // center
+    Vector2 localPos2 = Vector2(offset.x, -offset.y);
+    D2D1_ELLIPSE ellipse2 = D2D1::Ellipse(
+        D2D1::Point2F(localPos.x, localPos.y),
+        2,
+        2
+    );
+    RenderSystem::Get().DebugDrawCircle(ellipse2, transform->GetScreenMatrix());
 }
