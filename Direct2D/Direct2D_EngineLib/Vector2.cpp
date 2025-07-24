@@ -112,3 +112,14 @@ float Vector2::SqrMagnitude() const
 {
     return x * x + y * y;
 }
+
+bool Vector2::IsZero() const
+{
+    const float epsilon = 1e-6f;
+    return fabs(x) < epsilon && fabs(y) < epsilon;
+}
+
+Vector2 Vector2::Abs() const
+{
+    return Vector2(std::abs(x), std::abs(y));
+}

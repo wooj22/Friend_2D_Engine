@@ -44,4 +44,6 @@ public:
     float Magnitude() const;
     Vector2 Normalized() const;
     float SqrMagnitude() const;
+    bool IsZero() const;
+    Vector2 Abs() const;
 };
