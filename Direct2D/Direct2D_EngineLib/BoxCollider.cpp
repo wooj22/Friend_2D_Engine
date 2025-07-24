@@ -134,37 +134,30 @@ bool BoxCollider::CheckAABBCollision(BoxCollider* other, ContactInfo& contact)
 // this box와 other circle의 충돌 결과 반환
 bool BoxCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& contact)
 {
-    Vector2 boxPos = transform->GetPosition() + offset;
-    Vector2 boxScale = transform->GetScale();
-    Vector2 boxSizeScaled(size.x * boxScale.x, size.y * boxScale.y);
-    Vector2 halfBoxSize = boxSizeScaled * 0.5f;
+    Vector2 boxCenter = GetCenter();
+    Vector2 boxSize = transform->GetWorldScale() * size * 0.5f;
 
-    Vector2 circlePos = other->transform->GetPosition() + other->offset;
-    Vector2 circleScale = other->transform->GetScale();
-    float circleRadius = other->radius * circleScale.x;
+    Vector2 circleCenter = other->GetCenter();
+    float circleRadius = other->radius * other->transform->GetWorldScale().x;
 
-    // AABB 내부 가장 가까운 점(clamp)
-    float closestX = clamp(circlePos.x, boxPos.x - halfBoxSize.x, boxPos.x + halfBoxSize.x);
-    float closestY = clamp(circlePos.y, boxPos.y - halfBoxSize.y, boxPos.y + halfBoxSize.y);
+    // AABB 내부에서 가장 가까운 점 찾기
+    float closestX = clamp(circleCenter.x, boxCenter.x - boxSize.x, boxCenter.x + boxSize.x);
+    float closestY = clamp(circleCenter.y, boxCenter.y - boxSize.y, boxCenter.y + boxSize.y);
     Vector2 closestPoint(closestX, closestY);
 
-    // 원 중심과 가장 가까운 점 거리 제곱 계산
-    Vector2 diff = circlePos - closestPoint;
+    // 원 중심과 가장 가까운 점 사이 거리
+    Vector2 diff = boxCenter - closestPoint;
     float distSq = diff.SqrMagnitude();
 
-    // 충돌 여부
     if (distSq > circleRadius * circleRadius)
         return false;
 
-    // 충돌 지점
+    // Contact Info
     contact.point = closestPoint;
 
-    // 충돌 법선 (원 중심에서 박스 경계점 방향)
     if (distSq == 0.0f)
     {
-        // 중심이 박스 안에 완전히 들어갔을 때 (예외처리)
-        // 임의로 위쪽 방향 지정
-        contact.normal = Vector2(0, 1);
+        contact.normal = Vector2(0, 1); // 예외 처리 : 안쪽 완전히 포함
         contact.depth = circleRadius;
     }
     else

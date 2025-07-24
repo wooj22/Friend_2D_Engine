@@ -28,14 +28,6 @@ void CircleCollider::UpdateBounds()
     maxX = center.x + scaledRadius;
     minY = center.y - scaledRadius;
     maxY = center.y + scaledRadius;
-
-    /*Vector2 pos = transform->GetPosition() + offset;
-    float scaledRadius = radius * transform->GetScale().x;
-
-    minX = pos.x - scaledRadius;
-    maxX = pos.x + scaledRadius;
-    minY = pos.y - scaledRadius;
-    maxY = pos.y + scaledRadius;*/
 }
 
 // isCollision()
@@ -148,41 +140,37 @@ bool CircleCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& co
 // this circle와 other box의 충돌 체크
 bool CircleCollider::CheckBoxCollision(BoxCollider* other, ContactInfo& contact)
 {
-    Vector2 circlePos = transform->GetPosition() + offset;
-    Vector2 circleScale = transform->GetScale();
-    float radiusScaled = radius * circleScale.x;
+    Vector2 circleCenter = GetCenter();
+    float scaledRadius = radius * transform->GetWorldScale().x;
 
-    Vector2 boxPos = other->transform->GetPosition() + other->offset;
-    Vector2 boxScale = other->transform->GetScale();
-    Vector2 boxSizeScaled = other->size * boxScale;
-    Vector2 halfBoxSize = boxSizeScaled * 0.5f;
+    Vector2 boxCenter = other->GetCenter();
+    Vector2 boxHalfSize = other->size * other->transform->GetWorldScale() * 0.5f;
 
-    // Clamp point 계산
-    float closestX = clamp(circlePos.x, boxPos.x - halfBoxSize.x, boxPos.x + halfBoxSize.x);
-    float closestY = clamp(circlePos.y, boxPos.y - halfBoxSize.y, boxPos.y + halfBoxSize.y);
-
+    // AABB 내부에서 가장 가까운 점 찾기
+    float closestX = clamp(circleCenter.x, boxCenter.x - boxHalfSize.x, boxCenter.x + boxHalfSize.x);
+    float closestY = clamp(circleCenter.y, boxCenter.y - boxHalfSize.y, boxCenter.y + boxHalfSize.y);
     Vector2 closestPoint(closestX, closestY);
-    Vector2 diff = circlePos - closestPoint;
 
+    // 원 중심과 가장 가까운 점 사이 거리
+    Vector2 diff = circleCenter - closestPoint;
     float distSq = diff.SqrMagnitude();
 
-    if (distSq > radiusScaled * radiusScaled)
+    if (distSq > scaledRadius * scaledRadius)
         return false;
-
 
     // Contact Info
     contact.point = closestPoint;
 
     if (distSq == 0.0f)
     {
-        contact.normal = Vector2(0, 1);
-        contact.depth = radiusScaled; // 박스 안에 완전히 들어간 경우
+        contact.normal = Vector2(0, 1); // 예외 처리
+        contact.depth = scaledRadius;
     }
     else
     {
         float distance = sqrtf(distSq);
         contact.normal = diff / distance;
-        contact.depth = radiusScaled - distance;
+        contact.depth = scaledRadius - distance;
     }
 
     return true;
