@@ -21,15 +21,15 @@ void BoxCollider::OnDestroy()
 // box collider의 aabb bound를 update한다
 void BoxCollider::UpdateBounds()
 {
-    Vector2 pos = transform->GetPosition() + offset;
     Vector2 scale = transform->GetScale();
     Vector2 scaledSize(size.x * scale.x, size.y * scale.y);
     Vector2 halfSize = scaledSize * 0.5f;
+    Vector2 center = GetCenter();
 
-    minX = pos.x - halfSize.x;
-    maxX = pos.x + halfSize.x;
-    minY = pos.y - halfSize.y;
-    maxY = pos.y + halfSize.y;
+    minX = center.x - halfSize.x;
+    maxX = center.x + halfSize.x;
+    minY = center.y - halfSize.y;
+    maxY = center.y + halfSize.y;
 }
 
 // isCollision()
@@ -282,7 +282,8 @@ void BoxCollider::OnTriggerExit(ICollider* other)
 Vector2 BoxCollider::GetCenter() const
 {
     // transform 위치 + offset + size의 절반 (중심)
-    return transform->GetPosition() + offset;
+    Vector2 scale = transform->GetScale();
+    return transform->GetPosition() + Vector2(offset.x * scale.x, offset.y * scale.y);
 }
 
 void BoxCollider::DebugColliderDraw()

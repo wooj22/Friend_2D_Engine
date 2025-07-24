@@ -33,7 +33,7 @@ public:
 		transform->SetPosition(0, 100);
 		collider->isTrigger = false;
 		collider->size = { 50,50 };
-
+		collider->offset = { 10,10};
 		rigidbody->useGravity = false;
 	}
 
