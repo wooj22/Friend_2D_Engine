@@ -298,7 +298,7 @@ void BoxCollider::OnTriggerExit(ICollider* other)
 Vector2 BoxCollider::GetCenter() const
 {
     // transform 위치 + offset + size의 절반 (중심)
-    return transform->GetPosition() + offset +(size * 0.5f);
+    return transform->GetPosition() + offset;
 }
 
 void BoxCollider::DebugColliderDraw()

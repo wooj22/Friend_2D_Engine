@@ -191,69 +191,71 @@ bool CircleCollider::Raycast(const Ray& ray, float maxDistance, RaycastHit& hitI
 
 void CircleCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
 {
-    Vector2 pos = transform->GetPosition();
-    Vector2 prePos = transform->prePosition;
-
-    // 축별 보정
-    if (contact.normal.x != 0) { pos.x = prePos.x; }
-    if (contact.normal.y != 0)
+    Rigidbody* rb = owner->GetComponent<Rigidbody>();
+    if (rb)
     {
-        pos.y = prePos.y;
-
-        // isGrounded
+        // ground
+        rb->CorrectPosition(contact);
         if (contact.normal.y > 0)
         {
-            Rigidbody* rb = owner->GetComponent<Rigidbody>();
-            if (rb)
-            {
-                rb->groundContactCount++;
-                rb->isGrounded = true;
-            }
+            rb->groundContactCount++;
+            rb->isGrounded = true;
         }
-    }
-    transform->SetPosition(pos);
 
-    // script
-    auto scripts = owner->GetComponents<Script>();
-    for (auto s : scripts)
-        s->OnCollisionEnter(other, contact);
+        // script
+        auto scripts = owner->GetComponents<Script>();
+        for (auto s : scripts)
+            s->OnCollisionEnter(other, contact);
+    }
 }
 
 void CircleCollider::OnCollisionStay(ICollider* other, ContactInfo& contact)
 {
-    Vector2 pos = transform->GetPosition();
-    Vector2 prePos = transform->prePosition;
+    Rigidbody* rb = owner->GetComponent<Rigidbody>();
+    if (rb)
+    {
+        // ground
+        if (contact.normal.y > 0)
+        {
+            rb->isGrounded = true;
+        }
 
-    // 축별 보정
-    if (contact.normal.x != 0) { pos.x = prePos.x; }
-    if (contact.normal.y != 0) { pos.y = prePos.y; }
-    transform->SetPosition(pos);
-
-    // script
-    auto scripts = owner->GetComponents<Script>();
-    for (auto s : scripts)
-        s->OnCollisionStay(other, contact);
+        // script
+        auto scripts = owner->GetComponents<Script>();
+        for (auto s : scripts)
+            s->OnCollisionStay(other, contact);
+    }
 }
 
 void CircleCollider::OnCollisionExit(ICollider* other, ContactInfo& contact)
 {
     // isGrounded
     Rigidbody* rb = owner->GetComponent<Rigidbody>();
-    if (rb && contact.normal.y > 0)
+    if (rb)
     {
-        rb->groundContactCount--;
-
-        if (rb->groundContactCount <= 0)
+        // ground
+        if (contact.normal.y > 0)
         {
-            rb->groundContactCount = 0;
-            rb->isGrounded = false;
-        }
-    }
+            rb->groundContactCount--;
 
-    // script
-    auto scripts = owner->GetComponents<Script>();
-    for (auto s : scripts)
-        s->OnCollisionExit(other, contact);
+            if (rb->groundContactCount <= 0)
+            {
+                rb->groundContactCount = 0;
+                rb->isGrounded = false;
+            }
+        }
+
+        // block free
+        if (contact.normal.x > 0)      rb->isBlockedLeft = false;
+        else if (contact.normal.x < 0) rb->isBlockedRight = false;
+        if (contact.normal.y > 0)      rb->isBlockedDown = false;
+        else if (contact.normal.y < 0) rb->isBlockedUp = false;
+
+        // script
+        auto scripts = owner->GetComponents<Script>();
+        for (auto s : scripts)
+            s->OnCollisionExit(other, contact);
+    }
 }
 
 void CircleCollider::OnTriggerEnter(ICollider* other)
