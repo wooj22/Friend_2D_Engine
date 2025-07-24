@@ -79,17 +79,7 @@ public:
 		collider2->DebugColliderDraw();
 		collider3->DebugColliderDraw();
 
-		wchar_t buffer[256];
-
-		Vector2 localPos = transform->GetPosition();
-		swprintf_s(buffer, L"Local Position: x=%.3f, y=%.3f\n", localPos.x, localPos.y);
-		OutputDebugStringW(buffer);
-
-		Vector2 worldPos = transform->GetWorldPosition();
-		swprintf_s(buffer, L"World Position: x=%.3f, y=%.3f\n", worldPos.x, worldPos.y);
-		OutputDebugStringW(buffer);
-
-		//DebugWOo();
+		DebugWOo();
 	}
 
 	void DebugWOo()
