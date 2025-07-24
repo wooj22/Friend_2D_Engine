@@ -17,7 +17,7 @@ class Rigidbody : public Component
 private:
     Transform* transform = nullptr;
 
-// private:
+// private:     // 디버그용으로 잠깐 풀어둔건데 플젝할때 바꾸기!
 public:
     // ground gravity controll
     bool isGrounded;
@@ -36,7 +36,7 @@ public:
     bool useGravity = true;                     // 중력 사용 여부
     float gravityScale = 1.0f;                  // 중력 보정값
     float drag = 0.0f;                          // 공기 저항, 마찰력 (클수록 속도 깎임)
-    bool isKinematic = false;                   // 물리계산 미적용 여부
+    bool isKinematic = false;                   // kinematic 설정시 물리 연산과 충돌 보정 x
 
 private:
     Vector2 impulse = Vector2::zero;            // 추진력 (순간적인 힘)

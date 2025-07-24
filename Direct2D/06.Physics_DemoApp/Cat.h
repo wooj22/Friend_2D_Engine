@@ -55,7 +55,7 @@ public:
 		transform->SetPosition(0, 100);
 		transform->SetScale(3, 3);
 
-		collider->offset = { -10, -10 };
+		//collider->offset = { -10, -10 };
 		collider->size = { 15, 10 };
 		collider->isTrigger = false;
 
@@ -66,7 +66,7 @@ public:
 	void Update() override
 	{
 		collider->DebugColliderDraw();
-		DebugWOo();
+		//DebugWOo();
 	}
 
 	void DebugWOo()

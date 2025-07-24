@@ -16,14 +16,14 @@ private:
 public:
 	Transform* transform;
 	Rigidbody* rigidbody;
-	CircleCollider* collider;
+	BoxCollider* collider;
 	CollisionEventCheak* testScript;		// -> collision event
 
 	CircleObject()
 	{
 		transform = AddComponent<Transform>();
 		rigidbody = AddComponent<Rigidbody>();
-		collider = AddComponent<CircleCollider>();
+		collider = AddComponent<BoxCollider>();
 		testScript = AddComponent<CollisionEventCheak>();
 	}
 
@@ -33,8 +33,8 @@ public:
 	{
 		transform->SetPosition(0, -100);
 		collider->isTrigger = false;
-		collider->radius = 30;
-		//collider->size = { 50,50 };
+		//collider->radius = 30;
+		collider->size = { 50,50 };
 		rigidbody->useGravity = false;
 		//rigidbody->isKinematic = true;
 	}
