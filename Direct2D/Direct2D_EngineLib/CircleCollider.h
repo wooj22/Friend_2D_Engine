@@ -62,7 +62,8 @@ private:
     void OnTriggerExit(ICollider* other) override;
 
 public:
-    // debug draw
+    // func
+    Vector2 GetCenter() const;
     void DebugColliderDraw() override;
 };
 

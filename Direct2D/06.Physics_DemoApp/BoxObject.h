@@ -2,6 +2,7 @@
 #include "../Direct2D_EngineLib/GameObject.h"
 #include "../Direct2D_EngineLib/Transform.h"
 #include "../Direct2D_EngineLib/BoxCollider.h"
+#include "../Direct2D_EngineLib/CircleCollider.h"
 #include "../Direct2D_EngineLib/Rigidbody.h"
 #include "../Direct2D_EngineLib/Time.h"
 #include "../Direct2D_EngineLib/Input.h"
@@ -33,7 +34,8 @@ public:
 		transform->SetPosition(0, 100);
 		collider->isTrigger = false;
 		collider->size = { 50,50 };
-		collider->offset = { 10,10};
+		//collider->radius = 30;
+		//collider->offset = { 10,10};
 		rigidbody->useGravity = false;
 	}
 

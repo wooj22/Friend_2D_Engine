@@ -21,13 +21,21 @@ void CircleCollider::OnDestroy()
 // colldierSystem의 sap 알고리즘에 사용된다. (최적화)
 void CircleCollider::UpdateBounds()
 {
-    Vector2 pos = transform->GetPosition() + offset;
+    Vector2 center = GetCenter();
+    float scaledRadius = radius * transform->GetWorldScale().x;
+
+    minX = center.x - scaledRadius;
+    maxX = center.x + scaledRadius;
+    minY = center.y - scaledRadius;
+    maxY = center.y + scaledRadius;
+
+    /*Vector2 pos = transform->GetPosition() + offset;
     float scaledRadius = radius * transform->GetScale().x;
 
     minX = pos.x - scaledRadius;
     maxX = pos.x + scaledRadius;
     minY = pos.y - scaledRadius;
-    maxY = pos.y + scaledRadius;
+    maxY = pos.y + scaledRadius;*/
 }
 
 // isCollision()
@@ -99,18 +107,17 @@ void CircleCollider::FinalizeCollision()
 // this circle과 other circle의 충돌 체크
 bool CircleCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& contact)
 {
-    Vector2 posA = transform->GetPosition() + offset;
-    Vector2 posB = other->transform->GetPosition() + other->offset;
+    Vector2 center = GetCenter();
+    Vector2 otherCenter = other->GetCenter();
 
-    Vector2 scaleA = transform->GetScale();
-    Vector2 scaleB = other->transform->GetScale();
+    Vector2 scale = transform->GetWorldScale();
+    Vector2 otherScale = other->transform->GetWorldScale();
+    float scaledRadius = radius * scale.x;
+    float otherScaledRadius = other->radius * otherScale.x;
 
-    float scaledRadiusA = radius * scaleA.x;
-    float scaledRadiusB = other->radius * scaleB.x;
-
-    Vector2 diff = posA - posB;
+    Vector2 diff = center - otherCenter;
     float distSq = diff.SqrMagnitude();
-    float radiusSum = scaledRadiusA + scaledRadiusB;
+    float radiusSum = scaledRadius + otherScaledRadius;
 
     if (distSq > radiusSum * radiusSum)
         return false;
@@ -132,7 +139,7 @@ bool CircleCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& co
     }
 
     contact.normal = dir;
-    contact.point = posB + dir * scaledRadiusB;
+    contact.point = otherCenter + dir * otherScaledRadius;
 
     return true;
 }
@@ -280,6 +287,14 @@ void CircleCollider::OnTriggerExit(ICollider* other)
     auto scripts = owner->GetComponents<Script>();
     for (auto s : scripts)
         s->OnTriggerExit(other);
+}
+
+Vector2 CircleCollider::GetCenter() const
+{
+    // transform 위치 + offset + size의 절반 (중심)
+    Vector2 scale = transform->GetScale();
+    Vector2 worldPos = transform->GetWorldPosition();
+    return worldPos + Vector2(offset.x * scale.x, offset.y * scale.y);
 }
 
 void CircleCollider::DebugColliderDraw()
