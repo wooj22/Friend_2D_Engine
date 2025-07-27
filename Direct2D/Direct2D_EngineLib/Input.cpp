@@ -1,5 +1,6 @@
 ﻿#include "Input.h"
 #include "RectTransform.h"
+#include "Camera.h"
 
 // static member init
 HWND Input::hWnd = nullptr;
@@ -60,14 +61,9 @@ bool Input::GetKeyUp(int vKey)
     return (prevState[vKey] & 0x8000) && !(currState[vKey] & 0x8000);
 }
 
-POINT Input::GetMousePosition()
+POINT Input::GetMouseScreenPosition()
 {
-    return mouseClient;
-}
-
-POINT Input::ConvertMouseToUnityPosition()
-{
-    POINT mouse = GetMousePosition();
+    POINT mouse = mouseClient;
     D2D1_POINT_2F pt = { static_cast<float>(mouse.x), static_cast<float>(mouse.y) };
 
     // Unity 스타일 좌표계 변환 행렬 (renderMatrix 제외)
@@ -88,6 +84,12 @@ POINT Input::ConvertMouseToUnityPosition()
 
     // 역행 실패 시 원래 좌표 반환
     return mouse;
+}
+
+POINT Input::GetMouseWorldPosition()
+{
+    // TODO ::  직교행렬 연산
+    // screen -> view -> world
 }
 
 float Input::GetAxisHorizontal()

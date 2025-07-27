@@ -20,8 +20,8 @@ public:
     static bool GetKeyDown(int vKey);
     static bool GetKeyUp(int vKey);
 
-    static POINT GetMousePosition();
-    static POINT ConvertMouseToUnityPosition();
+    static POINT GetMouseScreenPosition();
+    static POINT GetMouseWorldPosition();
 
     static float GetAxisHorizontal();
     static float GetAxisVertical();
