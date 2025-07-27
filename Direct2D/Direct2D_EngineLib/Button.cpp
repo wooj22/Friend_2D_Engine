@@ -19,7 +19,7 @@ void Button::Update()
     if (!Input::GetKeyDown(VK_LBUTTON)) return;
 
     // 2. 마우스 위치 가져오기 (클라이언트 좌표계)
-    POINT mouse = Input::ConvertMouseToUnityPosition();
+    POINT mouse = Input::GetMouseScreenPosition();
     float mouseX = static_cast<float>(mouse.x);
     float mouseY = static_cast<float>(mouse.y);
 
@@ -51,8 +51,8 @@ inline void Button::OnClick()
     OutputDebugStringA("Button OnClick() 이벤트 발생! 콜백함수 호출.\n");
 	
     // debug
-    std::string str1 = std::to_string(Input::ConvertMouseToUnityPosition().x);
-    std::string str2 = std::to_string(Input::ConvertMouseToUnityPosition().y);
+    std::string str1 = std::to_string(Input::GetMouseScreenPosition().x);
+    std::string str2 = std::to_string(Input::GetMouseScreenPosition().y);
     OutputDebugStringA(str1.c_str());
     OutputDebugStringA(" ");
     OutputDebugStringA(str2.c_str());

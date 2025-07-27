@@ -20,9 +20,10 @@ public:
     static const Vector2 right;
 
     // static function
+    static float Distance(const Vector2& a, const Vector2& b);
+    static float Cross(const Vector2& a, const Vector2& b);
     static float Dot(const Vector2& a, const Vector2& b);
     static Vector2 Lerp(const Vector2& a, const Vector2& b, float t);
-    static float Distance(const Vector2& a, const Vector2& b);
     static float Angle(const Vector2& from, const Vector2& to);
 
     // operator overloading
@@ -41,9 +42,11 @@ public:
     Vector2& operator/=(float scalar);
 
     // function
-    float Magnitude() const;
     Vector2 Normalized() const;
+    float Magnitude() const;
     float SqrMagnitude() const;
+    float Cross(const Vector2& other) const;
+    float Dot(const Vector2& other) const;
     bool IsZero() const;
     Vector2 Abs() const;
 };
