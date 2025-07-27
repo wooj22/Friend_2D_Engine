@@ -14,9 +14,9 @@ void CatController::OnEnable()
 
 void CatController::Start()
 {
-	tr = owner->GetComponent<Transform>();
-	sr = owner->GetComponent<SpriteRenderer>();
-	ac = owner->GetComponent<Animator>()->controller;
+	tr = gameObject->GetComponent<Transform>();
+	sr = gameObject->GetComponent<SpriteRenderer>();
+	ac = gameObject->GetComponent<Animator>()->controller;
 
 	tr->SetScale(3, 3);
 }

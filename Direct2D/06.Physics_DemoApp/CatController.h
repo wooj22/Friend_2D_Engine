@@ -51,7 +51,7 @@ public:
 	// collision
 	void OnCollisionEnter(ICollider* other, const ContactInfo& contact)  override
 	{ 
-		if (other->owner->name == "Cloud") {
+		if (other->gameObject->name == "Cloud") {
 			OutputDebugStringA("OnCollisionEnter() - Could\n");
 			isGround = true;
 		}
@@ -59,14 +59,14 @@ public:
 
 	void OnCollisionStay(ICollider* other, const ContactInfo& contact) override
 	{ 
-		if (other->owner->name == "Cloud") { 
+		if (other->gameObject->name == "Cloud") { 
 			//OutputDebugStringA("OnCollisionStay() - Could\n");
 		}
 	}
 
 	void OnCollisionExit(ICollider* other, const ContactInfo& contact)  override
 	{ 
-		if (other->owner->name == "Cloud") {
+		if (other->gameObject->name == "Cloud") {
 			OutputDebugStringA("OnCollisionExit() - Could\n");
 			isGround = false;
 		}

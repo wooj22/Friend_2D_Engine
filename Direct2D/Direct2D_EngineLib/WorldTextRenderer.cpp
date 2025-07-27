@@ -4,7 +4,7 @@
 
 void WorldTextRenderer::OnEnable() 
 {
-	transform = this->owner->GetComponent<Transform>();
+	transform = this->gameObject->GetComponent<Transform>();
 
 	// brush »ý¼º
 	RenderSystem::Get().renderTarget->CreateSolidColorBrush(textColor, brush.GetAddressOf());

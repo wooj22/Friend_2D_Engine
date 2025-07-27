@@ -3,7 +3,7 @@
 void CatController::Awake()
 {
 	// get component
-	tr = this->owner->GetComponent<Transform>();
+	tr = this->gameObject->GetComponent<Transform>();
 
 	// transform setting
 	auto RandFloat = [](float min, float max) {

@@ -8,7 +8,7 @@
 
 void CircleCollider::OnEnable()
 {
-    transform = owner->GetComponent<Transform>();
+    transform = gameObject->GetComponent<Transform>();
 }
 
 void CircleCollider::OnDestroy()
@@ -180,13 +180,37 @@ bool CircleCollider::CheckBoxCollision(BoxCollider* other, ContactInfo& contact)
 // 광선과 this collider의 충돌 결과 반환
 bool CircleCollider::Raycast(const Ray& ray, float maxDistance, RaycastHit& hitInfo)
 {
-    // TODO 
-    return false;
+    Vector2 center = GetCenter();
+    Vector2 oc = ray.origin - center;
+
+    float a = ray.direction.Dot(ray.direction);         // == ray.direction.SqrMagnitude()
+    float b = 2.0f * oc.Dot(ray.direction);
+    float c = oc.Dot(oc) - radius * radius;
+
+    float discriminant = b * b - 4 * a * c;
+    if (discriminant < 0)
+        return false;
+
+    float sqrtD = std::sqrt(discriminant);
+    float t1 = (-b - sqrtD) / (2.0f * a);
+    float t2 = (-b + sqrtD) / (2.0f * a);
+
+    // t1이 더 짧은 거리. 이게 0 이상이고 maxDistance보다 작아야 충돌 인정
+    float t = (t1 >= 0) ? t1 : t2;
+    if (t < 0 || t > maxDistance)
+        return false;
+
+    // 충돌 정보 기록
+    hitInfo.distance = t;
+    hitInfo.point = ray.origin + ray.direction * t;
+    hitInfo.collider = this;
+
+    return true;
 }
 
 void CircleCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
 {
-    Rigidbody* rb = owner->GetComponent<Rigidbody>();
+    Rigidbody* rb = gameObject->GetComponent<Rigidbody>();
     if (rb)
     {
         // ground
@@ -198,7 +222,7 @@ void CircleCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
         }
 
         // script
-        auto scripts = owner->GetComponents<Script>();
+        auto scripts = gameObject->GetComponents<Script>();
         for (auto s : scripts)
             s->OnCollisionEnter(other, contact);
     }
@@ -206,7 +230,7 @@ void CircleCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
 
 void CircleCollider::OnCollisionStay(ICollider* other, ContactInfo& contact)
 {
-    Rigidbody* rb = owner->GetComponent<Rigidbody>();
+    Rigidbody* rb = gameObject->GetComponent<Rigidbody>();
     if (rb)
     {
         // ground
@@ -216,7 +240,7 @@ void CircleCollider::OnCollisionStay(ICollider* other, ContactInfo& contact)
         }
 
         // script
-        auto scripts = owner->GetComponents<Script>();
+        auto scripts = gameObject->GetComponents<Script>();
         for (auto s : scripts)
             s->OnCollisionStay(other, contact);
     }
@@ -225,7 +249,7 @@ void CircleCollider::OnCollisionStay(ICollider* other, ContactInfo& contact)
 void CircleCollider::OnCollisionExit(ICollider* other, ContactInfo& contact)
 {
     // isGrounded
-    Rigidbody* rb = owner->GetComponent<Rigidbody>();
+    Rigidbody* rb = gameObject->GetComponent<Rigidbody>();
     if (rb)
     {
         // ground
@@ -247,7 +271,7 @@ void CircleCollider::OnCollisionExit(ICollider* other, ContactInfo& contact)
         else if (contact.normal.y < 0) rb->isBlockedUp = false;
 
         // script
-        auto scripts = owner->GetComponents<Script>();
+        auto scripts = gameObject->GetComponents<Script>();
         for (auto s : scripts)
             s->OnCollisionExit(other, contact);
     }
@@ -256,7 +280,7 @@ void CircleCollider::OnCollisionExit(ICollider* other, ContactInfo& contact)
 void CircleCollider::OnTriggerEnter(ICollider* other)
 {
     // script
-    auto scripts = owner->GetComponents<Script>();
+    auto scripts = gameObject->GetComponents<Script>();
     for (auto s : scripts)
         s->OnTriggerEnter(other);
 }
@@ -264,7 +288,7 @@ void CircleCollider::OnTriggerEnter(ICollider* other)
 void CircleCollider::OnTriggerStay(ICollider* other)
 {
     // script
-    auto scripts = owner->GetComponents<Script>();
+    auto scripts = gameObject->GetComponents<Script>();
     for (auto s : scripts)
         s->OnTriggerStay(other);
 }
@@ -272,7 +296,7 @@ void CircleCollider::OnTriggerStay(ICollider* other)
 void CircleCollider::OnTriggerExit(ICollider* other)
 {
     // script
-    auto scripts = owner->GetComponents<Script>();
+    auto scripts = gameObject->GetComponents<Script>();
     for (auto s : scripts)
         s->OnTriggerExit(other);
 }

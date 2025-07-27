@@ -72,20 +72,26 @@ void ColliderSystem::FixedUpdate()
 // Raycast 광선과 콜라이더의 충돌 정보 반환
 RaycastHit ColliderSystem::Raycast(const Ray& ray, float maxDistance)
 {
-    // ray hit o
-    for (ICollider* col : components)
-    {
-        RaycastHit hitInfo;
-        if (col->Raycast(ray, maxDistance, hitInfo))
-        {
-            if (hitInfo.distance <= maxDistance)
-                return hitInfo;
-        }
-    }
-
-    // ray hit x
     RaycastHit closestHit;
     closestHit.collider = nullptr;
     closestHit.distance = maxDistance;
+
+    for (ICollider* col : components)
+    {
+        // trigger collider는 제외
+        if (col->isTrigger) continue;
+
+        RaycastHit hitInfo;
+        if (col->Raycast(ray, maxDistance, hitInfo))
+        {
+            // 충돌 콜라이더중 가장 가까운 것으로 저장
+            if (hitInfo.distance < closestHit.distance)
+            {
+                closestHit = hitInfo;
+            }
+        }
+    }
+
+    // 충돌한 콜라이더 값을 경우 closesHit.collider == nullptr;
     return closestHit;
 }

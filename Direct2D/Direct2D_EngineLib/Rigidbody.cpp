@@ -5,7 +5,7 @@
 
 void Rigidbody::OnEnable()
 {
-    transform = this->owner->GetComponent<Transform>();
+    transform = this->gameObject->GetComponent<Transform>();
 }
 
 void Rigidbody::OnDestroy()

@@ -6,7 +6,7 @@
 
 void Animator::OnEnable()
 {
-    spriteRenderer = owner->GetComponent<SpriteRenderer>();
+    spriteRenderer = gameObject->GetComponent<SpriteRenderer>();
 }
 
 void Animator::Update()

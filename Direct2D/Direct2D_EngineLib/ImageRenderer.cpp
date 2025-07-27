@@ -4,7 +4,7 @@
 
 void ImageRenderer::OnEnable()
 {
-	rectTransform = this->owner->GetComponent<RectTransform>();
+	rectTransform = this->gameObject->GetComponent<RectTransform>();
 
 	// brush »ý¼º
 	RenderSystem::Get().renderTarget->CreateSolidColorBrush(baseColor, brush.GetAddressOf());

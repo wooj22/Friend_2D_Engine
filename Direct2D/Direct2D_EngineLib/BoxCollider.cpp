@@ -9,7 +9,7 @@
 
 void BoxCollider::OnEnable()
 {
-    transform = this->owner->GetComponent<Transform>();
+    transform = this->gameObject->GetComponent<Transform>();
 }
 
 void BoxCollider::OnDestroy()
@@ -174,13 +174,58 @@ bool BoxCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& conta
 // 광선과 this collider의 충돌 결과 반환
 bool BoxCollider::Raycast(const Ray& ray, float maxDistance, RaycastHit& hitInfo)
 {
-    // TODO 
-    return false;
+    // 레이 방향이 0일 수 있으므로 예외 처리
+    float dirX = ray.direction.x;
+    float dirY = ray.direction.y;
+
+    float tMinX, tMaxX;
+    if (dirX != 0.0f)
+    {
+        tMinX = (minX - ray.origin.x) / dirX;
+        tMaxX = (maxX - ray.origin.x) / dirX;
+        if (tMinX > tMaxX) std::swap(tMinX, tMaxX);
+    }
+    else
+    {
+        // 레이가 X축으로 평행한 경우, 바운드를 벗어나면 충돌 없음
+        if (ray.origin.x < minX || ray.origin.x > maxX)
+            return false;
+        tMinX = -INFINITY;
+        tMaxX = INFINITY;
+    }
+
+    float tMinY, tMaxY;
+    if (dirY != 0.0f)
+    {
+        tMinY = (minY - ray.origin.y) / dirY;
+        tMaxY = (maxY - ray.origin.y) / dirY;
+        if (tMinY > tMaxY) std::swap(tMinY, tMaxY);
+    }
+    else
+    {
+        if (ray.origin.y < minY || ray.origin.y > maxY)
+            return false;
+        tMinY = -INFINITY;
+        tMaxY = INFINITY;
+    }
+
+    float tEnter = max(tMinX, tMinY);
+    float tExit = min(tMaxX, tMaxY);
+
+    if (tExit < 0 || tEnter > tExit || tEnter > maxDistance)
+        return false;
+
+    // 충돌 정보 기록
+    hitInfo.distance = tEnter;
+    hitInfo.point = ray.origin + ray.direction * tEnter;
+    hitInfo.collider = this;
+
+    return true;
 }
 
 void BoxCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
 {
-    Rigidbody* rb = owner->GetComponent<Rigidbody>();
+    Rigidbody* rb = gameObject->GetComponent<Rigidbody>();
     if (rb)
     {
         // ground
@@ -192,7 +237,7 @@ void BoxCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
         }
 
         // script
-        auto scripts = owner->GetComponents<Script>();
+        auto scripts = gameObject->GetComponents<Script>();
         for (auto s : scripts)
             s->OnCollisionEnter(other, contact);
     }
@@ -200,7 +245,7 @@ void BoxCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
 
 void BoxCollider::OnCollisionStay(ICollider* other, ContactInfo& contact)
 {
-    Rigidbody* rb = owner->GetComponent<Rigidbody>();
+    Rigidbody* rb = gameObject->GetComponent<Rigidbody>();
     if (rb)
     {
         // ground
@@ -210,7 +255,7 @@ void BoxCollider::OnCollisionStay(ICollider* other, ContactInfo& contact)
         }
 
         // script
-        auto scripts = owner->GetComponents<Script>();
+        auto scripts = gameObject->GetComponents<Script>();
         for (auto s : scripts)
             s->OnCollisionStay(other, contact);
     }
@@ -219,7 +264,7 @@ void BoxCollider::OnCollisionStay(ICollider* other, ContactInfo& contact)
 void BoxCollider::OnCollisionExit(ICollider* other, ContactInfo& contact)
 {
     // isGrounded
-    Rigidbody* rb = owner->GetComponent<Rigidbody>();
+    Rigidbody* rb = gameObject->GetComponent<Rigidbody>();
     if (rb)
     {
         // ground
@@ -241,7 +286,7 @@ void BoxCollider::OnCollisionExit(ICollider* other, ContactInfo& contact)
         else if (contact.normal.y < 0) rb->isBlockedUp = false;
 
         // script
-        auto scripts = owner->GetComponents<Script>();
+        auto scripts = gameObject->GetComponents<Script>();
         for (auto s : scripts)
             s->OnCollisionExit(other, contact);
     } 
@@ -250,7 +295,7 @@ void BoxCollider::OnCollisionExit(ICollider* other, ContactInfo& contact)
 void BoxCollider::OnTriggerEnter(ICollider* other)
 {
     // script
-    auto scripts = owner->GetComponents<Script>();
+    auto scripts = gameObject->GetComponents<Script>();
     for (auto s : scripts)
         s->OnTriggerEnter(other);
 }
@@ -258,7 +303,7 @@ void BoxCollider::OnTriggerEnter(ICollider* other)
 void BoxCollider::OnTriggerStay(ICollider* other)
 {
     // script
-    auto scripts = owner->GetComponents<Script>();
+    auto scripts = gameObject->GetComponents<Script>();
     for (auto s : scripts)
         s->OnTriggerStay(other);
 }
@@ -266,7 +311,7 @@ void BoxCollider::OnTriggerStay(ICollider* other)
 void BoxCollider::OnTriggerExit(ICollider* other)
 {
     // script
-    auto scripts = owner->GetComponents<Script>();
+    auto scripts = gameObject->GetComponents<Script>();
     for (auto s : scripts)
         s->OnTriggerExit(other);
 }

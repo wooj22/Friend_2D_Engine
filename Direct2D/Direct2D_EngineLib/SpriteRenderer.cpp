@@ -4,7 +4,7 @@
 
 void SpriteRenderer::OnEnable() 
 {
-	transform = this->owner->GetComponent<Transform>();
+	transform = this->gameObject->GetComponent<Transform>();
 }
 
 void SpriteRenderer::Update() 

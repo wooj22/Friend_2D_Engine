@@ -17,10 +17,10 @@ void CatController::OnEnable()
 
 void CatController::Awake()
 {
-	tr = owner->GetComponent<Transform>();
-	sr = owner->GetComponent<SpriteRenderer>();
-	rb = owner->GetComponent<Rigidbody>();
-	ac = owner->GetComponent<Animator>()->controller;
+	tr = gameObject->GetComponent<Transform>();
+	sr = gameObject->GetComponent<SpriteRenderer>();
+	rb = gameObject->GetComponent<Rigidbody>();
+	ac = gameObject->GetComponent<Animator>()->controller;
 
 	infoText = GameObject::Find("CatText")->GetComponent<WorldTextRenderer>();
 }

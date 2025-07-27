@@ -47,6 +47,39 @@ void CollisionTestScene::Update()
 {
 	// game object -> Update()
 	__super::Update();
+
+	// ray test
+	if (Input::GetKeyDown('R'))
+	{
+		Ray ray;
+		ray.origin = Vector2::zero;
+		ray.direction = Vector2::up;
+
+		RaycastHit rayCast = ColliderSystem::Get().Raycast(ray, 10000);
+
+		if (rayCast.collider)
+		{
+			std::wstring debugStr = L"[Raycast Hit]\n";
+			debugStr += L"Hit Point: (" + std::to_wstring(rayCast.point.x) + L", " + std::to_wstring(rayCast.point.y) + L")\n";
+			debugStr += L"Distance: " + std::to_wstring(rayCast.distance) + L"\n";
+
+			// collider가 owner를 갖고 있고, owner가 GameObject이고, name을 string으로 가지고 있다고 가정
+			GameObject* owner = rayCast.collider->gameObject;
+			if (owner)
+			{
+				std::wstring nameW(owner->name.begin(), owner->name.end()); // string -> wstring
+				debugStr += L"Collider Owner: " + nameW + L"\n";
+			}
+
+			OutputDebugString(debugStr.c_str());
+
+			owner->GetComponent<Transform>()->Translate(0, 100);
+		}
+		else
+		{
+			OutputDebugString(L"[Raycast Miss]\n");
+		}
+	}
 }
 
 void CollisionTestScene::Exit()

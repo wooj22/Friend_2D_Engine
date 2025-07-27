@@ -158,7 +158,7 @@ public:
         static_assert(is_base_of<Component, T>::value, "T must derive from Component");
 
         T* comp = new T(forward<Args>(args)...);
-        comp->owner = this;
+        comp->gameObject = this;
         components.push_back(comp);
         comp->OnEnable();
         return comp;

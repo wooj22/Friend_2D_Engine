@@ -8,7 +8,7 @@
 
 void Button::OnEnable() 
 {
-    rectTransform = this->owner->GetComponent<RectTransform>();
+    rectTransform = this->gameObject->GetComponent<RectTransform>();
 }
 
 void Button::Update() 

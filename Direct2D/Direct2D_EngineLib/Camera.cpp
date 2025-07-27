@@ -5,7 +5,7 @@
 
 void Camera::OnEnable()
 {
-	transform = this->owner->GetComponent<Transform>();
+	transform = this->gameObject->GetComponent<Transform>();
     if (mainCamera == nullptr) mainCamera = this;
 }
 

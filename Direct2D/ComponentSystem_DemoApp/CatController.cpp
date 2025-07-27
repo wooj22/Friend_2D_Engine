@@ -3,9 +3,9 @@
 void CatController::OnEnable()
 {
 	// get component
-	transform = this->owner->GetComponent<Transform>();
-	sr = this->owner->GetComponent<SpriteRenderer>();
-	tr = this->owner->GetComponent<WorldTextRenderer>();
+	transform = this->gameObject->GetComponent<Transform>();
+	sr = this->gameObject->GetComponent<SpriteRenderer>();
+	tr = this->gameObject->GetComponent<WorldTextRenderer>();
 
 	// set
 	transform->SetPosition(0, 0);
