@@ -3,7 +3,7 @@
 void PlayScene::Awake()
 {
 	// capacity
-	SetObjectListCapacity(500);
+	//SetObjectListCapacity(500);
 
 	// camera init
 	cam = CreateObject<GameObject>();

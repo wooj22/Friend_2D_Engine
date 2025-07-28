@@ -13,6 +13,10 @@ using namespace std;
 * 씬이 Start될 때 : GameObject->SceneStartInit()
 * 씬이 Update될 때 : GameObject->Update()
 * 씬의 GameObject를 삭제시킬 때 : GameObject->Destroyed()
+* 
+* 게임오브젝트가 생성될때 바로 objectList에 추가하는게 아닌, 
+* pending_objectList에 추가하고, vector의 update가 돌기 전 objectList로 추가한다.
+* Update중 capacity가 변경될 경우 크래시를 방지할 수 있다.
 */
 
 class GameObject;
@@ -20,6 +24,7 @@ class Scene : public Object
 {
 private:
 	vector<GameObject*> objectList;
+	vector<GameObject*> pending_objectList;
 
 public:
 	Scene() = default;
@@ -38,7 +43,7 @@ public:
 	{
 		// new
 		T* pObject = new T(std::forward<Args>(args)...);
-		objectList.push_back(pObject);
+		pending_objectList.push_back(pObject);
 
 		// transform, parent
 		Transform* tr = pObject->GetComponent<Transform>();
