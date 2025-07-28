@@ -13,6 +13,7 @@ class ButtonSystem : public Singleton<ButtonSystem>
 {
 private:
 	vector<Button*> components;
+	vector<Button*> pending_components;
 
 public:
 	// componenet

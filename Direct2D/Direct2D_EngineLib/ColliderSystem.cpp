@@ -7,23 +7,40 @@
 // component 등록
 void ColliderSystem::Regist(ICollider* component)
 {
-	components.push_back(component);
+    pending_components.push_back(component);
 }
 
 // component 등록 해제
 void ColliderSystem::Unregist(ICollider* component)
 {
-	for (auto it = components.begin(); it != components.end(); ++it) {
-		if (*it == component) {
-			components.erase(it);
-			return;
-		}
-	}
+    // delete
+    for (auto it = components.begin(); it != components.end(); ++it) {
+        if (*it == component) {
+            components.erase(it);
+            return;
+        }
+    }
+
+    // pending delete
+    for (auto it = pending_components.begin(); it != pending_components.end(); ++it) {
+        if (*it == component) {
+            pending_components.erase(it);
+            return;
+        }
+    }
 }
 
 // component system
 void ColliderSystem::FixedUpdate()
 {
+    // pending_components push
+    for (ICollider* collider : pending_components)
+    {
+        components.push_back(collider);
+    }
+    pending_components.clear();
+
+	// update bounds
     for (auto collider : components)
     {
         collider->currentFrameCollisions.clear();   // curent frame collision data reset

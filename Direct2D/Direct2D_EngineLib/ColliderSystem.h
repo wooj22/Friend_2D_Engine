@@ -15,6 +15,7 @@ class ColliderSystem : public Singleton<ColliderSystem>
 {
 private:
 	vector<ICollider*> components;
+	vector<ICollider*> pending_components;
 
 public:
 	// componenet

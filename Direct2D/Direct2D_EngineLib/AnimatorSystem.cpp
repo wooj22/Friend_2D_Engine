@@ -4,15 +4,24 @@
 // component 등록
 void AnimatorSystem::Regist(Animator* component)
 {
-	components.push_back(component);
+	pending_components.push_back(component);
 }
 
 // component 등록 해제
 void AnimatorSystem::Unregist(Animator* component)
 {
+	// delete
 	for (auto it = components.begin(); it != components.end(); ++it) {
 		if (*it == component) {
 			components.erase(it);
+			return;
+		}
+	}
+
+	// pending delete
+	for (auto it = pending_components.begin(); it != pending_components.end(); ++it) {
+		if (*it == component) {
+			pending_components.erase(it);
 			return;
 		}
 	}
@@ -21,8 +30,17 @@ void AnimatorSystem::Unregist(Animator* component)
 // component system
 void AnimatorSystem::Update()
 {
-	for (auto it = components.begin(); it != components.end(); ++it)
+	// pending_components push
+	for (Animator* animator : pending_components)
 	{
-		(*it)->Update();
+		components.push_back(animator);
+	}
+	pending_components.clear();
+
+
+	// update
+	for (Animator* animator : components)
+	{
+		animator->Update();
 	}
 }

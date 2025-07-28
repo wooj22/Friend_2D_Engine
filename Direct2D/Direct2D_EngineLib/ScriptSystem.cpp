@@ -10,18 +10,18 @@ void ScriptSystem::Regist(Script* component)
 // component 殿废 秦力
 void ScriptSystem::Unregist(Script* component)
 {
-	// pending script delete
-	for (auto it = pending_components.begin(); it != pending_components.end(); ++it) {
-		if (*it == component) {
-			pending_components.erase(it);
-			return;
-		}
-	}
-
 	// script delete
 	for (auto it = components.begin(); it != components.end(); ++it) {
 		if (*it == component) {
 			components.erase(it);
+			return;
+		}
+	}
+
+	// pending script delete
+	for (auto it = pending_components.begin(); it != pending_components.end(); ++it) {
+		if (*it == component) {
+			pending_components.erase(it);
 			return;
 		}
 	}
@@ -63,16 +63,16 @@ void ScriptSystem::FixedUpdate()
 	pending_components.clear();
 
 	// fixed udpate
-	for (auto* component : components)
+	for (Script* script : components)
 	{
 		// update吝 积己等 版快
-		if (!component->started)
+		if (!script->started)
 		{
-			component->Awake();
-			component->Start();
-			component->started = true;
+			script->Awake();
+			script->Start();
+			script->started = true;
 		}
 
-		if (component) component->FixedUpdate();
+		if (script) script->FixedUpdate();
 	}
 }

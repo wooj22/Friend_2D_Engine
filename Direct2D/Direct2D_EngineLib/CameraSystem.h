@@ -12,6 +12,7 @@ class CameraSystem : public Singleton<CameraSystem>
 {
 private:
 	vector<Camera*> components;
+	vector<Camera*> pending_components;
 
 public:
 	void Regist(Camera* component);

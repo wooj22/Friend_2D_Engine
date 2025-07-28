@@ -12,17 +12,18 @@ void RenderSystem::Regist(IRenderer* component)
 {
 	if (component->rendertype == RenderType::GameObject)
 	{
-		game_renderers.push_back(component);
+		pending_game_renderers.push_back(component);
 	}
 	else if (component->rendertype == RenderType::UI)
 	{
-		ui_renderers.push_back(component);
+		pending_ui_renderers.push_back(component);
 	}
 }
 
 /// Component 등록 해제
 void RenderSystem::Unregist(IRenderer* component)
 {
+	// delete
 	for (auto it = game_renderers.begin(); it != game_renderers.end(); ++it) {
 		if (*it == component) {
 			game_renderers.erase(it);
@@ -32,6 +33,20 @@ void RenderSystem::Unregist(IRenderer* component)
 	for (auto it = ui_renderers.begin(); it != ui_renderers.end(); ++it) {
 		if (*it == component) {
 			ui_renderers.erase(it);
+			return;
+		}
+	}
+
+	// pending delete
+	for (auto it = pending_game_renderers.begin(); it != pending_game_renderers.end(); ++it) {
+		if (*it == component) {
+			pending_game_renderers.erase(it);
+			return;
+		}
+	}
+	for (auto it = pending_ui_renderers.begin(); it != pending_ui_renderers.end(); ++it) {
+		if (*it == component) {
+			pending_ui_renderers.erase(it);
 			return;
 		}
 	}
@@ -102,6 +117,19 @@ void RenderSystem::Init(HWND hwnd, int width, int height)
 
 void RenderSystem::Update()
 {
+	// pending components push
+	for (IRenderer* renderer : pending_game_renderers)
+	{
+		game_renderers.push_back(renderer);
+	}
+	pending_game_renderers.clear();
+	for (IRenderer* renderer : pending_ui_renderers)
+	{
+		ui_renderers.push_back(renderer);
+	}
+	pending_ui_renderers.clear();
+
+
 	// GameObject Update()
 	for (IRenderer* renderer : game_renderers)
 	{
@@ -116,8 +144,22 @@ void RenderSystem::Update()
 }
 
 /// Render
-void RenderSystem::Render() 
+void RenderSystem::Render()
 {
+	// pending components push
+	for (IRenderer* renderer : pending_game_renderers)
+	{
+		game_renderers.push_back(renderer);
+	}
+	pending_game_renderers.clear();
+	for (IRenderer* renderer : pending_ui_renderers)
+	{
+		ui_renderers.push_back(renderer);
+	}
+	pending_ui_renderers.clear();
+
+
+	/*         render          */
 	renderTarget->BeginDraw();
 	renderTarget->Clear(D2D1::ColorF(D2D1::ColorF::Black));
 	renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
@@ -163,7 +205,6 @@ void RenderSystem::Render()
 		}
 	}
 	debugDrawCommands.clear();
-
 
 	renderTarget->EndDraw();
 	swapChain->Present(1, 0);

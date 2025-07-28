@@ -12,6 +12,7 @@ class AnimatorSystem : public Singleton<AnimatorSystem>
 {
 private:
 	vector<Animator*> components;
+	vector<Animator*> pending_components;
 
 public:
 	// componenet

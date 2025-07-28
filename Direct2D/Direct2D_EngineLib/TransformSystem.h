@@ -15,6 +15,7 @@ class TransformSystem : public Singleton<TransformSystem>
 {
 private :
 	vector<ITransform*> components;
+	vector<ITransform*> pending_components;
 
 public:
 	// componenet
