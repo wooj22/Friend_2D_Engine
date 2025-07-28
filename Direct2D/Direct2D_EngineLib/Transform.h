@@ -75,6 +75,7 @@ public:
 public:
     // parent, children
     void SetParent(Transform* newParent);
+	Transform* GetParent(Transform* newParent) { return parent; }
     void RemoveChild(Transform* child);
     void MarkWorldDirty();
 

@@ -91,6 +91,7 @@ public:
 
 
     /*  GameObject Find  */
+    // allGameObjects에는 현재 씬의 살아있는 오브젝트만 포함된다.
 private:
     static vector<GameObject*> allGameObjects;
 public:

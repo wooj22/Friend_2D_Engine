@@ -3,6 +3,7 @@
 #include <windows.h> 
 #include "GameObject.h"
 #include "Object.h"
+#include "Transform.h"
 
 using namespace std;
 
@@ -33,11 +34,28 @@ public:
 
 	// Create
 	template<typename T, typename... Args>
-	T* CreateObject(Args&&... args)
+	T* CreateObject(Vector2 position = {0,0}, GameObject* parent = nullptr, Args&&... args)
 	{
 		T* pObject = new T(std::forward<Args>(args)...);
 		objectList.push_back(pObject);
-		pObject->Awake();			// GameObject->Awake()
+
+		// Transform
+		// position ÃÊ±âÈ­
+		Transform* tr = pObject->GetComponent<Transform>();
+		if (tr)
+		{
+			tr->SetPosition(position);
+			if (parent)
+			{
+				Transform* parentTr = parent->GetComponent<Transform>();
+				if (parentTr)
+				{
+					tr->SetParent(parentTr);
+				}
+			}
+		}
+
+		pObject->Awake();
 		return pObject;
 	}
 
