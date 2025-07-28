@@ -12,6 +12,7 @@ class PhysicsSystem : public Singleton<PhysicsSystem>
 {
 private:
 	vector<Rigidbody*> components;
+	vector<Rigidbody*> pending_components;
 
 public:
 	// componenet

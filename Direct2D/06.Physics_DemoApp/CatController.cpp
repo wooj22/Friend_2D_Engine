@@ -8,6 +8,8 @@
 #include "../Direct2D_EngineLib/ResourceManager.h"
 #include "../Direct2D_EngineLib/WorldTextRenderer.h"
 #include "../Direct2D_EngineLib/Rigidbody.h"
+#include "Cat.h"
+#include "Cloud.h"
 
 // 컴포넌트 활성화 시점
 void CatController::OnEnable()
@@ -54,6 +56,17 @@ void CatController::Update()
 	// ui
 	InfoTextUpdate();
 
+	// instantiate test
+	if (Input::GetKeyDown('3'))
+	{
+		Instantiate<Cat>({ 0,0 });
+	}
+	if (Input::GetKeyDown('4'))
+	{
+		Instantiate<Cloud>({ 0,0 });
+	}
+
+	// reset pos
 	if (tr->GetPosition().y < -500.0f)
 	{
 		tr->SetPosition(0, 300);

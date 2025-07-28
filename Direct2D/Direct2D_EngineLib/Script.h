@@ -3,6 +3,8 @@
 #include "ScriptSystem.h"
 #include "GameObject.h"
 #include "ICollider.h"
+#include "SceneManager.h"
+#include "Scene.h"
 
 /* [Script Conponent]
 * GameObject의 여러 Component들을 controll하는 script 컴포넌트이다.
@@ -40,6 +42,11 @@ public:
     virtual void OnCollisionExit(ICollider* other, const ContactInfo& contact) {}
 
     /* Instantiate */
+	template<typename T, typename... Args>
+	T* Instantiate(Vector2 position = { 0,0 }, GameObject* parent = nullptr, Args&&... args)
+	{
+		return SceneManager::Get().GetCurrentScene()->CreateObject<T>(position, parent, std::forward<Args>(args)...);
+	}
 };
 
 

@@ -4,12 +4,21 @@
 // component 등록
 void PhysicsSystem::Regist(Rigidbody* component)
 {
-	components.push_back(component);
+	pending_components.push_back(component);
 }
 
 // component 등록 해제
 void PhysicsSystem::Unregist(Rigidbody* component)
 {
+	// pending script delete
+	for (auto it = pending_components.begin(); it != pending_components.end(); ++it) {
+		if (*it == component) {
+			pending_components.erase(it);
+			return;
+		}
+	}
+
+	// script delete
 	for (auto it = components.begin(); it != components.end(); ++it) {
 		if (*it == component) {
 			components.erase(it);
@@ -21,8 +30,16 @@ void PhysicsSystem::Unregist(Rigidbody* component)
 // component system
 void PhysicsSystem::FixedUpdate()
 {
-	for (auto it = components.begin(); it != components.end(); ++it)
+	// pending_components push
+	for (Rigidbody* rb : pending_components)
 	{
-		(*it)->FixedUpdate();
+		components.push_back(rb);
+	}
+	pending_components.clear();
+
+	// fixed udpate
+	for (auto* component : components)
+	{
+		if (component) component->FixedUpdate();
 	}
 }

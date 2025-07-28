@@ -11,8 +11,9 @@ using namespace std;
 class Script;
 class ScriptSystem : public Singleton<ScriptSystem>
 {
-private:
+private:	
 	vector<Script*> components;
+	vector<Script*> pending_components;
 
 public:
 	// componenet
