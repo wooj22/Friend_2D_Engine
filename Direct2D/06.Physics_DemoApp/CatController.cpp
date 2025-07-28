@@ -34,7 +34,7 @@ void CatController::Start()
 
 void CatController::Update()
 {
-	// input
+	// input 
 	InputCheak();
 
 	// jump -> input이 update에서 update되고있기 때문에
