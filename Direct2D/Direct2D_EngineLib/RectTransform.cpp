@@ -12,7 +12,8 @@ void RectTransform::OnEnable()
 
 void RectTransform::Update()
 {
-    MakeScreenMatrix();
+    MakeScreenLocalMatrix();
+    MakeScreenWorldMatrix();
 }
 
 void RectTransform::OnDestroy()
@@ -20,47 +21,97 @@ void RectTransform::OnDestroy()
 
 }
 
+// parent, children
+void RectTransform::SetParent(RectTransform* newParent)
+{
+	// 부모가 같을 경우
+	if (newParent == parent) return;
+
+	// 부모 set
+	if (parent != nullptr) {
+		parent->RemoveChild(this);
+	}
+
+	parent = newParent;
+	if (parent)
+		parent->children.push_back(this);
+
+	MarkWorldDirty();
+}
+
+void RectTransform::RemoveChild(RectTransform* child)
+{
+    for (auto it = children.begin(); it != children.end(); ++it)
+    {
+        if (*it != child)
+            continue;
+
+        it = children.erase(it);
+        break;
+    }
+}
+
+void RectTransform::MarkWorldDirty()
+{
+    isWorldDirty = true;
+    for (auto it = children.begin(); it != children.end(); ++it)
+    {
+        (*it)->MarkWorldDirty();
+    }
+}
+
 // set
 void RectTransform::SetPosition(const Vector2& position)
 {
     this->position = position;
-    isDirty = true;
+    isLocalDirty = true;
+    MarkWorldDirty();
 }
 
 void RectTransform::SetPosition(const float& x, const float& y)
 {
     position = { x, y };
-    isDirty = true;
+    isLocalDirty = true;
+    MarkWorldDirty();
 }
 
 void RectTransform::SetSize(const float& w, const float& h)
 {
     size = { w, h };
-    isDirty = true;
+    isLocalDirty = true;
+    MarkWorldDirty();
 }
 
 void RectTransform::SetPivot(const float& x, const float& y)
 {
     pivot = { x, y };
-    isDirty = true;
+    isLocalDirty = true;
+    MarkWorldDirty();
 }
 
-// Screen Matrix
-inline void RectTransform::MakeScreenMatrix()
+// Screen Local Matrix
+inline void RectTransform::MakeScreenLocalMatrix()
 {
-    if (!isDirty) return;
+    if (isLocalDirty)
+    {
+        // unity
+        float offsetX = -size.width * pivot.x;
+        float offsetY = size.height * (1.0f - pivot.y);           // Y 축 반전 고려
 
-    // d2d
-    /*float offsetX = -size.width * pivot.x;
-    float offsetY = -size.height * pivot.y;*/
+        screenLocalMatrix =
+            D2D1::Matrix3x2F::Translation(offsetX, offsetY) *     // pivot 보정
+            D2D1::Matrix3x2F::Translation(position.x, position.y);
 
-    // unity
-    float offsetX = -size.width * pivot.x;
-    float offsetY = size.height * (1.0f - pivot.y);  // Y 축 반전 고려
+        isLocalDirty = false;
+    }
+}
 
-    screenMatrix =
-        D2D1::Matrix3x2F::Translation(offsetX, offsetY) *     // pivot 보정
-        D2D1::Matrix3x2F::Translation(position.x, position.y);
-
-    isDirty = false;
+// Screen World, Screen Matrix - 카메라 역행렬 적용이 필요 없으므로 같이 계산
+inline void RectTransform::MakeScreenWorldMatrix()
+{
+	if (isWorldDirty) {
+        screenWolrdMatrix = parent ? screenLocalMatrix * parent->GetScreenWorldMatrix() : screenLocalMatrix;
+		screenMatrix = renderMatrix * screenWolrdMatrix * unityMatrix;
+        isWorldDirty = false;
+	}
 }

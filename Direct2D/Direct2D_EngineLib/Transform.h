@@ -48,6 +48,7 @@ private:
     D2D1::Matrix3x2F worldMatrix;
     D2D1::Matrix3x2F screenMatrix;
 
+    // dirty
     bool isLocalDirty = true;
     bool isWorldDirty = true;
 

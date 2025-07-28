@@ -9,6 +9,7 @@
 * 카메라의 영향을 받지 않고 항상 고정된 화면 좌표로 계산한다.
 * 컴포넌트 생성시 Transform System에 등록되어 dirty패턴에 따라 matrix를 계속 계산한다.
 * 일단 부모 참조 관계는 안만들었다.
+* -> 이제 만들어야한다. Position만 부모의 영향을 받고 size, povot은 독립적으로 운영된다.
 */
 
 class RectTransform : public ITransform
@@ -19,9 +20,18 @@ private:
     D2D1_SIZE_F size = { 100, 100 };
     D2D1_POINT_2F pivot = { 0.5f, 0.5f };  // rect의 중심점 (unity 좌표계 사용시 left down = 0,0) -> offset 처리
 
+    // parent, children  !!! new
+    RectTransform* parent = nullptr;
+    std::vector<RectTransform*> children;
+
     // this matrix
+    D2D1::Matrix3x2F screenLocalMatrix;
+    D2D1::Matrix3x2F screenWolrdMatrix;
     D2D1::Matrix3x2F screenMatrix;
-    bool isDirty = true;
+
+    // dirty
+    bool isLocalDirty = true;
+    bool isWorldDirty = true;
 
 public:
     // matrix
@@ -38,6 +48,12 @@ public:
     void OnDestroy() override;
 
 public:
+    // parent, children !!! new
+    void SetParent(RectTransform* newParent);
+    RectTransform* GetParent(RectTransform* newParent) { return parent; }
+    void RemoveChild(RectTransform* child);
+    void MarkWorldDirty();
+
     // set
     void SetPosition(const Vector2& position);
     void SetPosition(const float& x, const float& y);
@@ -48,20 +64,22 @@ public:
     D2D1_SIZE_F GetSize() const { return size; }
     Vector2 GetPosition() const { return position; }
     D2D1_POINT_2F GetPivot() const { return pivot; }
+    Vector2 GetWorldPosition() const 
+    { 
+        if (parent)
+            return parent->GetWorldPosition() + position;
+        return position;
+    }
 
     
 private:
     // matrix
-    void MakeScreenMatrix();
+    void MakeScreenLocalMatrix();
+	void MakeScreenWorldMatrix();
 
 public:
     //  matrix get
-    const D2D1::Matrix3x2F& GetScreenMatrix() const 
-    { 
-        // d2d
-        //return screenMatrix;
-
-        // unity
-        return renderMatrix * screenMatrix * unityMatrix;
-    }
+	const D2D1::Matrix3x2F& GetScreenLocalMatrix() { return screenLocalMatrix; }
+	const D2D1::Matrix3x2F& GetScreenWorldMatrix() { return screenWolrdMatrix; }
+	const D2D1::Matrix3x2F& GetScreenMatrix() { return screenMatrix; }
 };

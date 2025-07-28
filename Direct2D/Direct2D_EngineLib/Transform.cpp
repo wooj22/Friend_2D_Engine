@@ -178,7 +178,6 @@ void Transform::MakeWorldMatrix() {
     if (isWorldDirty) {
         auto worldMatrix = GetLocalMatrix();
         this->worldMatrix = parent ? worldMatrix * parent->GetWorldMatrix() : worldMatrix;
-
         isWorldDirty = false;
     }
 }

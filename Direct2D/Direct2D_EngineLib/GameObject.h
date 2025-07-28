@@ -83,7 +83,11 @@ public:
     virtual void Destroyed() {}        // Scene의 Exit, GameObject Delete
 
 
+
     /*  GameObject Active  */
+
+
+
 
 
     /*  GameObject Destroy  */
@@ -97,6 +101,8 @@ public:
     {
         if(obj) obj->Destroy();
     }
+
+
 
 
     /*  GameObject Find  */
@@ -158,6 +164,8 @@ public:
         }
         return result;
     }
+
+
 
 
     /*  Component  */
