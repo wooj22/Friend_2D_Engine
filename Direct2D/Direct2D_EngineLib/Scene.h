@@ -36,11 +36,11 @@ public:
 	template<typename T, typename... Args>
 	T* CreateObject(Vector2 position = {0,0}, GameObject* parent = nullptr, Args&&... args)
 	{
+		// new
 		T* pObject = new T(std::forward<Args>(args)...);
 		objectList.push_back(pObject);
 
-		// Transform
-		// position 초기화
+		// transform, parent
 		Transform* tr = pObject->GetComponent<Transform>();
 		if (tr)
 		{
@@ -55,6 +55,7 @@ public:
 			}
 		}
 
+		// cycle
 		pObject->Awake();
 		return pObject;
 	}
@@ -74,5 +75,8 @@ public:
 			OutputDebugStringA("삭제할 GameObject가 없습니다.\n");
 		}
 	}
+
+	// Set capacity
+	void SetObjectListCapacity(size_t capacity);
 };
 

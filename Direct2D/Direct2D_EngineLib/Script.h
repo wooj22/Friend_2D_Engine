@@ -38,6 +38,8 @@ public:
     virtual void OnCollisionEnter(ICollider* other, const ContactInfo& contact) {}
     virtual void OnCollisionStay(ICollider* other, const ContactInfo& contact) {}
     virtual void OnCollisionExit(ICollider* other, const ContactInfo& contact) {}
+
+    /* Instantiate */
 };
 
 

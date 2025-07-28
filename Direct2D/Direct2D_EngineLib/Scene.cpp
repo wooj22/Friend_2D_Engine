@@ -16,7 +16,7 @@ void Scene::Update()
 	// game object update
 	for (auto& object : objectList)
 	{
-		if (!object->IsDestroyed())
+		if (!object->IsDestroyed())	// ! capacity 재할당시 크래시 날 수 있음
 			object->Update();
 	}
 
@@ -49,4 +49,10 @@ void Scene::Clear()
 		delete object;
 	}
 	objectList.clear();
+}
+
+// Set GameObject List Capacity
+void Scene::SetObjectListCapacity(size_t capacity)
+{
+	objectList.reserve(capacity);
 }
