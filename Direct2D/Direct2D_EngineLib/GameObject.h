@@ -5,7 +5,8 @@
 #include <windows.h> 
 #include "Component.h"
 #include "Object.h"
-#include "Transform.h";         // TODO 삭제 :: 왜 갑자기 오류나지?
+#include "Transform.h";
+#include "RectTransform.h"
 
 using namespace std;
 
@@ -52,6 +53,7 @@ private:
 
 public: 
     Transform* transform = nullptr;
+	RectTransform* rectTransform = nullptr;
     string name = "GameObject";
     string tag = "Untagged";
 
@@ -175,15 +177,41 @@ public:
     {
         static_assert(is_base_of<Component, T>::value, "T must derive from Component");
 
+        // Transform 중복 검사
+        if (std::is_same<T, Transform>::value && transform != nullptr)
+        {
+            throw std::runtime_error("Transform을 두개 생성할 수 없습니다.");
+        }
+
+        // RectTransform 중복 검사
+        if (std::is_same<T, RectTransform>::value && rectTransform != nullptr)
+        {
+            throw std::runtime_error("RectTransform을 두개 생성할 수 없습니다.");
+        }
+
+        // Transform과 RectTransform은 서로 동시에 존재할 수 없음
+        if ((std::is_same<T, Transform>::value && rectTransform != nullptr) ||
+            (std::is_same<T, RectTransform>::value && transform != nullptr))
+        {
+            throw std::runtime_error("Tranform과 RectTransform중 하나만 소유할 수 있습니다.");
+        }
+
+		// add component
         T* comp = new T(forward<Args>(args)...);
         comp->gameObject = this;
         components.push_back(comp);
         comp->OnEnable();
 
-		// gameobject transform 멤버
+		// gameobject transform public member
         if (auto trans = dynamic_cast<Transform*>(comp)) {
             transform = trans;
         }
+
+		// gameobject rectTransform public member
+		if (auto rectTrans = dynamic_cast<RectTransform*>(comp)) {
+			rectTransform = rectTrans;
+		}
+
         return comp;
     }
 
