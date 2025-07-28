@@ -10,6 +10,10 @@
 
 #include "CatController.h"
 #include "CatAnimatorController.h"
+#include "../Direct2D_EngineLib/SceneManager.h"
+#include "../Direct2D_EngineLib/Input.h"
+#include "../Direct2D_EngineLib/Scene.h"
+#include "Cloud.h"
 
 // window : (1400, 800)
 
@@ -67,6 +71,15 @@ public:
 	{
 		collider->DebugColliderDraw();
 		//DebugWOo();
+
+		if (Input::GetKeyDown('1'))
+		{
+			SceneManager::Get().GetCurrentScene()->CreateObject<Cat>({ transform->GetWorldPosition().x,50});
+		}
+		if (Input::GetKeyDown('2'))
+		{
+			SceneManager::Get().GetCurrentScene()->CreateObject<Cloud>({ transform->GetWorldPosition().x,50 });
+		}
 	}
 
 	void DebugWOo()

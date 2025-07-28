@@ -22,8 +22,10 @@ public:
 
 		auto cloud = ResourceManager::Get().CreateTexture2D("../Resource/Cloud.png");
 		spriteRenderer->sprite = ResourceManager::Get().CreateSprite(cloud, "Cloud");
+	
+		OutputDebugString(L"<< Cloud Create >>\n");
 	}
-	~Cloud() override {}
+	~Cloud() override { OutputDebugString(L"<< Cloud Delete >>\n"); }
 
 	void Awake() override
 	{

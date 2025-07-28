@@ -60,7 +60,7 @@ void PlayScene::Update()
 
 	if (!isCatCreate && Input::GetKeyDown(VK_SPACE))
 	{
-		player = CreateObject<Cat>({0,100}, mapManager->cloud1);
+		player = CreateObject<Cat>({ 0,100 }, mapManager->cloud1);
 		catText = CreateObject<CatText>({ 0, -18 }, player);
 		isCatCreate = true;
 	}
