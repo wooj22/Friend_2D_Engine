@@ -13,6 +13,7 @@ using namespace std;
 * Component를 등록시킬 수 있는 오브젝트로,
 * 게임 콘텐츠에 활용할 오브젝트는 이 클래스를 상속받아 컴포넌트를 조합하여 구현한다.
 * 즉 GameObject는 Component들의 컨테이너 역할을 한다.
+* Tranform은 GameObject의 기본 컴포넌트로, AddComponenet시 public으로 접근할 수 있는 멤버로 연결한다.
 * 
 * < GameObject Cycle >
 *  : GameObject의 사이클은 기본적으로 사용하지 않아도 된다. (awake부터~)
@@ -44,8 +45,13 @@ class Component;
 class GameObject : public Object
 {
     /* GameObject Data */
-private: vector<Component*> components; 
+private: 
+    vector<Component*> components; 
+	bool selfActive = true;
+    bool activeInHierarchy = true;
+
 public: 
+    Transform* transform = nullptr;
     string name = "GameObject";
     string tag = "Untagged";
 
@@ -75,6 +81,9 @@ public:
     virtual void SceneStart() {}       // Scene의 Start -> Update중 SceneStart() 호출 보장 x
     virtual void Update() {}           // Scene의 Update
     virtual void Destroyed() {}        // Scene의 Exit, GameObject Delete
+
+
+    /*  GameObject Active  */
 
 
     /*  GameObject Destroy  */
@@ -162,6 +171,11 @@ public:
         comp->gameObject = this;
         components.push_back(comp);
         comp->OnEnable();
+
+		// gameobject transform 멤버
+        if (auto trans = dynamic_cast<Transform*>(comp)) {
+            transform = trans;
+        }
         return comp;
     }
 

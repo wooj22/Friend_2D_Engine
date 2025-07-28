@@ -19,7 +19,7 @@ void CatController::OnEnable()
 
 void CatController::Awake()
 {
-	tr = gameObject->GetComponent<Transform>();
+	tr = gameObject->transform;
 	sr = gameObject->GetComponent<SpriteRenderer>();
 	rb = gameObject->GetComponent<Rigidbody>();
 	ac = gameObject->GetComponent<Animator>()->controller;
@@ -101,7 +101,7 @@ void CatController::InputCheak()
 void CatController::Move_Transform()
 {
 	Vector2 direction = Vector2(inputX, inputY).Normalized();
-	tr->Translate(direction * curSpeed);
+	tr->Translate(direction * curSpeed * Time::GetDeltaTime());
 }
 
 // 물리 이동
