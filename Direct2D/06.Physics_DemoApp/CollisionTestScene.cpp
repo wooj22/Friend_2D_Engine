@@ -69,11 +69,10 @@ void CollisionTestScene::Update()
 			{
 				std::wstring nameW(owner->name.begin(), owner->name.end()); // string -> wstring
 				debugStr += L"Collider Owner: " + nameW + L"\n";
+				owner->Destroy();
 			}
 
 			OutputDebugString(debugStr.c_str());
-
-			owner->GetComponent<Transform>()->Translate(0, 100);
 		}
 		else
 		{

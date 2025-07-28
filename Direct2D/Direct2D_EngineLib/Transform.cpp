@@ -24,7 +24,17 @@ void Transform::Update()
 
 void Transform::OnDestroy()
 {
+	// parent clear
+	if (parent != nullptr) {
+		parent->RemoveChild(this);
+		parent = nullptr;
+	}
 
+    // child clear
+	for (auto it = children.begin(); it != children.end(); ++it) {
+		(*it)->parent = nullptr;
+	}
+	children.clear();
 }
 
 // Set Parent

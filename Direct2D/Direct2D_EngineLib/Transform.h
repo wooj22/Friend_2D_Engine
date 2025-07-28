@@ -98,7 +98,6 @@ public:
     float GetRotation() const { return rotation; }
     Vector2 GetScale() const { return scale; }
 
-
     Vector2 GetWorldPosition() const
     {
         if (parent)
