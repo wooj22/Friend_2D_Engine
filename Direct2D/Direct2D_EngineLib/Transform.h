@@ -62,12 +62,9 @@ public:
     Transform() : position{ 0.0f, 0.0f }, rotation(0.0f), scale{ 1.0f, 1.0f }, parent(nullptr) 
     {
         localMatrix = D2D1::Matrix3x2F::Identity();
-        TransformSystem::Get().Regist(this);
+        
     }
-    ~Transform() override 
-    { 
-        TransformSystem::Get().Unregist(this); 
-    }
+    ~Transform() override = default;
 
     void OnEnable() override;
     void Update() override;

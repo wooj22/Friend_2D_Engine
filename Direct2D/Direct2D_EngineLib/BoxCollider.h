@@ -29,12 +29,8 @@ public:
     
 public:
     // component cycle
-    BoxCollider() 
-    { 
-        colliderType = ColliderType::Box;
-        ColliderSystem::Get().Regist(this);
-    }
-    ~BoxCollider() override { ColliderSystem::Get().Unregist(this); }
+    BoxCollider() { colliderType = ColliderType::Box; }
+    ~BoxCollider() override = default;
 
     void OnEnable() override;
     void OnDestroy() override;

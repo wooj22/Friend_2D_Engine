@@ -32,9 +32,8 @@ public:
 
 public:
 	// component cycle
-	Camera(float width, float height) : viewWidth(width), viewHeight(height)
-		{ CameraSystem::Get().Regist(this); }
-	~Camera() override { CameraSystem::Get().Unregist(this); }
+	Camera(float width, float height) : viewWidth(width), viewHeight(height) {  }
+	~Camera() override = default;
 	void OnEnable();
 	void OnDestroy();
 	void Update();

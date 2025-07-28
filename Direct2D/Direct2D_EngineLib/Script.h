@@ -20,15 +20,21 @@ public:
     bool started = false;
 
     /* script component cycle */
-	Script() { ScriptSystem::Get().Regist(this); }
-	~Script() override { ScriptSystem::Get().Unregist(this); }
+    Script() = default;
+	~Script() override = default;
 
-	void OnEnable() override {}        // 컴포넌트 활성화시
+	void OnEnable() override           // 컴포넌트 활성화시
+    {
+        ScriptSystem::Get().Regist(this);
+    }
     virtual void Awake() {}            // Update()전에 1회 호출
     virtual void Start() {}            // Awake() 이후 Updtae() 직전 시점 1회 호출
     virtual void Update() {}           // 프레임 단위 반복 호출
     virtual void FixedUpdate() {}      // 물리 업데이트 0.02f 보장 반복 호출
-	void OnDestroy() override {}       // 컴포넌트 or 오브젝트 소멸 시점
+	void OnDestroy() override          // 컴포넌트 or 오브젝트 소멸 시점
+    {
+        ScriptSystem::Get().Unregist(this);
+    }
 
     /* Collition Event */
     // trigger

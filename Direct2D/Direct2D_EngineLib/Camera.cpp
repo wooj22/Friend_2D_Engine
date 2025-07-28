@@ -5,12 +5,14 @@
 
 void Camera::OnEnable()
 {
+    CameraSystem::Get().Regist(this);
 	transform = this->gameObject->GetComponent<Transform>();
     if (mainCamera == nullptr) mainCamera = this;
 }
 
 void Camera::OnDestroy()
 {
+    CameraSystem::Get().Unregist(this);
 	if (mainCamera == this) mainCamera = nullptr;
 }
 

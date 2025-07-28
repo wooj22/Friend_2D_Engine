@@ -20,16 +20,8 @@ public:
 
 public:
     // component cycle
-    Button() 
-    { 
-        ButtonSystem::Get().Regist(this); 
-        OutputDebugStringA("Button()\n");
-    }
-    ~Button() override
-    {
-        ButtonSystem::Get().Unregist(this); 
-        OutputDebugStringA("~Button()\n");
-    }
+    Button() = default;
+    ~Button() override = default;
 
     void OnEnable() override;
     void Update();

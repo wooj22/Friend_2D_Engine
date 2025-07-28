@@ -7,18 +7,18 @@ D2D1::Matrix3x2F RectTransform::renderMatrix = D2D1::Matrix3x2F::Scale(1.0f, -1.
 // component cycle
 void RectTransform::OnEnable()
 {
+    TransformSystem::Get().Regist(this);
+}
 
+void RectTransform::OnDestroy()
+{
+    TransformSystem::Get().Unregist(this);
 }
 
 void RectTransform::Update()
 {
     MakeScreenLocalMatrix();
     MakeScreenWorldMatrix();
-}
-
-void RectTransform::OnDestroy()
-{
-
 }
 
 // parent, children

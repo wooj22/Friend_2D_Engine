@@ -14,7 +14,7 @@
 // 컴포넌트 활성화 시점
 void CatController::OnEnable()
 {
-
+	__super::OnEnable();
 }
 
 void CatController::Awake()
@@ -82,7 +82,7 @@ void CatController::FixedUpdate()
 
 void CatController::OnDestroy()
 {
-	
+	__super::OnDestroy();
 }
 
 void CatController::InputCheak()

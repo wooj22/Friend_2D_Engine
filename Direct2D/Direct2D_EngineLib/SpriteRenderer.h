@@ -27,14 +27,8 @@ public:
 
 public:
 	// component cycle
-	SpriteRenderer() 
-	{ 
-		RenderSystem::Get().Regist(this); 
-	};
-	~SpriteRenderer() override
-	{ 
-		RenderSystem::Get().Unregist(this);
-	}
+	SpriteRenderer() = default;
+	~SpriteRenderer() override = default;
 
 	void OnEnable() override;
 	void Update() override;

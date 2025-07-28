@@ -4,11 +4,21 @@
 
 void WorldTextRenderer::OnEnable() 
 {
+	RenderSystem::Get().Regist(this);
 	transform = this->gameObject->GetComponent<Transform>();
 
 	// brush »ý¼º
 	RenderSystem::Get().renderTarget->CreateSolidColorBrush(textColor, brush.GetAddressOf());
 	isTextDirty = true;
+}
+
+
+void WorldTextRenderer::OnDestroy()
+{
+	RenderSystem::Get().Unregist(this);
+	brush = nullptr;
+	textFormat = nullptr;
+	textLayout = nullptr;
 }
 
 void WorldTextRenderer::Update() 
@@ -65,13 +75,6 @@ void WorldTextRenderer::Render()
 		textLayout.Get(),
 		brush.Get()
 	);
-}
-
-void WorldTextRenderer::OnDestroy() 
-{
-	brush = nullptr;
-	textFormat = nullptr;
-	textLayout = nullptr;
 }
 
 void WorldTextRenderer::SetText(const std::wstring& newText)

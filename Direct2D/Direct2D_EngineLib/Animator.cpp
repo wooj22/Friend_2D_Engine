@@ -6,6 +6,7 @@
 
 void Animator::OnEnable()
 {
+    AnimatorSystem::Get().Regist(this);
     spriteRenderer = gameObject->GetComponent<SpriteRenderer>();
 }
 
@@ -22,7 +23,7 @@ void Animator::Update()
 
 void Animator::OnDestroy()
 {
-    
+    AnimatorSystem::Get().Unregist(this);
 }
 
 /// set animation controller

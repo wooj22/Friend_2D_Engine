@@ -31,13 +31,9 @@ private:
 public:
 	// component cycle
 	ImageRenderer() { 
-		rendertype = RenderType::UI;		// 렌더 타입 지정 (UI)
-		RenderSystem::Get().Regist(this);
+		rendertype = RenderType::UI;		// 렌더 타입 지정 (UI)	
 	};
-	~ImageRenderer() override 
-	{
-		RenderSystem::Get().Unregist(this); 
-	}
+	~ImageRenderer() override = default;
 
 	void OnEnable() override;
 	void Update() override;

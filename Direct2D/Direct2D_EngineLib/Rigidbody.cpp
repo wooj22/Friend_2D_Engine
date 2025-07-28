@@ -5,12 +5,13 @@
 
 void Rigidbody::OnEnable()
 {
+    PhysicsSystem::Get().Regist(this);
     transform = this->gameObject->GetComponent<Transform>();
 }
 
 void Rigidbody::OnDestroy()
 {
-
+    PhysicsSystem::Get().Unregist(this);
 }
 
 void Rigidbody::FixedUpdate()

@@ -8,7 +8,13 @@
 
 void Button::OnEnable() 
 {
+    ButtonSystem::Get().Regist(this);
     rectTransform = this->gameObject->GetComponent<RectTransform>();
+}
+
+void Button::OnDestroy()
+{
+    ButtonSystem::Get().Unregist(this);
 }
 
 void Button::Update() 
@@ -41,23 +47,7 @@ void Button::Update()
     }
 }
 
-void Button::OnDestroy() 
-{
-
-}
-
 inline void Button::OnClick()
 {
-    OutputDebugStringA("Button OnClick() 이벤트 발생! 콜백함수 호출.\n");
-	
-    // debug
-    std::string str1 = std::to_string(Input::GetMouseScreenPosition().x);
-    std::string str2 = std::to_string(Input::GetMouseScreenPosition().y);
-    OutputDebugStringA(str1.c_str());
-    OutputDebugStringA(" ");
-    OutputDebugStringA(str2.c_str());
-    OutputDebugStringA("\n");
-
-
     onClickListeners.Invoke();
 }

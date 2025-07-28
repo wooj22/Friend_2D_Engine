@@ -4,7 +4,14 @@
 
 void SpriteRenderer::OnEnable() 
 {
+	RenderSystem::Get().Regist(this);
 	transform = this->gameObject->GetComponent<Transform>();
+}
+
+void SpriteRenderer::OnDestroy()
+{
+	RenderSystem::Get().Unregist(this);
+	sprite = nullptr;
 }
 
 void SpriteRenderer::Update() 
@@ -59,9 +66,4 @@ void SpriteRenderer::Render()
 		D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
 		srcRect             // source rect
 	);
-}
-
-void SpriteRenderer::OnDestroy()
-{
-	sprite = nullptr;
 }

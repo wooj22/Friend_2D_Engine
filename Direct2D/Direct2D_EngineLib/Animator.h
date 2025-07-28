@@ -20,14 +20,9 @@ public:
 
 public:
     // component cycle
-    Animator() 
-    { 
-        AnimatorSystem::Get().Regist(this);
-    }
-    ~Animator() override 
-    { 
-        AnimatorSystem::Get().Unregist(this);
-    }  
+    Animator() = default;
+    ~Animator() override {}
+    
 
     void OnEnable() override;
     void Update();

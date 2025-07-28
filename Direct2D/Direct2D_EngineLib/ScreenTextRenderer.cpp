@@ -4,11 +4,20 @@
 
 void ScreenTextRenderer::OnEnable()
 {
+	RenderSystem::Get().Regist(this);
 	rectTransform = this->gameObject->GetComponent<RectTransform>();
 
 	// brush »ý¼º
 	RenderSystem::Get().renderTarget->CreateSolidColorBrush(textColor, brush.GetAddressOf());
 	isTextDirty = true;
+}
+
+void ScreenTextRenderer::OnDestroy()
+{
+	RenderSystem::Get().Unregist(this);
+	brush = nullptr;
+	textFormat = nullptr;
+	textLayout = nullptr;
 }
 
 void ScreenTextRenderer::Update()
@@ -54,13 +63,6 @@ void ScreenTextRenderer::Render()
 	RenderSystem::Get().renderTarget->SetTransform(rectTransform->GetScreenMatrix());
 	RenderSystem::Get().renderTarget->DrawTextLayout(
 		{0,0}, textLayout.Get(), brush.Get());
-}
-
-void ScreenTextRenderer::OnDestroy()
-{
-	brush = nullptr;
-	textFormat = nullptr;
-	textLayout = nullptr;
 }
 
 void ScreenTextRenderer::SetText(const std::wstring& newText)

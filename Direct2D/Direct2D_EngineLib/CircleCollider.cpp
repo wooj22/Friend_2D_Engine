@@ -8,12 +8,13 @@
 
 void CircleCollider::OnEnable()
 {
+    ColliderSystem::Get().Regist(this);
     transform = gameObject->GetComponent<Transform>();
 }
 
 void CircleCollider::OnDestroy()
 {
-
+    ColliderSystem::Get().Unregist(this);
 }
 
 // UpdateBounds()

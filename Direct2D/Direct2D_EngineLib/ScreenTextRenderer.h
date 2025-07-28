@@ -42,12 +42,8 @@ public:
 	ScreenTextRenderer()
 	{ 
 		rendertype = RenderType::UI;		// 렌더 타입 지정 (UI)
-		RenderSystem::Get().Regist(this); 
 	};
-	~ScreenTextRenderer() override 
-	{
-		RenderSystem::Get().Unregist(this);
-	}
+	~ScreenTextRenderer() override = default;
 
 	void OnEnable() override;
 	void Update() override;

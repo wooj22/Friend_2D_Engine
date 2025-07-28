@@ -41,8 +41,8 @@ public:
 
 public:
     // component cycle
-    RectTransform() { TransformSystem::Get().Regist(this); }
-    ~RectTransform() override { TransformSystem::Get().Unregist(this); }
+    RectTransform() = default;
+    ~RectTransform() override = default;
 
     void OnEnable() override;
     void Update() override;

@@ -9,12 +9,13 @@
 
 void BoxCollider::OnEnable()
 {
+    ColliderSystem::Get().Regist(this);
     transform = this->gameObject->GetComponent<Transform>();
 }
 
 void BoxCollider::OnDestroy()
 {
-
+    ColliderSystem::Get().Unregist(this);
 }
 
 // UpdateBounds()

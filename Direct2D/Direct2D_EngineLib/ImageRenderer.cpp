@@ -4,10 +4,17 @@
 
 void ImageRenderer::OnEnable()
 {
+    RenderSystem::Get().Regist(this);
 	rectTransform = this->gameObject->GetComponent<RectTransform>();
 
 	// brush »ý¼º
 	RenderSystem::Get().renderTarget->CreateSolidColorBrush(baseColor, brush.GetAddressOf());
+}
+
+void ImageRenderer::OnDestroy()
+{
+    RenderSystem::Get().Unregist(this);
+    sprite = nullptr;
 }
 
 void ImageRenderer::Update()
@@ -31,11 +38,6 @@ void ImageRenderer::Render()
         RenderSystem::Get().renderTarget->DrawBitmap(sprite->texture->texture2D.Get(), destRect);
     else
         RenderSystem::Get().renderTarget->FillRectangle(destRect, brush.Get());
-}
-
-void ImageRenderer::OnDestroy() 
-{
-	sprite = nullptr;
 }
 
 void ImageRenderer::SetBaseColor(const D2D1_COLOR_F& newColor) 

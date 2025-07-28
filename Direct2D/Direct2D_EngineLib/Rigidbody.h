@@ -42,14 +42,8 @@ private:
 
 public:
     // component cycle
-    Rigidbody()
-    {
-        PhysicsSystem::Get().Regist(this);
-    }
-    ~Rigidbody() override
-    {
-        PhysicsSystem::Get().Unregist(this);
-    }
+    Rigidbody() = default;
+    ~Rigidbody() override = default;
 
     void OnEnable() override;
     void FixedUpdate();

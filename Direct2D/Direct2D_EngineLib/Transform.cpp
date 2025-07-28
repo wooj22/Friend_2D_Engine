@@ -8,7 +8,24 @@ D2D1::Matrix3x2F Transform::renderMatrix = D2D1::Matrix3x2F::Scale(1.0f, -1.0f);
 // component cycle
 void Transform::OnEnable()
 {
-    
+    TransformSystem::Get().Regist(this);
+}
+
+void Transform::OnDestroy()
+{
+    TransformSystem::Get().Unregist(this);
+
+    // parent clear
+    if (parent != nullptr) {
+        parent->RemoveChild(this);
+        parent = nullptr;
+    }
+
+    // child clear
+    for (auto it = children.begin(); it != children.end(); ++it) {
+        (*it)->parent = nullptr;
+    }
+    children.clear();
 }
 
 void Transform::Update()
@@ -20,21 +37,6 @@ void Transform::Update()
     MakeLocalMatrix();
     MakeWorldMatrix();
     MakeScreenMatrix();
-}
-
-void Transform::OnDestroy()
-{
-	// parent clear
-	if (parent != nullptr) {
-		parent->RemoveChild(this);
-		parent = nullptr;
-	}
-
-    // child clear
-	for (auto it = children.begin(); it != children.end(); ++it) {
-		(*it)->parent = nullptr;
-	}
-	children.clear();
 }
 
 // Set Parent
