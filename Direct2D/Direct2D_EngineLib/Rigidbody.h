@@ -17,8 +17,7 @@ class Rigidbody : public Component
 private:
     Transform* transform = nullptr;
 
-// private:     // 디버그용으로 잠깐 풀어둔건데 플젝할때 바꾸기!
-public:
+private:
     // ground gravity controll
     bool isGrounded;
     int groundContactCount = 0;
