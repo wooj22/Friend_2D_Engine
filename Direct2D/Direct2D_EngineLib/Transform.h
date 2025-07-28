@@ -77,6 +77,7 @@ public:
     // parent, children
     void SetParent(Transform* newParent);
 	Transform* GetParent(Transform* newParent) { return parent; }
+    const vector<Transform*>& GetChildrens() { return children; }
     void RemoveChild(Transform* child);
     void MarkWorldDirty();
 

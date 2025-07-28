@@ -52,6 +52,7 @@ public:
     // parent, children
     void SetParent(RectTransform* newParent);
     RectTransform* GetParent(RectTransform* newParent) { return parent; }
+    const vector<RectTransform*>& GetChildrens() { return children; }
     void RemoveChild(RectTransform* child);
     void MarkWorldDirty();
 
