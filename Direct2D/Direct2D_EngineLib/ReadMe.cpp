@@ -218,3 +218,17 @@ class Script;
 // -> Collision이벤트 + 충돌보정x               -> Collision이벤트 + 충돌보정x 
 
 // 즉 kinematic일 경우에는 collision 이벤트가 호출 되지만, 충돌 보정은 되지 않는다.
+
+
+
+/*------------------------------------------------------------------*/
+/*-------------------------   Ray Cast  ---------------------------*/
+/*-----------------------------------------------------------------*/
+struct Ray;
+struct RaycastHit;
+class ColliderSystem;
+
+// 게임 콘텐츠에서 Ray를 생성하고(Ray::origin, Ray::direction)
+// ColliderSystem::Raycast() 함수를 호출하여 Ray를 던지면,
+// 충돌 정보가 담긴 RaycastHit 구조체를 반환합니다. (가장 가까운 콜라이더 1개)
+// Raycast는 isTrigger false인 콜라이더에 대해서만 충돌 체크를 진행합니다.
