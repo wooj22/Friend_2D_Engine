@@ -31,7 +31,7 @@ void Scene::Update()
 	// game object update
 	for (auto& object : objectList)
 	{
-		if (!object->IsDestroyed())	// ! capacity 재할당시 크래시 날 수 있음
+		if (!object->IsDestroyed() && object->IsActive())	// ! capacity 재할당시 크래시 날 수 있음
 			object->Update();
 	}
 
