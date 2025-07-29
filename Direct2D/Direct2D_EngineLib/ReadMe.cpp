@@ -37,8 +37,9 @@ class Component;
 // 유효성 검사는  ObjectTable::Get().IsValid(object)를 통해 이루어집니다.
 {
 	/* [Component Cycle] */
-	virtual void OnEnable() = 0;	   // 컴포넌트 활성화시
-	virtual void OnDestroy() = 0;	   // 컴포넌트 or 게임오브젝트 파괴시
+	virtual void OnEnable_Inner() = 0;    // 컴포넌트 활성화시
+	virtual void OnDisable_Inner() = 0;   // 컴포넌트 비활성화시
+	virtual void OnDestroy_Inner() = 0;   // 컴포넌트 or 게임오브젝트 파괴시
 }
 
 
@@ -48,12 +49,13 @@ class Script;
 // 유효성 검사는  ObjectTable::Get().IsValid(object)를 통해 이루어집니다.
 {
 	/* [script component cycle] */
-	void OnEnable() override {}        // 컴포넌트 활성화시
-	virtual void Awake() {}            // Update() 전에 1회 호출
-	virtual void Start() {}            // Awake() 이후 Update() 직전 시점 1회 호출
-	virtual void Update() {}           // 프레임 단위 반복 호출
-	virtual void FixedUpdate() {}      // 물리 업데이트 0.02f 보장 반복 호출
-	void OnDestroy() override {}       // 컴포넌트 or 오브젝트 소멸 시점
+	virtual void OnEnable() {}          // 컴포넌트 활성화시
+	virtual void OnDisable() {}         // 컴포넌트 비활성화시
+	virtual void Awake() {}             // Update() 전에 1회 호출
+	virtual void Start() {}             // Awake() 이후 Update() 직전 시점 1회 호출
+	virtual void Update() {}            // 프레임 단위 반복 호출
+	virtual void FixedUpdate() {}       // 물리 업데이트 0.02f 보장 반복 호출
+	virtual void OnDestroy() {}         // 컴포넌트 or 오브젝트 소멸 시점
 
 	/* [collision event] */
 	// trigger
