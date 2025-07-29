@@ -72,6 +72,15 @@ public:
 		collider->DebugColliderDraw();
 		//DebugWOo();
 
+
+		// 컴포넌트 껐 키 테스트
+		if (Input::GetKeyDown('C'))
+		{
+			controller->SetEnabled(!controller->IsEnabled());
+		}
+
+
+		// 그냥 씬에 접근해서 게임오브젝트를 생성하는 방법
 		if (Input::GetKeyDown('1'))
 		{
 			SceneManager::Get().GetCurrentScene()->CreateObject<Cat>({ transform->GetWorldPosition().x,50});

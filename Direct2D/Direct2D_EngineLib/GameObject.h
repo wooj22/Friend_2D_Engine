@@ -91,14 +91,10 @@ public:
         if (isActive == active) return;
         isActive = active;
 
-        // component active
-        for (Component* comp : components) {
-            if (active) {
-                comp->OnEnable_Inner();
-            }
-            else {
-                comp->OnDisable_Inner();
-            }
+        // component enabled
+        for (Component* comp : components) 
+        {
+			comp->SetEnabled(active);
         }
 
 		// children active
