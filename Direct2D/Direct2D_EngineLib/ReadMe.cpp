@@ -19,6 +19,7 @@ class GameObject;
 	virtual void Update() {};          // Scene의 Update
 	virtual void Destroyed() {};       // Scene의 Exit, GameObject Delete
 
+
 	/* [Utility] */
 	// 1. name, tag
 	// 생성자로 전달 가능하며 puplic 멤버변수라 바로 지정 가능함
@@ -29,6 +30,10 @@ class GameObject;
 	// 3. Destory
 	// - player.Destory()로 this 게임오브젝트 삭제 가능
 	// - GameObject::Destroy(포인터)로 게임 오브젝트 삭제 가능
+	//
+	// 4. SetActive
+	// - bool값을 전달해 게임오브젝트를 활성화/ 비활성화 할 수 있음
+	// - 자식 오브젝트까지 모두 활성화/비활성화 됨
 }
 
 
@@ -40,6 +45,9 @@ class Component;
 	virtual void OnEnable_Inner() = 0;    // 컴포넌트 활성화시
 	virtual void OnDisable_Inner() = 0;   // 컴포넌트 비활성화시
 	virtual void OnDestroy_Inner() = 0;   // 컴포넌트 or 게임오브젝트 파괴시
+
+	// SetEnabled
+	// 컴포넌트 활성화/비활성화 여부를 설정 수 있음
 }
 
 
