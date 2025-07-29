@@ -8,13 +8,6 @@ public:
 	WorldTextRenderer* text;	// ref
 
 public:
-	//void OnEnable() override {}
-	void Awake() override {}
-	void Start() override {}
-	void Update() override {}
-	void FixedUpdate() override {}
-	//void OnDestroy() override {}
-	
 	// trigger enter
 	void OnTriggerEnter(ICollider* other) override 
 	{

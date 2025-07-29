@@ -2,19 +2,19 @@
 #include "Transform.h"
 #include "GameObject.h"
 
-void SpriteRenderer::OnEnable() 
+void SpriteRenderer::OnEnable_Inner()
 {
 	RenderSystem::Get().Regist(this);
 	transform = this->gameObject->transform;
 }
 
-void SpriteRenderer::OnDisable()
+void SpriteRenderer::OnDisable_Inner()
 {
 	RenderSystem::Get().Unregist(this);
 	transform = nullptr;
 }
 
-void SpriteRenderer::OnDestroy()
+void SpriteRenderer::OnDestroy_Inner()
 {
 	RenderSystem::Get().Unregist(this);
 	sprite = nullptr;

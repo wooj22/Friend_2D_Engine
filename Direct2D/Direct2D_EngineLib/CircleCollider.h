@@ -33,9 +33,9 @@ public:
     CircleCollider() { colliderType = ColliderType::Circle; }
     ~CircleCollider() override {  }
 
-    void OnEnable() override final;
-    void OnDisable() override final;
-    void OnDestroy() override final;
+    void OnEnable_Inner() override final;
+    void OnDisable_Inner() override final;
+    void OnDestroy_Inner() override final;
 
 private:
     void UpdateBounds() override;

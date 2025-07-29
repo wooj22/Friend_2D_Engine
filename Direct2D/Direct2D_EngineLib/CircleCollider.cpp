@@ -6,18 +6,18 @@
 #include "BoxCollider.h"
 #include "Rigidbody.h"
 
-void CircleCollider::OnEnable()
+void CircleCollider::OnEnable_Inner()
 {
     ColliderSystem::Get().Regist(this);
 	transform = gameObject->transform;
 }
 
-void CircleCollider::OnDisable()
+void CircleCollider::OnDisable_Inner()
 {
 	ColliderSystem::Get().Unregist(this);
 }
 
-void CircleCollider::OnDestroy()
+void CircleCollider::OnDestroy_Inner()
 {
     ColliderSystem::Get().Unregist(this);
 }

@@ -23,10 +23,10 @@ public:
     Animator() = default;
     ~Animator() override {}
     
-    void OnEnable() override final;
-    void OnDisable() override final;
+    void OnEnable_Inner() override final;
+    void OnDisable_Inner() override final;
     void Update();
-    void OnDestroy() override final;
+    void OnDestroy_Inner() override final;
 
 public:
     void SetController(AnimatorController* newController);

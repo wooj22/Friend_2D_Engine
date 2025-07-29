@@ -2,7 +2,7 @@
 #include "Transform.h"
 #include "GameObject.h"
 
-void WorldTextRenderer::OnEnable() 
+void WorldTextRenderer::OnEnable_Inner()
 {
 	RenderSystem::Get().Regist(this);
 	transform = this->gameObject->GetComponent<Transform>();
@@ -12,13 +12,13 @@ void WorldTextRenderer::OnEnable()
 	isTextDirty = true;
 }
 
-void WorldTextRenderer::OnDisable()
+void WorldTextRenderer::OnDisable_Inner()
 {
 	RenderSystem::Get().Unregist(this);
 	transform = nullptr;
 }
 
-void WorldTextRenderer::OnDestroy()
+void WorldTextRenderer::OnDestroy_Inner()
 {
 	RenderSystem::Get().Unregist(this);
 	brush = nullptr;

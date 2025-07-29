@@ -3,19 +3,19 @@
 #include "GameObject.h"
 #include "Time.h"
 
-void Rigidbody::OnEnable()
+void Rigidbody::OnEnable_Inner()
 {
     PhysicsSystem::Get().Regist(this);
 	transform = this->gameObject->transform;
 }
 
-void Rigidbody::OnDisable()
+void Rigidbody::OnDisable_Inner()
 {
 	PhysicsSystem::Get().Unregist(this);
 	transform = nullptr;
 }
 
-void Rigidbody::OnDestroy()
+void Rigidbody::OnDestroy_Inner()
 {
     PhysicsSystem::Get().Unregist(this);
 }

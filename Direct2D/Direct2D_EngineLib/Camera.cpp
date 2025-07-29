@@ -3,14 +3,14 @@
 #include "GameObject.h"
 
 
-void Camera::OnEnable()
+void Camera::OnEnable_Inner()
 {
     CameraSystem::Get().Regist(this);
 	transform = this->gameObject->transform;
     if (mainCamera == nullptr) mainCamera = this;
 }   
 
-void Camera::OnDisable()
+void Camera::OnDisable_Inner()
 {
 	CameraSystem::Get().Unregist(this);
 	transform = nullptr;
@@ -26,7 +26,7 @@ void Camera::Update()
     inverseMatrix.Invert();
 }
 
-void Camera::OnDestroy()
+void Camera::OnDestroy_Inner()
 {
     CameraSystem::Get().Unregist(this);
     if (mainCamera == this) mainCamera = nullptr;

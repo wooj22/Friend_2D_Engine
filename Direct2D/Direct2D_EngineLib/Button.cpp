@@ -6,19 +6,19 @@
 #include <iostream>
 #include <string>
 
-void Button::OnEnable() 
+void Button::OnEnable_Inner()
 {
     ButtonSystem::Get().Regist(this);
     rectTransform = this->gameObject->rectTransform;
 }
 
-void Button::OnDisable()
+void Button::OnDisable_Inner()
 {
 	ButtonSystem::Get().Unregist(this);
 	rectTransform = nullptr;
 }
 
-void Button::OnDestroy()
+void Button::OnDestroy_Inner()
 {
     ButtonSystem::Get().Unregist(this);
 }

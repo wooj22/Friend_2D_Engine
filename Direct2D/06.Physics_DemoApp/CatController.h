@@ -37,6 +37,7 @@ public:
 public:
 	// script component cycle
 	void OnEnable() override;				// 컴포넌트 활성화 시점
+	void OnDisable() override;				// 컴포넌트 비활성화 시점
 	void Awake() override;					// 오브젝트의 모든 컴포넌트가 생성된 직후 시점 1회 호출
 	void Start() override;					// Awake() 이후 시점 1회 호출
 	void Update() override;					// 매 프레임 반복 호출

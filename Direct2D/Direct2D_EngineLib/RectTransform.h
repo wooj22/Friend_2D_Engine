@@ -44,10 +44,10 @@ public:
     RectTransform() = default;
     ~RectTransform() override = default;
 
-    void OnEnable() override final;
-	void OnDisable() override final;
+    void OnEnable_Inner() override final;
+	void OnDisable_Inner() override final;
     void Update() override final;
-    void OnDestroy() override final;
+    void OnDestroy_Inner() override final;
 
 public:
     // parent, children

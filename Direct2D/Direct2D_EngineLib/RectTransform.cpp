@@ -5,17 +5,17 @@ D2D1::Matrix3x2F RectTransform::unityMatrix = D2D1::Matrix3x2F::Identity();
 D2D1::Matrix3x2F RectTransform::renderMatrix = D2D1::Matrix3x2F::Scale(1.0f, -1.0f);
 
 // component cycle
-void RectTransform::OnEnable()
+void RectTransform::OnEnable_Inner()
 {
     TransformSystem::Get().Regist(this);
 }
 
-void RectTransform::OnDisable()
+void RectTransform::OnDisable_Inner()
 {
 	TransformSystem::Get().Unregist(this);
 }
 
-void RectTransform::OnDestroy()
+void RectTransform::OnDestroy_Inner()
 {
     TransformSystem::Get().Unregist(this);
 

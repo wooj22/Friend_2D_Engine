@@ -2,7 +2,7 @@
 #include "RectTransform.h"
 #include "GameObject.h"
 
-void ImageRenderer::OnEnable()
+void ImageRenderer::OnEnable_Inner()
 {
     RenderSystem::Get().Regist(this);
     rectTransform = this->gameObject->rectTransform;
@@ -11,13 +11,13 @@ void ImageRenderer::OnEnable()
 	RenderSystem::Get().renderTarget->CreateSolidColorBrush(baseColor, brush.GetAddressOf());
 }
 
-void ImageRenderer::OnDisable()
+void ImageRenderer::OnDisable_Inner()
 {
 	RenderSystem::Get().Unregist(this);
 	rectTransform = nullptr;
 }
 
-void ImageRenderer::OnDestroy()
+void ImageRenderer::OnDestroy_Inner()
 {
     RenderSystem::Get().Unregist(this);
     sprite = nullptr;

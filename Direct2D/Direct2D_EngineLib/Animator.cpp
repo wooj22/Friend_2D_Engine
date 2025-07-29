@@ -4,13 +4,13 @@
 #include "GameObject.h"
 #include "Time.h"
 
-void Animator::OnEnable()
+void Animator::OnEnable_Inner()
 {
     AnimatorSystem::Get().Regist(this);
     spriteRenderer = gameObject->GetComponent<SpriteRenderer>();
 }
 
-void Animator::OnDisable()
+void Animator::OnDisable_Inner()
 {
 	AnimatorSystem::Get().Unregist(this);
 }
@@ -26,7 +26,7 @@ void Animator::Update()
     spriteRenderer->sprite = controller->GetCurrentSprite();
 }
 
-void Animator::OnDestroy()
+void Animator::OnDestroy_Inner()
 {
     AnimatorSystem::Get().Unregist(this);
 }

@@ -68,7 +68,7 @@ public:
     {
         // component delete
         for (Component* comp : components) {
-            comp->OnDestroy();
+            comp->OnDestroy_Inner();
             delete comp;
         }
         components.clear();
@@ -94,10 +94,10 @@ public:
         // component active
         for (Component* comp : components) {
             if (active) {
-                comp->OnEnable();
+                comp->OnEnable_Inner();
             }
             else {
-                comp->OnDisable();
+                comp->OnDisable_Inner();
             }
         }
 
@@ -240,7 +240,7 @@ public:
         T* comp = new T(forward<Args>(args)...);
         comp->gameObject = this;
         components.push_back(comp);
-        comp->OnEnable();
+        comp->OnEnable_Inner();
 
 		// gameobject transform public member
         if (auto trans = dynamic_cast<Transform*>(comp)) {
@@ -280,7 +280,7 @@ public:
         for (auto it = components.begin(); it != components.end(); ++it) {
             if (*it == target)
             {
-                (*it)->OnDestroy();
+                (*it)->OnDestroy_Inner();
                 delete* it;
                 components.erase(it);
                 return true;

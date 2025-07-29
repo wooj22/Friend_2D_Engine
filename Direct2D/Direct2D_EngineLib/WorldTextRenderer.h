@@ -44,11 +44,11 @@ public:
 	// component cycle
 	WorldTextRenderer() = default;
 	~WorldTextRenderer() override = default;
-	void OnEnable() override final;
-	void OnDisable() override final;
+	void OnEnable_Inner() override final;
+	void OnDisable_Inner() override final;
 	void Update() override final;
 	void Render() override final;
-	void OnDestroy() override final;
+	void OnDestroy_Inner() override final;
 
 	// set
 	void SetText(const std::wstring& newText);

@@ -68,7 +68,7 @@ void PlayScene::Update()
 		isCatCreate = true;
 	}
 
-	if (Input::GetKeyDown('H'))
+	if (player && Input::GetKeyDown('H'))
 	{
 		player->SetActive(!player->IsActive());
 	}

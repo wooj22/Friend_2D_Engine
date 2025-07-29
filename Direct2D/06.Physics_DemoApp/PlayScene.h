@@ -24,7 +24,7 @@ private:
 
 	PlayUIManager* uiManager;
 	MapManager* mapManager;
-	Cat* player;
+	Cat* player = nullptr;
 	CatText* catText;
 	GameObject* Wall;
 

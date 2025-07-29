@@ -6,17 +6,17 @@ D2D1::Matrix3x2F Transform::unityMatrix = D2D1::Matrix3x2F::Identity();
 D2D1::Matrix3x2F Transform::renderMatrix = D2D1::Matrix3x2F::Scale(1.0f, -1.0f);
 
 // component cycle
-void Transform::OnEnable()
+void Transform::OnEnable_Inner()
 {
     TransformSystem::Get().Regist(this);
 }
 
-void Transform::OnDisable()
+void Transform::OnDisable_Inner()
 {
 	TransformSystem::Get().Unregist(this);
 }
 
-void Transform::OnDestroy()
+void Transform::OnDestroy_Inner()
 {
     TransformSystem::Get().Unregist(this);
 

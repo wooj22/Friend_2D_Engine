@@ -7,18 +7,18 @@
 #include "Rigidbody.h"
 #include <string>
 
-void BoxCollider::OnEnable()
+void BoxCollider::OnEnable_Inner()
 {
     ColliderSystem::Get().Regist(this);
 	transform = this->gameObject->transform;
 }
 
-void BoxCollider::OnDisable()
+void BoxCollider::OnDisable_Inner()
 {
 	ColliderSystem::Get().Unregist(this);
 }
 
-void BoxCollider::OnDestroy()
+void BoxCollider::OnDestroy_Inner()
 {
     ColliderSystem::Get().Unregist(this);
 }

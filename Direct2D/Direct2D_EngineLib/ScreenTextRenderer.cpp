@@ -2,7 +2,7 @@
 #include "RectTransform.h"
 #include "GameObject.h"
 
-void ScreenTextRenderer::OnEnable()
+void ScreenTextRenderer::OnEnable_Inner()
 {
 	RenderSystem::Get().Regist(this);
 	rectTransform = this->gameObject->rectTransform;
@@ -12,13 +12,13 @@ void ScreenTextRenderer::OnEnable()
 	isTextDirty = true;
 }
 
-void ScreenTextRenderer::OnDisable()
+void ScreenTextRenderer::OnDisable_Inner()
 {
 	RenderSystem::Get().Unregist(this);
 	rectTransform = nullptr;
 }
 
-void ScreenTextRenderer::OnDestroy()
+void ScreenTextRenderer::OnDestroy_Inner()
 {
 	RenderSystem::Get().Unregist(this);
 	brush = nullptr;
