@@ -86,17 +86,44 @@ public:
 
 
     /*  GameObject Active  */
-	void SetActive(bool active)
-	{
-		if (isActive == active) return;
-		isActive = active;
+    void SetActive(bool active)
+    {
+        if (isActive == active) return;
+        isActive = active;
 
-		for (Component* comp : components) {
-			if (active) {
-				comp->OnEnable();
-			}
-			else {
-				comp->OnDisable();
+        // component active
+        for (Component* comp : components) {
+            if (active) {
+                comp->OnEnable();
+            }
+            else {
+                comp->OnDisable();
+            }
+        }
+
+		// children active
+        if (transform) 
+        {
+			vector<Transform*> childrens = transform->GetChildrens();
+            for (Transform* childTransform : childrens)
+            {
+                if (childTransform && childTransform->gameObject)
+                {
+                    childTransform->gameObject->SetActive(active);
+                }
+            }
+            return;
+        }
+
+		if (rectTransform)
+		{
+            vector<RectTransform*> childrens = rectTransform->GetChildrens();
+			for (RectTransform* childRectTransform : childrens)
+			{
+				if (childRectTransform && childRectTransform->gameObject)
+				{
+					childRectTransform->gameObject->SetActive(active);
+				}
 			}
 		}
 	}
