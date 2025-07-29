@@ -89,8 +89,8 @@ public:
 	void SetActive(bool active)
 	{
 		if (isActive == active) return;
-
 		isActive = active;
+
 		for (Component* comp : components) {
 			if (active) {
 				comp->OnEnable();
@@ -101,6 +101,7 @@ public:
 		}
 	}
 
+    bool IsActive() const { return isActive; }
 
 
 

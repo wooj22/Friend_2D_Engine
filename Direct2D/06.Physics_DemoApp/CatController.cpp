@@ -121,6 +121,7 @@ void CatController::Jump_Physics()
 
 void CatController::InfoTextUpdate()
 {
+	infoText->SetText(L"¹Ì¾ß¿Ë");
 	//infoText->SetText(L"is Ground: " + to_wstring(isGround));
 	/*infoText->SetText(L"rigidbody isGrounded : " + to_wstring(rb->isGrounded)
 	+ L"\nvelocity y : " + to_wstring(rb->velocity.y)

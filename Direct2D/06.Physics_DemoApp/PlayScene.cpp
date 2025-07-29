@@ -68,6 +68,11 @@ void PlayScene::Update()
 		isCatCreate = true;
 	}
 
+	if (Input::GetKeyDown('H'))
+	{
+		player->SetActive(!player->IsActive());
+	}
+
 	// camera move
 	if (Input::GetKey(VK_LEFT)) cam->GetComponent<Transform>()->Translate(-300 * Time::GetDeltaTime(), 0);
 	if (Input::GetKey(VK_RIGHT)) cam->GetComponent<Transform>()->Translate(300 * Time::GetDeltaTime(), 0);
