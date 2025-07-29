@@ -33,8 +33,10 @@ public:
     CircleCollider() { colliderType = ColliderType::Circle; }
     ~CircleCollider() override {  }
 
-    void OnEnable() override;
-    void OnDestroy() override;
+    void OnEnable() override final;
+    void OnDisable() override final;
+    void OnDestroy() override final;
+
 private:
     void UpdateBounds() override;
     bool isCollision(ICollider* other, ContactInfo& contact) override;

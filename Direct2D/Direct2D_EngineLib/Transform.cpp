@@ -11,6 +11,11 @@ void Transform::OnEnable()
     TransformSystem::Get().Regist(this);
 }
 
+void Transform::OnDisable()
+{
+	TransformSystem::Get().Unregist(this);
+}
+
 void Transform::OnDestroy()
 {
     TransformSystem::Get().Unregist(this);

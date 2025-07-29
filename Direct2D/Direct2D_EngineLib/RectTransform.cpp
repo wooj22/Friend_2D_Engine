@@ -10,9 +10,26 @@ void RectTransform::OnEnable()
     TransformSystem::Get().Regist(this);
 }
 
+void RectTransform::OnDisable()
+{
+	TransformSystem::Get().Unregist(this);
+}
+
 void RectTransform::OnDestroy()
 {
     TransformSystem::Get().Unregist(this);
+
+    // parent clear
+    if (parent != nullptr) {
+        parent->RemoveChild(this);
+        parent = nullptr;
+    }
+
+    // child clear
+    for (auto it = children.begin(); it != children.end(); ++it) {
+        (*it)->parent = nullptr;
+    }
+    children.clear();
 }
 
 void RectTransform::Update()

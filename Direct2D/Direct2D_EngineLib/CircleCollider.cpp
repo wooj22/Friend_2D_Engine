@@ -9,7 +9,12 @@
 void CircleCollider::OnEnable()
 {
     ColliderSystem::Get().Regist(this);
-    transform = gameObject->GetComponent<Transform>();
+	transform = gameObject->transform;
+}
+
+void CircleCollider::OnDisable()
+{
+	ColliderSystem::Get().Unregist(this);
 }
 
 void CircleCollider::OnDestroy()

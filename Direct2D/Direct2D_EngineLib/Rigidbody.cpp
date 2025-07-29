@@ -6,7 +6,13 @@
 void Rigidbody::OnEnable()
 {
     PhysicsSystem::Get().Regist(this);
-    transform = this->gameObject->GetComponent<Transform>();
+	transform = this->gameObject->transform;
+}
+
+void Rigidbody::OnDisable()
+{
+	PhysicsSystem::Get().Unregist(this);
+	transform = nullptr;
 }
 
 void Rigidbody::OnDestroy()

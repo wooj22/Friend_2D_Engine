@@ -5,11 +5,17 @@
 void ScreenTextRenderer::OnEnable()
 {
 	RenderSystem::Get().Regist(this);
-	rectTransform = this->gameObject->GetComponent<RectTransform>();
+	rectTransform = this->gameObject->rectTransform;
 
 	// brush »ý¼º
 	RenderSystem::Get().renderTarget->CreateSolidColorBrush(textColor, brush.GetAddressOf());
 	isTextDirty = true;
+}
+
+void ScreenTextRenderer::OnDisable()
+{
+	RenderSystem::Get().Unregist(this);
+	rectTransform = nullptr;
 }
 
 void ScreenTextRenderer::OnDestroy()

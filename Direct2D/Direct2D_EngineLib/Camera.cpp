@@ -6,14 +6,14 @@
 void Camera::OnEnable()
 {
     CameraSystem::Get().Regist(this);
-	transform = this->gameObject->GetComponent<Transform>();
+	transform = this->gameObject->transform;
     if (mainCamera == nullptr) mainCamera = this;
-}
+}   
 
-void Camera::OnDestroy()
+void Camera::OnDisable()
 {
-    CameraSystem::Get().Unregist(this);
-	if (mainCamera == this) mainCamera = nullptr;
+	CameraSystem::Get().Unregist(this);
+	transform = nullptr;
 }
 
 void Camera::Update()
@@ -24,6 +24,12 @@ void Camera::Update()
     worldMatrix = transform->GetWorldMatrix();
     inverseMatrix = worldMatrix;
     inverseMatrix.Invert();
+}
+
+void Camera::OnDestroy()
+{
+    CameraSystem::Get().Unregist(this);
+    if (mainCamera == this) mainCamera = nullptr;
 }
 
 // static

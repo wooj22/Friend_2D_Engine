@@ -10,6 +10,11 @@ void Animator::OnEnable()
     spriteRenderer = gameObject->GetComponent<SpriteRenderer>();
 }
 
+void Animator::OnDisable()
+{
+	AnimatorSystem::Get().Unregist(this);
+}
+
 void Animator::Update()
 {
     if (!controller) return;

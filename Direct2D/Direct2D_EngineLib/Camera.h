@@ -34,9 +34,10 @@ public:
 	// component cycle
 	Camera(float width, float height) : viewWidth(width), viewHeight(height) {  }
 	~Camera() override = default;
-	void OnEnable();
-	void OnDestroy();
+	void OnEnable() override final;
+	void OnDisable() override final;
 	void Update();
+	void OnDestroy() override final;
 
 public:
 	// culling

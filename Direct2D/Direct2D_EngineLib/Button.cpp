@@ -9,7 +9,13 @@
 void Button::OnEnable() 
 {
     ButtonSystem::Get().Regist(this);
-    rectTransform = this->gameObject->GetComponent<RectTransform>();
+    rectTransform = this->gameObject->rectTransform;
+}
+
+void Button::OnDisable()
+{
+	ButtonSystem::Get().Unregist(this);
+	rectTransform = nullptr;
 }
 
 void Button::OnDestroy()

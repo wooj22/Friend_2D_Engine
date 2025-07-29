@@ -10,7 +10,12 @@
 void BoxCollider::OnEnable()
 {
     ColliderSystem::Get().Regist(this);
-    transform = this->gameObject->GetComponent<Transform>();
+	transform = this->gameObject->transform;
+}
+
+void BoxCollider::OnDisable()
+{
+	ColliderSystem::Get().Unregist(this);
 }
 
 void BoxCollider::OnDestroy()

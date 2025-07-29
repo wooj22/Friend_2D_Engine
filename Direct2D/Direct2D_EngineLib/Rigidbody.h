@@ -45,9 +45,10 @@ public:
     Rigidbody() = default;
     ~Rigidbody() override = default;
 
-    void OnEnable() override;
+    void OnEnable() override final;
+	void OnDisable() override final;
     void FixedUpdate();
-    void OnDestroy() override;
+    void OnDestroy() override final;
 
 private:
     void CorrectPosition(const ContactInfo& contact);

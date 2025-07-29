@@ -48,8 +48,7 @@ class GameObject : public Object
     /* GameObject Data */
 private: 
     vector<Component*> components; 
-	bool selfActive = true;
-    bool activeInHierarchy = true;
+	bool isActive = true;
 
 public: 
     Transform* transform = nullptr;
@@ -87,7 +86,20 @@ public:
 
 
     /*  GameObject Active  */
+	void SetActive(bool active)
+	{
+		if (isActive == active) return;
 
+		isActive = active;
+		for (Component* comp : components) {
+			if (active) {
+				comp->OnEnable();
+			}
+			else {
+				comp->OnDisable();
+			}
+		}
+	}
 
 
 

@@ -23,9 +23,10 @@ public:
     Button() = default;
     ~Button() override = default;
 
-    void OnEnable() override;
+    void OnEnable() override final;
+	void OnDisable() override final;
     void Update();
-    void OnDestroy() override;
+    void OnDestroy() override final;
 
 private:
     void OnClick(); // event

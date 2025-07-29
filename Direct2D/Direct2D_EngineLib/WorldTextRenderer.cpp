@@ -12,6 +12,11 @@ void WorldTextRenderer::OnEnable()
 	isTextDirty = true;
 }
 
+void WorldTextRenderer::OnDisable()
+{
+	RenderSystem::Get().Unregist(this);
+	transform = nullptr;
+}
 
 void WorldTextRenderer::OnDestroy()
 {

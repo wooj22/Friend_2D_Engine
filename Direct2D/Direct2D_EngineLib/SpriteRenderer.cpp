@@ -5,7 +5,13 @@
 void SpriteRenderer::OnEnable() 
 {
 	RenderSystem::Get().Regist(this);
-	transform = this->gameObject->GetComponent<Transform>();
+	transform = this->gameObject->transform;
+}
+
+void SpriteRenderer::OnDisable()
+{
+	RenderSystem::Get().Unregist(this);
+	transform = nullptr;
 }
 
 void SpriteRenderer::OnDestroy()
