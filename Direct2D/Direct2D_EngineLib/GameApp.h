@@ -8,13 +8,15 @@
 #include "ColliderSystem.h"
 #include "PhysicsSystem.h"
 #include "AnimatorSystem.h"
-#include "ButtonSystem.h"
+#include "UISystem.h"
 #include "ScriptSystem.h"
+#include "AudioSystem.h"
 #include "SceneManager.h"
 #include "ResourceManager.h"
 #include "CameraSystem.h"
 #include "Time.h"
 #include "Input.h"
+#include "InvokeSystem.h"
 #include "ObjectTable.h"
 
 using namespace std;
@@ -45,31 +47,37 @@ protected:
 	TransformSystem transformSystem;	// transform, rectTransfrom
 	RenderSystem renderSystem;			// sprite, image, worldText, screenText
 	AnimatorSystem animatorSystem;		// animator
-	ButtonSystem buttonSystem;			// button
+	UISystem uiSystem;					// ui
 	ScriptSystem scriptSystem;			// script
 	ColliderSystem colliderSystem;		// collider
 	PhysicsSystem physicsSystem;		// rigidbody
 	CameraSystem cameraSystem;			// camera
+	AudioSystem audioSystem;			// sound
 
 	// manager
 	SceneManager sceneManager;
 	ResourceManager resourceManager;
 
-public:
-	bool isLoop = true;
+	static bool isLoop;
 
+public:
 	GameApp(int inputWidth = 1920, int inputHeight = 1080) :
 		width(inputWidth), height(inputHeight), hInstance(nullptr), hWnd(nullptr) { };
 	virtual ~GameApp() = default;
 
 	/* Game Life Cycle */
 	virtual void Init();
-	void Update();			// input, time, buttonsystem, transformSystem, scene(gameObject), scriptsystem.Update(), animatorSystem, renderSystem.update
+	void Update();			// input, time, invoke, uiystem, transformSystem, scene(gameObject), scriptsystem.Update(), animatorSystem, renderSystem.update, cameraSystem, script late udapte(), audioSystem
 	void FixedUpdate();		// scriptsystem.FixedUpdate(), 물리 관련
 	void Render();			// renderSystem.render
 	void Loop();
 	virtual void UnInit();
 
 	virtual void MessageProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+
+	static void Quit()
+	{
+		isLoop = false;
+	}
 };
 

@@ -63,18 +63,19 @@ class Script;
 	virtual void Start() {}             // Awake() 이후 Update() 직전 시점 1회 호출
 	virtual void Update() {}            // 프레임 단위 반복 호출
 	virtual void FixedUpdate() {}       // 물리 업데이트 0.02f 보장 반복 호출
+	virtual void LateUpdate() {}		// 카메라 등
 	virtual void OnDestroy() {}         // 컴포넌트 or 오브젝트 소멸 시점
 
 	/* [collision event] */
 	// trigger
-	virtual void OnTriggerEnter(ICollider* other) {}
-	virtual void OnTriggerStay(ICollider* other) {}
-	virtual void OnTriggerExit(ICollider* other) {}
+	virtual void OnTriggerEnter(ICollider* other, const ContactInfo& contact) {}
+	virtual void OnTriggerStay(ICollider* other, const ContactInfo& contact) {}
+	virtual void OnTriggerExit(ICollider* other, const ContactInfo& contact) {}
 
 	// collision
-	virtual void OnCollisionEnter(ICollider* other) {}
-	virtual void OnCollisionStay(ICollider* other) {}
-	virtual void OnCollisionExit(ICollider* other) {}
+	virtual void OnCollisionEnter(ICollider* other, const ContactInfo& contact) {}
+	virtual void OnCollisionStay(ICollider* other, const ContactInfo& contact) {}
+	virtual void OnCollisionExit(ICollider* other, const ContactInfo& contact) {}
 }
 
 
@@ -109,8 +110,12 @@ class CircleCollider;
 class AnimatorSystem;		// animator system
 class Animator;
 
-class ButtonSystem;			// button system
+class UISystem;				// ui system
 class Button;
+class Slider;
+
+class AudioSystem;			// audio system
+class AudoiSource;
 
 
 
@@ -120,6 +125,7 @@ class Button;
 /*--------------------------------------------------------------*/
 class Input;
 class Time;
+class InvokeSystem;
 
 
 
@@ -166,7 +172,9 @@ class AnimationClip;				// "일반 Class" animation clip asset
 /*------------------------------------------------------------------*/
 class Rigidbody;
 
-
+// Collision Detection Mode
+// 1. Discrete(Defualt) : 프레임마다 단순 위치 체크 (빠르게 가면 뚫고갈 수 있음)
+// 2. Continuous : SweepTest를 이용하여 이전 프레임과 현재 프레임의 이동경로상으로 step씩 콜라이더를 밀면서 충돌 검사
 
 
 /*-------------------------------------------------------------------*/
@@ -242,3 +250,63 @@ class ColliderSystem;
 // ColliderSystem::Raycast() 함수를 호출하여 Ray를 던지면,
 // 충돌 정보가 담긴 RaycastHit 구조체를 반환합니다. (가장 가까운 콜라이더 1개)
 // Raycast는 isTrigger false인 콜라이더에 대해서만 충돌 체크를 진행합니다.
+
+
+
+
+
+/*-------------------------------------------------------------------*/
+/*-------------------------   Render    ----------------------------*/
+/*-----------------------------------------------------------------*/
+class RenderSystem;
+class IRenderer;
+class SpriteRenderer;
+class ImageRenderer;			// ImageRenderer는 추가로 Filltype 지정이 가능하다
+
+// RenderType에 따라 GameObject를 먼저 그리고 UI를 그린다.
+// RenderMode에 따라 다른 렌더 체인을 제공하며 기본은 Unlit이다.
+// 이때 Text 관련 렌더러들은 RenderMode에 영향을 받지 않으며,
+// 무조건 bitmap Image만 적용이 된다. (SpriteRenderer, ImageRenderer의 sprite 적용시)
+
+
+// SpriteRenderer와 ImageRenderer에서 sprite의 이펙트 효과를 받고싶다면
+// 아래의 렌더모드를 지정해주어야한다!
+
+// 1. Unlit	(Default)
+//    - Draw Bitmap
+//    - 일반 Bitmap 이미지를 그린다.
+//    - 색상 변경은 불가능하며 Alpha값만 조정 가능하다.
+
+// 2. UnlitColorTint
+//    - Draw Image (Crop + ColorEffect)
+//    - bitmap 이미지에 ColorMatirx를 적용시켜 색상 변환을 한 뒤 그린다.
+//    - R, G, B, A 조정이 가능하다. + 채도 조절 추가!
+
+// 3. Lit_Glow
+//    - Draw Image (Crop + BlurEffect)
+//    - bitmap 이미지에 Blur효과를 준 이미지를 그리고, 이미지를 그려 후광 효과를 준다.
+//    - ColorMatrix를 쓰는 비용을 줄이기 위해 만든거라 RGBA, 채도 모두 지원하지 않는다.
+//      DrawIamge에서 A를 사용하려면 무조건 colormatrix 연산 해야함
+
+// 4. Lit_ColorTint			
+//    - Draw Image (Crop + ColorEffect + BlurEffect)
+//    - bitmap 이미지에 Blur효과를 준 이미지를 그리고, 이미지를 그려 후광 효과를 준다.
+//    - ColorMatrix를 통해 bitmap의 색상을 변경하면 그에 따라 광원도 조정된다.
+//    - R, G, B, A 조정이 가능하다. + 채도 조절 추가!
+
+
+/*-------------------------------------------------------------------*/
+/*--------------------------   Sound    ----------------------------*/
+/*-----------------------------------------------------------------*/
+// Sound는 FMOD라이브러리를 활용해 구현하였습니다. 
+// 엔진라이브러리 폴더의 Extern 폴더에 FMOD inc폴더와 lib가 모두 있어야 실행됩니다.
+class AudioSystem;		// componet system
+class AudioSource;		// component
+class AudioClip;		// asset
+
+// AudioSystem에서 FMOD 시스템을 생성하고 전체 오디오가 잘 재생되도록 시스템을 매 프레임 update해줍니다.
+// AudioSystem에 기본적으로 master채널, bgm채널, sfx채널이 구현되어있습니다.
+// AudioSource는 각각 하나의 출력 채널을 가지며, 하나의 채널에는 두개의 sound가 동시에 재생될 수 없습니다.
+// AudioSystem의 bgm채널, sfx채널에 각 AudioSource채널을 등록하여 전체 볼륨을 믹싱할 수 있습니다.
+// AudioCilp은 사운드 파일 리소스로 리소스 매니저를 통해 생성해야합니다. 
+// 생성한 AudioClip을 AudioSource에 set하여 사운드를 플레이하면 됩니다!

@@ -1,6 +1,9 @@
 #include "GameApp.h"
 #include "Singleton.h"
 
+// static member init
+bool GameApp::isLoop = true;
+
 /// 윈도우 프로시저
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -69,14 +72,14 @@ void GameApp::Init()
 
 	SIZE clientSize = { width, height };
 	RECT clientRect = { 0, 0, clientSize.cx, clientSize.cy };
-	AdjustWindowRect(&clientRect, WS_OVERLAPPEDWINDOW, FALSE);
+	//AdjustWindowRect(&clientRect, WS_OVERLAPPEDWINDOW, FALSE);		// 윈도우 모드 기준 크기 맞춤
 
 	// window 창 생성  -> WM_NCCREATE 메시지 발생
 	hWnd = CreateWindowEx(
 		0,
 		winClassName.c_str(),
 		titleName.c_str(),
-		WS_OVERLAPPEDWINDOW,
+		WS_POPUP,		// 테두리 없음/ WS_OVERLAPPEDWINDOW (테두리 있음)
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,
 		clientRect.right - clientRect.left,
@@ -89,14 +92,19 @@ void GameApp::Init()
 
 	ShowWindow(hWnd, SW_SHOW);
 	UpdateWindow(hWnd);
+	OutputDebugStringA("[Woo Engine] Window Create\n");
+
 
 	CoInitialize(nullptr);			// com 객체 초기화	
 	
 	// init
 	Input::Init(hWnd);
 	Time::Init();
+	audioSystem.Init();
 	renderSystem.Init(hWnd, width, height);
 	resourceManager.Init();	 // rendersystem init 후에 호출해야 함
+
+	OutputDebugStringA("[Woo Engine] System Init\n");
 }
 
 /// Update
@@ -104,14 +112,18 @@ void GameApp::Update()
 {
 	Input::Update();
 	Time::Update();
+	InvokeSystem::Update();
 	
 	sceneManager.Update();
 	scriptSystem.Update();
 	animatorSystem.Update();
 	transformSystem.Update();
 
-	buttonSystem.Update();
+	uiSystem.Update();
 	renderSystem.Update();
+	audioSystem.Update();
+
+	scriptSystem.LateUpdate();
 	cameraSystem.Update();
 }
 
@@ -141,12 +153,12 @@ void GameApp::Loop()
 		{
 			if (msg.message == WM_QUIT) {
 				isLoop = false;
+				OutputDebugStringA("[Woo Engine] WM_QUIT!\n");
 				break;
 			}
 
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
-
 		}
 
 		// physics update -> fixed udpate
@@ -167,7 +179,10 @@ void GameApp::Loop()
 void GameApp::UnInit()
 {
 	sceneManager.UnInit();
+	audioSystem.UnInit();
 	renderSystem.UnInit();   
 	resourceManager.UnInit();
 	CoUninitialize();			 // com 객체 해제
+
+	OutputDebugStringA("[Woo Engine] GameApp Release\n");
 }

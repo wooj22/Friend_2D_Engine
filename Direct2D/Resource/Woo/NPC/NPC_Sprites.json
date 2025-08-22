@@ -1,0 +1,547 @@
+{
+    "texture": "NPC_sheet.png",
+    "textureWidth": 4000,
+    "textureHeight": 3120,
+    "sprites": [
+        {
+            "name": "NPC_sheet_0",
+            "x": 0.0,
+            "y": 0.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_1",
+            "x": 400.0,
+            "y": 0.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_2",
+            "x": 800.0,
+            "y": 0.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_3",
+            "x": 1200.0,
+            "y": 0.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_4",
+            "x": 1600.0,
+            "y": 0.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_5",
+            "x": 2000.0,
+            "y": 0.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_6",
+            "x": 2400.0,
+            "y": 0.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_7",
+            "x": 2800.0,
+            "y": 0.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_8",
+            "x": 3200.0,
+            "y": 0.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_9",
+            "x": 3600.0,
+            "y": 0.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_10",
+            "x": 0.0,
+            "y": 520.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_11",
+            "x": 400.0,
+            "y": 520.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_12",
+            "x": 800.0,
+            "y": 520.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_13",
+            "x": 1200.0,
+            "y": 520.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_14",
+            "x": 1600.0,
+            "y": 520.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_15",
+            "x": 2000.0,
+            "y": 520.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_16",
+            "x": 2400.0,
+            "y": 520.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_17",
+            "x": 2800.0,
+            "y": 520.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_18",
+            "x": 3200.0,
+            "y": 520.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_19",
+            "x": 3600.0,
+            "y": 520.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_20",
+            "x": 0.0,
+            "y": 1040.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_21",
+            "x": 400.0,
+            "y": 1040.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_22",
+            "x": 800.0,
+            "y": 1040.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_23",
+            "x": 1200.0,
+            "y": 1040.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_24",
+            "x": 1600.0,
+            "y": 1040.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_25",
+            "x": 2000.0,
+            "y": 1040.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_26",
+            "x": 2400.0,
+            "y": 1040.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_27",
+            "x": 2800.0,
+            "y": 1040.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_28",
+            "x": 3200.0,
+            "y": 1040.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_29",
+            "x": 3600.0,
+            "y": 1040.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_30",
+            "x": 0.0,
+            "y": 1560.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_31",
+            "x": 400.0,
+            "y": 1560.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_32",
+            "x": 800.0,
+            "y": 1560.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_33",
+            "x": 1200.0,
+            "y": 1560.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_34",
+            "x": 1600.0,
+            "y": 1560.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_35",
+            "x": 2000.0,
+            "y": 1560.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_36",
+            "x": 2400.0,
+            "y": 1560.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_37",
+            "x": 2800.0,
+            "y": 1560.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_38",
+            "x": 3200.0,
+            "y": 1560.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_39",
+            "x": 3600.0,
+            "y": 1560.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_40",
+            "x": 0.0,
+            "y": 2080.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_41",
+            "x": 400.0,
+            "y": 2080.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_42",
+            "x": 800.0,
+            "y": 2080.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_43",
+            "x": 1200.0,
+            "y": 2080.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_44",
+            "x": 1600.0,
+            "y": 2080.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_45",
+            "x": 2000.0,
+            "y": 2080.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_46",
+            "x": 2400.0,
+            "y": 2080.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_47",
+            "x": 2800.0,
+            "y": 2080.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_48",
+            "x": 3200.0,
+            "y": 2080.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_49",
+            "x": 3600.0,
+            "y": 2080.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_50",
+            "x": 0.0,
+            "y": 2600.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_51",
+            "x": 400.0,
+            "y": 2600.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_52",
+            "x": 800.0,
+            "y": 2600.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_53",
+            "x": 1200.0,
+            "y": 2600.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_54",
+            "x": 1600.0,
+            "y": 2600.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_55",
+            "x": 2000.0,
+            "y": 2600.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_56",
+            "x": 2400.0,
+            "y": 2600.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_57",
+            "x": 2800.0,
+            "y": 2600.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_58",
+            "x": 3200.0,
+            "y": 2600.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        },
+        {
+            "name": "NPC_sheet_59",
+            "x": 3600.0,
+            "y": 2600.0,
+            "width": 400.0,
+            "height": 520.0,
+            "pivotX": 0.5,
+            "pivotY": 0.5
+        }
+    ]
+}

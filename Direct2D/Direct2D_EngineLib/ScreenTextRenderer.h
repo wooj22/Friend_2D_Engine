@@ -4,6 +4,7 @@
 #include <string>
 #include "RenderSystem.h"
 #include "IRenderer.h"
+#include "FontLoaderUtil.h"
 
 /* [Screen Text Renderer Conponent]
 * <UI>의 Text 출력을 담당하는 Component로
@@ -13,6 +14,7 @@
 * render시 필요한 RectTransform은 이 컴포넌트가 등록된 오브젝트의 RectTransform의 포인터에 담아 활용한다
 */
 
+class FontLoaderUtil;
 class RectTransform;
 class ScreenTextRenderer : public IRenderer
 {
@@ -23,8 +25,9 @@ private:
 	// text
 	std::wstring text = L"";
 	float fontSize = 18.0f;
-	std::wstring fontName = L"Georgia";
+	std::wstring fontName = L"Noto Serif KR";
 	D2D1_COLOR_F textColor = D2D1::ColorF(D2D1::ColorF::White);
+	float alpha = 1.0f;
 
 	// align
 	TextHorizontalAlign horizontalAlign = TextHorizontalAlign::Center;
@@ -56,6 +59,7 @@ public:
 	void SetFontSize(float newSize);
 	void SetFontName(const std::wstring& newName);
 	void SetColor(const D2D1_COLOR_F& newColor);
+	void SetAlpha(float a);
 
 	// align
 	void SetHorizontalAlign(TextHorizontalAlign align);

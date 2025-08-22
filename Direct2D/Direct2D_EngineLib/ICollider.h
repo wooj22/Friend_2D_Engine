@@ -50,6 +50,8 @@ public:
 	virtual bool isCollision(ICollider* other, ContactInfo& contact) = 0;
 	virtual void FinalizeCollision() = 0;
 
+	// collision cheak
+	// Box, Circle은 하위 콜라이더에서
 	// ray cast hit
 	virtual bool Raycast(const Ray& ray, float maxDistance, RaycastHit& hitInfo) = 0;
 
@@ -57,9 +59,9 @@ public:
 	virtual void OnCollisionEnter(ICollider* other, ContactInfo& contact) = 0;
 	virtual void OnCollisionStay(ICollider* other, ContactInfo& contact) = 0;
 	virtual void OnCollisionExit(ICollider* other, ContactInfo& contact) = 0;
-	virtual void OnTriggerEnter(ICollider* other) = 0;
-	virtual void OnTriggerStay(ICollider* other) = 0;
-	virtual void OnTriggerExit(ICollider* other) = 0;
+	virtual void OnTriggerEnter(ICollider* other, ContactInfo& contact) = 0;
+	virtual void OnTriggerStay(ICollider* other, ContactInfo& contact) = 0;
+	virtual void OnTriggerExit(ICollider* other, ContactInfo& contact) = 0;
 
 	// debug draw
 	virtual void DebugColliderDraw() {}

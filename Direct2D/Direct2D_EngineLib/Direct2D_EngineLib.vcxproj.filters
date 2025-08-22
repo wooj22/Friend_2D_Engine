@@ -22,9 +22,6 @@
     <Filter Include="소스 파일\02. GameObject">
       <UniqueIdentifier>{513dacbd-2dd5-476b-b8e2-b6ed5bbde255}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02. GameObject\Content">
-      <UniqueIdentifier>{73a6812e-c1c0-4a9e-a3b7-e785a85fa5cb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\02. GameObject\Camera">
       <UniqueIdentifier>{456bb3fe-d3cc-4047-8558-625cb43db472}</UniqueIdentifier>
     </Filter>
@@ -52,9 +49,6 @@
     <Filter Include="소스 파일\05. StaticSystem">
       <UniqueIdentifier>{b3ca52cb-692b-4fc1-81e7-47a6f5ef9577}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\06. Manager">
-      <UniqueIdentifier>{6fc29779-f922-4737-883e-2359d27b9600}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\07. Graphics">
       <UniqueIdentifier>{a37cca4b-2cee-4c2f-a40c-e7e8bbbb49c6}</UniqueIdentifier>
     </Filter>
@@ -72,9 +66,6 @@
     </Filter>
     <Filter Include="헤더 파일\02. GameObject">
       <UniqueIdentifier>{35dcbbfb-f810-44e5-a71b-53c9a7ee31bd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="헤더 파일\02. GameObject\Content">
-      <UniqueIdentifier>{5e7ec924-3b81-495d-a729-edb94dd4b475}</UniqueIdentifier>
     </Filter>
     <Filter Include="헤더 파일\02. GameObject\Camera">
       <UniqueIdentifier>{2e6b9283-b87c-4bda-ae74-206c3c0a5ae8}</UniqueIdentifier>
@@ -99,9 +90,6 @@
     </Filter>
     <Filter Include="헤더 파일\05. StaticSystem">
       <UniqueIdentifier>{5f869c07-4bf5-4858-9010-4cee6d424cfe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="헤더 파일\06. Manager">
-      <UniqueIdentifier>{2ea9d40c-19d7-45f1-8b54-466e3bb652e6}</UniqueIdentifier>
     </Filter>
     <Filter Include="헤더 파일\07. Graphics">
       <UniqueIdentifier>{e7a54647-da74-45b8-a0ad-eae862e571bf}</UniqueIdentifier>
@@ -157,6 +145,36 @@
     <Filter Include="헤더 파일\03. Component\Base\Interface">
       <UniqueIdentifier>{dd2f0dfb-cdb5-4146-9f6b-5a057e0a29ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\03. Component\Audio">
+      <UniqueIdentifier>{ef57d735-f77b-4690-979d-eeaf8faadf81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\03. Component\Audio">
+      <UniqueIdentifier>{32f4c1dd-a91a-4bca-bfbf-366b4ee9eab9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\10. Audio">
+      <UniqueIdentifier>{c6632b46-5e35-409d-87a8-515642489439}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\10. Audio">
+      <UniqueIdentifier>{31dff612-afc3-4352-9599-857edce00862}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\06. ResourceManager">
+      <UniqueIdentifier>{2ea9d40c-19d7-45f1-8b54-466e3bb652e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\06. ResourceManager">
+      <UniqueIdentifier>{6fc29779-f922-4737-883e-2359d27b9600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. GameObject\UI">
+      <UniqueIdentifier>{73a6812e-c1c0-4a9e-a3b7-e785a85fa5cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\02. GameObject\UI">
+      <UniqueIdentifier>{5e7ec924-3b81-495d-a729-edb94dd4b475}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\98. Utils\Font">
+      <UniqueIdentifier>{c203d507-e3f2-43cb-b572-dbecc0c0e4b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\98. Utils\Font">
+      <UniqueIdentifier>{49a90c81-5a1a-4172-b232-4a828b50a945}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h">
@@ -183,11 +201,11 @@
     <ClInclude Include="Time.h">
       <Filter>헤더 파일\05. StaticSystem</Filter>
     </ClInclude>
-    <ClInclude Include="ButtonSystem.h">
+    <ClInclude Include="UISystem.h">
       <Filter>헤더 파일\04. ComponentSystem</Filter>
     </ClInclude>
     <ClInclude Include="UI_Button.h">
-      <Filter>헤더 파일\02. GameObject\Content</Filter>
+      <Filter>헤더 파일\02. GameObject\UI</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
       <Filter>헤더 파일\03. Component\Base</Filter>
@@ -214,16 +232,16 @@
       <Filter>헤더 파일\03. Component\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="UI_Image.h">
-      <Filter>헤더 파일\02. GameObject\Content</Filter>
+      <Filter>헤더 파일\02. GameObject\UI</Filter>
     </ClInclude>
     <ClInclude Include="UI_Text.h">
-      <Filter>헤더 파일\02. GameObject\Content</Filter>
+      <Filter>헤더 파일\02. GameObject\UI</Filter>
     </ClInclude>
     <ClInclude Include="ScriptSystem.h">
       <Filter>헤더 파일\04. ComponentSystem</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h">
-      <Filter>헤더 파일\06. Manager</Filter>
+      <Filter>헤더 파일\06. ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="Texture2D.h">
       <Filter>헤더 파일\07. Graphics</Filter>
@@ -303,6 +321,45 @@
     <ClInclude Include="DebugDrawCommand.h">
       <Filter>헤더 파일\98. Utils</Filter>
     </ClInclude>
+    <ClInclude Include="Rect.h">
+      <Filter>헤더 파일\98. Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioClip.h">
+      <Filter>헤더 파일\10. Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSystem.h">
+      <Filter>헤더 파일\04. ComponentSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSource.h">
+      <Filter>헤더 파일\03. Component\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Slider.h">
+      <Filter>헤더 파일\03. Component\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="I_UI.h">
+      <Filter>헤더 파일\03. Component\Base\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Slider.h">
+      <Filter>헤더 파일\02. GameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="InvokeSystem.h">
+      <Filter>헤더 파일\05. StaticSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="FontCollectionLoader.h">
+      <Filter>헤더 파일\98. Utils\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="FontFileEnumerator.h">
+      <Filter>헤더 파일\98. Utils\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="FontFileLoader.h">
+      <Filter>헤더 파일\98. Utils\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="FontFileStream.h">
+      <Filter>헤더 파일\98. Utils\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="FontLoaderUtil.h">
+      <Filter>헤더 파일\98. Utils\Font</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -329,11 +386,11 @@
     <ClCompile Include="Time.cpp">
       <Filter>소스 파일\05. StaticSystem</Filter>
     </ClCompile>
-    <ClCompile Include="ButtonSystem.cpp">
+    <ClCompile Include="UISystem.cpp">
       <Filter>소스 파일\04. ComponentSystem</Filter>
     </ClCompile>
     <ClCompile Include="UI_Button.cpp">
-      <Filter>소스 파일\02. GameObject\Content</Filter>
+      <Filter>소스 파일\02. GameObject\UI</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>소스 파일\03. Component\Base</Filter>
@@ -360,16 +417,16 @@
       <Filter>소스 파일\03. Component\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="UI_Text.cpp">
-      <Filter>소스 파일\02. GameObject\Content</Filter>
+      <Filter>소스 파일\02. GameObject\UI</Filter>
     </ClCompile>
     <ClCompile Include="UI_Image.cpp">
-      <Filter>소스 파일\02. GameObject\Content</Filter>
+      <Filter>소스 파일\02. GameObject\UI</Filter>
     </ClCompile>
     <ClCompile Include="ScriptSystem.cpp">
       <Filter>소스 파일\04. ComponentSystem</Filter>
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
-      <Filter>소스 파일\06. Manager</Filter>
+      <Filter>소스 파일\06. ResourceManager</Filter>
     </ClCompile>
     <ClCompile Include="Texture2D.cpp">
       <Filter>소스 파일\07. Graphics</Filter>
@@ -443,6 +500,45 @@
     </ClCompile>
     <ClCompile Include="DebugDrawCommand.cpp">
       <Filter>소스 파일\98. Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Rect.cpp">
+      <Filter>소스 파일\98. Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioClip.cpp">
+      <Filter>소스 파일\10. Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSystem.cpp">
+      <Filter>소스 파일\04. ComponentSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSource.cpp">
+      <Filter>소스 파일\03. Component\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Slider.cpp">
+      <Filter>소스 파일\03. Component\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Slider.cpp">
+      <Filter>소스 파일\02. GameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="I_UI.cpp">
+      <Filter>소스 파일\03. Component\Base\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="InvokeSystem.cpp">
+      <Filter>소스 파일\05. StaticSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="FontCollectionLoader.cpp">
+      <Filter>소스 파일\98. Utils\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="FontFileEnumerator.cpp">
+      <Filter>소스 파일\98. Utils\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="FontFileLoader.cpp">
+      <Filter>소스 파일\98. Utils\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="FontFileStream.cpp">
+      <Filter>소스 파일\98. Utils\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="FontLoaderUtil.cpp">
+      <Filter>소스 파일\98. Utils\Font</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

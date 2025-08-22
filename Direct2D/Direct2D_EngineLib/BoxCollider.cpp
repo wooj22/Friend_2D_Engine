@@ -70,14 +70,14 @@ void BoxCollider::FinalizeCollision()
         if (lastFrameCollisions.find(other) == lastFrameCollisions.end())
         {
             if (isTrigger || other->isTrigger)
-                OnTriggerEnter(other);
+                OnTriggerEnter(other, contact);
             else
                 OnCollisionEnter(other, contact);
         }
         else
         {
             if (isTrigger || other->isTrigger)
-                OnTriggerStay(other);
+                OnTriggerStay(other, contact);
             else
                 OnCollisionStay(other, contact);
         }
@@ -92,7 +92,7 @@ void BoxCollider::FinalizeCollision()
         if (currentFrameCollisions.find(other) == currentFrameCollisions.end())
         {
             if (isTrigger || other->isTrigger)
-                OnTriggerExit(other);
+                OnTriggerExit(other, contact);
             else
                 OnCollisionExit(other, contact);
         }
@@ -133,6 +133,23 @@ bool BoxCollider::CheckAABBCollision(BoxCollider* other, ContactInfo& contact)
         contact.depth = overlapY;
     }
 
+    // ÇÃ·§Æû Ã³¸®
+    if (isFlatform || other->isFlatform)
+    {
+        // ÇÃ·§Æû ÆÇº°
+        BoxCollider* flatform = isFlatform ? this : other;
+        BoxCollider* otherBox = (flatform == this) ? other : this;
+
+        // normal.y -1
+        Vector2 platformNormal = (flatform == this) ? contact.normal : -contact.normal;
+        if (platformNormal.y > 0)
+            return false;
+
+        // flatformDepthThreshold
+        if (overlapY > flatformDepthThreshold)
+            return false;
+    }
+
     return true;
 }
 
@@ -171,6 +188,18 @@ bool BoxCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& conta
         float distance = sqrtf(distSq);
         contact.normal = -diff.Normalized();
         contact.depth = circleRadius - distance;
+    }
+
+    // ÇÃ·§Æû Ã³¸®
+    if (isFlatform)
+    {
+        /// normal.y -1
+        if (contact.normal.y >0)
+            return false;
+
+        // flatformDepthThreshold
+        if (contact.depth > flatformDepthThreshold)
+            return false;
     }
 
     return true;
@@ -234,8 +263,10 @@ void BoxCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
     Rigidbody* rb = gameObject->GetComponent<Rigidbody>();
     if (rb)
     {
-        // ground
+        // Ãæµ¹ º¸Á¤
         rb->CorrectPosition(contact);
+
+        // ground
         if (contact.normal.y > 0)
         {
             rb->groundContactCount++;
@@ -298,28 +329,28 @@ void BoxCollider::OnCollisionExit(ICollider* other, ContactInfo& contact)
     } 
 }
 
-void BoxCollider::OnTriggerEnter(ICollider* other)
+void BoxCollider::OnTriggerEnter(ICollider* other, ContactInfo& contact)
 {
     // script
     auto scripts = gameObject->GetComponents<Script>();
     for (auto s : scripts)
-        s->OnTriggerEnter(other);
+        s->OnTriggerEnter(other, contact);
 }
 
-void BoxCollider::OnTriggerStay(ICollider* other)
+void BoxCollider::OnTriggerStay(ICollider* other, ContactInfo& contact)
 {
     // script
     auto scripts = gameObject->GetComponents<Script>();
     for (auto s : scripts)
-        s->OnTriggerStay(other);
+        s->OnTriggerStay(other, contact);
 }
 
-void BoxCollider::OnTriggerExit(ICollider* other)
+void BoxCollider::OnTriggerExit(ICollider* other, ContactInfo& contact)
 {
     // script
     auto scripts = gameObject->GetComponents<Script>();
     for (auto s : scripts)
-        s->OnTriggerExit(other);
+        s->OnTriggerExit(other, contact);
 }
 
 Vector2 BoxCollider::GetCenter() const

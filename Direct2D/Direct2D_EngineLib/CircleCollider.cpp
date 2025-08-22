@@ -69,14 +69,14 @@ void CircleCollider::FinalizeCollision()
         if (lastFrameCollisions.find(other) == lastFrameCollisions.end())
         {
             if (isTrigger || other->isTrigger)
-                OnTriggerEnter(other);
+                OnTriggerEnter(other, contact);
             else
                 OnCollisionEnter(other, contact);
         }
         else
         {
             if (isTrigger || other->isTrigger)
-                OnTriggerStay(other);
+                OnTriggerStay(other, contact);
             else
                 OnCollisionStay(other, contact);
         }
@@ -91,7 +91,7 @@ void CircleCollider::FinalizeCollision()
         if (currentFrameCollisions.find(other) == currentFrameCollisions.end())
         {
             if (isTrigger || other->isTrigger)
-                OnTriggerExit(other);
+                OnTriggerExit(other, contact);
             else
                 OnCollisionExit(other, contact);
         }
@@ -179,6 +179,21 @@ bool CircleCollider::CheckBoxCollision(BoxCollider* other, ContactInfo& contact)
         contact.depth = scaledRadius - distance;
     }
 
+    // ÇÃ·§Æû Ã³¸®
+    if (other->isFlatform)
+    {
+        Vector2 platformNormal = -contact.normal;
+
+        // normal.y -1
+        if (platformNormal.y > 0)
+            return false;
+
+        // flatformDepthThreshold
+        if (contact.depth > other->flatformDepthThreshold)
+            return false;
+
+    }
+
     return true;
 }
 
@@ -219,8 +234,10 @@ void CircleCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
     Rigidbody* rb = gameObject->GetComponent<Rigidbody>();
     if (rb)
     {
-        // ground
+        // Ãæµ¹ º¸Á¤
         rb->CorrectPosition(contact);
+
+        // ground
         if (contact.normal.y > 0)
         {
             rb->groundContactCount++;
@@ -283,28 +300,28 @@ void CircleCollider::OnCollisionExit(ICollider* other, ContactInfo& contact)
     }
 }
 
-void CircleCollider::OnTriggerEnter(ICollider* other)
+void CircleCollider::OnTriggerEnter(ICollider* other, ContactInfo& contact)
 {
     // script
     auto scripts = gameObject->GetComponents<Script>();
     for (auto s : scripts)
-        s->OnTriggerEnter(other);
+        s->OnTriggerEnter(other, contact);
 }
 
-void CircleCollider::OnTriggerStay(ICollider* other)
+void CircleCollider::OnTriggerStay(ICollider* other, ContactInfo& contact)
 {
     // script
     auto scripts = gameObject->GetComponents<Script>();
     for (auto s : scripts)
-        s->OnTriggerStay(other);
+        s->OnTriggerStay(other, contact);
 }
 
-void CircleCollider::OnTriggerExit(ICollider* other)
+void CircleCollider::OnTriggerExit(ICollider* other, ContactInfo& contact)
 {
     // script
     auto scripts = gameObject->GetComponents<Script>();
     for (auto s : scripts)
-        s->OnTriggerExit(other);
+        s->OnTriggerExit(other, contact);
 }
 
 Vector2 CircleCollider::GetCenter() const
@@ -325,7 +342,7 @@ void CircleCollider::DebugColliderDraw()
         radius
     );
 
-    RenderSystem::Get().DebugDrawCircle(ellipse, transform->GetScreenMatrix());
+    RenderSystem::Get().DebugDrawCircle(ellipse, transform->GetScreenMatrix(), 2.0f);
 
     // center
     Vector2 localPos2 = Vector2(offset.x, -offset.y);

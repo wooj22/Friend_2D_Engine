@@ -24,10 +24,11 @@ private:
 	// text
 	std::wstring text = L"";
 	float fontSize = 32.0f;
-	std::wstring fontName = L"¸¼Àº °íµñ";
+	std::wstring fontName = L"Noto Serif KR";
 	D2D1_COLOR_F textColor = D2D1::ColorF(D2D1::ColorF::White);
 	int width = 100;
 	int height = 100;
+	float alpha = 1.0f;
 
 	// align
 	TextHorizontalAlign horizontalAlign = TextHorizontalAlign::Center;
@@ -56,6 +57,7 @@ public:
 	void SetFontName(const std::wstring& newName);
 	void SetColor(const D2D1_COLOR_F& newColor);
 	void SetLayout(int width, int height);
+	void SetAlpha(float a);
 
 	// align
 	void SetHorizontalAlign(TextHorizontalAlign align);

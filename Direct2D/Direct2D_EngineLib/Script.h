@@ -28,6 +28,7 @@ public:
     virtual void Awake() {}            // Update()전에 1회 호출
     virtual void Start() {}            // Awake() 이후 Updtae() 직전 시점 1회 호출
     virtual void Update() {}           // 프레임 단위 반복 호출
+    virtual void LateUpdate() {}       // Camera 등
     virtual void FixedUpdate() {}      // 물리 업데이트 0.02f 보장 반복 호출
     virtual void OnDestroy() {}        // 컴포넌트 or 오브젝트 소멸 시점
 	
@@ -54,9 +55,9 @@ public:
 
     /* Collition Event */
     // trigger
-    virtual void OnTriggerEnter(ICollider* other) {}
-    virtual void OnTriggerStay(ICollider* other) {}
-    virtual void OnTriggerExit(ICollider* other) {}
+    virtual void OnTriggerEnter(ICollider* other, const ContactInfo& contact) {}
+    virtual void OnTriggerStay(ICollider* other, const ContactInfo& contact) {}
+    virtual void OnTriggerExit(ICollider* other, const ContactInfo& contact) {}
 
     // collision
     virtual void OnCollisionEnter(ICollider* other, const ContactInfo& contact) {}

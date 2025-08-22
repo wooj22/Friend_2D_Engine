@@ -5,8 +5,11 @@ LARGE_INTEGER Time::initCounter = {};
 LARGE_INTEGER Time::prevCounter = {};
 LARGE_INTEGER Time::currentCounter = {};
 float Time::deltaTime = 0.0f;
-float Time::fixedDeltaTime = 0.02f;
+float Time::unscaledDelta = 0.0f;
+float Time::fixedDeltatime = 0.02f;
+float Time::unscaledFixedDeltaTime = 0.02f;
 float Time::timeScale = 1.0f;
+
 
 void Time::Init()
 {
@@ -18,10 +21,11 @@ void Time::Init()
 void Time::Update()
 {
     QueryPerformanceCounter(&currentCounter);
-    float unscaledDelta = static_cast<float>(currentCounter.QuadPart - prevCounter.QuadPart) / frequency.QuadPart;
+    unscaledDelta = static_cast<float>(currentCounter.QuadPart - prevCounter.QuadPart) / frequency.QuadPart;
     prevCounter = currentCounter;
 
     deltaTime = unscaledDelta * timeScale;
+    fixedDeltatime = unscaledFixedDeltaTime * timeScale;
 }
 
 float Time::GetDeltaTime()
@@ -29,9 +33,19 @@ float Time::GetDeltaTime()
     return deltaTime;
 }
 
+float Time::GetUnscaledDeltaTime()
+{
+	return unscaledDelta;
+}
+
 float Time::GetFixedDeltaTime()
 {
-    return fixedDeltaTime;
+    return fixedDeltatime;
+}
+
+float Time::GetUnscaledFixedDeltatime()
+{
+    return unscaledFixedDeltaTime;
 }
 
 float Time::GetTotalTime()

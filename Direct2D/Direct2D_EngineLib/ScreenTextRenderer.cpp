@@ -1,6 +1,7 @@
 #include "ScreenTextRenderer.h"
 #include "RectTransform.h"
 #include "GameObject.h"
+#include "RenderSystem.h"
 
 void ScreenTextRenderer::OnEnable_Inner()
 {
@@ -32,7 +33,7 @@ void ScreenTextRenderer::Update()
 		// 텍스트 포맷 재생성
 		RenderSystem::Get().dWriteFactory->CreateTextFormat(
 			fontName.c_str(),              // 폰트
-			nullptr,                       // 커스텀 폰트 컬렉션 (null이면 시스템 기본)
+			nullptr,				       // 커스텀 폰트 컬렉션 (null이면 시스템 기본)
 			DWRITE_FONT_WEIGHT_NORMAL,     // 굵기
 			DWRITE_FONT_STYLE_NORMAL,      // 스타일(기울임 여부)
 			DWRITE_FONT_STRETCH_NORMAL,    // 스트레칭
@@ -98,6 +99,12 @@ void ScreenTextRenderer::SetColor(const D2D1_COLOR_F& newColor)
 	else {
 		RenderSystem::Get().renderTarget->CreateSolidColorBrush(textColor, brush.GetAddressOf());
 	}
+}
+
+void ScreenTextRenderer::SetAlpha(float a)
+{
+	alpha = a;
+	if (brush) brush->SetOpacity(alpha);
 }
 
 void ScreenTextRenderer::SetHorizontalAlign(TextHorizontalAlign align)
