@@ -1,8 +1,8 @@
 #include "CameraController.h"
-#include "../Direct2D_EngineLib/Transform.h"
-#include "../Direct2D_EngineLib/Camera.h"
-#include "../Direct2D_EngineLib/Time.h"
-#include "../Direct2D_EngineLib/Input.h"
+#include "../Friend_2D_EngineLib/Transform.h"
+#include "../Friend_2D_EngineLib/Camera.h"
+#include "../Friend_2D_EngineLib/Time.h"
+#include "../Friend_2D_EngineLib/Input.h"
 
 
 CameraController::CameraController()

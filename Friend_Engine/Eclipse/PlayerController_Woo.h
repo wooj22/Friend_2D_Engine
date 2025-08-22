@@ -1,7 +1,7 @@
 #pragma once
-#include "../Direct2D_EngineLib/Script.h"
-#include "../Direct2D_EngineLib/GameObject.h"
-#include "../Direct2D_EngineLib/ICollider.h"
+#include "../Friend_2D_EngineLib/Script.h"
+#include "../Friend_2D_EngineLib/GameObject.h"
+#include "../Friend_2D_EngineLib/ICollider.h"
 
 /* 엔진 기능 추가 테스트용 */
 

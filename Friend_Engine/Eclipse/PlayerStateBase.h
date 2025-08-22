@@ -1,5 +1,5 @@
 #pragma once
-#include "../Direct2D_EngineLib/Animator.h"
+#include "../Friend_2D_EngineLib/Animator.h"
 #include "StateBase.h"
 
 class PlayerFSM;

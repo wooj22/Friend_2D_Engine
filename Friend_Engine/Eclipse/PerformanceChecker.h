@@ -1,10 +1,10 @@
 #pragma once
-#include "../Direct2D_EngineLib/GameObject.h"
-#include "../Direct2D_EngineLib/RectTransform.h"
-#include "../Direct2D_EngineLib/ScreenTextRenderer.h"
-#include "../Direct2D_EngineLib/Input.h"
-#include "../Direct2D_EngineLib/Time.h"
-#include "../Direct2D_EngineLib/ResourceManager.h"
+#include "../Friend_2D_EngineLib/GameObject.h"
+#include "../Friend_2D_EngineLib/RectTransform.h"
+#include "../Friend_2D_EngineLib/ScreenTextRenderer.h"
+#include "../Friend_2D_EngineLib/Input.h"
+#include "../Friend_2D_EngineLib/Time.h"
+#include "../Friend_2D_EngineLib/ResourceManager.h"
 
 class PerformanceChecker : public GameObject
 {

@@ -1,8 +1,8 @@
 #pragma once
-#include "../Direct2D_EngineLib/Scene.h"
-#include "../Direct2D_EngineLib/Input.h"
-#include "../Direct2D_EngineLib/Camera.h"
-#include "../Direct2D_EngineLib/UI_Text.h"
+#include "../Friend_2D_EngineLib/Scene.h"
+#include "../Friend_2D_EngineLib/Input.h"
+#include "../Friend_2D_EngineLib/Camera.h"
+#include "../Friend_2D_EngineLib/UI_Text.h"
 
 #include "Player.h"
 #include "playerAttackArea.h"

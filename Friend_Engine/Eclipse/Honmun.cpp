@@ -6,7 +6,7 @@
 #include "HonmunBAnimatorController.h"
 #include "HonmunCFSM.h"
 #include "HonmunCAnimatorController.h"
-#include "../Direct2D_EngineLib/ResourceManager.h"
+#include "../Friend_2D_EngineLib/ResourceManager.h"
 #include <iostream>
 #include <exception>
 

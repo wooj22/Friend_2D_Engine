@@ -9,9 +9,9 @@
 #include "PlayerFSM.h"
 #include "PlayerAnimatorController.h"
 
-#include "../Direct2D_EngineLib/Rigidbody.h"
-#include "../Direct2D_EngineLib/Input.h"
-#include "../Direct2D_EngineLib/Time.h"
+#include "../Friend_2D_EngineLib/Rigidbody.h"
+#include "../Friend_2D_EngineLib/Input.h"
+#include "../Friend_2D_EngineLib/Time.h"
 
 
 void Walk_State::Enter(MovementFSM* fsm)

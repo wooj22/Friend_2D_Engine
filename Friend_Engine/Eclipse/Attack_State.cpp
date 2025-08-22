@@ -4,10 +4,10 @@
 #include "PlayerFSM.h" 
 #include "PlayerAnimatorController.h"
 
-#include "../Direct2D_EngineLib/Time.h"
-#include "../Direct2D_EngineLib/BoxCollider.h"
-#include "../Direct2D_EngineLib/Rigidbody.h"
-#include "../Direct2D_EngineLib/Vector2.h"
+#include "../Friend_2D_EngineLib/Time.h"
+#include "../Friend_2D_EngineLib/BoxCollider.h"
+#include "../Friend_2D_EngineLib/Rigidbody.h"
+#include "../Friend_2D_EngineLib/Vector2.h"
 
 #include "Fall_State.h"
 #include "AfterImage.h"

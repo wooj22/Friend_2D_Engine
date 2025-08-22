@@ -3,8 +3,8 @@
 #include "HonBController.h"
 #include "HonDController.h"
 #include "BossController.h"
-#include "../Direct2D_EngineLib/Camera.h"
-#include "../Direct2D_EngineLib/SpriteRenderer.h"
+#include "../Friend_2D_EngineLib/Camera.h"
+#include "../Friend_2D_EngineLib/SpriteRenderer.h"
 
 /*------------- Cycle  -------------*/
 void HonCController::Awake()

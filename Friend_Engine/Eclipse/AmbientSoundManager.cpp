@@ -1,8 +1,8 @@
 #include "AmbientSoundManager.h"
-#include "../Direct2D_EngineLib/AudioSource.h"
-#include "../Direct2D_EngineLib/AudioClip.h"
-#include "../Direct2D_EngineLib/ResourceManager.h"
-#include "../Direct2D_EngineLib/Time.h"
+#include "../Friend_2D_EngineLib/AudioSource.h"
+#include "../Friend_2D_EngineLib/AudioClip.h"
+#include "../Friend_2D_EngineLib/ResourceManager.h"
+#include "../Friend_2D_EngineLib/Time.h"
 #include <cstdlib>
 #include <ctime>
 

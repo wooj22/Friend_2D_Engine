@@ -1,6 +1,6 @@
 #include "PauseWindow.h"
 #include "EclipseApp.h"
-#include "../Direct2D_EngineLib/GameApp.h"
+#include "../Friend_2D_EngineLib/GameApp.h"
 #include "PlayUI.h"
 
 void PauseWindow::Awake()

@@ -1,8 +1,8 @@
 #pragma once
-#include "../Direct2D_EngineLib/Script.h"
-#include "../Direct2D_EngineLib/GameObject.h"
-#include "../Direct2D_EngineLib/Time.h"
-#include "../Direct2D_EngineLib/SpriteRenderer.h"
+#include "../Friend_2D_EngineLib/Script.h"
+#include "../Friend_2D_EngineLib/GameObject.h"
+#include "../Friend_2D_EngineLib/Time.h"
+#include "../Friend_2D_EngineLib/SpriteRenderer.h"
 
 
 class AfterImage : public Script

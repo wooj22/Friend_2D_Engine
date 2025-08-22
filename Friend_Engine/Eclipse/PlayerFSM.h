@@ -1,14 +1,14 @@
 #pragma once
 #include<map>
 
-#include "../Direct2D_EngineLib/Script.h"
-#include "../Direct2D_EngineLib/GameObject.h"
-#include "../Direct2D_EngineLib/ICollider.h"
-#include "../Direct2D_EngineLib/RaycastHit.h"
-#include "../Direct2D_EngineLib/ColliderSystem.h"
-#include "../Direct2D_EngineLib/ResourceManager.h"
-#include "../Direct2D_EngineLib/AudioClip.h"
-#include "../Direct2D_EngineLib/AudioSource.h"
+#include "../Friend_2D_EngineLib/Script.h"
+#include "../Friend_2D_EngineLib/GameObject.h"
+#include "../Friend_2D_EngineLib/ICollider.h"
+#include "../Friend_2D_EngineLib/RaycastHit.h"
+#include "../Friend_2D_EngineLib/ColliderSystem.h"
+#include "../Friend_2D_EngineLib/ResourceManager.h"
+#include "../Friend_2D_EngineLib/AudioClip.h"
+#include "../Friend_2D_EngineLib/AudioSource.h"
 
 // FSM 
 #include "MovementFSM.h"

@@ -1,5 +1,5 @@
 #include "TitleUI.h"
-#include "../Direct2D_EngineLib/GameApp.h"
+#include "../Friend_2D_EngineLib/GameApp.h"
 #include "EclipseApp.h"
 
 void TitleUI::Awake()

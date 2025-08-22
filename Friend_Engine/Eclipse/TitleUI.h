@@ -1,20 +1,20 @@
 #pragma once
-#include "../Direct2D_EngineLib/UI_Button.h"
-#include "../Direct2D_EngineLib/UI_Image.h"
-#include"../Direct2D_EngineLib/UI_Text.h"
-#include "../Direct2D_EngineLib/GameObject.h"
-#include "../Direct2D_EngineLib/SpriteRenderer.h"
-#include "../Direct2D_EngineLib/Animator.h"
+#include "../Friend_2D_EngineLib/UI_Button.h"
+#include "../Friend_2D_EngineLib/UI_Image.h"
+#include"../Friend_2D_EngineLib/UI_Text.h"
+#include "../Friend_2D_EngineLib/GameObject.h"
+#include "../Friend_2D_EngineLib/SpriteRenderer.h"
+#include "../Friend_2D_EngineLib/Animator.h"
 #include "Options.h"
 #include "Credit.h"
 #include "LineClip.h"
 #include "SoundManager.h"
 
 // »ç¿îµå
-#include "../Direct2D_EngineLib/AudioSystem.h"
-#include "../Direct2D_EngineLib/AudioSource.h"
-#include "../Direct2D_EngineLib/AudioClip.h"
-#include "../Direct2D_EngineLib/ResourceManager.h"
+#include "../Friend_2D_EngineLib/AudioSystem.h"
+#include "../Friend_2D_EngineLib/AudioSource.h"
+#include "../Friend_2D_EngineLib/AudioClip.h"
+#include "../Friend_2D_EngineLib/ResourceManager.h"
 
 class TitleUI : public GameObject
 {

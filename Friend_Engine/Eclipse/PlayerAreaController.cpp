@@ -2,7 +2,7 @@
 #include "HonController.h"
 #include "PlayerFSM.h"
 
-#include "../Direct2D_EngineLib/CircleCollider.h"
+#include "../Friend_2D_EngineLib/CircleCollider.h"
 
 void PlayerAreaController::Awake()
 {

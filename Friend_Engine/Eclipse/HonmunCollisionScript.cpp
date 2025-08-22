@@ -1,8 +1,8 @@
 #include "HonmunCollisionScript.h"
 #include "Aron_Scene.h"
-#include "../Direct2D_EngineLib/SceneManager.h"
-#include "../Direct2D_EngineLib/Camera.h"
-#include "../Direct2D_EngineLib/Time.h"
+#include "../Friend_2D_EngineLib/SceneManager.h"
+#include "../Friend_2D_EngineLib/Camera.h"
+#include "../Friend_2D_EngineLib/Time.h"
 #include <random>
 #include <algorithm>
 #include <cmath>

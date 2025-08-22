@@ -1,10 +1,10 @@
 #pragma once
-#include "../Direct2D_EngineLib/GameObject.h"
-#include "../Direct2D_EngineLib/Transform.h"
-#include "../Direct2D_EngineLib/SpriteRenderer.h"
-#include "../Direct2D_EngineLib/Time.h"
-#include "../Direct2D_EngineLib/BoxCollider.h"
-#include "../Direct2D_EngineLib/Rigidbody.h"
+#include "../Friend_2D_EngineLib/GameObject.h"
+#include "../Friend_2D_EngineLib/Transform.h"
+#include "../Friend_2D_EngineLib/SpriteRenderer.h"
+#include "../Friend_2D_EngineLib/Time.h"
+#include "../Friend_2D_EngineLib/BoxCollider.h"
+#include "../Friend_2D_EngineLib/Rigidbody.h"
 #include "PlayerController_Woo.h"
 
 class Player_Woo : public GameObject

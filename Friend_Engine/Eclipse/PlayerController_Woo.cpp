@@ -1,11 +1,11 @@
 #include "PlayerController_Woo.h"
-#include "../Direct2D_EngineLib/Transform.h"
-#include "../Direct2D_EngineLib/SpriteRenderer.h"
-#include "../Direct2D_EngineLib/Input.h"
-#include "../Direct2D_EngineLib/Time.h"
-#include "../Direct2D_EngineLib/ResourceManager.h"
-#include "../Direct2D_EngineLib/Rigidbody.h"
-#include "../Direct2D_EngineLib/Camera.h"
+#include "../Friend_2D_EngineLib/Transform.h"
+#include "../Friend_2D_EngineLib/SpriteRenderer.h"
+#include "../Friend_2D_EngineLib/Input.h"
+#include "../Friend_2D_EngineLib/Time.h"
+#include "../Friend_2D_EngineLib/ResourceManager.h"
+#include "../Friend_2D_EngineLib/Rigidbody.h"
+#include "../Friend_2D_EngineLib/Camera.h"
 #include "string.h"
 
 

@@ -2,7 +2,7 @@
 #include "PlayUI.h"
 #include "Chat.h"
 #include "Quest.h"
-#include "../Direct2D_EngineLib/Time.h"
+#include "../Friend_2D_EngineLib/Time.h"
 #include "GameManager.h"
 
 void PlayerMove::OnEnable()

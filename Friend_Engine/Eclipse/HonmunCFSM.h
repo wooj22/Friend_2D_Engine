@@ -1,6 +1,6 @@
 #pragma once
-#include "../Direct2D_EngineLib/Script.h"
-#include "../Direct2D_EngineLib/GameObject.h"
+#include "../Friend_2D_EngineLib/Script.h"
+#include "../Friend_2D_EngineLib/GameObject.h"
 #include "FSMBase.h"
 #include "StateBase.h"
 

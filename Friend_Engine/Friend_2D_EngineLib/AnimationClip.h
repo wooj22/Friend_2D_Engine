@@ -1,5 +1,5 @@
 #pragma once
-#include "../Direct2D_EngineLib/json.hpp"
+#include "../Friend_2D_EngineLib/json.hpp"
 #include <vector>
 #include <iostream>
 #include <fstream>

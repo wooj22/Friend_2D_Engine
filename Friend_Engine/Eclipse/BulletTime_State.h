@@ -1,6 +1,6 @@
 #pragma once
 #include "MovementStateBase.h"
-#include "../Direct2D_EngineLib/SpriteRenderer.h"
+#include "../Friend_2D_EngineLib/SpriteRenderer.h"
 
 class MovementFSM;
 

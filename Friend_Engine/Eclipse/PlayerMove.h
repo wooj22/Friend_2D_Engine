@@ -1,7 +1,7 @@
 #pragma once
-#include "../Direct2D_EngineLib/Script.h"
-#include "../Direct2D_EngineLib/Input.h"
-#include "../Direct2D_EngineLib/Rigidbody.h"
+#include "../Friend_2D_EngineLib/Script.h"
+#include "../Friend_2D_EngineLib/Input.h"
+#include "../Friend_2D_EngineLib/Rigidbody.h"
 
 class PlayerMove : public Script
 {

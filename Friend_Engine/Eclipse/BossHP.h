@@ -1,8 +1,8 @@
 #pragma once
-#include"../Direct2D_EngineLib/SceneManager.h"
-#include"../Direct2D_EngineLib/Scene.h"
-#include "../Direct2D_EngineLib/GameObject.h"
-#include "../Direct2D_EngineLib/UI_Image.h"
+#include"../Friend_2D_EngineLib/SceneManager.h"
+#include"../Friend_2D_EngineLib/Scene.h"
+#include "../Friend_2D_EngineLib/GameObject.h"
+#include "../Friend_2D_EngineLib/UI_Image.h"
 #include "GameManager.h"
 
 class BossHP : public GameObject

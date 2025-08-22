@@ -1,10 +1,10 @@
 #pragma once
-#include "../Direct2D_EngineLib/UI_Button.h"
-#include "../Direct2D_EngineLib/UI_Image.h"
-#include"../Direct2D_EngineLib/UI_Text.h"
-#include "../Direct2D_EngineLib/GameObject.h"
-#include "../Direct2D_EngineLib/Singleton.h"
-#include "../Direct2D_EngineLib/Time.h"
+#include "../Friend_2D_EngineLib/UI_Button.h"
+#include "../Friend_2D_EngineLib/UI_Image.h"
+#include"../Friend_2D_EngineLib/UI_Text.h"
+#include "../Friend_2D_EngineLib/GameObject.h"
+#include "../Friend_2D_EngineLib/Singleton.h"
+#include "../Friend_2D_EngineLib/Time.h"
 #include "GameManager.h"
 #include "SkillWindowButton.h"
 #include "PauseWindow.h"
@@ -15,14 +15,14 @@
 #include "Typer.h"
 #include "FadeManager.h"
 #include "SoundManager.h"
-#include "../Direct2D_EngineLib/AudioSource.h"
+#include "../Friend_2D_EngineLib/AudioSource.h"
 #include <vector>
 
 // »ç¿îµå
-#include "../Direct2D_EngineLib/AudioSystem.h"
-#include "../Direct2D_EngineLib/AudioSource.h"
-#include "../Direct2D_EngineLib/AudioClip.h"
-#include "../Direct2D_EngineLib/ResourceManager.h"
+#include "../Friend_2D_EngineLib/AudioSystem.h"
+#include "../Friend_2D_EngineLib/AudioSource.h"
+#include "../Friend_2D_EngineLib/AudioClip.h"
+#include "../Friend_2D_EngineLib/ResourceManager.h"
 
 class Chat;
 class Quest;

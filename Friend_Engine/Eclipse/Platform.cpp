@@ -1,9 +1,9 @@
 #include "Platform.h"
-#include "../Direct2D_EngineLib/Scene.h"
-#include "../Direct2D_EngineLib/Transform.h"
-#include "../Direct2D_EngineLib/SpriteRenderer.h"
-#include "../Direct2D_EngineLib/ResourceManager.h"
-#include "../Direct2D_EngineLib/SceneManager.h"
+#include "../Friend_2D_EngineLib/Scene.h"
+#include "../Friend_2D_EngineLib/Transform.h"
+#include "../Friend_2D_EngineLib/SpriteRenderer.h"
+#include "../Friend_2D_EngineLib/ResourceManager.h"
+#include "../Friend_2D_EngineLib/SceneManager.h"
 
 Platform::Platform()
 {

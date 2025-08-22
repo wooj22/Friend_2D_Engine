@@ -1,7 +1,7 @@
 #pragma once
-#include "../Direct2D_EngineLib/GameObject.h"
-#include "../Direct2D_EngineLib/RectTransform.h"
-#include "../Direct2D_EngineLib/ImageRenderer.h"
+#include "../Friend_2D_EngineLib/GameObject.h"
+#include "../Friend_2D_EngineLib/RectTransform.h"
+#include "../Friend_2D_EngineLib/ImageRenderer.h"
 #include "FadeManager.h"
 
 // Fade Util GameObject

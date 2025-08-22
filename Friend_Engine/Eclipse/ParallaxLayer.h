@@ -1,5 +1,5 @@
 #pragma once
-#include "../Direct2D_EngineLib/Script.h"
+#include "../Friend_2D_EngineLib/Script.h"
 
  /* 맵 전경 원경 패럴랙스 스크롤링 컴포넌트 */
 

@@ -1,7 +1,7 @@
 #include "FadeManager.h"
-#include "../Direct2D_EngineLib/ImageRenderer.h"
-#include "../Direct2D_EngineLib/Time.h"
-#include "../Direct2D_EngineLib/Input.h"
+#include "../Friend_2D_EngineLib/ImageRenderer.h"
+#include "../Friend_2D_EngineLib/Time.h"
+#include "../Friend_2D_EngineLib/Input.h"
 
 void FadeManager::Awake()
 {

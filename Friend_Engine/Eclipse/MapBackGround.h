@@ -1,5 +1,5 @@
 #pragma once
-#include "../Direct2D_EngineLib/GameObject.h"
+#include "../Friend_2D_EngineLib/GameObject.h"
 
 class ParallaxLayer;
 

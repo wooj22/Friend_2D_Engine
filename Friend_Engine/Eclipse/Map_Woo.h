@@ -1,8 +1,8 @@
 #pragma once
-#include "../Direct2D_EngineLib/GameObject.h"
-#include "../Direct2D_EngineLib/Transform.h"
-#include "../Direct2D_EngineLib/BoxCollider.h"
-#include "../Direct2D_EngineLib/Rigidbody.h"
+#include "../Friend_2D_EngineLib/GameObject.h"
+#include "../Friend_2D_EngineLib/Transform.h"
+#include "../Friend_2D_EngineLib/BoxCollider.h"
+#include "../Friend_2D_EngineLib/Rigidbody.h"
 
 class Map_Woo : public GameObject
 {

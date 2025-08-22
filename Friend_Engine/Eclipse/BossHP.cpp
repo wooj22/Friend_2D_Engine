@@ -1,5 +1,5 @@
 #include "BossHP.h"
-#include "../Direct2D_EngineLib/Input.h"
+#include "../Friend_2D_EngineLib/Input.h"
 
 void BossHP::Awake()
 {

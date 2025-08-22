@@ -1,10 +1,10 @@
 #pragma once
-#include "../Direct2D_EngineLib/Scene.h"
-#include "../Direct2D_EngineLib/Input.h"
-#include "../Direct2D_EngineLib/Camera.h"
-#include "../Direct2D_EngineLib/UI_Text.h"
-#include "../Direct2D_EngineLib/UI_Image.h"
-#include "../Direct2D_EngineLib/UI_Button.h"
+#include "../Friend_2D_EngineLib/Scene.h"
+#include "../Friend_2D_EngineLib/Input.h"
+#include "../Friend_2D_EngineLib/Camera.h"
+#include "../Friend_2D_EngineLib/UI_Text.h"
+#include "../Friend_2D_EngineLib/UI_Image.h"
+#include "../Friend_2D_EngineLib/UI_Button.h"
 
 #include "Player_Woo.h"
 #include "Map_Woo.h"
@@ -27,7 +27,7 @@
 #include "PlayUI.h"
 
 // slider test
-#include "../Direct2D_EngineLib/UI_Slider.h"
+#include "../Friend_2D_EngineLib/UI_Slider.h"
 
 
 class Woo_Scene : public Scene

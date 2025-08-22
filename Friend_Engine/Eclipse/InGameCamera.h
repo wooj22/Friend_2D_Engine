@@ -1,7 +1,7 @@
 #pragma once
-#include "../Direct2D_EngineLib/GameObject.h"
-#include "../Direct2D_EngineLib/Transform.h"
-#include "../Direct2D_EngineLib/Camera.h"
+#include "../Friend_2D_EngineLib/GameObject.h"
+#include "../Friend_2D_EngineLib/Transform.h"
+#include "../Friend_2D_EngineLib/Camera.h"
 #include "CameraController.h"
 
 /* PLAY씬에서 활용될 MainCamera */

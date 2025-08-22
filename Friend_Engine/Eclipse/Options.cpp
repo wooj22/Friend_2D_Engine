@@ -1,5 +1,5 @@
 #include "Options.h"
-#include "../Direct2D_EngineLib/AudioSystem.h"
+#include "../Friend_2D_EngineLib/AudioSystem.h"
 
 Options::Options() : GameObject("Optionts", "Optionts")
 {

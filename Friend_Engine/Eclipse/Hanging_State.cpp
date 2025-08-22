@@ -9,8 +9,8 @@
 #include "PlayerAnimatorController.h"
 #include "GameManager.h"
 
-#include "../Direct2D_EngineLib/Rigidbody.h"
-#include "../Direct2D_EngineLib/Time.h"
+#include "../Friend_2D_EngineLib/Rigidbody.h"
+#include "../Friend_2D_EngineLib/Time.h"
 #include "BulletTime_State.h"
 #include "Attack_State.h"
 

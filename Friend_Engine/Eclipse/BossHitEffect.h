@@ -1,8 +1,8 @@
 #pragma once
-#include "../Direct2D_EngineLib/GameObject.h"
-#include "../Direct2D_EngineLib/Transform.h"
-#include "../Direct2D_EngineLib/SpriteRenderer.h"
-#include "../Direct2D_EngineLib/Animator.h"
+#include "../Friend_2D_EngineLib/GameObject.h"
+#include "../Friend_2D_EngineLib/Transform.h"
+#include "../Friend_2D_EngineLib/SpriteRenderer.h"
+#include "../Friend_2D_EngineLib/Animator.h"
 #include "BCAnimatorController.h"
 
 // Boss¶û HonÀÌ ºÎµúÇûÀ»¶§ ³ª¿À´Â effect

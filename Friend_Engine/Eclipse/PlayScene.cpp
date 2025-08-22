@@ -1,6 +1,6 @@
 #include "PlayScene.h"
 #include "EclipseApp.h"
-#include "../Direct2D_EngineLib/SceneManager.h"
+#include "../Friend_2D_EngineLib/SceneManager.h"
 #include "PerformanceChecker.h"
 
 void PlayScene::Awake()

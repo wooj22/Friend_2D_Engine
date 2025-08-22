@@ -1,11 +1,11 @@
 #include "HonmunBFSM.h"
 #include "Honmun.h"
-#include "../Direct2D_EngineLib/Animator.h"
-#include "../Direct2D_EngineLib/AnimatorController.h"
-#include "../Direct2D_EngineLib/Transform.h"
-#include "../Direct2D_EngineLib/Rigidbody.h"
-#include "../Direct2D_EngineLib/Time.h"
-#include "../Direct2D_EngineLib/ResourceManager.h"
+#include "../Friend_2D_EngineLib/Animator.h"
+#include "../Friend_2D_EngineLib/AnimatorController.h"
+#include "../Friend_2D_EngineLib/Transform.h"
+#include "../Friend_2D_EngineLib/Rigidbody.h"
+#include "../Friend_2D_EngineLib/Time.h"
+#include "../Friend_2D_EngineLib/ResourceManager.h"
 #include <memory>
 
 // HonmunBIdleState Implementation

@@ -6,11 +6,11 @@
 #include "PlayerAnimatorController.h"
 #include "AfterImage.h"
 
-#include "../Direct2D_EngineLib/Time.h"
-#include "../Direct2D_EngineLib/Input.h"
-#include "../Direct2D_EngineLib/RenderSystem.h"
-#include "../Direct2D_EngineLib/Vector2.h"
-#include "../Direct2D_EngineLib/Camera.h"
+#include "../Friend_2D_EngineLib/Time.h"
+#include "../Friend_2D_EngineLib/Input.h"
+#include "../Friend_2D_EngineLib/RenderSystem.h"
+#include "../Friend_2D_EngineLib/Vector2.h"
+#include "../Friend_2D_EngineLib/Camera.h"
 
 
 

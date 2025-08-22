@@ -1,5 +1,5 @@
 #pragma once
-#include "../Direct2D_EngineLib/GameApp.h"
+#include "../Friend_2D_EngineLib/GameApp.h"
 #include "GameManager.h"
 
 class EclipseApp : public GameApp

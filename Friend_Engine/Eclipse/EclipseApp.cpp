@@ -1,5 +1,5 @@
 #include "EclipseApp.h"
-#include "../Direct2D_EngineLib/RectTransform.h"
+#include "../Friend_2D_EngineLib/RectTransform.h"
 #include "Moon_Scene.h"
 #include "Yunmo_Scene.h"
 #include "Aron_Scene.h"

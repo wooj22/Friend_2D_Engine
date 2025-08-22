@@ -1,8 +1,8 @@
 #pragma once
-#include "../Direct2D_EngineLib/AnimationClip.h"
-#include "../Direct2D_EngineLib/AnimationBaseState.h"
-#include "../Direct2D_EngineLib/AnimatorController.h"
-#include "../Direct2D_EngineLib/ResourceManager.h"
+#include "../Friend_2D_EngineLib/AnimationClip.h"
+#include "../Friend_2D_EngineLib/AnimationBaseState.h"
+#include "../Friend_2D_EngineLib/AnimatorController.h"
+#include "../Friend_2D_EngineLib/ResourceManager.h"
 #include <iostream>
 #include <exception>
 #include <string>

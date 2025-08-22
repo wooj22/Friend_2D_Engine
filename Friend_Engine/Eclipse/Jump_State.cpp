@@ -13,9 +13,9 @@
 #include "GameManager.h"
 // #include "JumpEffect.h"
 
-#include "../Direct2D_EngineLib/Rigidbody.h"
-#include "../Direct2D_EngineLib/Time.h"
-#include "../Direct2D_EngineLib/Input.h"
+#include "../Friend_2D_EngineLib/Rigidbody.h"
+#include "../Friend_2D_EngineLib/Time.h"
+#include "../Friend_2D_EngineLib/Input.h"
 
 #include "AfterImage.h"
 #include "LandingAnimatorController.h"

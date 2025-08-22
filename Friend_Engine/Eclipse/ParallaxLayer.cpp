@@ -1,6 +1,6 @@
 #include "ParallaxLayer.h"
-#include "../Direct2D_EngineLib/Transform.h"
-#include "../Direct2D_EngineLib/Camera.h"
+#include "../Friend_2D_EngineLib/Transform.h"
+#include "../Friend_2D_EngineLib/Camera.h"
 
 void ParallaxLayer::Awake()
 {

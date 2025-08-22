@@ -1,7 +1,7 @@
 #include "Chat.h"
 #include "Typer.h"
-#include "../Direct2D_EngineLib/Input.h"
-#include "../Direct2D_EngineLib/AudioSource.h"
+#include "../Friend_2D_EngineLib/Input.h"
+#include "../Friend_2D_EngineLib/AudioSource.h"
 
 Chat::Chat()
 {

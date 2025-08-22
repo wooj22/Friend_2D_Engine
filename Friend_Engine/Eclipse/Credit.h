@@ -1,10 +1,10 @@
 #pragma once
-#include "../Direct2D_EngineLib/GameObject.h"
-#include "../Direct2D_EngineLib/UI_Image.h"
-#include "../Direct2D_EngineLib/UI_Text.h"
-#include "../Direct2D_EngineLib/UI_Button.h"
-#include "../Direct2D_EngineLib/SceneManager.h"
-#include "../Direct2D_EngineLib/Scene.h"
+#include "../Friend_2D_EngineLib/GameObject.h"
+#include "../Friend_2D_EngineLib/UI_Image.h"
+#include "../Friend_2D_EngineLib/UI_Text.h"
+#include "../Friend_2D_EngineLib/UI_Button.h"
+#include "../Friend_2D_EngineLib/SceneManager.h"
+#include "../Friend_2D_EngineLib/Scene.h"
 
 
 class Credit : public GameObject

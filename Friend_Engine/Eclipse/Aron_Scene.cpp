@@ -6,11 +6,11 @@
 #include "HonC.h"
 #include "HonD.h"
 #include "Player.h"
-#include "../Direct2D_EngineLib/SceneManager.h"
-#include "../Direct2D_EngineLib/SpriteRenderer.h"
-#include "../Direct2D_EngineLib/Input.h"
-#include "../Direct2D_EngineLib/Time.h"
-#include "../Direct2D_EngineLib/ResourceManager.h"
+#include "../Friend_2D_EngineLib/SceneManager.h"
+#include "../Friend_2D_EngineLib/SpriteRenderer.h"
+#include "../Friend_2D_EngineLib/Input.h"
+#include "../Friend_2D_EngineLib/Time.h"
+#include "../Friend_2D_EngineLib/ResourceManager.h"
 
 void Aron_Scene::Awake()
 {

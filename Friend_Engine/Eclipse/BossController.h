@@ -1,5 +1,5 @@
 #pragma once
-#include "../Direct2D_EngineLib/Script.h"
+#include "../Friend_2D_EngineLib/Script.h"
 
 /*---------------------*/
 /* Boss Controller.cs */

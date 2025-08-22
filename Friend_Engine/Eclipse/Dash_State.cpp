@@ -5,9 +5,9 @@
 #include "Fall_State.h"
 #include "PlayerAnimatorController.h"
 
-#include "../Direct2D_EngineLib/Rigidbody.h"
-#include "../Direct2D_EngineLib/SpriteRenderer.h"
-#include "../Direct2D_EngineLib/Time.h"
+#include "../Friend_2D_EngineLib/Rigidbody.h"
+#include "../Friend_2D_EngineLib/SpriteRenderer.h"
+#include "../Friend_2D_EngineLib/Time.h"
 #include "AfterImage.h"
 #include "JumpAnimatorController.h"
 

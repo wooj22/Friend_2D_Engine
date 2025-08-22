@@ -1,8 +1,8 @@
 #include "Moon_Scene.h"
 #include "EclipseApp.h"
 
-#include "../Direct2D_EngineLib/SceneManager.h"
-#include "../Direct2D_EngineLib/SpriteRenderer.h"
+#include "../Friend_2D_EngineLib/SceneManager.h"
+#include "../Friend_2D_EngineLib/SpriteRenderer.h"
 
 #include "Map_Woo.h"
 

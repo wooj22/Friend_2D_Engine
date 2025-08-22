@@ -1,13 +1,13 @@
 #pragma once
-#include "../Direct2D_EngineLib/Scene.h"
-#include "../Direct2D_EngineLib/GameObject.h"
-#include "../Direct2D_EngineLib/Transform.h"
-#include "../Direct2D_EngineLib/Camera.h"
-#include "../Direct2D_EngineLib/UI_Text.h"
-#include "../Direct2D_EngineLib/RectTransform.h"
-#include "../Direct2D_EngineLib/ScreenTextRenderer.h"
-#include "../Direct2D_EngineLib/Input.h"
-#include "../Direct2D_EngineLib/Time.h"
+#include "../Friend_2D_EngineLib/Scene.h"
+#include "../Friend_2D_EngineLib/GameObject.h"
+#include "../Friend_2D_EngineLib/Transform.h"
+#include "../Friend_2D_EngineLib/Camera.h"
+#include "../Friend_2D_EngineLib/UI_Text.h"
+#include "../Friend_2D_EngineLib/RectTransform.h"
+#include "../Friend_2D_EngineLib/ScreenTextRenderer.h"
+#include "../Friend_2D_EngineLib/Input.h"
+#include "../Friend_2D_EngineLib/Time.h"
 #include <vector>
 
 class EndScene : public Scene

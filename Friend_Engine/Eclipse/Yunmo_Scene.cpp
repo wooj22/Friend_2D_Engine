@@ -1,6 +1,6 @@
 #include "Yunmo_Scene.h"
 #include "EclipseApp.h"
-#include "../Direct2D_EngineLib/SceneManager.h"
+#include "../Friend_2D_EngineLib/SceneManager.h"
 
 void Yunmo_Scene::Awake()
 {

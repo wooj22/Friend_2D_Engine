@@ -1,5 +1,5 @@
 #pragma once
-#include "../Direct2D_EngineLib/Singleton.h"
+#include "../Friend_2D_EngineLib/Singleton.h"
 #include "CameraController.h"
 #include <unordered_map>
 #include <string>  

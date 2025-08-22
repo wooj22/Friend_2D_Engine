@@ -6,8 +6,8 @@
 #include "EclipseApp.h"
 #include "FadeManager.h"
 #include "BossController.h"
-#include "../Direct2D_EngineLib/Input.h"
-#include "../Direct2D_EngineLib/InvokeSystem.h"
+#include "../Friend_2D_EngineLib/Input.h"
+#include "../Friend_2D_EngineLib/InvokeSystem.h"
 #include <algorithm>
 
 void PlayUI::Awake()

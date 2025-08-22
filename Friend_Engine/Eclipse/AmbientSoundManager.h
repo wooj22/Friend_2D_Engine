@@ -1,6 +1,6 @@
 #pragma once
-#include "../Direct2D_EngineLib/GameObject.h"
-#include "../Direct2D_EngineLib/AudioSystem.h"
+#include "../Friend_2D_EngineLib/GameObject.h"
+#include "../Friend_2D_EngineLib/AudioSystem.h"
 #include <vector>
 #include <string>
 

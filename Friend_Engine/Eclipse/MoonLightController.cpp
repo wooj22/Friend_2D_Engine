@@ -1,5 +1,5 @@
 #include "MoonLightController.h"
-#include "../Direct2D_EngineLib/Time.h"
+#include "../Friend_2D_EngineLib/Time.h"
 #include "GameManager.h"
 
 void MoonLightController::Awake()
