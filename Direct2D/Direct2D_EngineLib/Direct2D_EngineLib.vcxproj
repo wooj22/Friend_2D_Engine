@@ -24,7 +24,7 @@
     <ProjectGuid>{d8d78356-8dd0-4271-bbe6-b0208a9359fe}</ProjectGuid>
     <RootNamespace>Direct2DEngineLib</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>00. Friend_2D_EngineLib</ProjectName>
+    <ProjectName>Friend_2D_EngineLib</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
