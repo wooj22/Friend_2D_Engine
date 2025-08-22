@@ -24,6 +24,7 @@
     <ProjectGuid>{016abaa9-0181-4887-bcf0-78647387da1f}</ProjectGuid>
     <RootNamespace>My06PhysicsDemoApp</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>01. Physics_DemoApp</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
